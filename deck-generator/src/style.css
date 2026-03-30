@@ -120,6 +120,22 @@ body {
   cursor: pointer;
 }
 
+#controls .ctrl-header-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+#controls .ctrl-btn--save {
+  background: #444;
+  color: #999;
+}
+
+#controls .ctrl-btn--save:not(:disabled) {
+  background: #5DD4E0;
+  color: #1a1a1a;
+}
+
 #controls .ctrl-btn {
   appearance: none;
   background: #5DD4E0;
@@ -201,6 +217,66 @@ body {
   font-size: 0.7rem;
   margin-bottom: 0.5rem;
   padding-left: 0.25rem;
+}
+
+/* --- Slide edit panel --- */
+.slide-edit-panel {
+  background: #222;
+  border: 1px solid #333;
+  border-radius: 0.4rem;
+  padding: 1rem 1.2rem;
+  margin-bottom: 0.75rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem 1rem;
+}
+
+.edit-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.edit-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.edit-input {
+  background: #1a1a1a;
+  border: 1px solid #3a3a3a;
+  border-radius: 0.3rem;
+  color: #ccc;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  padding: 0.35rem 0.5rem;
+  resize: vertical;
+  line-height: 1.4;
+}
+
+.edit-input:focus {
+  outline: none;
+  border-color: #5DD4E0;
+  box-shadow: 0 0 0 1px rgba(93, 212, 224, 0.15);
+}
+
+.edit-nested-header {
+  grid-column: 1 / -1;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: #5DD4E0;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding-top: 0.5rem;
+  border-top: 1px solid #333;
+  margin-top: 0.2rem;
+}
+
+.slide-edit-btn {
+  margin-right: 0.5rem;
 }
 
 .slide-shape-select {

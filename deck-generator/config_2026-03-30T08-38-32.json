@@ -11,7 +11,5 @@
     "data": "data-big-numbers",
     "statement": "statement-centered"
   },
-  "slideShapes": {
-    "0": "droplets"
-  }
+  "slideShapes": {}
 }

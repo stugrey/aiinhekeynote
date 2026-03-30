@@ -71,9 +71,19 @@ const LAYOUT_OPTIONS = {
   ],
 };
 
+/** Editable text fields per slide type */
+const EDITABLE_FIELDS = {
+  cover:             ['title', 'subtitle', 'author', 'badge', 'date'],
+  statement:         ['section', 'text', 'highlight', 'attribution'],
+  'section-divider': ['title', 'subtitle'],
+  content:           ['section', 'heading', 'body'],
+  data:              ['section', 'heading', 'body'],
+};
+
 /** Stored state */
 let currentConfig = null;
 let currentContent = null;
+let contentDirty = false;
 const SLIDES_PER_PAGE = 5;
 let currentPage = 0;
 
@@ -139,7 +149,10 @@ function renderControls() {
   el.innerHTML = `
     <div class="ctrl-header">
       <h2>Deck Generator</h2>
-      <button id="btn-randomise" class="ctrl-btn">Randomise</button>
+      <div class="ctrl-header-actions">
+        <button id="btn-save" class="ctrl-btn ctrl-btn--save" disabled>Save</button>
+        <button id="btn-randomise" class="ctrl-btn">Randomise</button>
+      </div>
     </div>
 
     <div class="ctrl-row">
@@ -176,26 +189,30 @@ function renderControls() {
   // Wire up event listeners
   el.querySelector('#sel-palette').addEventListener('change', e => {
     currentConfig.palette = e.target.value;
+    markDirty();
     renderDeck();
   });
   el.querySelector('#sel-typography').addEventListener('change', e => {
     currentConfig.typography = e.target.value;
+    markDirty();
     renderDeck();
   });
   el.querySelector('#sel-shapes').addEventListener('change', e => {
     currentConfig.shapes = e.target.value;
-    // Set all per-slide overrides to match
     const total = currentContent ? currentContent.slides.length : 0;
     for (let s = 0; s < total; s++) currentConfig.slideShapes[s] = e.target.value;
+    markDirty();
     renderDeck();
   });
   el.querySelector('#sel-pinstripes').addEventListener('change', e => {
     currentConfig.pinstripes = e.target.value;
+    markDirty();
     renderDeck();
   });
   el.querySelector('#sld-noise').addEventListener('input', e => {
     const val = Number(e.target.value);
     currentConfig.noise = val;
+    markDirty();
     el.querySelector('#noise-val').textContent = `${val}%`;
     document.querySelectorAll('.texture-noise').forEach(el => {
       el.style.opacity = val / 100;
@@ -205,6 +222,7 @@ function renderControls() {
   Object.keys(LAYOUT_OPTIONS).forEach(type => {
     el.querySelector(`#layout-${type}`).addEventListener('change', e => {
       currentConfig.layouts[type] = e.target.value;
+      markDirty();
       renderDeck();
     });
   });
@@ -224,6 +242,8 @@ function renderControls() {
     renderControls();
     renderDeck();
   });
+
+  el.querySelector('#btn-save').addEventListener('click', saveContent);
 }
 
 /** Render pagination controls below the config panel */
@@ -338,6 +358,175 @@ async function exportSlide(page, type) {
   btn.disabled = false;
 }
 
+/** Save current content + config to server (timestamps backups automatically) */
+async function saveContent() {
+  const btn = document.getElementById('btn-save');
+  if (btn) { btn.textContent = 'Saving…'; btn.disabled = true; }
+
+  try {
+    const res = await fetch('/api/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content: currentContent, config: currentConfig }),
+    });
+    const data = await res.json();
+    if (data.ok) {
+      contentDirty = false;
+      if (btn) btn.textContent = 'Saved';
+      setTimeout(() => { if (btn) { btn.textContent = 'Save'; btn.disabled = true; } }, 1500);
+    } else {
+      if (btn) btn.textContent = 'Error';
+    }
+  } catch (e) {
+    console.error('Save failed:', e);
+    if (btn) { btn.textContent = 'Save'; btn.disabled = false; }
+  }
+}
+
+/** Mark content as dirty and enable the save button */
+function markDirty() {
+  contentDirty = true;
+  const btn = document.getElementById('btn-save');
+  if (btn) { btn.disabled = false; btn.textContent = 'Save'; }
+}
+
+/** Build the collapsible edit panel for a slide */
+function buildEditPanel(slide, slideIndex) {
+  const fields = EDITABLE_FIELDS[slide.type] || [];
+  const panel = document.createElement('div');
+  panel.className = 'slide-edit-panel';
+  panel.style.display = 'none';
+
+  // Top-level text fields
+  fields.forEach(key => {
+    const val = slide[key] ?? '';
+    const isLong = key === 'body' || key === 'text';
+
+    const group = document.createElement('div');
+    group.className = 'edit-group';
+
+    const label = document.createElement('label');
+    label.className = 'edit-label';
+    label.textContent = key;
+
+    const input = isLong
+      ? document.createElement('textarea')
+      : document.createElement('input');
+    input.className = 'edit-input';
+    input.value = val;
+    if (isLong) input.rows = 3;
+
+    input.addEventListener('input', () => {
+      currentContent.slides[slideIndex][key] = input.value;
+      markDirty();
+      renderSingleSlide(slideIndex);
+    });
+
+    group.appendChild(label);
+    group.appendChild(input);
+    panel.appendChild(group);
+  });
+
+  // Nested array fields: points[] for content, stats[] for data
+  if (slide.type === 'content' && slide.points) {
+    slide.points.forEach((point, pi) => {
+      const header = document.createElement('div');
+      header.className = 'edit-nested-header';
+      header.textContent = `Point ${pi + 1}`;
+      panel.appendChild(header);
+
+      ['title', 'description'].forEach(key => {
+        const group = document.createElement('div');
+        group.className = 'edit-group';
+
+        const label = document.createElement('label');
+        label.className = 'edit-label';
+        label.textContent = key;
+
+        const isLong = key === 'description';
+        const input = isLong
+          ? document.createElement('textarea')
+          : document.createElement('input');
+        input.className = 'edit-input';
+        input.value = point[key] ?? '';
+        if (isLong) input.rows = 2;
+
+        input.addEventListener('input', () => {
+          currentContent.slides[slideIndex].points[pi][key] = input.value;
+          markDirty();
+          renderSingleSlide(slideIndex);
+        });
+
+        group.appendChild(label);
+        group.appendChild(input);
+        panel.appendChild(group);
+      });
+    });
+  }
+
+  if (slide.type === 'data' && slide.stats) {
+    slide.stats.forEach((stat, si) => {
+      const header = document.createElement('div');
+      header.className = 'edit-nested-header';
+      header.textContent = `Stat ${si + 1}`;
+      panel.appendChild(header);
+
+      ['value', 'label'].forEach(key => {
+        const group = document.createElement('div');
+        group.className = 'edit-group';
+
+        const label = document.createElement('label');
+        label.className = 'edit-label';
+        label.textContent = key;
+
+        const input = document.createElement('input');
+        input.className = 'edit-input';
+        input.value = stat[key] ?? '';
+
+        input.addEventListener('input', () => {
+          currentContent.slides[slideIndex].stats[si][key] = input.value;
+          markDirty();
+          renderSingleSlide(slideIndex);
+        });
+
+        group.appendChild(label);
+        group.appendChild(input);
+        panel.appendChild(group);
+      });
+    });
+  }
+
+  return panel;
+}
+
+/** Re-render a single slide in place (without tearing down the whole deck) */
+function renderSingleSlide(slideIndex) {
+  const config = currentConfig;
+  const slide = currentContent.slides[slideIndex];
+  const page = slideIndex + 1;
+
+  const slideEl = document.getElementById(`slide-${page}`);
+  if (!slideEl) return;
+
+  const layoutName = config.layouts[slide.type] || Object.values(config.layouts)[0];
+  const layoutFn = layoutRegistry[layoutName];
+  if (!layoutFn) return;
+
+  slideEl.innerHTML = layoutFn(slide, page);
+
+  const inner = slideEl.querySelector('.slide-inner');
+  if (!inner) return;
+
+  // Re-inject textures (shapes are NOT re-injected to avoid WebGL churn)
+  if (config.pinstripes !== 'none') {
+    inner.insertAdjacentHTML('afterbegin', '<div class="shape-overlay texture-pinstripes"></div>');
+  }
+  inner.insertAdjacentHTML(
+    'afterbegin',
+    `<div class="shape-overlay texture-noise" style="background-image:url(${noiseDataURL});opacity:${config.noise / 100}"></div>`,
+  );
+}
+
 /** Render all slides into the #deck container */
 function renderDeck() {
   const config = currentConfig;
@@ -390,6 +579,36 @@ function renderDeck() {
     });
     shapeSelect.addEventListener('change', e => {
       currentConfig.slideShapes[i] = e.target.value;
+      markDirty();
+      renderDeck();
+    });
+
+    const editBtn = document.createElement('button');
+    editBtn.className = 'slide-export-btn slide-edit-btn';
+    editBtn.textContent = 'Edit';
+    editBtn.addEventListener('click', () => {
+      const panel = wrapper.querySelector('.slide-edit-panel');
+      if (!panel) return;
+      const open = panel.style.display !== 'none';
+      panel.style.display = open ? 'none' : '';
+      editBtn.textContent = open ? 'Edit' : 'Close';
+    });
+
+    const dupeBtn = document.createElement('button');
+    dupeBtn.className = 'slide-export-btn';
+    dupeBtn.textContent = 'Duplicate';
+    dupeBtn.addEventListener('click', () => {
+      const clone = JSON.parse(JSON.stringify(slide));
+      currentContent.slides.splice(i + 1, 0, clone);
+      // Shift per-slide shape overrides after the insertion point
+      const shapes = currentConfig.slideShapes;
+      const total = currentContent.slides.length;
+      for (let s = total - 1; s > i + 1; s--) {
+        if (shapes[s - 1] !== undefined) shapes[s] = shapes[s - 1];
+        else delete shapes[s];
+      }
+      if (shapes[i] !== undefined) shapes[i + 1] = shapes[i];
+      markDirty();
       renderDeck();
     });
 
@@ -400,8 +619,14 @@ function renderDeck() {
 
     labelRow.appendChild(labelText);
     labelRow.appendChild(shapeSelect);
+    labelRow.appendChild(editBtn);
+    labelRow.appendChild(dupeBtn);
     labelRow.appendChild(exportBtn);
     wrapper.appendChild(labelRow);
+
+    // Collapsible edit panel
+    const editPanel = buildEditPanel(slide, i);
+    wrapper.appendChild(editPanel);
 
     // Create the slide container
     const slideEl = document.createElement('div');
