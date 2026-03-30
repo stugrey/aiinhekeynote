@@ -111,12 +111,15 @@ function savePlugin() {
           }
 
           const exportDir = path.resolve('export');
+          const dir16x9 = path.join(exportDir, '16x9');
           const dir4x3 = path.join(exportDir, '4x3');
           const results = {};
 
           // 16:9 — 13.333 × 7.5 inches
-          const count16 = await buildDeck(exportDir, 13.333, 7.5, '16:9');
-          if (count16) results['16:9'] = count16;
+          if (fs.existsSync(dir16x9)) {
+            const count16 = await buildDeck(dir16x9, 13.333, 7.5, '16:9');
+            if (count16) results['16:9'] = count16;
+          }
 
           // 4:3 — 10 × 7.5 inches
           if (fs.existsSync(dir4x3)) {

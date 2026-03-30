@@ -471,7 +471,7 @@ async function exportAllSlides() {
 
     // ── 16:9 capture ──
     btn.textContent = `16:9 page ${pg + 1}/${totalPages}…`;
-    await capturePage(pageSlides, startIdx, '');
+    await capturePage(pageSlides, startIdx, '16x9');
 
     // ── 4:3 capture — full re-render at 4:3 so droplets get fresh content textures ──
     btn.textContent = `4:3 page ${pg + 1}/${totalPages}…`;
