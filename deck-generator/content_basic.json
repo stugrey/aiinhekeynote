@@ -1,0 +1,65 @@
+{
+  "slides": [
+    {
+      "type": "cover",
+      "title": "AI in HE",
+      "subtitle": "AI Infrastructure in Higher Education",
+      "author": "Dr Stuart Grey",
+      "badge": "Teesside University",
+      "date": "March 2026"
+    },
+    {
+      "type": "section-divider",
+      "section_number": 1,
+      "title": "The Landscape",
+      "subtitle": "Where we are and what students are telling us"
+    },
+    {
+      "type": "content",
+      "section": "The Landscape",
+      "heading": "Students are already living with AI \u2014 the question is whether institutions will catch up",
+      "body": "Across UK higher education, students have moved faster than policy. They are using generative AI tools daily for research, writing, coding, and creative work. The gap between student practice and institutional guidance is widening, not closing.",
+      "points": [
+        {
+          "title": "Everyday integration",
+          "description": "AI tools have become part of the default student workflow, not a novelty. Usage is habitual, not experimental."
+        },
+        {
+          "title": "Policy vacuum",
+          "description": "Most institutions lack clear, actionable guidance on AI use. Students are making ethical decisions without frameworks."
+        },
+        {
+          "title": "Equity concerns",
+          "description": "Access to premium AI tools correlates with socioeconomic background. A two-tier system is emerging among learners."
+        }
+      ]
+    },
+    {
+      "type": "data",
+      "section": "The Landscape",
+      "heading": "The numbers tell a clear story",
+      "body": "Recent surveys of UK university students reveal that AI adoption is not a future scenario \u2014 it is the present reality. Institutions that treat AI policy as non-urgent are already behind.",
+      "stats": [
+        {
+          "value": "86%",
+          "label": "of students have used generative AI for academic work"
+        },
+        {
+          "value": "3in4",
+          "label": "want clearer institutional guidance on acceptable use"
+        },
+        {
+          "value": "41%",
+          "label": "worry that AI access creates unfair advantages"
+        }
+      ]
+    },
+    {
+      "type": "statement",
+      "section": "Looking Forward",
+      "text": "The institutions that listen to student voices now will define what ethical AI in education looks like for the next decade.",
+      "highlight": "listen to student voices",
+      "attribution": "Stu Grey \u2014 Teesside University Keynote, March 2026"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "palette": "monzo",
+  "typography": "monzo",
+  "shapes": "none",
+  "pinstripes": "none",
+  "noise": 0,
+  "layouts": {
+    "cover":            "cover-bold-full",
+    "section-divider":  "divider-color-burst",
+    "content":          "content-split-cards",
+    "data":             "data-big-numbers",
+    "statement":        "statement-centered"
+  }
+}

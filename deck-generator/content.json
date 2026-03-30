@@ -1,0 +1,783 @@
+{
+  "slides": [
+    {
+      "type": "cover",
+      "title": "AI in HE",
+      "subtitle": "Who Will Control the AI Infrastructure of Higher Education?",
+      "author": "Dr Stuart Grey",
+      "badge": "Future Facing Learning and AI in Higher Education 2026",
+      "date": "March 2026"
+    },
+    {
+      "type": "statement",
+      "section": "Framing",
+      "text": "The strongest version of this keynote is not anti-AI and not anti-industry. It is anti-passivity.",
+      "highlight": "anti-passivity",
+      "attribution": "Keynote research dossier"
+    },
+    {
+      "type": "section-divider",
+      "section_number": 1,
+      "title": "The control question",
+      "subtitle": "Why AI in higher education is now an infrastructure problem"
+    },
+    {
+      "type": "content",
+      "section": "The control question",
+      "heading": "AI in higher education is becoming invisible infrastructure",
+      "body": "The issue is no longer just whether a tool is impressive, cheap or convenient. AI is entering the substrate through which universities teach, assess, advise, support and govern, which makes control, accountability and resilience central questions.",
+      "points": [
+        {
+          "title": "Teaching and assessment",
+          "description": "Models are shaping drafting, feedback, assessment design, provenance and integrity workflows."
+        },
+        {
+          "title": "Student support and operations",
+          "description": "AI is moving into advising, search, triage, wellbeing, marketing, analytics and admin copilots."
+        },
+        {
+          "title": "Governance and strategy",
+          "description": "Once AI is infrastructural, universities need legibility, bargaining power, portability and evaluation capacity."
+        }
+      ]
+    },
+    {
+      "type": "data",
+      "section": "The control question",
+      "heading": "Student adoption is already mainstream",
+      "body": "The higher education sector is not approaching an AI future; it is already operating inside one. Student practice has moved ahead of institutional governance, which means the urgent question is how institutions respond rather than whether they should respond at all.",
+      "stats": [
+        {
+          "value": "95%",
+          "label": "of UK undergraduates report using AI in at least one way"
+        },
+        {
+          "value": "94%",
+          "label": "use generative AI to help with assessed work"
+        },
+        {
+          "value": "65%",
+          "label": "say assessment has changed significantly because of AI"
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "section": "The control question",
+      "heading": "Governance is lagging behind use",
+      "body": "Mass adoption does not yet come with mass stewardship. Institutions are still building policy, guidance, governance and capability while staff and students are already making high-stakes decisions inside AI-mediated environments.",
+      "points": [
+        {
+          "title": "Fragmented adoption",
+          "description": "Jisc warns that when AI is left to chance, use fragments, risks rise and opportunities are missed."
+        },
+        {
+          "title": "Uneven policy maturity",
+          "description": "UNESCO found only 19% of surveyed institutions already had a formal AI policy, while many more were still developing frameworks."
+        },
+        {
+          "title": "Capability gap",
+          "description": "Students expect AI-rich learning environments, but support, training and institutionally provided tools remain inconsistent."
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "section": "The control question",
+      "heading": "This is a path-dependence moment",
+      "body": "Early choices about vendors, defaults, contracts, data rights and acceptable uses will harden quickly. The QWERTY lesson is not that the worst system always wins, but that once habits and standards settle, switching becomes expensive and politically difficult.",
+      "points": [
+        {
+          "title": "Standards are fluid now",
+          "description": "Assessment rules, approved tools, model integrations and workflow norms are still being set."
+        },
+        {
+          "title": "Switching costs arrive later",
+          "description": "Once courses, data and staff capability are tied to one stack, convenience becomes dependence."
+        },
+        {
+          "title": "Lock-in is often accidental",
+          "description": "Institutions rarely choose captivity explicitly; they drift into it through dozens of local decisions."
+        }
+      ]
+    },
+    {
+      "type": "statement",
+      "section": "The control question",
+      "text": "The real question is not whether AI enters higher education. It already has. The question is on whose terms.",
+      "highlight": "on whose terms",
+      "attribution": "Core keynote framing"
+    },
+    {
+      "type": "section-divider",
+      "section_number": 2,
+      "title": "Pop! and the AI bubble",
+      "subtitle": "Using speculative overinvestment without being captured by it"
+    },
+    {
+      "type": "content",
+      "section": "Pop! and the AI bubble",
+      "heading": "Pop! treats bubbles as irrational surges that still build real infrastructure",
+      "body": "Daniel Gross’s core argument is optimistic but unsentimental: bubbles massively overfund new technologies, most investors lose, but society keeps the infrastructure and the learning. The key is to separate durable public value from temporary speculative mania.",
+      "points": [
+        {
+          "title": "Overfunding accelerates build-out",
+          "description": "Railways, telegraph lines, fibre and data centres get built faster than sober finance would permit."
+        },
+        {
+          "title": "Losses are private; assets remain",
+          "description": "Capital is destroyed on paper, but the networks, facilities and tools can be reused more cheaply afterwards."
+        },
+        {
+          "title": "Learning happens at speed",
+          "description": "Thousands of bad ideas get tried quickly, a few patterns survive and those become the next normal."
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "section": "Pop! and the AI bubble",
+      "heading": "Applied to AI, the bubble is building infrastructure that HE may later inherit",
+      "body": "The current AI boom is concentrated in a small number of firms, but it is still producing assets that universities may eventually use more cheaply and more effectively than they can today. The strategic task is to inherit the infrastructure without inheriting total dependence.",
+      "points": [
+        {
+          "title": "Compute and cloud capacity",
+          "description": "The capex race is creating GPU, cloud and inference infrastructure that will not vanish when valuations cool."
+        },
+        {
+          "title": "Mature tooling",
+          "description": "SDKs, orchestration layers, safety tools, monitoring systems and evaluation benchmarks are hardening on someone else’s budget."
+        },
+        {
+          "title": "Commoditisation pressure",
+          "description": "Competition and open models create pressure toward lower prices, standard interfaces and more realistic deployment options."
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "section": "Pop! and the AI bubble",
+      "heading": "Pop! also clarifies the dangers of the frenzy phase",
+      "body": "Gross is not arguing that bubbles are fair. In higher education, the same boom that creates useful infrastructure can also generate vendor lock-in, misdirected effort and a narrowing of the ecosystem around a handful of dominant providers.",
+      "points": [
+        {
+          "title": "Vendor lock-in",
+          "description": "Universities under pressure to 'have an AI strategy' can sign deeply integrated deals before they understand the exit costs."
+        },
+        {
+          "title": "Misallocated effort",
+          "description": "Leadership attention can flow to headline partnerships and shiny features while pedagogy, staff development and core systems remain under-resourced."
+        },
+        {
+          "title": "Crowded-out pluralism",
+          "description": "Open, research-oriented or public-interest models can be sidelined by the convenience of the biggest platforms."
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "section": "Pop! and the AI bubble",
+      "heading": "The Pop! lesson for universities is to free-ride on capex while protecting options",
+      "body": "If this is a bubble, universities should use the period of abundance to negotiate hard, experiment widely and build durable internal capability. The value that survives the pop should be skills, open standards, evaluation know-how and the ability to walk away if necessary.",
+      "points": [
+        {
+          "title": "Treat vendors as interim infrastructure",
+          "description": "Buy access, discounts and credits during the growth phase, but do not mistake interim convenience for permanent destiny."
+        },
+        {
+          "title": "Invest in people, not just licences",
+          "description": "Use bubble-era energy to build AI-native pedagogy, workflow design, data engineering and evaluation skills."
+        },
+        {
+          "title": "Design for the 'after'",
+          "description": "Ask what remains valuable if a provider doubles prices, changes terms or disappears within three years."
+        }
+      ]
+    },
+    {
+      "type": "statement",
+      "section": "Pop! and the AI bubble",
+      "text": "Treat big AI as infrastructure, not overlords.",
+      "highlight": "infrastructure, not overlords",
+      "attribution": "Pop!-style takeaway"
+    },
+    {
+      "type": "section-divider",
+      "section_number": 3,
+      "title": "Power and Progress",
+      "subtitle": "The politics of direction: who decides what AI is for?"
+    },
+    {
+      "type": "content",
+      "section": "Power and Progress",
+      "heading": "Power and Progress argues that technology does not automatically equal social progress",
+      "body": "Acemoglu and Johnson show that broad gains from technological change usually arrive only after workers, citizens and institutions reshape how the technology is deployed and how the surplus is shared. The direction of innovation is political, not natural.",
+      "points": [
+        {
+          "title": "Progress is contested",
+          "description": "A technology boom can enrich elites, degrade work or widen inequality unless institutions push it toward shared value."
+        },
+        {
+          "title": "Direction matters",
+          "description": "Societies can favour labour-replacing systems or task-creating systems that augment people and open new roles."
+        },
+        {
+          "title": "Narratives matter too",
+          "description": "The story that 'tech equals progress' can delegitimise critique and make resistance look backward rather than democratic."
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "section": "Power and Progress",
+      "heading": "In universities, the first P&P question is whose goals are being encoded",
+      "body": "AI deployments always embody priorities. In a constrained higher education environment, efficiency, scale and cost-saving narratives can quietly dominate over educational purpose unless staff, students and academic governance bodies meaningfully shape the agenda.",
+      "points": [
+        {
+          "title": "Management pressure",
+          "description": "Cash-strapped institutions are tempted by promises of doing more with less."
+        },
+        {
+          "title": "Vendor framing",
+          "description": "Products are often pitched around productivity, scalability and analytics rather than around academic freedom or student flourishing."
+        },
+        {
+          "title": "Weak voice ex ante",
+          "description": "If staff, students and unions shape the agenda only after deployment, the defaults have already been chosen."
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "section": "Power and Progress",
+      "heading": "Power and Progress pushes HE toward task-creating, not labour-replacing, AI",
+      "body": "A P&P-aligned strategy uses AI to remove drudgery and expand high-value human work rather than to substitute for teachers, advisers or researchers. That distinction should become a design test for pilots, tenders and institutional strategy.",
+      "points": [
+        {
+          "title": "Task-replacing pattern",
+          "description": "Automated content generation, low-touch feedback and surveillance-heavy 'student success' systems mainly reduce or intensify human roles."
+        },
+        {
+          "title": "Task-creating pattern",
+          "description": "Admin triage, accessibility support, formative scaffolding and better research workflows can free time for mentoring, judgment and dialogue."
+        },
+        {
+          "title": "Public-interest test",
+          "description": "The real question is whether the system improves student experience and staff autonomy, not just whether it lowers cost."
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "section": "Power and Progress",
+      "heading": "Data extraction and inequality sit at the centre of the P&P reading",
+      "body": "When a small number of firms control models and platforms, public educational activity can become private rent streams. At the same time, uneven access to tools, skills and support can widen inequalities between and within institutions.",
+      "points": [
+        {
+          "title": "Platform capture of value",
+          "description": "Student and staff data, usage traces and institutional workflows can be turned into proprietary advantage upstream."
+        },
+        {
+          "title": "Uneven benefits",
+          "description": "Better-resourced institutions and more advantaged groups can move faster, leaving others with thinner and more vendor-led provision."
+        },
+        {
+          "title": "Agenda-setting shift",
+          "description": "Universities risk becoming downstream users of proprietary systems rather than co-shapers of methods, criteria and norms."
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "section": "Power and Progress",
+      "heading": "A Power and Progress strategy starts from public-interest goals",
+      "body": "If universities take Acemoglu and Johnson seriously, AI strategy begins with purpose rather than adoption. Institutions should define what AI is for, reject headcount reduction as a primary objective, and make governance more democratic, plural and equity-aware.",
+      "points": [
+        {
+          "title": "Public goals first",
+          "description": "Free staff time for care, improve accessibility, reduce pointless compliance and strengthen learning rather than chase adoption for its own sake."
+        },
+        {
+          "title": "Democratise governance",
+          "description": "Treat AI as an academic issue with representation from staff, students, professional services and unions."
+        },
+        {
+          "title": "Bake in equity",
+          "description": "Measure who benefits, who is left behind and whether projects narrow or deepen existing gaps."
+        }
+      ]
+    },
+    {
+      "type": "statement",
+      "section": "Power and Progress",
+      "text": "Use AI to remove drudgery and amplify human contact and expertise, not as a pretext to remove humans from education.",
+      "highlight": "remove drudgery",
+      "attribution": "Power and Progress–style principle"
+    },
+    {
+      "type": "section-divider",
+      "section_number": 4,
+      "title": "Supremacy",
+      "subtitle": "What happens when a few labs and platforms set the pace for everyone else?"
+    },
+    {
+      "type": "content",
+      "section": "Supremacy",
+      "heading": "Supremacy is a story about concentration, mission drift and the race for dominance",
+      "body": "Parmy Olson follows the shift from idealistic lab rhetoric to a platform struggle for generative AI supremacy. The book is not just about technical competition; it is about how a small number of firms gain disproportionate power over the terms on which everyone else adopts AI.",
+      "points": [
+        {
+          "title": "Concentrated race",
+          "description": "Compute, models and distribution channels increasingly sit with a tiny number of firms."
+        },
+        {
+          "title": "Mission drift",
+          "description": "Public-interest language gives way to incentives shaped by growth, monetisation and strategic advantage."
+        },
+        {
+          "title": "Lagging governance",
+          "description": "States, regulators and publics typically move slower than firms that are already deploying systems at scale."
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "section": "Supremacy",
+      "heading": "For universities, supremacy shows up as platform lock-in",
+      "body": "AI is arriving in higher education through platforms that institutions already rely on: productivity suites, learning systems, analytics stacks, proctoring, recruitment tools and cloud services. That turns vendor choice into a structural choice about the digital university.",
+      "points": [
+        {
+          "title": "Embedded AI",
+          "description": "Copilots and model features are being folded into systems universities already use every day."
+        },
+        {
+          "title": "Deep entanglement",
+          "description": "Assessment, content, advising, analytics and workflow logic become harder to move when they are tied to the same provider stack."
+        },
+        {
+          "title": "Structural control",
+          "description": "The real decision is often not which chatbot to allow, but which one or two vendors get to shape institutional defaults."
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "section": "Supremacy",
+      "heading": "Mission drift and a safety-only frame can quietly overwrite educational values",
+      "body": "Supremacy highlights how firms often emphasise 'safety' in narrow terms while wider questions of power, pedagogy, justice and labour receive less attention. Universities can replicate that narrowing if they reduce AI governance to compliance, detection and procurement alone.",
+      "points": [
+        {
+          "title": "Commercial goals travel with the tools",
+          "description": "Systems built for engagement, user capture and cross-product integration do not automatically serve academic purposes."
+        },
+        {
+          "title": "Safety is narrower than pedagogy",
+          "description": "Hallucinations and privacy matter, but so do originality, disciplinary method, language, culture and what counts as knowledge."
+        },
+        {
+          "title": "Single-stack thinking",
+          "description": "Teaching students one corporate AI stack can become an epistemic narrowing rather than a literacy strategy."
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "section": "Supremacy",
+      "heading": "Supremacy also reframes data, labour and geopolitics",
+      "body": "When data and compute become strategic assets, universities risk becoming both customers and raw material. At the same time, AI becomes part of geopolitical and industrial strategy, which can pull higher education toward competitive narratives rather than civic ones.",
+      "points": [
+        {
+          "title": "Data as leverage",
+          "description": "If proprietary models understand your institution better than you do, you may be renting part of your own intellectual life back from a vendor."
+        },
+        {
+          "title": "Labour reallocation",
+          "description": "Questions about what is left for humans to do apply as much to academic and professional-services work as to any other sector."
+        },
+        {
+          "title": "Pawn or counterweight",
+          "description": "Universities can act as distribution channels for big tech or as places that build public, critical and plural alternatives."
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "section": "Supremacy",
+      "heading": "The Supremacy lens gives leaders a sharper set of questions",
+      "body": "This is a governance book disguised as a technology race book. It pushes universities to ask not only whether a product works, but which infrastructures, missions and future dependencies they are normalising through apparently routine choices.",
+      "points": [
+        {
+          "title": "Infrastructure",
+          "description": "Which providers will effectively control our digital learning and admin environment in five years?"
+        },
+        {
+          "title": "Mission",
+          "description": "Where do we test vendor offers against academic values rather than just price, security and convenience?"
+        },
+        {
+          "title": "Plurality",
+          "description": "Are we deliberately exposing staff and students to multiple systems, including open and locally hosted ones?"
+        }
+      ]
+    },
+    {
+      "type": "statement",
+      "section": "Supremacy",
+      "text": "Higher education is at risk of having the future of AI done to it rather than by it.",
+      "highlight": "done to it",
+      "attribution": "Supremacy-style warning"
+    },
+    {
+      "type": "section-divider",
+      "section_number": 5,
+      "title": "Enshittification",
+      "subtitle": "How platforms move from helpful subsidy to extractive chokepoint"
+    },
+    {
+      "type": "content",
+      "section": "Enshittification",
+      "heading": "Enshittification names the lifecycle of extractive platforms",
+      "body": "Cory Doctorow’s pattern is simple and brutal: platforms are initially good to users, then tilt toward business customers, then squeeze both sides once lock-in is high and exit is hard. The mechanism is control over the chokepoints through which everyone else has to pass.",
+      "points": [
+        {
+          "title": "Subsidised generosity",
+          "description": "Cheap access, free features and loose terms help platforms win adoption fast."
+        },
+        {
+          "title": "Customer re-optimisation",
+          "description": "The platform increasingly serves enterprise buyers, partners and monetisation targets rather than end users."
+        },
+        {
+          "title": "Rent extraction",
+          "description": "Once switching is painful, prices rise, interoperability fades and both users and customers are squeezed."
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "section": "Enshittification",
+      "heading": "In HE, the early phases look attractive",
+      "body": "The first stages of enshittification are exactly what many institutions currently experience as AI opportunity: generous discounts, useful study tools, fast feedback, drafting support and analytics. The danger is that these benefits normalise deep dependence before governance catches up.",
+      "points": [
+        {
+          "title": "Good to users",
+          "description": "Students and staff get immediate value from writing help, coding support, accessibility features and instant assistance."
+        },
+        {
+          "title": "Good to institutions",
+          "description": "Enterprise licences promise dashboards, retention scores, teaching aids and low-friction integration into existing systems."
+        },
+        {
+          "title": "Opaque terms feel manageable",
+          "description": "Data collection and model-improvement clauses can look abstract when the short-term value is obvious."
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "section": "Enshittification",
+      "heading": "The later phase is institutional squeeze",
+      "body": "Once universities are locked into a small number of providers for models, cloud and interfaces, the leverage shifts. At that point, price ratchets, feature paywalls, proprietary formats and integration dependencies become a structural budget and autonomy problem.",
+      "points": [
+        {
+          "title": "Right of exit weakens",
+          "description": "You can leave in theory, but lose tuned workflows, content, analytics history and embedded teaching processes."
+        },
+        {
+          "title": "Pedagogy bends toward the platform",
+          "description": "Assessment formats, dashboards and content choices start adapting to what the system measures and monetises best."
+        },
+        {
+          "title": "Students and staff become telemetry",
+          "description": "Prompts, drafts, behaviour and engagement traces feed optimisation systems that they do not govern."
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "section": "Enshittification",
+      "heading": "Doctorow’s remedy maps well onto HE strategy",
+      "body": "The anti-enshittification agenda is practical rather than nostalgic: preserve interoperability, strengthen portability, resist chokepoints and keep a real right of exit. For universities, that means designing AI-enhanced education so it can move between providers or back to non-AI modes when required.",
+      "points": [
+        {
+          "title": "Procurement with teeth",
+          "description": "Require export rights, open formats, API access, no dark training clauses and clear sunset provisions."
+        },
+        {
+          "title": "Open and sector-owned options",
+          "description": "Support consortium infrastructure and open tools so 'AI-enhanced pedagogy' does not become a synonym for one vendor."
+        },
+        {
+          "title": "Human control over core pathways",
+          "description": "Maintain non-AI routes for high-stakes educational processes, both for rights and for resilience."
+        }
+      ]
+    },
+    {
+      "type": "statement",
+      "section": "Enshittification",
+      "text": "Preserve the right of exit before convenience hardens into captivity.",
+      "highlight": "right of exit",
+      "attribution": "Doctorow-style principle"
+    },
+    {
+      "type": "section-divider",
+      "section_number": 6,
+      "title": "The infrastructure logic",
+      "subtitle": "From code and data to capture, grounding and educational purpose"
+    },
+    {
+      "type": "content",
+      "section": "The infrastructure logic",
+      "heading": "Lessig reminds us that architecture is a form of governance",
+      "body": "Law matters, but so do norms, market structure and code. In digital environments, architecture determines what is easy, visible, auditable, exportable or impossible, which is why AI procurement is not just buying technology; it is choosing a regulatory environment for institutional behaviour.",
+      "points": [
+        {
+          "title": "Law",
+          "description": "Policies, regulation, contracts and complaints mechanisms set outer boundaries."
+        },
+        {
+          "title": "Market",
+          "description": "Concentration and switching costs shape what institutions can realistically choose."
+        },
+        {
+          "title": "Code and norms",
+          "description": "Defaults, logs, interfaces and acceptable-use culture regulate everyday behaviour more than many policy documents do."
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "section": "The infrastructure logic",
+      "heading": "Surveillance capitalism and extractivism explain why data governance matters",
+      "body": "AI systems do not only consume tasks; they consume traces of behaviour, judgment and institutional life. In a university, that means prompts, assignments, support conversations and learning interactions can become sources of value extraction unless the institution sets clear limits and retains bargaining power.",
+      "points": [
+        {
+          "title": "Behavioural extraction",
+          "description": "Human experience becomes data that can feed prediction, optimisation and monetisation systems."
+        },
+        {
+          "title": "Knowledge extractivism",
+          "description": "Educational and scholarly activity can be repackaged as proprietary computational assets with limited reciprocal return."
+        },
+        {
+          "title": "Institutional trust",
+          "description": "The issue is not just compliance but whether universities treat student and staff data as governed public assets."
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "section": "The infrastructure logic",
+      "heading": "Bigger is not always better: scaling must be balanced with grounding",
+      "body": "A fluent general model is not the same as a well-grounded institutional system. For many higher education uses, context, retrieval, domain adaptation and evaluation matter more than absolute frontier scale, which means universities still have leverage if they build the right capabilities.",
+      "points": [
+        {
+          "title": "General fluency is not local fitness",
+          "description": "Models that sound informed may still fail on institutional rules, disciplinary standards or student-support contexts."
+        },
+        {
+          "title": "Domain knowledge is a strategic asset",
+          "description": "Universities hold workflow knowledge, task definitions and quality criteria that can make smaller systems more useful."
+        },
+        {
+          "title": "Evaluation is decisive",
+          "description": "The key question is not who has the biggest model, but who can test whether a model works safely for real educational tasks."
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "section": "The infrastructure logic",
+      "heading": "Educational purpose is more than answer production",
+      "body": "If creative and intellectual work is a conversation with the medium, then AI changes how people think, draft and judge. Learning is not identical to access to answers, and the right design question is not 'which tasks can AI do?' but 'which purposes must universities continue to serve?'",
+      "points": [
+        {
+          "title": "Medium shapes cognition",
+          "description": "Writing, sketching and dialogue are not just outputs; they are part of how understanding is formed."
+        },
+        {
+          "title": "Learning requires more than information",
+          "description": "Abundance of answers does not remove the need for practice, feedback, struggle and judgment."
+        },
+        {
+          "title": "Purpose over task",
+          "description": "Teaching, advising and scholarship include trust, interpretation, care and accountability, not just text production."
+        }
+      ]
+    },
+    {
+      "type": "data",
+      "section": "The infrastructure logic",
+      "heading": "The infrastructure layer is highly concentrated, but the design space is not closed",
+      "body": "Universities cannot outspend hyperscalers, but they do not need to. The important implication of concentration is that institutions must be better at selection, grounding, evaluation, procurement and collective bargaining than they have been in previous waves of educational technology.",
+      "stats": [
+        {
+          "value": "68%",
+          "label": "share of the public cloud market held by the top three providers"
+        },
+        {
+          "value": "90.2%",
+          "label": "of notable AI models in 2024 originated from industry"
+        },
+        {
+          "value": "Narrowing",
+          "label": "gap between frontier open and closed models, according to AISI"
+        }
+      ]
+    },
+    {
+      "type": "section-divider",
+      "section_number": 7,
+      "title": "Stewardship and scenarios",
+      "subtitle": "From passive customer to active steward"
+    },
+    {
+      "type": "content",
+      "section": "Stewardship and scenarios",
+      "heading": "The strongest position is engaged stewardship",
+      "body": "The real alternative to both boosterism and blanket refusal is a third position: engage deeply with AI, but refuse to let vendor defaults become institutional destiny. Universities do not need total self-sufficiency; they need enough capability to understand, negotiate, evaluate and, when necessary, switch.",
+      "points": [
+        {
+          "title": "Not passive consumerism",
+          "description": "Adoption without governance turns experimentation into lock-in by default."
+        },
+        {
+          "title": "Not romantic refusal",
+          "description": "Disengagement leaves institutions and students exposed to uncontrolled use elsewhere."
+        },
+        {
+          "title": "A governed middle path",
+          "description": "Buy some things, build some things, adapt some things and reject some things from a position of stewardship."
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "section": "Stewardship and scenarios",
+      "heading": "Five institutional capabilities distinguish a steward from a captive customer",
+      "body": "Control does not mean owning every layer of the stack. It means being able to see dependencies, shape terms, test systems, protect rights and preserve alternatives when conditions change.",
+      "points": [
+        {
+          "title": "Procurement and data governance",
+          "description": "Treat contracts, data rights and model dependencies as governance decisions rather than back-office details."
+        },
+        {
+          "title": "Evaluation and resilience",
+          "description": "Build routine task-based testing, outage plans, model-change monitoring and fallback routes for critical workflows."
+        },
+        {
+          "title": "Collaboration and pluralism",
+          "description": "Work through sector consortia, open models and shared infrastructure where single institutions lack scale."
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "section": "Stewardship and scenarios",
+      "heading": "A practical AI strategy also needs behavioural design",
+      "body": "The Behavioural Insights Team frame is useful here: augment, adopt, align and adapt. Institutions need to decide where AI should augment human work, how people will actually use it, whether it aligns with mission and how norms, skills and dependencies will change over time.",
+      "points": [
+        {
+          "title": "Augment",
+          "description": "Prioritise use cases that extend judgment, accessibility and care instead of substituting for them."
+        },
+        {
+          "title": "Adopt and align",
+          "description": "Motivation, capability and trust determine real uptake; alignment requires values, risk and purpose tests."
+        },
+        {
+          "title": "Adapt",
+          "description": "Institutions should expect workflows, identities and expectations to change once AI becomes normal."
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "section": "Stewardship and scenarios",
+      "heading": "Universities need a viable system for AI governance, not just a policy",
+      "body": "The governance gap is often organisational rather than philosophical. Institutions have plenty of frontline experimentation, but many lack the coordination, assurance, foresight and mission-level steering needed to remain viable as AI becomes embedded.",
+      "points": [
+        {
+          "title": "Operations and coordination",
+          "description": "Faculties, support teams and learning technologists need shared standards and communities of practice."
+        },
+        {
+          "title": "Control and intelligence",
+          "description": "Procurement, audit, evaluation and horizon scanning have to become standing institutional functions."
+        },
+        {
+          "title": "Purpose and identity",
+          "description": "Leadership must articulate what kind of university the institution wants to be in an AI-mediated environment."
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "section": "Stewardship and scenarios",
+      "heading": "Scenario 2030: higher education played the bubble well",
+      "body": "In the good scenario, universities used the boom years to learn fast, negotiate hard and build open capabilities. They ended up with cheaper infrastructure, stronger internal expertise and more plural ecosystems rather than deeper dependence on a single commercial trajectory.",
+      "points": [
+        {
+          "title": "Plural stack",
+          "description": "Institutions can move between providers, use open models where appropriate and preserve non-AI routes for core functions."
+        },
+        {
+          "title": "Human-centred pedagogy",
+          "description": "AI reduces drudgery, strengthens accessibility and frees time for richer feedback, dialogue and care."
+        },
+        {
+          "title": "Sector leverage",
+          "description": "Shared procurement, evaluation and data governance improve bargaining power and public accountability."
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "section": "Stewardship and scenarios",
+      "heading": "Scenario 2030: higher education got captured by the stack",
+      "body": "In the bad scenario, the sector chased convenience during the boom and woke up inside a few tightly integrated ecosystems. AI is everywhere, but mostly as rent extraction, managerial telemetry and pedagogic standardisation rather than as a tool for shared educational flourishing.",
+      "points": [
+        {
+          "title": "Deep lock-in",
+          "description": "Assessment, content, analytics and admin rely on one or two providers with high switching costs."
+        },
+        {
+          "title": "Thin human contact",
+          "description": "Automation trims staff time in the wrong places and leaves students with more synthetic support and less real academic relationship."
+        },
+        {
+          "title": "Public value leakage",
+          "description": "Educational data and institutional learning flow upstream while universities rent back essential capabilities."
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "section": "Stewardship and scenarios",
+      "heading": "A Monday-morning agenda for institutions",
+      "body": "Stewardship starts with a few concrete moves, not a grand sovereignty fantasy. The aim is to turn AI from a diffuse campus anxiety into a governable institutional programme with clear responsibilities and visible protections for staff and students.",
+      "points": [
+        {
+          "title": "Map dependencies",
+          "description": "Identify where AI is already embedded in assessment, feedback, support, analytics and admin workflows."
+        },
+        {
+          "title": "Tighten the basics",
+          "description": "Create a cross-functional procurement checklist, define permitted data uses and set up one or two evaluation routines."
+        },
+        {
+          "title": "Act collectively",
+          "description": "Choose one domain where sector collaboration, shared bargaining or open infrastructure would beat local improvisation."
+        }
+      ]
+    },
+    {
+      "type": "statement",
+      "section": "Stewardship and scenarios",
+      "text": "Who will ultimately control the AI infrastructure higher education comes to depend on — and what kind of university will that make possible?",
+      "highlight": "what kind of university",
+      "attribution": "Closing question"
+    }
+  ]
+}
