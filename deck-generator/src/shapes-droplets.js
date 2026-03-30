@@ -176,7 +176,7 @@ const fragmentShader = /* glsl */ `
     color += specBroad * 0.03;
 
     // ── Alpha: water film tapers to zero thickness at the contact line ──
-    float alpha = smoothstep(THRESHOLD, THRESHOLD + 0.025, f);
+    float alpha = smoothstep(THRESHOLD, THRESHOLD + 0.045, f);
 
     gl_FragColor = vec4(color, alpha);
   }
@@ -395,7 +395,140 @@ const fragmentShaderTinted = /* glsl */ `
     color += specMirror * 0.25;
     color += specBroad * 0.03;
 
-    float alpha = smoothstep(THRESHOLD, THRESHOLD + 0.025, f);
+    float alpha = smoothstep(THRESHOLD, THRESHOLD + 0.045, f);
+    gl_FragColor = vec4(color, alpha);
+  }
+`;
+
+// ─── CRUDE OIL FRAGMENT SHADER ─────────────────
+// Opaque dark fluid with thin-film iridescence at the meniscus,
+// higher refractive index (n ≈ 1.5), and heavy Beer-Lambert absorption.
+
+const fragmentShaderOil = /* glsl */ `
+  precision highp float;
+  varying vec2 vUv;
+
+  uniform vec2 uResolution;
+  uniform sampler2D uContentTex;
+  uniform sampler2D uEnvMap;
+  uniform vec3 uDroplets[${MAX_DROPLETS}];
+  uniform vec2 uLightPos;
+
+  const float THRESHOLD = 0.45;
+  // Schlick R₀ for oil n ≈ 1.5: ((1.5-1)/(1.5+1))² ≈ 0.04
+  const float R0 = 0.04;
+  const vec3 OIL_COLOR = vec3(0.04, 0.03, 0.02); // near-black with warm undertone
+
+  float field(vec2 p, float aspect) {
+    float sum = 0.0;
+    for (int i = 0; i < ${MAX_DROPLETS}; i++) {
+      vec2 centre = uDroplets[i].xy;
+      float radius = uDroplets[i].z;
+      if (radius < 0.001) continue;
+      vec2 diff = p - centre;
+      diff.x *= aspect;
+      sum += exp(-dot(diff, diff) / (2.0 * radius * radius));
+    }
+    return sum;
+  }
+
+  vec3 getNormal(vec2 p, float f, float aspect) {
+    float e = 0.004;
+    float l = field(p - vec2(e, 0.0), aspect);
+    float r = field(p + vec2(e, 0.0), aspect);
+    float d = field(p - vec2(0.0, e), aspect);
+    float u = field(p + vec2(0.0, e), aspect);
+    float distFromEdge = max(f - THRESHOLD, 0.0);
+    float meniscus = exp(-distFromEdge * 8.0);
+    return normalize(vec3((l - r) * meniscus, (d - u) * meniscus, e * 55.0));
+  }
+
+  vec3 envMap(vec3 dir) {
+    float phi   = atan(dir.z, dir.x);
+    float theta = asin(clamp(dir.y, -1.0, 1.0));
+    vec2 envUV  = vec2(phi / 6.28318 + 0.5, theta / 3.14159 + 0.5);
+    vec3 hdr    = texture2D(uEnvMap, envUV).rgb;
+    hdr *= 1.5;
+    return hdr / (hdr + 1.0);
+  }
+
+  // Thin-film interference — oil slick rainbow at the meniscus
+  // Film thickness varies with depth; visible colour cycles through
+  // the spectrum as optical path difference changes.
+  vec3 thinFilm(float thickness) {
+    // Approximate spectral interference for a ~300-600nm oil film
+    // by cycling RGB at different rates
+    float d = thickness * 12.0; // scale to visible cycles
+    return vec3(
+      0.5 + 0.5 * cos(6.28318 * (d + 0.0)),
+      0.5 + 0.5 * cos(6.28318 * (d + 0.33)),
+      0.5 + 0.5 * cos(6.28318 * (d + 0.67))
+    );
+  }
+
+  void main() {
+    vec2 uv = vUv;
+    float aspect = uResolution.x / uResolution.y;
+    float f = field(uv, aspect);
+
+    // Outside: dark caustic shadow at contact line
+    if (f < THRESHOLD) {
+      float caustic = smoothstep(THRESHOLD * 0.7, THRESHOLD * 0.95, f)
+                    * (1.0 - smoothstep(THRESHOLD * 0.95, THRESHOLD, f));
+      gl_FragColor = vec4(vec3(0.0), caustic * 0.12);
+      return;
+    }
+
+    vec3 N = getNormal(uv, f, aspect);
+    float distFromEdge = max(f - THRESHOLD, 0.0);
+    float meniscus = exp(-distFromEdge * 8.0);
+
+    // Refraction — stronger than water (higher n)
+    float refractionStrength = 0.018 * meniscus;
+    vec2 refractedUV = clamp(uv + N.xy * refractionStrength, 0.0, 1.0);
+
+    // Content beneath the oil — chromatic dispersion is stronger in oil
+    float chromatic = 0.022 * meniscus;
+    vec3 contentColor;
+    contentColor.r = texture2D(uContentTex, clamp(refractedUV + N.xy * chromatic, 0.0, 1.0)).r;
+    contentColor.g = texture2D(uContentTex, refractedUV).g;
+    contentColor.b = texture2D(uContentTex, clamp(refractedUV - N.xy * chromatic, 0.0, 1.0)).b;
+
+    // Heavy Beer-Lambert absorption — oil is nearly opaque
+    float oilDepth = smoothstep(THRESHOLD, THRESHOLD + 0.15, f);
+    vec3 absorption = exp(-vec3(8.0, 9.0, 10.0) * oilDepth);
+    contentColor *= absorption;
+    // At depth, content fades entirely to the oil body colour
+    contentColor = mix(contentColor, OIL_COLOR, oilDepth * 0.92);
+
+    // Fresnel
+    float NdV = max(dot(N, vec3(0.0, 0.0, 1.0)), 0.0);
+    float fresnel = R0 + (1.0 - R0) * pow(1.0 - NdV, 5.0);
+
+    // Environment reflection — oil is glossy
+    vec3 R = reflect(vec3(0.0, 0.0, -1.0), N);
+    vec3 envColor = envMap(R);
+
+    // Thin-film iridescence — strongest at meniscus where film is thinnest
+    vec3 iridescence = thinFilm(meniscus * 0.8 + oilDepth * 0.2);
+    // Iridescence modulates the reflection, visible mainly at glancing angles
+    float iriStrength = meniscus * fresnel * 1.8;
+    envColor = mix(envColor, envColor * iridescence, clamp(iriStrength, 0.0, 0.7));
+
+    // Specular — oil has a tighter, brighter highlight
+    vec3 L = normalize(vec3((uLightPos - uv) * vec2(aspect, 1.0), 0.85));
+    vec3 H = normalize(L + vec3(0.0, 0.0, 1.0));
+    float NdH = max(dot(N, H), 0.0);
+    float specMirror = pow(NdH, 600.0);
+    float specBroad = pow(NdH, 50.0) * meniscus;
+
+    // Composite
+    vec3 color = contentColor;
+    color = mix(color, envColor, fresnel);
+    color += specMirror * 0.35;
+    color += specBroad * 0.05;
+
+    float alpha = smoothstep(THRESHOLD, THRESHOLD + 0.045, f);
     gl_FragColor = vec4(color, alpha);
   }
 `;
@@ -467,6 +600,7 @@ export async function initDropletCanvas(slideEl, slideIndex) {
     const renderer = new THREE.WebGLRenderer({
       canvas,
       alpha: true,
+      antialias: true,
       premultipliedAlpha: false,
       preserveDrawingBuffer: true,
     });
@@ -547,6 +681,7 @@ export async function initDropletCanvasTinted(slideEl, slideIndex, rgb) {
     const renderer = new THREE.WebGLRenderer({
       canvas,
       alpha: true,
+      antialias: true,
       premultipliedAlpha: false,
       preserveDrawingBuffer: true,
     });
@@ -578,6 +713,84 @@ export async function initDropletCanvasTinted(slideEl, slideIndex, rgb) {
     active.push({ renderer, material, geometry, contentTex: contentTexture });
   } catch (e) {
     console.warn('Tinted droplet init failed:', e);
+    canvas.style.visibility = 'visible';
+  }
+}
+
+/**
+ * Crude oil variant — dark opaque fluid with thin-film iridescence.
+ */
+export async function initDropletCanvasOil(slideEl, slideIndex) {
+  const inner = slideEl.querySelector('.slide-inner');
+  const canvas = inner?.querySelector('.droplet-canvas');
+  if (!canvas) return;
+
+  canvas.style.visibility = 'hidden';
+
+  try {
+    await document.fonts.ready;
+
+    if (!document.contains(canvas)) return;
+
+    const rect = inner.getBoundingClientRect();
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    const capturedCanvas = await html2canvas(inner, {
+      backgroundColor: null,
+      scale: dpr,
+      logging: false,
+      useCORS: true,
+      ignoreElements: (el) => el.classList.contains('droplet-canvas'),
+    });
+
+    if (!document.contains(canvas)) return;
+
+    const contentTexture = new THREE.CanvasTexture(capturedCanvas);
+    contentTexture.minFilter = THREE.LinearFilter;
+    contentTexture.magFilter = THREE.LinearFilter;
+
+    const envTexture = await loadEnvTexture();
+
+    if (!document.contains(canvas)) return;
+
+    canvas.style.visibility = 'visible';
+
+    const droplets = generateDroplets(slideIndex);
+
+    const renderer = new THREE.WebGLRenderer({
+      canvas,
+      alpha: true,
+      antialias: true,
+      premultipliedAlpha: false,
+      preserveDrawingBuffer: true,
+    });
+    renderer.setPixelRatio(dpr);
+    renderer.setSize(rect.width, rect.height, false);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+    const geometry = new THREE.PlaneGeometry(2, 2);
+
+    const material = new THREE.ShaderMaterial({
+      vertexShader,
+      fragmentShader: fragmentShaderOil,
+      transparent: true,
+      depthTest: false,
+      uniforms: {
+        uResolution: { value: new THREE.Vector2(rect.width * dpr, rect.height * dpr) },
+        uContentTex: { value: contentTexture },
+        uEnvMap:     { value: envTexture },
+        uDroplets:   { value: droplets },
+        uLightPos:   { value: new THREE.Vector2(0.72, 0.78) },
+      },
+    });
+
+    scene.add(new THREE.Mesh(geometry, material));
+    renderer.render(scene, camera);
+
+    active.push({ renderer, material, geometry, contentTex: contentTexture });
+  } catch (e) {
+    console.warn('Oil droplet init failed:', e);
     canvas.style.visibility = 'visible';
   }
 }

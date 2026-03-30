@@ -5,7 +5,7 @@
  * WebGL shapes (droplets) return { html, init } where init(slideEl) sets up the
  * Three.js scene after the element is in the DOM.
  */
-import { initDropletCanvas, initDropletCanvasTinted, disposeDroplets } from './shapes-droplets.js';
+import { initDropletCanvas, initDropletCanvasTinted, initDropletCanvasOil, disposeDroplets } from './shapes-droplets.js';
 
 /** Call before re-rendering the deck to clean up WebGL contexts */
 export function cleanupShapes() {
@@ -156,6 +156,16 @@ export function shapesDropletsCoral(slideIndex) {
   };
 }
 
+/**
+ * Crude oil droplets — dark opaque fluid with thin-film iridescence.
+ */
+export function shapesDropletsOil(slideIndex) {
+  return {
+    html: '<canvas class="droplet-canvas shape-overlay"></canvas>',
+    init: (slideEl) => initDropletCanvasOil(slideEl, slideIndex),
+  };
+}
+
 /** Registry of all shape functions */
 export const shapeRegistry = {
   none:        shapesNone,
@@ -166,4 +176,5 @@ export const shapeRegistry = {
   droplets:    shapesDroplets,
   'droplets-tinted': shapesDropletsTinted,
   'droplets-coral':  shapesDropletsCoral,
+  'droplets-oil':    shapesDropletsOil,
 };

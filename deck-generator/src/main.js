@@ -37,6 +37,7 @@ const SHAPES = [
   { value: 'droplets',        label: 'Water Droplets — WebGL' },
   { value: 'droplets-tinted', label: 'Tinted Droplets — WebGL (mint)' },
   { value: 'droplets-coral',  label: 'Tinted Droplets — WebGL (coral)' },
+  { value: 'droplets-oil',   label: 'Crude Oil — WebGL (iridescent)' },
 ];
 
 const PINSTRIPES = [
@@ -73,11 +74,13 @@ const LAYOUT_OPTIONS = {
 /** Stored state */
 let currentConfig = null;
 let currentContent = null;
+const SLIDES_PER_PAGE = 5;
+let currentPage = 0;
 
 /** Generate a small noise texture, return data URL */
 let noiseDataURL = '';
 function generateNoiseTexture() {
-  const size = 200;
+  const size = 512;
   const canvas = document.createElement('canvas');
   canvas.width = size;
   canvas.height = size;
@@ -101,6 +104,9 @@ async function init() {
     fetch(CONFIG_URL).then(r => r.json()),
     fetch(CONTENT_URL).then(r => r.json()),
   ]);
+
+  // Initialise per-slide shapes map if not present
+  if (!config.slideShapes) config.slideShapes = {};
 
   currentConfig = config;
   currentContent = content;
@@ -164,6 +170,9 @@ function renderControls() {
     </div>
   `;
 
+  // Pagination controls (injected after the layout row)
+  renderPagination();
+
   // Wire up event listeners
   el.querySelector('#sel-palette').addEventListener('change', e => {
     currentConfig.palette = e.target.value;
@@ -175,6 +184,9 @@ function renderControls() {
   });
   el.querySelector('#sel-shapes').addEventListener('change', e => {
     currentConfig.shapes = e.target.value;
+    // Set all per-slide overrides to match
+    const total = currentContent ? currentContent.slides.length : 0;
+    for (let s = 0; s < total; s++) currentConfig.slideShapes[s] = e.target.value;
     renderDeck();
   });
   el.querySelector('#sel-pinstripes').addEventListener('change', e => {
@@ -202,6 +214,8 @@ function renderControls() {
     currentConfig.palette = pick(PALETTES);
     currentConfig.typography = pick(TYPOGRAPHY);
     currentConfig.shapes = pick(SHAPES);
+    const total = currentContent ? currentContent.slides.length : 0;
+    for (let s = 0; s < total; s++) currentConfig.slideShapes[s] = currentConfig.shapes;
     currentConfig.pinstripes = pick(PINSTRIPES);
     currentConfig.noise = Math.floor(Math.random() * 16);
     Object.keys(LAYOUT_OPTIONS).forEach(type => {
@@ -212,6 +226,74 @@ function renderControls() {
   });
 }
 
+/** Render pagination controls below the config panel */
+function renderPagination() {
+  const totalSlides = currentContent ? currentContent.slides.length : 0;
+  const totalPages = Math.ceil(totalSlides / SLIDES_PER_PAGE);
+
+  // Remove existing pagination if present
+  const existing = document.getElementById('pagination');
+  if (existing) existing.remove();
+
+  if (totalPages <= 1) return;
+
+  const nav = document.createElement('div');
+  nav.id = 'pagination';
+  nav.className = 'pagination';
+
+  const start = currentPage * SLIDES_PER_PAGE + 1;
+  const end = Math.min(start + SLIDES_PER_PAGE - 1, totalSlides);
+
+  nav.innerHTML = `
+    <button id="pg-prev" class="pg-btn" ${currentPage === 0 ? 'disabled' : ''}>&larr; Prev</button>
+    <span class="pg-info">Slides ${start}–${end} of ${totalSlides}</span>
+    <button id="pg-next" class="pg-btn" ${currentPage >= totalPages - 1 ? 'disabled' : ''}>Next &rarr;</button>
+  `;
+
+  document.getElementById('controls').after(nav);
+
+  nav.querySelector('#pg-prev').addEventListener('click', () => {
+    if (currentPage > 0) { currentPage--; renderDeck(); renderPagination(); }
+  });
+  nav.querySelector('#pg-next').addEventListener('click', () => {
+    if (currentPage < totalPages - 1) { currentPage++; renderDeck(); renderPagination(); }
+  });
+}
+
+/** Generate a pinstripe tile as a data URL for html2canvas export */
+function generatePinstripeTexture(direction, color) {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+
+  if (direction === 'diagonal') {
+    const size = 8;
+    canvas.width = size;
+    canvas.height = size;
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(size, 0);
+    ctx.lineTo(0, size);
+    ctx.stroke();
+    // Wrap the line so the tile repeats seamlessly
+    ctx.beginPath();
+    ctx.moveTo(size + size, 0);
+    ctx.lineTo(0, size + size);
+    ctx.stroke();
+  } else {
+    canvas.width = direction === 'vertical' ? 9 : 1;
+    canvas.height = direction === 'vertical' ? 1 : 9;
+    ctx.fillStyle = color;
+    if (direction === 'vertical') {
+      ctx.fillRect(8, 0, 1, 1);
+    } else {
+      ctx.fillRect(0, 8, 1, 1);
+    }
+  }
+
+  return canvas.toDataURL('image/png');
+}
+
 /** Export a single slide as a PNG download */
 async function exportSlide(page, type) {
   const slideEl = document.getElementById(`slide-${page}`);
@@ -220,6 +302,17 @@ async function exportSlide(page, type) {
   const btn = slideEl.closest('.slide-wrapper').querySelector('.slide-export-btn');
   btn.textContent = 'Rendering…';
   btn.disabled = true;
+
+  // Swap pinstripes from CSS gradient to a tiled image for html2canvas
+  const pinstripeEl = slideEl.querySelector('.texture-pinstripes');
+  if (pinstripeEl) {
+    const color = getComputedStyle(pinstripeEl).color;
+    const dir = slideEl.dataset.pinstripes;
+    if (dir && dir !== 'none') {
+      const url = generatePinstripeTexture(dir, color);
+      pinstripeEl.style.background = `url(${url}) repeat`;
+    }
+  }
 
   try {
     const { default: html2canvas } = await import('html2canvas');
@@ -238,6 +331,9 @@ async function exportSlide(page, type) {
     console.error('Export failed:', e);
   }
 
+  // Restore CSS-driven pinstripes
+  if (pinstripeEl) pinstripeEl.style.background = '';
+
   btn.textContent = 'Export PNG';
   btn.disabled = false;
 }
@@ -255,7 +351,11 @@ function renderDeck() {
   // Collect any post-DOM init callbacks (for WebGL shapes)
   const postInits = [];
 
-  content.slides.forEach((slide, i) => {
+  const startIdx = currentPage * SLIDES_PER_PAGE;
+  const pageSlides = content.slides.slice(startIdx, startIdx + SLIDES_PER_PAGE);
+
+  pageSlides.forEach((slide, j) => {
+    const i = startIdx + j;
     const page = i + 1;
 
     // Determine layout for this slide type
@@ -271,12 +371,27 @@ function renderDeck() {
     const wrapper = document.createElement('div');
     wrapper.className = 'slide-wrapper';
 
-    // Label + export button above the slide
+    // Label + per-slide shape control + export button
     const labelRow = document.createElement('div');
     labelRow.className = 'slide-label';
 
     const labelText = document.createElement('span');
     labelText.textContent = `${String(page).padStart(2, '0')} — ${slide.type} — ${layoutName}`;
+
+    const slideShape = config.slideShapes[i] ?? config.shapes;
+    const shapeSelect = document.createElement('select');
+    shapeSelect.className = 'ctrl-select slide-shape-select';
+    SHAPES.forEach(opt => {
+      const o = document.createElement('option');
+      o.value = opt.value;
+      o.textContent = opt.label;
+      if (opt.value === slideShape) o.selected = true;
+      shapeSelect.appendChild(o);
+    });
+    shapeSelect.addEventListener('change', e => {
+      currentConfig.slideShapes[i] = e.target.value;
+      renderDeck();
+    });
 
     const exportBtn = document.createElement('button');
     exportBtn.className = 'slide-export-btn';
@@ -284,6 +399,7 @@ function renderDeck() {
     exportBtn.addEventListener('click', () => exportSlide(page, slide.type));
 
     labelRow.appendChild(labelText);
+    labelRow.appendChild(shapeSelect);
     labelRow.appendChild(exportBtn);
     wrapper.appendChild(labelRow);
 
@@ -299,7 +415,8 @@ function renderDeck() {
     slideEl.innerHTML = layoutFn(slide, page);
 
     // Inject shape overlays (inside the slide-inner)
-    const shapeFn = shapeRegistry[config.shapes] || shapeRegistry.none;
+    const slideShapeKey = config.slideShapes[i] ?? config.shapes;
+    const shapeFn = shapeRegistry[slideShapeKey] || shapeRegistry.none;
     const shapeResult = shapeFn(i);
 
     const inner = slideEl.querySelector('.slide-inner');
@@ -321,12 +438,10 @@ function renderDeck() {
       if (config.pinstripes !== 'none') {
         inner.insertAdjacentHTML('afterbegin', '<div class="shape-overlay texture-pinstripes"></div>');
       }
-      if (config.noise > 0) {
-        inner.insertAdjacentHTML(
-          'afterbegin',
-          `<div class="shape-overlay texture-noise" style="background-image:url(${noiseDataURL});opacity:${config.noise / 100}"></div>`,
-        );
-      }
+      inner.insertAdjacentHTML(
+        'afterbegin',
+        `<div class="shape-overlay texture-noise" style="background-image:url(${noiseDataURL});opacity:${config.noise / 100}"></div>`,
+      );
     }
 
     wrapper.appendChild(slideEl);
@@ -340,6 +455,8 @@ function renderDeck() {
       await fn();
     }
   });
+
+  renderPagination();
 }
 
 init();
