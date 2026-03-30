@@ -25,13 +25,20 @@ body {
   font-size: 0.85rem;
   font-family: 'DM Mono', monospace;
   line-height: 1.6;
+  position: sticky;
+  top: 1rem;
+  z-index: 100;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
 #controls .ctrl-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+}
+
+#controls .ctrl-body {
+  margin-top: 1rem;
 }
 
 #controls h2 {
@@ -126,15 +133,7 @@ body {
   align-items: center;
 }
 
-#controls .ctrl-btn--save {
-  background: #444;
-  color: #999;
-}
-
-#controls .ctrl-btn--save:not(:disabled) {
-  background: #5DD4E0;
-  color: #1a1a1a;
-}
+/* Save button — must come after .ctrl-btn to override it */
 
 #controls .ctrl-btn {
   appearance: none;
@@ -152,6 +151,50 @@ body {
 
 #controls .ctrl-btn:hover {
   opacity: 0.85;
+}
+
+#controls .ctrl-btn--save {
+  background: #444;
+  color: #999;
+  cursor: default;
+  opacity: 0.6;
+}
+
+#controls .ctrl-btn--save:not(:disabled) {
+  background: #5DD4E0;
+  color: #1a1a1a;
+  cursor: pointer;
+  opacity: 1;
+}
+
+#controls .ctrl-btn--export {
+  background: transparent;
+  border: 1px solid #5DD4E0;
+  color: #5DD4E0;
+  font-size: 0.7rem;
+  padding: 0.4rem 0.8rem;
+}
+
+#controls .ctrl-btn--export:hover {
+  background: rgba(93, 212, 224, 0.1);
+}
+
+#controls .ctrl-btn--export:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+#controls .ctrl-btn--toggle {
+  background: transparent;
+  border: 1px solid #555;
+  color: #999;
+  font-size: 0.7rem;
+  padding: 0.4rem 0.8rem;
+}
+
+#controls .ctrl-btn--toggle:hover {
+  border-color: #888;
+  color: #ccc;
 }
 
 /* --- Pagination --- */
@@ -319,10 +362,10 @@ body {
   cursor: default;
 }
 
-/* --- Slide container: 16:9 aspect ratio --- */
+/* --- Slide container: 16:9 aspect ratio (overridable via --export-aspect) --- */
 .slide {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: var(--export-aspect, 16 / 9);
   position: relative;
   overflow: hidden;
   border-radius: 0.25rem;
@@ -374,7 +417,6 @@ body {
   letter-spacing: var(--heading-spacing);
   text-transform: var(--heading-transform);
   margin-top: auto;  /* push title to vertical centre */
-  overflow: hidden;
   word-break: break-word;
 }
 
@@ -407,8 +449,12 @@ body {
   font-size: var(--caption-size);
   background: var(--color-bg-primary);
   color: var(--color-text-primary);
-  padding: 0.4em 1.2em;
+  display: inline-block;
+  height: 2.2em;
+  line-height: 2.2em;
+  padding: 0 1.2em;
   border-radius: 100px;
+  text-align: center;
 }
 
 
@@ -438,12 +484,16 @@ body {
   color: var(--color-accent-1);
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  display: inline-block;
+  line-height: 1.2;
 }
 
 .cover-dark-minimal .cover-date-pill {
   font-family: var(--font-body);
   font-size: var(--caption-size);
   opacity: 0.4;
+  display: inline-block;
+  line-height: 1.2;
 }
 
 .cover-dark-minimal .cover-title {
@@ -455,7 +505,6 @@ body {
   text-transform: var(--heading-transform);
   max-width: 85%;
   margin-top: auto;  /* push title to bottom */
-  overflow: hidden;
   word-break: break-word;
 }
 
@@ -487,9 +536,12 @@ body {
   font-size: var(--caption-size);
   background: rgba(255, 255, 255, 0.2);
   color: inherit;
-  padding: 0.35em 1em;
-  border-radius: 100px;
   display: inline-block;
+  height: 2.2em;
+  line-height: 2.2em;
+  padding: 0 1em;
+  border-radius: 100px;
+  text-align: center;
   margin-bottom: 1.5rem;
 }
 
@@ -500,7 +552,6 @@ body {
   line-height: var(--heading-line-height);
   letter-spacing: var(--heading-spacing);
   text-transform: var(--heading-transform);
-  overflow: hidden;
   word-break: break-word;
 }
 
@@ -553,7 +604,6 @@ body {
   text-transform: var(--heading-transform);
   max-width: 80%;
   margin-top: auto;  /* push to bottom */
-  overflow: hidden;
   word-break: break-word;
 }
 
@@ -833,14 +883,15 @@ body {
   padding: 1.5rem 1.2rem;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  overflow: hidden;
+  justify-content: flex-start;
+  container-type: inline-size;
+  min-width: 0;
 }
 
 .data-big-numbers .stat-block .stat-value {
   font-family: var(--font-display);
   font-weight: var(--font-display-weight);
-  font-size: clamp(1.8rem, 4cqi, 4rem);
+  font-size: 3rem;  /* base size — JS fitStatSizes() overrides per block */
   line-height: 1;
   letter-spacing: var(--heading-spacing);
   margin-bottom: 0.5rem;
@@ -944,7 +995,6 @@ body {
   letter-spacing: var(--heading-spacing);
   text-transform: var(--heading-transform);
   max-width: 22ch;
-  overflow: hidden;
 }
 
 .statement-centered .statement-text .highlight {
@@ -982,10 +1032,13 @@ body {
   letter-spacing: 0.1em;
   color: var(--color-text-secondary);
   margin-bottom: 2rem;
-  padding: 0.35em 1em;
+  display: inline-block;
+  height: 2.2em;
+  line-height: 2.2em;
+  padding: 0 1em;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 100px;
-  display: inline-block;
+  text-align: center;
 }
 
 .statement-editorial .statement-text {
@@ -996,7 +1049,6 @@ body {
   letter-spacing: var(--heading-spacing);
   text-transform: var(--heading-transform);
   max-width: 22ch;
-  overflow: hidden;
 }
 
 .statement-editorial .statement-text .highlight {
@@ -1005,8 +1057,11 @@ body {
 
 .statement-editorial .statement-text .inline-pill {
   display: inline-block;
-  padding: 0.1em 0.6em;
+  height: 1.6em;
+  line-height: 1.6em;
+  padding: 0 0.6em;
   border-radius: 100px;
+  text-align: center;
   font-size: 0.6em;
   vertical-align: middle;
   margin: 0 0.15em;

@@ -143,7 +143,7 @@ export function dataBigNumbers(slide, page) {
   ];
 
   const blocks = (slide.stats || []).map((stat, i) => `
-    <div class="stat-block" style="background: ${bgColors[i % bgColors.length]}">
+    <div class="stat-block" data-accent="${i % bgColors.length}" style="background: ${bgColors[i % bgColors.length]}">
       <div class="stat-value">${stat.value}</div>
       <div class="stat-label">${stat.label}</div>
     </div>

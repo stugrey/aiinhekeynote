@@ -3,10 +3,10 @@
     {
       "type": "cover",
       "title": "Who Will Control the AI Infrastructure of Higher Education?",
-      "subtitle": "From useful tools to structural dependence, and how universities can still shape their future",
+      "subtitle": "From useful tools to structural dependence — and how universities can still shape the terms",
       "author": "Dr Stuart Grey",
       "badge": "Future Facing Learning and AI in Higher Education 2026",
-      "date": "April 15th 2026"
+      "date": "April 2026"
     },
     {
       "type": "section-divider",
@@ -384,7 +384,7 @@
       "type": "statement",
       "section": "TAKEAWAY",
       "text": "If universities plug into the stack on vendor terms, the future arrives as infrastructure before it arrives as debate.",
-      "highlight": "arrives as infrastructure before it arrives as debate",
+      "highlight": "infrastructure before it arrives as debate",
       "attribution": ""
     },
     {
@@ -535,10 +535,10 @@
     },
     {
       "type": "statement",
-      "section": "TAKEAWAY",
+      "section": "What dependence does",
       "text": "The issue is not that AI enters teaching and research. The issue is how much educational purpose gets rewritten by commercial defaults.",
       "highlight": "educational purpose",
-      "attribution": ""
+      "attribution": "Pedagogy and mission"
     },
     {
       "type": "section-divider",
@@ -668,10 +668,10 @@
     },
     {
       "type": "statement",
-      "section": "takeaway",
+      "section": "The lifecycle of capture",
       "text": "Preserve the right of exit before convenience becomes culture.",
       "highlight": "right of exit",
-      "attribution": ""
+      "attribution": "Anti-capture principle"
     },
     {
       "type": "section-divider",
@@ -884,7 +884,7 @@
       "section": "A different strategy",
       "text": "The alternative to passive dependence is not heroic self-sufficiency. It is practical stewardship.",
       "highlight": "practical stewardship",
-      "attribution": ""
+      "attribution": "Institutional strategy"
     },
     {
       "type": "section-divider",
@@ -977,14 +977,14 @@
       "section": "What the next decade looks like",
       "text": "Universities are not only deciding whether to use AI. They are helping fix the defaults of higher education for years.",
       "highlight": "fix the defaults",
-      "attribution": ""
+      "attribution": "Closing provocation"
     },
     {
       "type": "statement",
       "section": "Closing question",
       "text": "Who will ultimately control the AI infrastructure higher education comes to depend on — and what kind of university will that make possible?",
       "highlight": "what kind of university",
-      "attribution": ""
+      "attribution": "Closing question"
     }
   ]
 }

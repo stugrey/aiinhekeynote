@@ -148,17 +148,20 @@ const fragmentShader = /* glsl */ `
     float causticInner = meniscus * (1.0 - meniscus) * 4.0;
     contentColor *= 1.0 + causticInner * 0.15;
 
+    // ── Perspective view direction ──
+    vec3 V = normalize(vec3((uv - 0.5) * vec2(aspect, 1.0) * 0.7, -1.0));
+
     // ── Fresnel (Schlick's approximation for water n=1.33) ──
-    float NdV = max(dot(N, vec3(0.0, 0.0, 1.0)), 0.0);
+    float NdV = max(dot(N, -V), 0.0);
     float fresnel = R0 + (1.0 - R0) * pow(1.0 - NdV, 5.0);
 
     // ── Environment reflection ──
-    vec3 R = reflect(vec3(0.0, 0.0, -1.0), N);
+    vec3 R = reflect(V, N);
     vec3 envColor = envMap(R);
 
     // ── Specular ──
     vec3 L = normalize(vec3((uLightPos - uv) * vec2(aspect, 1.0), 0.85));
-    vec3 H = normalize(L + vec3(0.0, 0.0, 1.0));
+    vec3 H = normalize(L - V);
     float NdH = max(dot(N, H), 0.0);
     // Flat interior: mirror-tight specular (very high power)
     float specMirror = pow(NdH, 512.0);
@@ -373,18 +376,21 @@ const fragmentShaderTinted = /* glsl */ `
     // Subtle forward-scattering adds the water's own hue
     contentColor += uWaterColor * waterDepth * 0.06;
 
+    // Perspective view direction
+    vec3 V = normalize(vec3((uv - 0.5) * vec2(aspect, 1.0) * 0.7, -1.0));
+
     // Fresnel
-    float NdV = max(dot(N, vec3(0.0, 0.0, 1.0)), 0.0);
+    float NdV = max(dot(N, -V), 0.0);
     float fresnel = R0 + (1.0 - R0) * pow(1.0 - NdV, 5.0);
 
     // Environment reflection — lightly tinted by the water
-    vec3 R = reflect(vec3(0.0, 0.0, -1.0), N);
+    vec3 R = reflect(V, N);
     vec3 envColor = envMap(R);
     envColor = mix(envColor, envColor * uWaterColor, 0.2);
 
     // Specular
     vec3 L = normalize(vec3((uLightPos - uv) * vec2(aspect, 1.0), 0.85));
-    vec3 H = normalize(L + vec3(0.0, 0.0, 1.0));
+    vec3 H = normalize(L - V);
     float NdH = max(dot(N, H), 0.0);
     float specMirror = pow(NdH, 512.0);
     float specBroad = pow(NdH, 40.0) * meniscus;
@@ -501,12 +507,15 @@ const fragmentShaderOil = /* glsl */ `
     // At depth, content fades entirely to the oil body colour
     contentColor = mix(contentColor, OIL_COLOR, oilDepth * 0.92);
 
+    // Perspective view direction
+    vec3 V = normalize(vec3((uv - 0.5) * vec2(aspect, 1.0) * 0.7, -1.0));
+
     // Fresnel
-    float NdV = max(dot(N, vec3(0.0, 0.0, 1.0)), 0.0);
+    float NdV = max(dot(N, -V), 0.0);
     float fresnel = R0 + (1.0 - R0) * pow(1.0 - NdV, 5.0);
 
     // Environment reflection — oil is glossy
-    vec3 R = reflect(vec3(0.0, 0.0, -1.0), N);
+    vec3 R = reflect(V, N);
     vec3 envColor = envMap(R);
 
     // Thin-film iridescence — strongest at meniscus where film is thinnest
@@ -517,7 +526,7 @@ const fragmentShaderOil = /* glsl */ `
 
     // Specular — oil has a tighter, brighter highlight
     vec3 L = normalize(vec3((uLightPos - uv) * vec2(aspect, 1.0), 0.85));
-    vec3 H = normalize(L + vec3(0.0, 0.0, 1.0));
+    vec3 H = normalize(L - V);
     float NdH = max(dot(N, H), 0.0);
     float specMirror = pow(NdH, 600.0);
     float specBroad = pow(NdH, 50.0) * meniscus;
@@ -527,6 +536,547 @@ const fragmentShaderOil = /* glsl */ `
     color = mix(color, envColor, fresnel);
     color += specMirror * 0.35;
     color += specBroad * 0.05;
+
+    float alpha = smoothstep(THRESHOLD, THRESHOLD + 0.045, f);
+    gl_FragColor = vec4(color, alpha);
+  }
+`;
+
+// ─── MERCURY FRAGMENT SHADER ───────────────────
+// Liquid metal — physically based metallic reflection.
+//
+// Mercury complex refractive index at 589nm: n = 1.62, k = 5.76
+// Normal incidence reflectance: R = ((n-1)² + k²) / ((n+1)² + k²) ≈ 0.84
+//
+// Spectral reflectance (measured):
+//   400nm (blue):  R ≈ 0.85
+//   550nm (green): R ≈ 0.82
+//   700nm (red):   R ≈ 0.78
+// This gives mercury its characteristic cool steel-silver appearance.
+//
+// Mercury is completely opaque — extinction depth is ~15nm.
+// No light transmits through it at any thickness.
+// Surface tension is extremely high (485 mN/m), giving mirror-smooth surfaces.
+
+const fragmentShaderMercury = /* glsl */ `
+  precision highp float;
+  varying vec2 vUv;
+
+  uniform vec2 uResolution;
+  uniform sampler2D uContentTex;
+  uniform sampler2D uEnvMap;
+  uniform vec3 uDroplets[${MAX_DROPLETS}];
+  uniform vec2 uLightPos;
+
+  const float THRESHOLD = 0.45;
+  // Per-channel R₀ from measured spectral reflectance of mercury
+  const vec3 R0 = vec3(0.78, 0.82, 0.85);
+
+  float field(vec2 p, float aspect) {
+    float sum = 0.0;
+    for (int i = 0; i < ${MAX_DROPLETS}; i++) {
+      vec2 centre = uDroplets[i].xy;
+      float radius = uDroplets[i].z;
+      if (radius < 0.001) continue;
+      vec2 diff = p - centre;
+      diff.x *= aspect;
+      sum += exp(-dot(diff, diff) / (2.0 * radius * radius));
+    }
+    return sum;
+  }
+
+  vec3 getNormal(vec2 p, float f, float aspect) {
+    float e = 0.004;
+    float l = field(p - vec2(e, 0.0), aspect);
+    float r = field(p + vec2(e, 0.0), aspect);
+    float d = field(p - vec2(0.0, e), aspect);
+    float u = field(p + vec2(0.0, e), aspect);
+    float distFromEdge = max(f - THRESHOLD, 0.0);
+    float meniscus = exp(-distFromEdge * 8.0);
+    return normalize(vec3((l - r) * meniscus, (d - u) * meniscus, e * 55.0));
+  }
+
+  vec3 envMap(vec3 dir) {
+    float phi   = atan(dir.z, dir.x);
+    float theta = asin(clamp(dir.y, -1.0, 1.0));
+    vec2 envUV  = vec2(phi / 6.28318 + 0.5, theta / 3.14159 + 0.5);
+    vec3 hdr    = texture2D(uEnvMap, envUV).rgb;
+    hdr *= 2.5;
+    return hdr / (hdr + 1.0);
+  }
+
+  // Schlick Fresnel for metals — per-channel R₀, power ~3 for conductors
+  vec3 fresnelMetal(float NdV) {
+    return R0 + (1.0 - R0) * pow(1.0 - NdV, 3.0);
+  }
+
+  void main() {
+    vec2 uv = vUv;
+    float aspect = uResolution.x / uResolution.y;
+    float f = field(uv, aspect);
+
+    // Outside: bright silver caustic at contact line
+    if (f < THRESHOLD) {
+      float caustic = smoothstep(THRESHOLD * 0.75, THRESHOLD * 0.95, f)
+                    * (1.0 - smoothstep(THRESHOLD * 0.95, THRESHOLD, f));
+      gl_FragColor = vec4(vec3(0.92), caustic * 0.15);
+      return;
+    }
+
+    vec3 N = getNormal(uv, f, aspect);
+    float distFromEdge = max(f - THRESHOLD, 0.0);
+    float meniscus = exp(-distFromEdge * 8.0);
+    // Simulate perspective view — viewer at finite distance above the surface
+    // so different points on the mercury reflect different parts of the environment
+    vec3 V = normalize(vec3((uv - 0.5) * vec2(aspect, 1.0) * 0.7, -1.0));
+    float NdV = max(dot(N, -V), 0.0);
+
+    // Spectral Fresnel — mercury is 78-85% reflective even at normal incidence
+    vec3 F = fresnelMetal(NdV);
+
+    vec3 R = reflect(V, N);
+    vec3 envColor = envMap(R);
+
+    // Desaturate the environment to get neutral silver — mercury's flat spectral
+    // reflectance (0.78-0.85) means it reflects all wavelengths nearly equally,
+    // so coloured surroundings appear muted on its surface
+    float envLuma = dot(envColor, vec3(0.2126, 0.7152, 0.0722));
+    envColor = mix(vec3(envLuma), envColor, 0.25);
+
+    // Mercury is completely opaque — colour comes entirely from reflection
+    vec3 color = envColor * F;
+
+    // Specular highlights — with perspective view direction
+    vec3 L = normalize(vec3((uLightPos - uv) * vec2(aspect, 1.0), 0.85));
+    vec3 H = normalize(L - V);
+    float NdH = max(dot(N, H), 0.0);
+    // GGX-like distribution: very tight core + broader meniscus lobe
+    float specMirror = pow(NdH, 1024.0);
+    float specBroad  = pow(NdH, 80.0) * meniscus;
+    color += vec3(1.0) * specMirror * 0.7;
+    color += vec3(1.0) * specBroad * 0.06;
+
+    float alpha = smoothstep(THRESHOLD, THRESHOLD + 0.045, f);
+    gl_FragColor = vec4(color, alpha);
+  }
+`;
+
+// ─── FROSTED GLASS FRAGMENT SHADER ─────────────
+//
+// Ground glass: surface roughened by sandblasting or acid etching.
+// The micro-faceted surface acts as a random phase screen.
+//
+// Physics:
+// - Each surface point has a random normal → transmitted light is scattered
+// - The point-spread function is Gaussian (CLT over many micro-facets)
+// - Angular spread σ ≈ RMS_slope × (n-1)/n for glass n ≈ 1.5
+// - For a volume scatterer (thick frosted region), blur ∝ √(depth)
+//   because angular deviation follows a random walk
+// - Scattering is wavelength-independent (roughness ~1-100μm >> λ visible)
+//   so there is NO chromatic aberration — pure luminance blur
+// - Fresnel R₀ = ((1.5-1)/(1.5+1))² ≈ 0.04, but the rough surface
+//   distributes both reflection and transmission into broad lobes
+// - Forward scattering dominates: the glass is translucent, not opaque
+// - Mie scattering from micro-features adds a slight white veil
+//
+// Sampling: 37-tap golden-angle spiral with Gaussian weighting for
+// physically correct PSF approximation.
+
+const fragmentShaderFrosted = /* glsl */ `
+  precision highp float;
+  varying vec2 vUv;
+
+  uniform vec2 uResolution;
+  uniform sampler2D uContentTex;
+  uniform sampler2D uEnvMap;
+  uniform vec3 uDroplets[${MAX_DROPLETS}];
+  uniform vec2 uLightPos;
+
+  const float THRESHOLD = 0.45;
+  const float R0 = 0.04;  // glass n ≈ 1.5
+  const float PI = 3.14159265;
+  const float GOLDEN_ANGLE = 2.39996323;  // π(3 - √5)
+  const int BLUR_SAMPLES = 37;
+
+  float field(vec2 p, float aspect) {
+    float sum = 0.0;
+    for (int i = 0; i < ${MAX_DROPLETS}; i++) {
+      vec2 centre = uDroplets[i].xy;
+      float radius = uDroplets[i].z;
+      if (radius < 0.001) continue;
+      vec2 diff = p - centre;
+      diff.x *= aspect;
+      sum += exp(-dot(diff, diff) / (2.0 * radius * radius));
+    }
+    return sum;
+  }
+
+  vec3 getNormal(vec2 p, float f, float aspect) {
+    float e = 0.004;
+    float l = field(p - vec2(e, 0.0), aspect);
+    float r = field(p + vec2(e, 0.0), aspect);
+    float d = field(p - vec2(0.0, e), aspect);
+    float u = field(p + vec2(0.0, e), aspect);
+    float distFromEdge = max(f - THRESHOLD, 0.0);
+    float meniscus = exp(-distFromEdge * 8.0);
+    return normalize(vec3((l - r) * meniscus, (d - u) * meniscus, e * 55.0));
+  }
+
+  vec3 envMap(vec3 dir) {
+    float phi   = atan(dir.z, dir.x);
+    float theta = asin(clamp(dir.y, -1.0, 1.0));
+    vec2 envUV  = vec2(phi / 6.28318 + 0.5, theta / 3.14159 + 0.5);
+    vec3 hdr    = texture2D(uEnvMap, envUV).rgb;
+    hdr *= 1.5;
+    return hdr / (hdr + 1.0);
+  }
+
+  // Gaussian-weighted golden-angle spiral blur
+  // Physically models the PSF of a rough surface scatterer
+  vec3 gaussianDiscBlur(vec2 centre, float sigma) {
+    vec2 px = 1.0 / uResolution;
+    vec3 totalColor = vec3(0.0);
+    float totalWeight = 0.0;
+
+    for (int i = 0; i < BLUR_SAMPLES; i++) {
+      float fi = float(i);
+      // Golden-angle spiral: r = √(i/N) gives uniform disc distribution
+      float r = sqrt(fi / float(BLUR_SAMPLES));
+      float theta = fi * GOLDEN_ANGLE;
+      vec2 offset = vec2(cos(theta), sin(theta)) * r * sigma;
+
+      // Gaussian weight: w = exp(-r² / 2) — heavier at centre
+      float w = exp(-r * r * 0.5);
+
+      vec2 sampleUV = clamp(centre + offset * px, 0.0, 1.0);
+      totalColor += texture2D(uContentTex, sampleUV).rgb * w;
+      totalWeight += w;
+    }
+    return totalColor / totalWeight;
+  }
+
+  void main() {
+    vec2 uv = vUv;
+    float aspect = uResolution.x / uResolution.y;
+    float f = field(uv, aspect);
+
+    // Outside: soft scattered light at contact line
+    if (f < THRESHOLD) {
+      float caustic = smoothstep(THRESHOLD * 0.7, THRESHOLD * 0.95, f)
+                    * (1.0 - smoothstep(THRESHOLD * 0.95, THRESHOLD, f));
+      gl_FragColor = vec4(vec3(1.0), caustic * 0.05);
+      return;
+    }
+
+    vec3 N = getNormal(uv, f, aspect);
+    float distFromEdge = max(f - THRESHOLD, 0.0);
+    float meniscus = exp(-distFromEdge * 8.0);
+
+    // Depth into the frosted volume (for random-walk blur scaling)
+    float depth = smoothstep(THRESHOLD, THRESHOLD + 0.25, f);
+
+    // Blur sigma ∝ √(depth) — random walk in angle space
+    // Plus a meniscus contribution (edge refraction still scatters)
+    float sigma = sqrt(depth) * 40.0 + meniscus * 6.0;
+
+    // Slight macroscopic refraction at the meniscus
+    float refractionStrength = 0.008 * meniscus;
+    vec2 refractedUV = clamp(uv + N.xy * refractionStrength, 0.0, 1.0);
+
+    // Gaussian-blurred content — no chromatic split (roughness >> λ)
+    vec3 contentColor = gaussianDiscBlur(refractedUV, sigma);
+
+    // Mie scattering veil: micro-features scatter a fraction of light
+    // isotropically, adding a white haze proportional to depth
+    float veil = depth * 0.3 + meniscus * 0.08;
+    contentColor = mix(contentColor, vec3(1.0), veil);
+
+    // Perspective view direction
+    vec3 V = normalize(vec3((uv - 0.5) * vec2(aspect, 1.0) * 0.7, -1.0));
+
+    // Fresnel reflection — also scattered by the rough surface
+    float NdV = max(dot(N, -V), 0.0);
+    float fresnel = R0 + (1.0 - R0) * pow(1.0 - NdV, 5.0);
+
+    // Environment reflection is diffused (rough surface scatters it)
+    vec3 R = reflect(V, N);
+    vec3 envColor = envMap(R);
+
+    // Specular: very broad lobe from the micro-facet distribution
+    // No tight mirror peak — the surface is too rough
+    vec3 L = normalize(vec3((uLightPos - uv) * vec2(aspect, 1.0), 0.85));
+    vec3 H = normalize(L - V);
+    float NdH = max(dot(N, H), 0.0);
+    float specBroad = pow(NdH, 8.0) * 0.15;
+    float specMid   = pow(NdH, 40.0) * meniscus * 0.08;
+
+    // Composite
+    vec3 color = contentColor;
+    color = mix(color, envColor, fresnel);
+    color += specBroad + specMid;
+
+    float alpha = smoothstep(THRESHOLD, THRESHOLD + 0.045, f);
+    gl_FragColor = vec4(color, alpha);
+  }
+`;
+
+// ─── FROZEN ICE FRAGMENT SHADER ────────────────
+//
+// Ice Ih (hexagonal ice, the common form).
+//
+// Refractive index:
+//   n_o = 1.309 (ordinary ray), n_e = 1.3104 (extraordinary ray)
+//   Birefringence Δn ≈ 0.0014 — causes faint double images through thick ice
+//   R₀ = ((1.309-1)/(1.309+1))² ≈ 0.018
+//
+// Chromatic dispersion (measured):
+//   n(400nm) ≈ 1.317  →  stronger refraction for blue
+//   n(550nm) ≈ 1.311
+//   n(700nm) ≈ 1.306  →  weaker refraction for red
+//   Δn across visible ≈ 0.011
+//
+// Beer-Lambert absorption (per metre, measured):
+//   700nm (red):   α ≈ 0.6  m⁻¹  — absorbed most
+//   550nm (green): α ≈ 0.1  m⁻¹
+//   400nm (blue):  α ≈ 0.01 m⁻¹  — absorbed least
+//   This gives ice its characteristic blue-cyan colour at depth.
+//
+// Internal structure:
+//   - Polycrystalline: grain boundaries form a Voronoi tessellation
+//     that scatters light (each grain has a different c-axis orientation)
+//   - Air bubbles: trapped during freezing, scatter light via TIR at
+//     the ice-air boundary, appearing as bright white points
+//   - Henyey-Greenstein forward scattering: g ≈ 0.89 for ice grains,
+//     meaning most scattered light continues roughly forward (translucent)
+//
+// Surface:
+//   - Frost forms at the contact line where ice is thinnest —
+//     dendritic microcrystals scatter light broadly (white appearance)
+//   - Interior is smooth and glassy where thickness provides structure
+
+const fragmentShaderIce = /* glsl */ `
+  precision highp float;
+  varying vec2 vUv;
+
+  uniform vec2 uResolution;
+  uniform sampler2D uContentTex;
+  uniform sampler2D uEnvMap;
+  uniform vec3 uDroplets[${MAX_DROPLETS}];
+  uniform vec2 uLightPos;
+
+  const float THRESHOLD = 0.45;
+  const float R0 = 0.018;
+  const float PI = 3.14159265;
+
+  // Measured Beer-Lambert coefficients for ice (per unit depth, scaled for our geometry)
+  const vec3 ICE_ABSORPTION = vec3(0.6, 0.1, 0.01);  // red, green, blue per metre
+  // Forward-scattering asymmetry parameter
+  const float HG_G = 0.89;
+
+  float field(vec2 p, float aspect) {
+    float sum = 0.0;
+    for (int i = 0; i < ${MAX_DROPLETS}; i++) {
+      vec2 centre = uDroplets[i].xy;
+      float radius = uDroplets[i].z;
+      if (radius < 0.001) continue;
+      vec2 diff = p - centre;
+      diff.x *= aspect;
+      sum += exp(-dot(diff, diff) / (2.0 * radius * radius));
+    }
+    return sum;
+  }
+
+  vec3 getNormal(vec2 p, float f, float aspect) {
+    float e = 0.004;
+    float l = field(p - vec2(e, 0.0), aspect);
+    float r = field(p + vec2(e, 0.0), aspect);
+    float d = field(p - vec2(0.0, e), aspect);
+    float u = field(p + vec2(0.0, e), aspect);
+    float distFromEdge = max(f - THRESHOLD, 0.0);
+    float meniscus = exp(-distFromEdge * 8.0);
+    return normalize(vec3((l - r) * meniscus, (d - u) * meniscus, e * 55.0));
+  }
+
+  vec3 envMap(vec3 dir) {
+    float phi   = atan(dir.z, dir.x);
+    float theta = asin(clamp(dir.y, -1.0, 1.0));
+    vec2 envUV  = vec2(phi / 6.28318 + 0.5, theta / 3.14159 + 0.5);
+    vec3 hdr    = texture2D(uEnvMap, envUV).rgb;
+    hdr *= 1.8;
+    return hdr / (hdr + 1.0);
+  }
+
+  // ── Hash functions for procedural patterns ──
+  float hash(vec2 p) {
+    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+  }
+  vec2 hash2(vec2 p) {
+    return vec2(
+      fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453),
+      fract(sin(dot(p, vec2(269.5, 183.3))) * 43758.5453)
+    );
+  }
+
+  // ── Voronoi grain boundaries ──
+  // Polycrystalline ice: each grain has a different crystal axis.
+  // Light scatters at the boundaries between grains.
+  // Returns: x = distance to nearest boundary, y = cell hash
+  vec2 voronoi(vec2 p, float scale) {
+    vec2 sp = p * scale;
+    vec2 n = floor(sp);
+    vec2 f = fract(sp);
+    float minDist = 10.0;
+    float secondDist = 10.0;
+    float cellId = 0.0;
+    for (int j = -1; j <= 1; j++) {
+      for (int i = -1; i <= 1; i++) {
+        vec2 g = vec2(float(i), float(j));
+        vec2 o = hash2(n + g);
+        vec2 r = g + o - f;
+        float d = dot(r, r);
+        if (d < minDist) {
+          secondDist = minDist;
+          minDist = d;
+          cellId = hash(n + g);
+        } else if (d < secondDist) {
+          secondDist = d;
+        }
+      }
+    }
+    // Boundary proximity: small when close to a grain boundary
+    float boundary = sqrt(secondDist) - sqrt(minDist);
+    return vec2(boundary, cellId);
+  }
+
+  // ── Air bubble inclusions ──
+  // Trapped air appears as bright white points from TIR at ice-air boundary
+  float airBubbles(vec2 p, float depth) {
+    float bubbles = 0.0;
+    // Two scales of bubbles
+    for (int s = 0; s < 2; s++) {
+      float scale = (s == 0) ? 60.0 : 120.0;
+      vec2 g = floor(p * scale);
+      float h = hash(g + float(s) * 100.0);
+      vec2 centre = (g + hash2(g + float(s) * 50.0)) / scale;
+      float d = length(p - centre) * scale;
+      float radius = (s == 0) ? 0.4 : 0.25;
+      // Only some cells have bubbles, and only where there's depth
+      float bubble = (1.0 - smoothstep(0.0, radius, d)) * step(0.82, h) * depth;
+      bubbles += bubble;
+    }
+    return clamp(bubbles, 0.0, 1.0);
+  }
+
+  void main() {
+    vec2 uv = vUv;
+    float aspect = uResolution.x / uResolution.y;
+    float f = field(uv, aspect);
+
+    // ── Outside: caustic band with blue tint ──
+    if (f < THRESHOLD) {
+      float caustic = smoothstep(THRESHOLD * 0.65, THRESHOLD * 0.92, f)
+                    * (1.0 - smoothstep(THRESHOLD * 0.92, THRESHOLD, f));
+      gl_FragColor = vec4(vec3(0.75, 0.88, 0.98), caustic * 0.08);
+      return;
+    }
+
+    vec3 N = getNormal(uv, f, aspect);
+    float distFromEdge = max(f - THRESHOLD, 0.0);
+    float meniscus = exp(-distFromEdge * 8.0);
+    float iceDepth = smoothstep(THRESHOLD, THRESHOLD + 0.2, f);
+
+    // ── Chromatic dispersion (measured Δn ≈ 0.011 across visible) ──
+    // n_red = 1.306, n_green = 1.311, n_blue = 1.317
+    // Blue refracts more → larger offset; red less → smaller offset
+    float baseRefraction = 0.012 * meniscus;
+    float dispersion = 0.006 * meniscus;  // half of Δn/n scaled
+    vec2 uvR = clamp(uv + N.xy * (baseRefraction - dispersion), 0.0, 1.0);
+    vec2 uvG = clamp(uv + N.xy * baseRefraction, 0.0, 1.0);
+    vec2 uvB = clamp(uv + N.xy * (baseRefraction + dispersion), 0.0, 1.0);
+
+    // ── Birefringence (Δn ≈ 0.0014) ──
+    // Ordinary and extraordinary rays travel at slightly different speeds,
+    // creating a faint double image. We blend two slightly offset samples.
+    float birefringence = 0.002 * iceDepth;
+    // The extraordinary ray offset depends on crystal axis — use a per-grain direction
+    vec2 vor = voronoi(uv, 18.0);
+    float grainAngle = vor.y * PI * 2.0;
+    vec2 birefDir = vec2(cos(grainAngle), sin(grainAngle)) * birefringence;
+
+    vec3 contentColor;
+    // Ordinary ray
+    vec3 ordinary;
+    ordinary.r = texture2D(uContentTex, uvR).r;
+    ordinary.g = texture2D(uContentTex, uvG).g;
+    ordinary.b = texture2D(uContentTex, uvB).b;
+    // Extraordinary ray (offset by birefringence along grain c-axis)
+    vec3 extraordinary;
+    extraordinary.r = texture2D(uContentTex, clamp(uvR + birefDir, 0.0, 1.0)).r;
+    extraordinary.g = texture2D(uContentTex, clamp(uvG + birefDir, 0.0, 1.0)).g;
+    extraordinary.b = texture2D(uContentTex, clamp(uvB + birefDir, 0.0, 1.0)).b;
+    // Equal power split between o-ray and e-ray
+    contentColor = mix(ordinary, extraordinary, 0.5);
+
+    // ── Beer-Lambert spectral absorption ──
+    // Depth-dependent: red absorbed most, blue least → blue colour emerges
+    vec3 absorption = exp(-ICE_ABSORPTION * iceDepth * 4.5);
+    contentColor *= absorption;
+
+    // ── Subsurface scattering (Henyey-Greenstein forward scatter) ──
+    // Light that enters the ice bounces off grain boundaries and bubbles.
+    // With g=0.89, most continues forward but with slight spreading.
+    // We approximate this as a depth-dependent luminance contribution
+    // from the average scene colour, tinted by the ice absorption.
+    vec3 scatterColor = vec3(0.6, 0.78, 0.92); // blue-shifted scattered light
+    float scatterStrength = iceDepth * 0.15 * (1.0 - HG_G);  // small because g is high
+    contentColor += scatterColor * scatterStrength;
+
+    // ── Grain boundary scattering (Voronoi edges) ──
+    float boundary = vor.x;
+    // Thin bright lines at grain boundaries where light is redirected
+    float grainScatter = (1.0 - smoothstep(0.0, 0.08, boundary)) * iceDepth;
+    contentColor += vec3(0.55, 0.72, 0.88) * grainScatter * 0.25;
+
+    // ── Air bubble inclusions ──
+    float bubbles = airBubbles(uv, iceDepth);
+    contentColor = mix(contentColor, vec3(0.92, 0.96, 1.0), bubbles * 0.6);
+
+    // ── Surface frost at meniscus ──
+    // Where ice is thinnest, dendritic microcrystals scatter light broadly
+    // creating a white frost appearance
+    float frost = meniscus * 0.35;
+    // Add some spatial variation to the frost using a high-frequency hash
+    float frostNoise = hash(floor(uv * 200.0)) * 0.3 + 0.7;
+    frost *= frostNoise;
+    contentColor = mix(contentColor, vec3(0.92, 0.95, 1.0), frost);
+
+    // ── Perspective view direction ──
+    vec3 V = normalize(vec3((uv - 0.5) * vec2(aspect, 1.0) * 0.7, -1.0));
+
+    // ── Fresnel reflection ──
+    float NdV = max(dot(N, -V), 0.0);
+    float fresnel = R0 + (1.0 - R0) * pow(1.0 - NdV, 5.0);
+
+    // Environment reflection — tinted by absorption through the surface
+    vec3 R = reflect(V, N);
+    vec3 envColor = envMap(R);
+    // Ice surface is smooth at the macro scale → sharp reflection
+    envColor *= vec3(0.85, 0.92, 1.0);  // slight blue tint from surface
+
+    // ── Specular ──
+    vec3 L = normalize(vec3((uLightPos - uv) * vec2(aspect, 1.0), 0.85));
+    vec3 H = normalize(L - V);
+    float NdH = max(dot(N, H), 0.0);
+    // Sharp crystalline highlight — ice surface is smooth
+    float specMirror = pow(NdH, 800.0);
+    // Broader lobe from the meniscus curvature
+    float specBroad = pow(NdH, 50.0) * meniscus;
+
+    // ── Composite ──
+    vec3 color = contentColor;
+    color = mix(color, envColor, fresnel);
+    color += specMirror * 0.35;
+    color += specBroad * 0.04;
 
     float alpha = smoothstep(THRESHOLD, THRESHOLD + 0.045, f);
     gl_FragColor = vec4(color, alpha);
@@ -793,4 +1343,90 @@ export async function initDropletCanvasOil(slideEl, slideIndex) {
     console.warn('Oil droplet init failed:', e);
     canvas.style.visibility = 'visible';
   }
+}
+
+/** Generic init helper — shared boilerplate for custom shaders with no extra uniforms */
+async function initDropletCanvasGeneric(slideEl, slideIndex, frag, label) {
+  const inner = slideEl.querySelector('.slide-inner');
+  const canvas = inner?.querySelector('.droplet-canvas');
+  if (!canvas) return;
+
+  canvas.style.visibility = 'hidden';
+
+  try {
+    await document.fonts.ready;
+    if (!document.contains(canvas)) return;
+
+    const rect = inner.getBoundingClientRect();
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    const capturedCanvas = await html2canvas(inner, {
+      backgroundColor: null,
+      scale: dpr,
+      logging: false,
+      useCORS: true,
+      ignoreElements: (el) => el.classList.contains('droplet-canvas'),
+    });
+
+    if (!document.contains(canvas)) return;
+
+    const contentTexture = new THREE.CanvasTexture(capturedCanvas);
+    contentTexture.minFilter = THREE.LinearFilter;
+    contentTexture.magFilter = THREE.LinearFilter;
+
+    const envTexture = await loadEnvTexture();
+    if (!document.contains(canvas)) return;
+
+    canvas.style.visibility = 'visible';
+
+    const droplets = generateDroplets(slideIndex);
+
+    const renderer = new THREE.WebGLRenderer({
+      canvas,
+      alpha: true,
+      antialias: true,
+      premultipliedAlpha: false,
+      preserveDrawingBuffer: true,
+    });
+    renderer.setPixelRatio(dpr);
+    renderer.setSize(rect.width, rect.height, false);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+    const geometry = new THREE.PlaneGeometry(2, 2);
+
+    const material = new THREE.ShaderMaterial({
+      vertexShader,
+      fragmentShader: frag,
+      transparent: true,
+      depthTest: false,
+      uniforms: {
+        uResolution: { value: new THREE.Vector2(rect.width * dpr, rect.height * dpr) },
+        uContentTex: { value: contentTexture },
+        uEnvMap:     { value: envTexture },
+        uDroplets:   { value: droplets },
+        uLightPos:   { value: new THREE.Vector2(0.72, 0.78) },
+      },
+    });
+
+    scene.add(new THREE.Mesh(geometry, material));
+    renderer.render(scene, camera);
+
+    active.push({ renderer, material, geometry, contentTex: contentTexture });
+  } catch (e) {
+    console.warn(`${label} droplet init failed:`, e);
+    canvas.style.visibility = 'visible';
+  }
+}
+
+export async function initDropletCanvasMercury(slideEl, slideIndex) {
+  return initDropletCanvasGeneric(slideEl, slideIndex, fragmentShaderMercury, 'Mercury');
+}
+
+export async function initDropletCanvasFrosted(slideEl, slideIndex) {
+  return initDropletCanvasGeneric(slideEl, slideIndex, fragmentShaderFrosted, 'Frosted');
+}
+
+export async function initDropletCanvasIce(slideEl, slideIndex) {
+  return initDropletCanvasGeneric(slideEl, slideIndex, fragmentShaderIce, 'Ice');
 }

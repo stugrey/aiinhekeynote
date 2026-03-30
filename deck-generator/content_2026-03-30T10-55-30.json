@@ -1,0 +1,45 @@
+{
+  "slides": [
+    {
+      "type": "cover",
+      "title": "Dr Stuart Grey",
+      "subtitle": "Who Will Control the AI Infrastructure of Higher Education?",
+      "author": "",
+      "badge": "Future Facing Learning and AI in Higher Education 2026",
+      "date": "March 2026"
+    },
+    {
+      "type": "section-divider",
+      "section_number": null,
+      "title": "Distributed Agents for Autonomous Spacecraft",
+      "subtitle": ""
+    },
+    {
+      "type": "section-divider",
+      "section_number": null,
+      "title": "ANAT — Free Text Analysis with Student Voice AI",
+      "subtitle": ""
+    },
+    {
+      "type": "statement",
+      "section": "",
+      "text": "Transparency",
+      "highlight": "Transparency",
+      "attribution": ""
+    },
+    {
+      "type": "statement",
+      "section": "",
+      "text": "Distortion",
+      "highlight": "Distortion",
+      "attribution": ""
+    },
+    {
+      "type": "statement",
+      "section": "",
+      "text": "Extraction",
+      "highlight": "Extraction",
+      "attribution": ""
+    }
+  ]
+}

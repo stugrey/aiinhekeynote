@@ -5,7 +5,7 @@
  * WebGL shapes (droplets) return { html, init } where init(slideEl) sets up the
  * Three.js scene after the element is in the DOM.
  */
-import { initDropletCanvas, initDropletCanvasTinted, initDropletCanvasOil, disposeDroplets } from './shapes-droplets.js';
+import { initDropletCanvas, initDropletCanvasTinted, initDropletCanvasOil, initDropletCanvasMercury, initDropletCanvasFrosted, initDropletCanvasIce, disposeDroplets } from './shapes-droplets.js';
 
 /** Call before re-rendering the deck to clean up WebGL contexts */
 export function cleanupShapes() {
@@ -166,6 +166,36 @@ export function shapesDropletsOil(slideIndex) {
   };
 }
 
+/**
+ * Mercury droplets — liquid metal, highly reflective.
+ */
+export function shapesDropletsMercury(slideIndex) {
+  return {
+    html: '<canvas class="droplet-canvas shape-overlay"></canvas>',
+    init: (slideEl) => initDropletCanvasMercury(slideEl, slideIndex),
+  };
+}
+
+/**
+ * Frosted droplets — blurred content, milky white overlay.
+ */
+export function shapesDropletsFrosted(slideIndex) {
+  return {
+    html: '<canvas class="droplet-canvas shape-overlay"></canvas>',
+    init: (slideEl) => initDropletCanvasFrosted(slideEl, slideIndex),
+  };
+}
+
+/**
+ * Frozen ice droplets — blue tint, internal fractures, frosted edges.
+ */
+export function shapesDropletsIce(slideIndex) {
+  return {
+    html: '<canvas class="droplet-canvas shape-overlay"></canvas>',
+    init: (slideEl) => initDropletCanvasIce(slideEl, slideIndex),
+  };
+}
+
 /** Registry of all shape functions */
 export const shapeRegistry = {
   none:        shapesNone,
@@ -176,5 +206,8 @@ export const shapeRegistry = {
   droplets:    shapesDroplets,
   'droplets-tinted': shapesDropletsTinted,
   'droplets-coral':  shapesDropletsCoral,
-  'droplets-oil':    shapesDropletsOil,
+  'droplets-oil':     shapesDropletsOil,
+  'droplets-mercury': shapesDropletsMercury,
+  'droplets-frosted': shapesDropletsFrosted,
+  'droplets-ice':     shapesDropletsIce,
 };

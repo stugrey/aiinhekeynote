@@ -24,5 +24,8 @@ Thumbs.db
 *.log
 npm-debug.log*
 
+# Exported slides
+export/
+
 # Vite
 *.local

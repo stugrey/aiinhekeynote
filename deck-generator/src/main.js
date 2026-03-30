@@ -37,7 +37,10 @@ const SHAPES = [
   { value: 'droplets',        label: 'Water Droplets — WebGL' },
   { value: 'droplets-tinted', label: 'Tinted Droplets — WebGL (mint)' },
   { value: 'droplets-coral',  label: 'Tinted Droplets — WebGL (coral)' },
-  { value: 'droplets-oil',   label: 'Crude Oil — WebGL (iridescent)' },
+  { value: 'droplets-oil',     label: 'Crude Oil — WebGL (iridescent)' },
+  { value: 'droplets-mercury', label: 'Mercury — WebGL (liquid metal)' },
+  { value: 'droplets-frosted', label: 'Frosted — WebGL (ground glass)' },
+  { value: 'droplets-ice',     label: 'Frozen Ice — WebGL (crystalline)' },
 ];
 
 const PINSTRIPES = [
@@ -85,7 +88,26 @@ let currentConfig = null;
 let currentContent = null;
 let contentDirty = false;
 const SLIDES_PER_PAGE = 5;
-let currentPage = 0;
+let currentPage = Number(sessionStorage.getItem('deckPage') || 0);
+let deckPostInitsReady = Promise.resolve();
+
+/** Update page and persist to sessionStorage */
+function setPage(page) {
+  currentPage = page;
+  sessionStorage.setItem('deckPage', page);
+}
+
+/** Navigate to a page, re-render, and scroll */
+function goToPage(page, direction) {
+  setPage(page);
+  renderDeck();
+  renderPagination();
+  if (direction === 'forward') {
+    document.getElementById('deck').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } else if (direction === 'back') {
+    document.getElementById('pagination-bottom')?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  }
+}
 
 /** Generate a small noise texture, return data URL */
 let noiseDataURL = '';
@@ -121,6 +143,10 @@ async function init() {
   currentConfig = config;
   currentContent = content;
 
+  // Clamp restored page in case content changed
+  const maxPage = Math.max(0, Math.ceil(content.slides.length / SLIDES_PER_PAGE) - 1);
+  if (currentPage > maxPage) setPage(maxPage);
+
   renderControls();
   renderDeck();
 }
@@ -146,45 +172,63 @@ function renderControls() {
     </div>
   `).join('');
 
+  const collapsed = sessionStorage.getItem('ctrlCollapsed') === '1';
+
   el.innerHTML = `
     <div class="ctrl-header">
       <h2>Deck Generator</h2>
       <div class="ctrl-header-actions">
         <button id="btn-save" class="ctrl-btn ctrl-btn--save" disabled>Save</button>
+        <button id="btn-export-all" class="ctrl-btn ctrl-btn--export">Export All</button>
+        <button id="btn-toggle" class="ctrl-btn ctrl-btn--toggle">${collapsed ? 'Expand' : 'Collapse'}</button>
+      </div>
+    </div>
+
+    <div class="ctrl-body" ${collapsed ? 'style="display:none"' : ''}>
+      <div class="ctrl-row">
+        <div class="ctrl-group">
+          <label class="ctrl-label" for="sel-palette">Palette</label>
+          ${buildSelect('sel-palette', PALETTES, c.palette)}
+        </div>
+        <div class="ctrl-group">
+          <label class="ctrl-label" for="sel-typography">Typography</label>
+          ${buildSelect('sel-typography', TYPOGRAPHY, c.typography)}
+        </div>
+        <div class="ctrl-group">
+          <label class="ctrl-label" for="sel-shapes">Shapes</label>
+          ${buildSelect('sel-shapes', SHAPES, c.shapes)}
+        </div>
+        <div class="ctrl-group">
+          <label class="ctrl-label" for="sel-pinstripes">Pinstripes</label>
+          ${buildSelect('sel-pinstripes', PINSTRIPES, c.pinstripes)}
+        </div>
+        <div class="ctrl-group">
+          <label class="ctrl-label" for="sld-noise">Noise <span id="noise-val">${c.noise}%</span></label>
+          <input type="range" id="sld-noise" class="ctrl-range" min="0" max="30" step="1" value="${c.noise}" />
+        </div>
+      </div>
+
+      <div class="ctrl-row ctrl-row--layouts">
+        ${layoutSelects}
+      </div>
+      <div class="ctrl-row ctrl-row--actions">
         <button id="btn-randomise" class="ctrl-btn">Randomise</button>
       </div>
-    </div>
-
-    <div class="ctrl-row">
-      <div class="ctrl-group">
-        <label class="ctrl-label" for="sel-palette">Palette</label>
-        ${buildSelect('sel-palette', PALETTES, c.palette)}
-      </div>
-      <div class="ctrl-group">
-        <label class="ctrl-label" for="sel-typography">Typography</label>
-        ${buildSelect('sel-typography', TYPOGRAPHY, c.typography)}
-      </div>
-      <div class="ctrl-group">
-        <label class="ctrl-label" for="sel-shapes">Shapes</label>
-        ${buildSelect('sel-shapes', SHAPES, c.shapes)}
-      </div>
-      <div class="ctrl-group">
-        <label class="ctrl-label" for="sel-pinstripes">Pinstripes</label>
-        ${buildSelect('sel-pinstripes', PINSTRIPES, c.pinstripes)}
-      </div>
-      <div class="ctrl-group">
-        <label class="ctrl-label" for="sld-noise">Noise <span id="noise-val">${c.noise}%</span></label>
-        <input type="range" id="sld-noise" class="ctrl-range" min="0" max="30" step="1" value="${c.noise}" />
-      </div>
-    </div>
-
-    <div class="ctrl-row ctrl-row--layouts">
-      ${layoutSelects}
     </div>
   `;
 
   // Pagination controls (injected after the layout row)
   renderPagination();
+
+  // Toggle collapse/expand
+  el.querySelector('#btn-toggle').addEventListener('click', () => {
+    const body = el.querySelector('.ctrl-body');
+    const btn = el.querySelector('#btn-toggle');
+    const isHidden = body.style.display === 'none';
+    body.style.display = isHidden ? '' : 'none';
+    btn.textContent = isHidden ? 'Collapse' : 'Expand';
+    sessionStorage.setItem('ctrlCollapsed', isHidden ? '0' : '1');
+  });
 
   // Wire up event listeners
   el.querySelector('#sel-palette').addEventListener('change', e => {
@@ -244,40 +288,60 @@ function renderControls() {
   });
 
   el.querySelector('#btn-save').addEventListener('click', saveContent);
+  el.querySelector('#btn-export-all').addEventListener('click', exportAllSlides);
+
+  // Restore dirty state if controls were rebuilt mid-session
+  if (contentDirty) {
+    const btn = el.querySelector('#btn-save');
+    btn.disabled = false;
+    btn.textContent = 'Save';
+  }
 }
 
-/** Render pagination controls below the config panel */
-function renderPagination() {
+/** Build pagination HTML and wire up listeners */
+function createPaginationNav(id) {
   const totalSlides = currentContent ? currentContent.slides.length : 0;
   const totalPages = Math.ceil(totalSlides / SLIDES_PER_PAGE);
 
-  // Remove existing pagination if present
-  const existing = document.getElementById('pagination');
-  if (existing) existing.remove();
-
-  if (totalPages <= 1) return;
-
   const nav = document.createElement('div');
-  nav.id = 'pagination';
+  nav.id = id;
   nav.className = 'pagination';
 
   const start = currentPage * SLIDES_PER_PAGE + 1;
   const end = Math.min(start + SLIDES_PER_PAGE - 1, totalSlides);
 
   nav.innerHTML = `
-    <button id="pg-prev" class="pg-btn" ${currentPage === 0 ? 'disabled' : ''}>&larr; Prev</button>
+    <button class="pg-btn pg-prev" ${currentPage === 0 ? 'disabled' : ''}>&larr; Prev</button>
     <span class="pg-info">Slides ${start}–${end} of ${totalSlides}</span>
-    <button id="pg-next" class="pg-btn" ${currentPage >= totalPages - 1 ? 'disabled' : ''}>Next &rarr;</button>
+    <button class="pg-btn pg-next" ${currentPage >= totalPages - 1 ? 'disabled' : ''}>Next &rarr;</button>
   `;
 
-  document.getElementById('controls').after(nav);
+  nav.querySelector('.pg-prev').addEventListener('click', () => {
+    if (currentPage > 0) goToPage(currentPage - 1, 'back');
+  });
+  nav.querySelector('.pg-next').addEventListener('click', () => {
+    if (currentPage < totalPages - 1) goToPage(currentPage + 1, 'forward');
+  });
 
-  nav.querySelector('#pg-prev').addEventListener('click', () => {
-    if (currentPage > 0) { currentPage--; renderDeck(); renderPagination(); }
-  });
-  nav.querySelector('#pg-next').addEventListener('click', () => {
-    if (currentPage < totalPages - 1) { currentPage++; renderDeck(); renderPagination(); }
-  });
+  return nav;
+}
+
+/** Render pagination controls above and below the deck */
+function renderPagination() {
+  const totalSlides = currentContent ? currentContent.slides.length : 0;
+  const totalPages = Math.ceil(totalSlides / SLIDES_PER_PAGE);
+
+  // Remove existing pagination elements
+  document.getElementById('pagination-top')?.remove();
+  document.getElementById('pagination-bottom')?.remove();
+
+  if (totalPages <= 1) return;
+
+  // Top pagination (after controls)
+  document.getElementById('controls').after(createPaginationNav('pagination-top'));
+
+  // Bottom pagination (after deck)
+  document.getElementById('deck').after(createPaginationNav('pagination-bottom'));
 }
 
 /** Generate a pinstripe tile as a data URL for html2canvas export */
@@ -323,17 +387,6 @@ async function exportSlide(page, type) {
   btn.textContent = 'Rendering…';
   btn.disabled = true;
 
-  // Swap pinstripes from CSS gradient to a tiled image for html2canvas
-  const pinstripeEl = slideEl.querySelector('.texture-pinstripes');
-  if (pinstripeEl) {
-    const color = getComputedStyle(pinstripeEl).color;
-    const dir = slideEl.dataset.pinstripes;
-    if (dir && dir !== 'none') {
-      const url = generatePinstripeTexture(dir, color);
-      pinstripeEl.style.background = `url(${url}) repeat`;
-    }
-  }
-
   try {
     const { default: html2canvas } = await import('html2canvas');
     const canvas = await html2canvas(slideEl, {
@@ -351,11 +404,110 @@ async function exportSlide(page, type) {
     console.error('Export failed:', e);
   }
 
-  // Restore CSS-driven pinstripes
-  if (pinstripeEl) pinstripeEl.style.background = '';
-
   btn.textContent = 'Export PNG';
   btn.disabled = false;
+}
+
+/** Export all slides as PNGs saved to the export/ folder on disk */
+async function exportAllSlides() {
+  const btn = document.getElementById('btn-export-all');
+  if (!btn) return;
+  btn.disabled = true;
+
+  const totalSlides = currentContent.slides.length;
+  const savedPage = currentPage;
+  const totalPages = Math.ceil(totalSlides / SLIDES_PER_PAGE);
+  const { default: html2canvas } = await import('html2canvas');
+  const pendingSaves = [];
+
+  /** Capture all visible slides and fire save requests */
+  async function capturePage(pageSlides, startIdx, subdir) {
+    const capturePromises = pageSlides.map((slide, j) => {
+      const i = startIdx + j;
+      const page = i + 1;
+      const slideEl = document.getElementById(`slide-${page}`);
+      if (!slideEl) return Promise.resolve();
+
+      const slideWidth = slideEl.offsetWidth;
+      const exportScale = Math.ceil(3840 / slideWidth);
+      return html2canvas(slideEl, {
+        scale: exportScale,
+        useCORS: true,
+        logging: false,
+        backgroundColor: null,
+      }).then(canvas => ({
+        filename: `slide-${String(page).padStart(2, '0')}-${slide.type}.png`,
+        dataUrl: canvas.toDataURL('image/png'),
+      })).catch(e => {
+        console.error(`Capture slide ${page} failed:`, e);
+        return null;
+      });
+    });
+
+    const captured = (await Promise.all(capturePromises)).filter(Boolean);
+
+    const savePromises = captured.map(({ filename, dataUrl }) =>
+      fetch('/api/save-slide', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ filename, dataUrl, subdir }),
+      }).catch(e => console.error(`Save ${filename} failed:`, e))
+    );
+
+    pendingSaves.push(...savePromises);
+  }
+
+  for (let pg = 0; pg < totalPages; pg++) {
+    setPage(pg);
+    renderDeck();
+    fixStatBlockContrast();
+    fitStatSizes();
+
+    // Wait for all WebGL shapes to finish rendering
+    await deckPostInitsReady;
+
+    const startIdx = pg * SLIDES_PER_PAGE;
+    const pageSlides = currentContent.slides.slice(startIdx, startIdx + SLIDES_PER_PAGE);
+
+    // ── 16:9 capture ──
+    btn.textContent = `16:9 page ${pg + 1}/${totalPages}…`;
+    await capturePage(pageSlides, startIdx, '');
+
+    // ── 4:3 capture — full re-render at 4:3 so droplets get fresh content textures ──
+    btn.textContent = `4:3 page ${pg + 1}/${totalPages}…`;
+    document.documentElement.style.setProperty('--export-aspect', '4 / 3');
+    renderDeck();
+    fixStatBlockContrast();
+    fitStatSizes();
+    await deckPostInitsReady;
+    await capturePage(pageSlides, startIdx, '4x3');
+    document.documentElement.style.removeProperty('--export-aspect');
+  }
+
+  // Wait for all saves to finish before building the deck
+  btn.textContent = `Optimizing PNGs…`;
+  await Promise.all(pendingSaves);
+
+  // Build PPTX and PDF from the exported PNGs
+  btn.textContent = 'Building PPTX + PDF…';
+  try {
+    const buildRes = await fetch('/api/build-deck', { method: 'POST' });
+    const buildData = await buildRes.json();
+    if (buildData.ok) {
+      btn.textContent = `Done — ${buildData.slides} slides`;
+    } else {
+      btn.textContent = 'PNG done, deck failed';
+      console.error('Build deck failed:', buildData.error);
+    }
+  } catch (e) {
+    console.error('Build deck failed:', e);
+    btn.textContent = 'PNG done, deck failed';
+  }
+
+  // Restore original page
+  setPage(savedPage);
+  renderDeck();
+  setTimeout(() => { btn.textContent = 'Export All'; btn.disabled = false; }, 3000);
 }
 
 /** Save current content + config to server (timestamps backups automatically) */
@@ -525,6 +677,99 @@ function renderSingleSlide(slideIndex) {
     'afterbegin',
     `<div class="shape-overlay texture-noise" style="background-image:url(${noiseDataURL});opacity:${config.noise / 100}"></div>`,
   );
+
+  // Fix stat block contrast if this is a data slide
+  slideEl.querySelectorAll('.stat-block').forEach(block => {
+    const blockL = luminance(getComputedStyle(block).backgroundColor);
+    block.style.color = blockL > 0.18 ? '#1B2A3D' : '#FFFFFF';
+    const inner2 = block.closest('.slide-inner');
+    if (inner2) {
+      const slideL = luminance(getComputedStyle(inner2).backgroundColor);
+      block.style.border = Math.abs(blockL - slideL) < 0.05 ? '1px solid rgba(255,255,255,0.15)' : '';
+    }
+  });
+
+  // Fit stat value sizes for this slide — all match the longest text
+  const statValues = slideEl.querySelectorAll('.stat-value');
+  if (statValues.length > 0) {
+    statValues.forEach(v => { v.style.fontSize = ''; v.style.whiteSpace = 'nowrap'; });
+    let minFitted = Infinity;
+    statValues.forEach(v => {
+      const block = v.closest('.stat-block');
+      const padL = parseFloat(getComputedStyle(block).paddingLeft);
+      const padR = parseFloat(getComputedStyle(block).paddingRight);
+      const available = block.clientWidth - padL - padR;
+      const currentSize = parseFloat(getComputedStyle(v).fontSize);
+      const textWidth = v.scrollWidth;
+      if (textWidth > 0) minFitted = Math.min(minFitted, currentSize * (available / textWidth));
+    });
+    if (minFitted !== Infinity) {
+      const firstBlock = statValues[0].closest('.stat-block');
+      const blockH = firstBlock.clientHeight - parseFloat(getComputedStyle(firstBlock).paddingTop) - parseFloat(getComputedStyle(firstBlock).paddingBottom);
+      const finalSize = Math.min(minFitted, blockH * 0.55);
+      statValues.forEach(v => v.style.fontSize = `${finalSize}px`);
+    }
+  }
+}
+
+/** Relative luminance from an rgb() or rgba() string */
+function luminance(cssColor) {
+  const match = cssColor.match(/(\d+),\s*(\d+),\s*(\d+)/);
+  if (!match) return 0;
+  const [r, g, b] = [match[1], match[2], match[3]].map(c => {
+    const s = Number(c) / 255;
+    return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
+  });
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+
+/** Scale stat values so the longest text fills its block width, and all others match that size */
+function fitStatSizes() {
+  document.querySelectorAll('.data-big-numbers').forEach(slide => {
+    const values = slide.querySelectorAll('.stat-value');
+    if (values.length === 0) return;
+
+    // Reset and prevent wrapping for measurement
+    values.forEach(v => { v.style.fontSize = ''; v.style.whiteSpace = 'nowrap'; });
+
+    // Find the size that makes the longest text exactly fill its block
+    let minFitted = Infinity;
+    values.forEach(v => {
+      const block = v.closest('.stat-block');
+      const padL = parseFloat(getComputedStyle(block).paddingLeft);
+      const padR = parseFloat(getComputedStyle(block).paddingRight);
+      const available = block.clientWidth - padL - padR;
+      const currentSize = parseFloat(getComputedStyle(v).fontSize);
+      const textWidth = v.scrollWidth;
+      if (textWidth > 0) {
+        minFitted = Math.min(minFitted, currentSize * (available / textWidth));
+      }
+    });
+
+    if (minFitted !== Infinity) {
+      // Cap at 55% of block height so label text still fits
+      const firstBlock = values[0].closest('.stat-block');
+      const blockH = firstBlock.clientHeight - parseFloat(getComputedStyle(firstBlock).paddingTop) - parseFloat(getComputedStyle(firstBlock).paddingBottom);
+      const finalSize = Math.min(minFitted, blockH * 0.55);
+      values.forEach(v => v.style.fontSize = `${finalSize}px`);
+    }
+  });
+}
+
+/** Set adaptive text colour on stat blocks and add border when block disappears into slide bg */
+function fixStatBlockContrast() {
+  document.querySelectorAll('.stat-block').forEach(block => {
+    const blockL = luminance(getComputedStyle(block).backgroundColor);
+    block.style.color = blockL > 0.18 ? '#1B2A3D' : '#FFFFFF';
+
+    // Add border when block blends into slide background
+    const slide = block.closest('.slide-inner');
+    if (slide) {
+      const slideL = luminance(getComputedStyle(slide).backgroundColor);
+      const contrast = Math.abs(blockL - slideL);
+      block.style.border = contrast < 0.05 ? '1px solid rgba(255,255,255,0.15)' : '';
+    }
+  });
 }
 
 /** Render all slides into the #deck container */
@@ -673,12 +918,33 @@ function renderDeck() {
     deck.appendChild(wrapper);
   });
 
+  // Adaptive text colour and sizing for stat blocks (needs computed styles from DOM)
+  fixStatBlockContrast();
+  fitStatSizes();
+
+  // Resolve pinstripes from CSS gradients to tiled images so html2canvas
+  // captures them — both for WebGL droplet content textures and PNG export.
+  // Must run BEFORE postInits (which capture slide content for droplet refraction).
+  document.querySelectorAll('.texture-pinstripes').forEach(el => {
+    const slide = el.closest('.slide');
+    if (!slide) return;
+    const dir = slide.dataset.pinstripes;
+    if (!dir || dir === 'none') return;
+    const color = getComputedStyle(el).color;
+    const url = generatePinstripeTexture(dir, color);
+    el.style.background = `url(${url}) repeat`;
+  });
+
   // Run post-DOM init callbacks serially (avoids concurrent html2canvas
   // captures and WebGL context pressure)
-  requestAnimationFrame(async () => {
-    for (const fn of postInits) {
-      await fn();
-    }
+  // Store promise so exportAllSlides can await it
+  deckPostInitsReady = new Promise(resolve => {
+    requestAnimationFrame(async () => {
+      for (const fn of postInits) {
+        await fn();
+      }
+      resolve();
+    });
   });
 
   renderPagination();
