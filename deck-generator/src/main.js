@@ -1,5 +1,6 @@
 import { layoutRegistry } from './layouts.js';
 import { shapeRegistry, cleanupShapes } from './shapes.js';
+import { initLensBadgeDroplets } from './shapes-droplets.js';
 
 const CONFIG_URL = '/config.json';
 const CONTENT_URL = '/content.json';
@@ -1010,6 +1011,7 @@ function renderDeck() {
       for (const fn of postInits) {
         await fn();
       }
+      await initLensBadgeDroplets();
       resolve();
     });
   });

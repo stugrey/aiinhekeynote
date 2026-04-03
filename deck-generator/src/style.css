@@ -416,7 +416,7 @@ body {
   width: max-content;
   display: flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0;
   z-index: 3;
   pointer-events: none;
 }
@@ -436,19 +436,58 @@ body {
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
 }
 
-.lens-marker--transparency {
+.lens-marker--transparency:not(.lens-marker--droplet) {
   background: rgba(103, 220, 255, 0.16);
   color: #DFF9FF;
   border: 1px solid rgba(103, 220, 255, 0.45);
 }
 
-.lens-marker--distortion {
+.lens-marker--droplet {
+  position: relative;
+  width: 3.2rem;
+  height: 3.2rem;
+  font-size: 0.95rem;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  overflow: hidden;
+  margin-left: -0.8rem;
+}
+
+.lens-marker--droplet:first-child {
+  margin-left: 0;
+}
+
+.lens-marker--droplet .lens-droplet-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  display: block;
+}
+
+.lens-marker--droplet .lens-droplet-letter {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.lens-marker--distortion.lens-marker--droplet .lens-droplet-letter,
+.lens-marker--extraction.lens-marker--droplet .lens-droplet-letter {
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.lens-marker--distortion:not(.lens-marker--droplet) {
   background: rgba(255, 183, 77, 0.16);
   color: #FFF1D5;
   border: 1px solid rgba(255, 183, 77, 0.45);
 }
 
-.lens-marker--extraction {
+.lens-marker--extraction:not(.lens-marker--droplet) {
   background: rgba(255, 112, 102, 0.16);
   color: #FFE3DE;
   border: 1px solid rgba(255, 112, 102, 0.48);

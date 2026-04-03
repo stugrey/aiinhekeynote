@@ -2081,3 +2081,2665 @@ The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teessid
 _**Agent (claude-opus-4-6 2026-04-03 10:28:59Z)**_
 
 Done. The page number is now on the left and the lens badges sit on the right, both in a shared footer row at the bottom of the `data-big-numbers` slides. Should hot-reload for you to check.
+
+---
+
+_**User (2026-04-03 10:30:25Z)**_
+
+Great, now using the droplets code as inspiration, replace the transparency badge with instead a clear droplet, using the same physics-based rendering as before with the T overlaid on top.
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-03 10:30:35Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-03 10:30:36Z)**_
+
+Let me study the droplets code first.
+
+_**Agent (claude-opus-4-6 2026-04-03 10:30:36Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/shapes-droplets.js`
+
+```text
+File content (18492 tokens) exceeds maximum allowed tokens (10000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:30:39Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/shapes-droplets.js`
+
+```text
+1	/**
+2	 * WebGL water droplets — metaballs with real content refraction.
+3	 *
+4	 * Captures the slide's rendered HTML as a texture via html2canvas,
+5	 * then refracts it through a metaball field with chromatic aberration,
+6	 * Fresnel rim, and dual specular highlights.
+7	 *
+8	 * The canvas sits ON TOP of all content (z-index: 10) so the droplets
+9	 * visually distort the text and cards beneath them.
+10	 */
+11	import * as THREE from 'three';
+12	import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
+13	import html2canvas from 'html2canvas';
+14	
+15	const MAX_DROPLETS = 96;
+16	const ENV_HDR_PATH = '/env-theater.hdr';
+17	
+18	// Shared env texture — loaded once, reused across all slides
+19	let envTexturePromise = null;
+20	
+21	function loadEnvTexture() {
+22	  if (!envTexturePromise) {
+23	    envTexturePromise = new Promise((resolve, reject) => {
+24	      new RGBELoader().load(
+25	        ENV_HDR_PATH,
+26	        (texture) => {
+27	          texture.mapping = THREE.EquirectangularReflectionMapping;
+28	          texture.wrapS = THREE.RepeatWrapping;
+29	          texture.wrapT = THREE.ClampToEdgeWrapping;
+30	          texture.minFilter = THREE.LinearFilter;
+31	          texture.magFilter = THREE.LinearFilter;
+32	          resolve(texture);
+33	        },
+34	        undefined,
+35	        reject,
+36	      );
+37	    });
+38	  }
+39	  return envTexturePromise;
+40	}
+41	
+42	// ─── SHADERS ────────────────────────────────────
+43	
+44	const vertexShader = /* glsl */ `
+45	  varying vec2 vUv;
+46	  void main() {
+47	    vUv = uv;
+48	    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+49	  }
+50	`;
+51	
+52	const fragmentShader = /* glsl */ `
+53	  precision highp float;
+54	  varying vec2 vUv;
+55	
+56	  uniform vec2 uResolution;
+57	  uniform sampler2D uContentTex;              // captured slide content
+58	  uniform sampler2D uEnvMap;                  // equirectangular environment map
+59	  uniform vec3 uDroplets[${MAX_DROPLETS}];    // .xy = centre (UV), .z = radius
+60	  uniform vec2 uLightPos;                     // light position (UV space)
+61	
+62	  const float THRESHOLD = 0.45;
+63	  const float R0 = 0.02;   // Schlick's R₀ for water: ((1.33-1)/(1.33+1))²
+64	
+65	  // ── Metaball field (Gaussian kernel) ──
+66	  float field(vec2 p, float aspect) {
+67	    float sum = 0.0;
+68	    for (int i = 0; i < ${MAX_DROPLETS}; i++) {
+69	      vec2 centre = uDroplets[i].xy;
+70	      float radius = uDroplets[i].z;
+71	      if (radius < 0.001) continue;
+72	      vec2 diff = p - centre;
+73	      diff.x *= aspect;
+74	      sum += exp(-dot(diff, diff) / (2.0 * radius * radius));
+75	    }
+76	    return sum;
+77	  }
+78	
+79	  // ── Surface normal ──
+80	  // Real meniscus: exponential decay from the contact line inward,
+81	  // matching h(x) = h₀(1 - e^(-x/λ_c)). The interior is dead flat;
+82	  // curvature lives only in a narrow rim at the edge.
+83	  vec3 getNormal(vec2 p, float f, float aspect) {
+84	    float e = 0.004;
+85	    float l = field(p - vec2(e, 0.0), aspect);
+86	    float r = field(p + vec2(e, 0.0), aspect);
+87	    float d = field(p - vec2(0.0, e), aspect);
+88	    float u = field(p + vec2(0.0, e), aspect);
+89	
+90	    // Exponential meniscus profile: steep at contact line, rapid decay inward
+91	    float distFromEdge = max(f - THRESHOLD, 0.0);
+92	    float meniscus = exp(-distFromEdge * 8.0);
+93	
+94	    return normalize(vec3((l - r) * meniscus, (d - u) * meniscus, e * 55.0));
+95	  }
+96	
+97	  // ── Equirectangular environment map lookup ──
+98	  vec3 envMap(vec3 dir) {
+99	    float phi   = atan(dir.z, dir.x);
+100	    float theta = asin(clamp(dir.y, -1.0, 1.0));
+101	    vec2 envUV  = vec2(phi / 6.28318 + 0.5, theta / 3.14159 + 0.5);
+102	    vec3 hdr    = texture2D(uEnvMap, envUV).rgb;
+103	    // Reinhard tonemap with slight exposure boost to keep bright sources visible
+104	    hdr *= 1.5;
+105	    return hdr / (hdr + 1.0);
+106	  }
+107	
+108	  void main() {
+109	    vec2 uv = vUv;
+110	    float aspect = uResolution.x / uResolution.y;
+111	    float f = field(uv, aspect);
+112	
+113	    // ── Outside: caustic light band ──
+114	    // The meniscus focuses transmitted light just outside the contact line,
+115	    // creating a thin bright caustic on the surface.
+116	    if (f < THRESHOLD) {
+117	      float caustic = smoothstep(THRESHOLD * 0.65, THRESHOLD * 0.92, f)
+118	                    * (1.0 - smoothstep(THRESHOLD * 0.92, THRESHOLD, f));
+119	      gl_FragColor = vec4(vec3(1.0), caustic * 0.07);
+120	      return;
+121	    }
+122	
+123	    // ── Inside the water ──
+124	    vec3 N = getNormal(uv, f, aspect);
+125	
+126	    // Meniscus factor: 1 at contact line, 0 in flat interior
+127	    float distFromEdge = max(f - THRESHOLD, 0.0);
+128	    float meniscus = exp(-distFromEdge * 8.0);
+129	
+130	    // ── Refraction ──
+131	    // Flat interior: water is ~5mm thick, negligible offset at normal incidence.
+132	    // Meniscus: curved surface bends light — refraction concentrates here.
+133	    float refractionStrength = 0.012 * meniscus;
+134	    vec2 refractedUV = clamp(uv + N.xy * refractionStrength, 0.0, 1.0);
+135	
+136	    // ── Chromatic dispersion ──
+137	    // Δn ≈ 0.006 between red and blue in water.
+138	    // Only visible where there's curvature (the meniscus).
+139	    float chromatic = 0.015 * meniscus;
+140	    vec3 contentColor;
+141	    contentColor.r = texture2D(uContentTex, clamp(refractedUV + N.xy * chromatic, 0.0, 1.0)).r;
+142	    contentColor.g = texture2D(uContentTex, refractedUV).g;
+143	    contentColor.b = texture2D(uContentTex, clamp(refractedUV - N.xy * chromatic, 0.0, 1.0)).b;
+144	
+145	    // ── Caustic brightening inside the meniscus ──
+146	    // The curved meniscus acts as a lens, focusing light into a bright
+147	    // band just inward of the contact line.
+148	    float causticInner = meniscus * (1.0 - meniscus) * 4.0;
+149	    contentColor *= 1.0 + causticInner * 0.15;
+150	
+151	    // ── Perspective view direction ──
+152	    vec3 V = normalize(vec3((uv - 0.5) * vec2(aspect, 1.0) * 0.7, -1.0));
+153	
+154	    // ── Fresnel (Schlick's approximation for water n=1.33) ──
+155	    float NdV = max(dot(N, -V), 0.0);
+156	    float fresnel = R0 + (1.0 - R0) * pow(1.0 - NdV, 5.0);
+157	
+158	    // ── Environment reflection ──
+159	    vec3 R = reflect(V, N);
+160	    vec3 envColor = envMap(R);
+161	
+162	    // ── Specular ──
+163	    vec3 L = normalize(vec3((uLightPos - uv) * vec2(aspect, 1.0), 0.85));
+164	    vec3 H = normalize(L - V);
+165	    float NdH = max(dot(N, H), 0.0);
+166	    // Flat interior: mirror-tight specular (very high power)
+167	    float specMirror = pow(NdH, 512.0);
+168	    // Meniscus: broader spread from curved surface
+169	    float specBroad = pow(NdH, 40.0) * meniscus;
+170	
+171	    // ── Composite ──
+172	    vec3 color = contentColor;
+173	
+174	    // Fresnel reflection — physically: 2% on flat interior, up to 100% at rim
+175	    color = mix(color, envColor, fresnel);
+176	
+177	    // Specular highlights — subdued point light
+178	    color += specMirror * 0.25;
+179	    color += specBroad * 0.03;
+180	
+181	    // ── Alpha: water film tapers to zero thickness at the contact line ──
+182	    float alpha = smoothstep(THRESHOLD, THRESHOLD + 0.045, f);
+183	
+184	    gl_FragColor = vec4(color, alpha);
+185	  }
+186	`;
+187	
+188	// ─── SEEDED PRNG (Mulberry32) ───────────────────
+189	
+190	function mulberry32(seed) {
+191	  return function () {
+192	    seed |= 0;
+193	    seed = (seed + 0x6d2b79f5) | 0;
+194	    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+195	    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+196	    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+197	  };
+198	}
+199	
+200	// ─── GENERATE DROPLET POSITIONS ─────────────────
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:30:47Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/shapes-droplets.js`
+
+```text
+File content (15916 tokens) exceeds maximum allowed tokens (10000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:30:51Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/shapes-droplets.js`
+
+```text
+200	// ─── GENERATE DROPLET POSITIONS ─────────────────
+201	
+202	function generateDroplets(seed) {
+203	  const rng = mulberry32(seed * 13397 + 7);
+204	  const drops = [];
+205	
+206	  const clamp01 = (v) => Math.max(0.03, Math.min(0.97, v));
+207	
+208	  // 3–5 puddle groups
+209	  const puddleCount = 3 + Math.floor(rng() * 3);
+210	
+211	  for (let p = 0; p < puddleCount; p++) {
+212	    if (drops.length >= MAX_DROPLETS) break;
+213	
+214	    // Core: 3–4 larger blobs forming a chunky central body
+215	    const cx = 0.15 + rng() * 0.7;
+216	    const cy = 0.15 + rng() * 0.7;
+217	    const coreCount = 3 + Math.floor(rng() * 2);
+218	    for (let c = 0; c < coreCount; c++) {
+219	      if (drops.length >= MAX_DROPLETS) break;
+220	      const a = rng() * Math.PI * 2;
+221	      const d = rng() * 0.045;
+222	      drops.push(new THREE.Vector3(
+223	        clamp01(cx + Math.cos(a) * d),
+224	        clamp01(cy + Math.sin(a) * d),
+225	        0.04 + rng() * 0.03,
+226	      ));
+227	    }
+228	
+229	    // Arms / peninsulas: 3–5 short chains radiating outward
+230	    const armCount = 3 + Math.floor(rng() * 3);
+231	    for (let arm = 0; arm < armCount; arm++) {
+232	      if (drops.length >= MAX_DROPLETS) break;
+233	      const armAngle = rng() * Math.PI * 2;
+234	      const armLen = 2 + Math.floor(rng() * 2); // 2–3 drops per arm
+235	      let ax = cx, ay = cy;
+236	      let armR = 0.03 + rng() * 0.02;
+237	
+238	      for (let j = 0; j < armLen; j++) {
+239	        if (drops.length >= MAX_DROPLETS) break;
+240	        const stepDist = armR * (1.0 + rng() * 0.6);
+241	        const wander = (rng() - 0.5) * 0.5;
+242	        ax += Math.cos(armAngle + wander) * stepDist;
+243	        ay += Math.sin(armAngle + wander) * stepDist;
+244	        armR *= 0.75 + rng() * 0.15;
+245	        drops.push(new THREE.Vector3(
+246	          clamp01(ax),
+247	          clamp01(ay),
+248	          Math.max(0.012, armR),
+249	        ));
+250	      }
+251	    }
+252	
+253	    // Scattered satellites: a couple of small drops nearby
+254	    const satCount = 1 + Math.floor(rng() * 2);
+255	    for (let s = 0; s < satCount; s++) {
+256	      if (drops.length >= MAX_DROPLETS) break;
+257	      const a = rng() * Math.PI * 2;
+258	      const d = 0.06 + rng() * 0.06;
+259	      drops.push(new THREE.Vector3(
+260	        clamp01(cx + Math.cos(a) * d),
+261	        clamp01(cy + Math.sin(a) * d),
+262	        0.008 + rng() * 0.012,
+263	      ));
+264	    }
+265	  }
+266	
+267	  // Lone scattered drops across the whole slide
+268	  const scatterCount = 15 + Math.floor(rng() * 10); // 15–24
+269	  for (let s = 0; s < scatterCount; s++) {
+270	    if (drops.length >= MAX_DROPLETS) break;
+271	    drops.push(new THREE.Vector3(
+272	      0.04 + rng() * 0.92,
+273	      0.04 + rng() * 0.92,
+274	      0.004 + rng() * 0.01,
+275	    ));
+276	  }
+277	
+278	  // Pad with zero-radius (invisible)
+279	  while (drops.length < MAX_DROPLETS) {
+280	    drops.push(new THREE.Vector3(0, 0, 0));
+281	  }
+282	  return drops;
+283	}
+284	
+285	// ─── TINTED FRAGMENT SHADER ─────────────────────
+286	// Same optics but with Beer-Lambert absorption through coloured water.
+287	// uWaterColor controls which wavelengths pass through; depth is derived
+288	// from the metaball field so the tint is strongest at puddle centres.
+289	
+290	const fragmentShaderTinted = /* glsl */ `
+291	  precision highp float;
+292	  varying vec2 vUv;
+293	
+294	  uniform vec2 uResolution;
+295	  uniform sampler2D uContentTex;
+296	  uniform sampler2D uEnvMap;
+297	  uniform vec3 uDroplets[${MAX_DROPLETS}];
+298	  uniform vec2 uLightPos;
+299	  uniform vec3 uWaterColor;
+300	
+301	  const float THRESHOLD = 0.45;
+302	  const float R0 = 0.02;
+303	
+304	  float field(vec2 p, float aspect) {
+305	    float sum = 0.0;
+306	    for (int i = 0; i < ${MAX_DROPLETS}; i++) {
+307	      vec2 centre = uDroplets[i].xy;
+308	      float radius = uDroplets[i].z;
+309	      if (radius < 0.001) continue;
+310	      vec2 diff = p - centre;
+311	      diff.x *= aspect;
+312	      sum += exp(-dot(diff, diff) / (2.0 * radius * radius));
+313	    }
+314	    return sum;
+315	  }
+316	
+317	  vec3 getNormal(vec2 p, float f, float aspect) {
+318	    float e = 0.004;
+319	    float l = field(p - vec2(e, 0.0), aspect);
+320	    float r = field(p + vec2(e, 0.0), aspect);
+321	    float d = field(p - vec2(0.0, e), aspect);
+322	    float u = field(p + vec2(0.0, e), aspect);
+323	    float distFromEdge = max(f - THRESHOLD, 0.0);
+324	    float meniscus = exp(-distFromEdge * 8.0);
+325	    return normalize(vec3((l - r) * meniscus, (d - u) * meniscus, e * 55.0));
+326	  }
+327	
+328	  vec3 envMap(vec3 dir) {
+329	    float phi   = atan(dir.z, dir.x);
+330	    float theta = asin(clamp(dir.y, -1.0, 1.0));
+331	    vec2 envUV  = vec2(phi / 6.28318 + 0.5, theta / 3.14159 + 0.5);
+332	    vec3 hdr    = texture2D(uEnvMap, envUV).rgb;
+333	    hdr *= 1.5;
+334	    return hdr / (hdr + 1.0);
+335	  }
+336	
+337	  void main() {
+338	    vec2 uv = vUv;
+339	    float aspect = uResolution.x / uResolution.y;
+340	    float f = field(uv, aspect);
+341	
+342	    // Outside: caustic band picks up a faint water colour
+343	    if (f < THRESHOLD) {
+344	      float caustic = smoothstep(THRESHOLD * 0.65, THRESHOLD * 0.92, f)
+345	                    * (1.0 - smoothstep(THRESHOLD * 0.92, THRESHOLD, f));
+346	      vec3 causticColor = mix(vec3(1.0), uWaterColor, 0.3);
+347	      gl_FragColor = vec4(causticColor, caustic * 0.09);
+348	      return;
+349	    }
+350	
+351	    vec3 N = getNormal(uv, f, aspect);
+352	    float distFromEdge = max(f - THRESHOLD, 0.0);
+353	    float meniscus = exp(-distFromEdge * 8.0);
+354	
+355	    // Refraction
+356	    float refractionStrength = 0.012 * meniscus;
+357	    vec2 refractedUV = clamp(uv + N.xy * refractionStrength, 0.0, 1.0);
+358	
+359	    // Chromatic dispersion
+360	    float chromatic = 0.015 * meniscus;
+361	    vec3 contentColor;
+362	    contentColor.r = texture2D(uContentTex, clamp(refractedUV + N.xy * chromatic, 0.0, 1.0)).r;
+363	    contentColor.g = texture2D(uContentTex, refractedUV).g;
+364	    contentColor.b = texture2D(uContentTex, clamp(refractedUV - N.xy * chromatic, 0.0, 1.0)).b;
+365	
+366	    // Caustic brightening
+367	    float causticInner = meniscus * (1.0 - meniscus) * 4.0;
+368	    contentColor *= 1.0 + causticInner * 0.15;
+369	
+370	    // Beer-Lambert absorption through tinted water
+371	    // Depth increases toward the centre of each puddle
+372	    float waterDepth = smoothstep(THRESHOLD, THRESHOLD + 0.2, f);
+373	    // Wavelengths complementary to uWaterColor are absorbed exponentially
+374	    vec3 absorption = exp(-((1.0 - uWaterColor) * waterDepth * 2.5));
+375	    contentColor *= absorption;
+376	    // Subtle forward-scattering adds the water's own hue
+377	    contentColor += uWaterColor * waterDepth * 0.06;
+378	
+379	    // Perspective view direction
+380	    vec3 V = normalize(vec3((uv - 0.5) * vec2(aspect, 1.0) * 0.7, -1.0));
+381	
+382	    // Fresnel
+383	    float NdV = max(dot(N, -V), 0.0);
+384	    float fresnel = R0 + (1.0 - R0) * pow(1.0 - NdV, 5.0);
+385	
+386	    // Environment reflection — lightly tinted by the water
+387	    vec3 R = reflect(V, N);
+388	    vec3 envColor = envMap(R);
+389	    envColor = mix(envColor, envColor * uWaterColor, 0.2);
+390	
+391	    // Specular
+392	    vec3 L = normalize(vec3((uLightPos - uv) * vec2(aspect, 1.0), 0.85));
+393	    vec3 H = normalize(L - V);
+394	    float NdH = max(dot(N, H), 0.0);
+395	    float specMirror = pow(NdH, 512.0);
+396	    float specBroad = pow(NdH, 40.0) * meniscus;
+397	
+398	    // Composite
+399	    vec3 color = contentColor;
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:30:59Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/shapes-droplets.js`
+
+```text
+File content (13203 tokens) exceeds maximum allowed tokens (10000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:31:04Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/shapes-droplets.js`
+
+```text
+400	    color = mix(color, envColor, fresnel);
+401	    color += specMirror * 0.25;
+402	    color += specBroad * 0.03;
+403	
+404	    float alpha = smoothstep(THRESHOLD, THRESHOLD + 0.045, f);
+405	    gl_FragColor = vec4(color, alpha);
+406	  }
+407	`;
+408	
+409	// ─── CRUDE OIL FRAGMENT SHADER ─────────────────
+410	// Opaque dark fluid with thin-film iridescence at the meniscus,
+411	// higher refractive index (n ≈ 1.5), and heavy Beer-Lambert absorption.
+412	
+413	const fragmentShaderOil = /* glsl */ `
+414	  precision highp float;
+415	  varying vec2 vUv;
+416	
+417	  uniform vec2 uResolution;
+418	  uniform sampler2D uContentTex;
+419	  uniform sampler2D uEnvMap;
+420	  uniform vec3 uDroplets[${MAX_DROPLETS}];
+421	  uniform vec2 uLightPos;
+422	
+423	  const float THRESHOLD = 0.45;
+424	  // Schlick R₀ for oil n ≈ 1.5: ((1.5-1)/(1.5+1))² ≈ 0.04
+425	  const float R0 = 0.04;
+426	  const vec3 OIL_COLOR = vec3(0.04, 0.03, 0.02); // near-black with warm undertone
+427	
+428	  float field(vec2 p, float aspect) {
+429	    float sum = 0.0;
+430	    for (int i = 0; i < ${MAX_DROPLETS}; i++) {
+431	      vec2 centre = uDroplets[i].xy;
+432	      float radius = uDroplets[i].z;
+433	      if (radius < 0.001) continue;
+434	      vec2 diff = p - centre;
+435	      diff.x *= aspect;
+436	      sum += exp(-dot(diff, diff) / (2.0 * radius * radius));
+437	    }
+438	    return sum;
+439	  }
+440	
+441	  vec3 getNormal(vec2 p, float f, float aspect) {
+442	    float e = 0.004;
+443	    float l = field(p - vec2(e, 0.0), aspect);
+444	    float r = field(p + vec2(e, 0.0), aspect);
+445	    float d = field(p - vec2(0.0, e), aspect);
+446	    float u = field(p + vec2(0.0, e), aspect);
+447	    float distFromEdge = max(f - THRESHOLD, 0.0);
+448	    float meniscus = exp(-distFromEdge * 8.0);
+449	    return normalize(vec3((l - r) * meniscus, (d - u) * meniscus, e * 55.0));
+450	  }
+451	
+452	  vec3 envMap(vec3 dir) {
+453	    float phi   = atan(dir.z, dir.x);
+454	    float theta = asin(clamp(dir.y, -1.0, 1.0));
+455	    vec2 envUV  = vec2(phi / 6.28318 + 0.5, theta / 3.14159 + 0.5);
+456	    vec3 hdr    = texture2D(uEnvMap, envUV).rgb;
+457	    hdr *= 1.5;
+458	    return hdr / (hdr + 1.0);
+459	  }
+460	
+461	  // Thin-film interference — oil slick rainbow at the meniscus
+462	  // Film thickness varies with depth; visible colour cycles through
+463	  // the spectrum as optical path difference changes.
+464	  vec3 thinFilm(float thickness) {
+465	    // Approximate spectral interference for a ~300-600nm oil film
+466	    // by cycling RGB at different rates
+467	    float d = thickness * 12.0; // scale to visible cycles
+468	    return vec3(
+469	      0.5 + 0.5 * cos(6.28318 * (d + 0.0)),
+470	      0.5 + 0.5 * cos(6.28318 * (d + 0.33)),
+471	      0.5 + 0.5 * cos(6.28318 * (d + 0.67))
+472	    );
+473	  }
+474	
+475	  void main() {
+476	    vec2 uv = vUv;
+477	    float aspect = uResolution.x / uResolution.y;
+478	    float f = field(uv, aspect);
+479	
+480	    // Outside: dark caustic shadow at contact line
+481	    if (f < THRESHOLD) {
+482	      float caustic = smoothstep(THRESHOLD * 0.7, THRESHOLD * 0.95, f)
+483	                    * (1.0 - smoothstep(THRESHOLD * 0.95, THRESHOLD, f));
+484	      gl_FragColor = vec4(vec3(0.0), caustic * 0.12);
+485	      return;
+486	    }
+487	
+488	    vec3 N = getNormal(uv, f, aspect);
+489	    float distFromEdge = max(f - THRESHOLD, 0.0);
+490	    float meniscus = exp(-distFromEdge * 8.0);
+491	
+492	    // Refraction — stronger than water (higher n)
+493	    float refractionStrength = 0.018 * meniscus;
+494	    vec2 refractedUV = clamp(uv + N.xy * refractionStrength, 0.0, 1.0);
+495	
+496	    // Content beneath the oil — chromatic dispersion is stronger in oil
+497	    float chromatic = 0.022 * meniscus;
+498	    vec3 contentColor;
+499	    contentColor.r = texture2D(uContentTex, clamp(refractedUV + N.xy * chromatic, 0.0, 1.0)).r;
+500	    contentColor.g = texture2D(uContentTex, refractedUV).g;
+501	    contentColor.b = texture2D(uContentTex, clamp(refractedUV - N.xy * chromatic, 0.0, 1.0)).b;
+502	
+503	    // Heavy Beer-Lambert absorption — oil is nearly opaque
+504	    float oilDepth = smoothstep(THRESHOLD, THRESHOLD + 0.15, f);
+505	    vec3 absorption = exp(-vec3(8.0, 9.0, 10.0) * oilDepth);
+506	    contentColor *= absorption;
+507	    // At depth, content fades entirely to the oil body colour
+508	    contentColor = mix(contentColor, OIL_COLOR, oilDepth * 0.92);
+509	
+510	    // Perspective view direction
+511	    vec3 V = normalize(vec3((uv - 0.5) * vec2(aspect, 1.0) * 0.7, -1.0));
+512	
+513	    // Fresnel
+514	    float NdV = max(dot(N, -V), 0.0);
+515	    float fresnel = R0 + (1.0 - R0) * pow(1.0 - NdV, 5.0);
+516	
+517	    // Environment reflection — oil is glossy
+518	    vec3 R = reflect(V, N);
+519	    vec3 envColor = envMap(R);
+520	
+521	    // Thin-film iridescence — strongest at meniscus where film is thinnest
+522	    vec3 iridescence = thinFilm(meniscus * 0.8 + oilDepth * 0.2);
+523	    // Iridescence modulates the reflection, visible mainly at glancing angles
+524	    float iriStrength = meniscus * fresnel * 1.8;
+525	    envColor = mix(envColor, envColor * iridescence, clamp(iriStrength, 0.0, 0.7));
+526	
+527	    // Specular — oil has a tighter, brighter highlight
+528	    vec3 L = normalize(vec3((uLightPos - uv) * vec2(aspect, 1.0), 0.85));
+529	    vec3 H = normalize(L - V);
+530	    float NdH = max(dot(N, H), 0.0);
+531	    float specMirror = pow(NdH, 600.0);
+532	    float specBroad = pow(NdH, 50.0) * meniscus;
+533	
+534	    // Composite
+535	    vec3 color = contentColor;
+536	    color = mix(color, envColor, fresnel);
+537	    color += specMirror * 0.35;
+538	    color += specBroad * 0.05;
+539	
+540	    float alpha = smoothstep(THRESHOLD, THRESHOLD + 0.045, f);
+541	    gl_FragColor = vec4(color, alpha);
+542	  }
+543	`;
+544	
+545	// ─── MERCURY FRAGMENT SHADER ───────────────────
+546	// Liquid metal — physically based metallic reflection.
+547	//
+548	// Mercury complex refractive index at 589nm: n = 1.62, k = 5.76
+549	// Normal incidence reflectance: R = ((n-1)² + k²) / ((n+1)² + k²) ≈ 0.84
+550	//
+551	// Spectral reflectance (measured):
+552	//   400nm (blue):  R ≈ 0.85
+553	//   550nm (green): R ≈ 0.82
+554	//   700nm (red):   R ≈ 0.78
+555	// This gives mercury its characteristic cool steel-silver appearance.
+556	//
+557	// Mercury is completely opaque — extinction depth is ~15nm.
+558	// No light transmits through it at any thickness.
+559	// Surface tension is extremely high (485 mN/m), giving mirror-smooth surfaces.
+560	
+561	const fragmentShaderMercury = /* glsl */ `
+562	  precision highp float;
+563	  varying vec2 vUv;
+564	
+565	  uniform vec2 uResolution;
+566	  uniform sampler2D uContentTex;
+567	  uniform sampler2D uEnvMap;
+568	  uniform vec3 uDroplets[${MAX_DROPLETS}];
+569	  uniform vec2 uLightPos;
+570	
+571	  const float THRESHOLD = 0.45;
+572	  // Per-channel R₀ from measured spectral reflectance of mercury
+573	  const vec3 R0 = vec3(0.78, 0.82, 0.85);
+574	
+575	  float field(vec2 p, float aspect) {
+576	    float sum = 0.0;
+577	    for (int i = 0; i < ${MAX_DROPLETS}; i++) {
+578	      vec2 centre = uDroplets[i].xy;
+579	      float radius = uDroplets[i].z;
+580	      if (radius < 0.001) continue;
+581	      vec2 diff = p - centre;
+582	      diff.x *= aspect;
+583	      sum += exp(-dot(diff, diff) / (2.0 * radius * radius));
+584	    }
+585	    return sum;
+586	  }
+587	
+588	  vec3 getNormal(vec2 p, float f, float aspect) {
+589	    float e = 0.004;
+590	    float l = field(p - vec2(e, 0.0), aspect);
+591	    float r = field(p + vec2(e, 0.0), aspect);
+592	    float d = field(p - vec2(0.0, e), aspect);
+593	    float u = field(p + vec2(0.0, e), aspect);
+594	    float distFromEdge = max(f - THRESHOLD, 0.0);
+595	    float meniscus = exp(-distFromEdge * 8.0);
+596	    return normalize(vec3((l - r) * meniscus, (d - u) * meniscus, e * 55.0));
+597	  }
+598	
+599	  vec3 envMap(vec3 dir) {
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:31:08Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/shapes-droplets.js`
+
+```text
+600	    float phi   = atan(dir.z, dir.x);
+601	    float theta = asin(clamp(dir.y, -1.0, 1.0));
+602	    vec2 envUV  = vec2(phi / 6.28318 + 0.5, theta / 3.14159 + 0.5);
+603	    vec3 hdr    = texture2D(uEnvMap, envUV).rgb;
+604	    hdr *= 2.5;
+605	    return hdr / (hdr + 1.0);
+606	  }
+607	
+608	  // Schlick Fresnel for metals — per-channel R₀, power ~3 for conductors
+609	  vec3 fresnelMetal(float NdV) {
+610	    return R0 + (1.0 - R0) * pow(1.0 - NdV, 3.0);
+611	  }
+612	
+613	  void main() {
+614	    vec2 uv = vUv;
+615	    float aspect = uResolution.x / uResolution.y;
+616	    float f = field(uv, aspect);
+617	
+618	    // Outside: bright silver caustic at contact line
+619	    if (f < THRESHOLD) {
+620	      float caustic = smoothstep(THRESHOLD * 0.75, THRESHOLD * 0.95, f)
+621	                    * (1.0 - smoothstep(THRESHOLD * 0.95, THRESHOLD, f));
+622	      gl_FragColor = vec4(vec3(0.92), caustic * 0.15);
+623	      return;
+624	    }
+625	
+626	    vec3 N = getNormal(uv, f, aspect);
+627	    float distFromEdge = max(f - THRESHOLD, 0.0);
+628	    float meniscus = exp(-distFromEdge * 8.0);
+629	    // Simulate perspective view — viewer at finite distance above the surface
+630	    // so different points on the mercury reflect different parts of the environment
+631	    vec3 V = normalize(vec3((uv - 0.5) * vec2(aspect, 1.0) * 0.7, -1.0));
+632	    float NdV = max(dot(N, -V), 0.0);
+633	
+634	    // Spectral Fresnel — mercury is 78-85% reflective even at normal incidence
+635	    vec3 F = fresnelMetal(NdV);
+636	
+637	    vec3 R = reflect(V, N);
+638	    vec3 envColor = envMap(R);
+639	
+640	    // Desaturate the environment to get neutral silver — mercury's flat spectral
+641	    // reflectance (0.78-0.85) means it reflects all wavelengths nearly equally,
+642	    // so coloured surroundings appear muted on its surface
+643	    float envLuma = dot(envColor, vec3(0.2126, 0.7152, 0.0722));
+644	    envColor = mix(vec3(envLuma), envColor, 0.25);
+645	
+646	    // Mercury is completely opaque — colour comes entirely from reflection
+647	    vec3 color = envColor * F;
+648	
+649	    // Specular highlights — with perspective view direction
+650	    vec3 L = normalize(vec3((uLightPos - uv) * vec2(aspect, 1.0), 0.85));
+651	    vec3 H = normalize(L - V);
+652	    float NdH = max(dot(N, H), 0.0);
+653	    // GGX-like distribution: very tight core + broader meniscus lobe
+654	    float specMirror = pow(NdH, 1024.0);
+655	    float specBroad  = pow(NdH, 80.0) * meniscus;
+656	    color += vec3(1.0) * specMirror * 0.7;
+657	    color += vec3(1.0) * specBroad * 0.06;
+658	
+659	    float alpha = smoothstep(THRESHOLD, THRESHOLD + 0.045, f);
+660	    gl_FragColor = vec4(color, alpha);
+661	  }
+662	`;
+663	
+664	// ─── FROSTED GLASS FRAGMENT SHADER ─────────────
+665	//
+666	// Ground glass: surface roughened by sandblasting or acid etching.
+667	// The micro-faceted surface acts as a random phase screen.
+668	//
+669	// Physics:
+670	// - Each surface point has a random normal → transmitted light is scattered
+671	// - The point-spread function is Gaussian (CLT over many micro-facets)
+672	// - Angular spread σ ≈ RMS_slope × (n-1)/n for glass n ≈ 1.5
+673	// - For a volume scatterer (thick frosted region), blur ∝ √(depth)
+674	//   because angular deviation follows a random walk
+675	// - Scattering is wavelength-independent (roughness ~1-100μm >> λ visible)
+676	//   so there is NO chromatic aberration — pure luminance blur
+677	// - Fresnel R₀ = ((1.5-1)/(1.5+1))² ≈ 0.04, but the rough surface
+678	//   distributes both reflection and transmission into broad lobes
+679	// - Forward scattering dominates: the glass is translucent, not opaque
+680	// - Mie scattering from micro-features adds a slight white veil
+681	//
+682	// Sampling: 37-tap golden-angle spiral with Gaussian weighting for
+683	// physically correct PSF approximation.
+684	
+685	const fragmentShaderFrosted = /* glsl */ `
+686	  precision highp float;
+687	  varying vec2 vUv;
+688	
+689	  uniform vec2 uResolution;
+690	  uniform sampler2D uContentTex;
+691	  uniform sampler2D uEnvMap;
+692	  uniform vec3 uDroplets[${MAX_DROPLETS}];
+693	  uniform vec2 uLightPos;
+694	
+695	  const float THRESHOLD = 0.45;
+696	  const float R0 = 0.04;  // glass n ≈ 1.5
+697	  const float PI = 3.14159265;
+698	  const float GOLDEN_ANGLE = 2.39996323;  // π(3 - √5)
+699	  const int BLUR_SAMPLES = 37;
+700	
+701	  float field(vec2 p, float aspect) {
+702	    float sum = 0.0;
+703	    for (int i = 0; i < ${MAX_DROPLETS}; i++) {
+704	      vec2 centre = uDroplets[i].xy;
+705	      float radius = uDroplets[i].z;
+706	      if (radius < 0.001) continue;
+707	      vec2 diff = p - centre;
+708	      diff.x *= aspect;
+709	      sum += exp(-dot(diff, diff) / (2.0 * radius * radius));
+710	    }
+711	    return sum;
+712	  }
+713	
+714	  vec3 getNormal(vec2 p, float f, float aspect) {
+715	    float e = 0.004;
+716	    float l = field(p - vec2(e, 0.0), aspect);
+717	    float r = field(p + vec2(e, 0.0), aspect);
+718	    float d = field(p - vec2(0.0, e), aspect);
+719	    float u = field(p + vec2(0.0, e), aspect);
+720	    float distFromEdge = max(f - THRESHOLD, 0.0);
+721	    float meniscus = exp(-distFromEdge * 8.0);
+722	    return normalize(vec3((l - r) * meniscus, (d - u) * meniscus, e * 55.0));
+723	  }
+724	
+725	  vec3 envMap(vec3 dir) {
+726	    float phi   = atan(dir.z, dir.x);
+727	    float theta = asin(clamp(dir.y, -1.0, 1.0));
+728	    vec2 envUV  = vec2(phi / 6.28318 + 0.5, theta / 3.14159 + 0.5);
+729	    vec3 hdr    = texture2D(uEnvMap, envUV).rgb;
+730	    hdr *= 1.5;
+731	    return hdr / (hdr + 1.0);
+732	  }
+733	
+734	  // Gaussian-weighted golden-angle spiral blur
+735	  // Physically models the PSF of a rough surface scatterer
+736	  vec3 gaussianDiscBlur(vec2 centre, float sigma) {
+737	    vec2 px = 1.0 / uResolution;
+738	    vec3 totalColor = vec3(0.0);
+739	    float totalWeight = 0.0;
+740	
+741	    for (int i = 0; i < BLUR_SAMPLES; i++) {
+742	      float fi = float(i);
+743	      // Golden-angle spiral: r = √(i/N) gives uniform disc distribution
+744	      float r = sqrt(fi / float(BLUR_SAMPLES));
+745	      float theta = fi * GOLDEN_ANGLE;
+746	      vec2 offset = vec2(cos(theta), sin(theta)) * r * sigma;
+747	
+748	      // Gaussian weight: w = exp(-r² / 2) — heavier at centre
+749	      float w = exp(-r * r * 0.5);
+750	
+751	      vec2 sampleUV = clamp(centre + offset * px, 0.0, 1.0);
+752	      totalColor += texture2D(uContentTex, sampleUV).rgb * w;
+753	      totalWeight += w;
+754	    }
+755	    return totalColor / totalWeight;
+756	  }
+757	
+758	  void main() {
+759	    vec2 uv = vUv;
+760	    float aspect = uResolution.x / uResolution.y;
+761	    float f = field(uv, aspect);
+762	
+763	    // Outside: soft scattered light at contact line
+764	    if (f < THRESHOLD) {
+765	      float caustic = smoothstep(THRESHOLD * 0.7, THRESHOLD * 0.95, f)
+766	                    * (1.0 - smoothstep(THRESHOLD * 0.95, THRESHOLD, f));
+767	      gl_FragColor = vec4(vec3(1.0), caustic * 0.05);
+768	      return;
+769	    }
+770	
+771	    vec3 N = getNormal(uv, f, aspect);
+772	    float distFromEdge = max(f - THRESHOLD, 0.0);
+773	    float meniscus = exp(-distFromEdge * 8.0);
+774	
+775	    // Depth into the frosted volume (for random-walk blur scaling)
+776	    float depth = smoothstep(THRESHOLD, THRESHOLD + 0.25, f);
+777	
+778	    // Blur sigma ∝ √(depth) — random walk in angle space
+779	    // Plus a meniscus contribution (edge refraction still scatters)
+780	    float sigma = sqrt(depth) * 40.0 + meniscus * 6.0;
+781	
+782	    // Slight macroscopic refraction at the meniscus
+783	    float refractionStrength = 0.008 * meniscus;
+784	    vec2 refractedUV = clamp(uv + N.xy * refractionStrength, 0.0, 1.0);
+785	
+786	    // Gaussian-blurred content — no chromatic split (roughness >> λ)
+787	    vec3 contentColor = gaussianDiscBlur(refractedUV, sigma);
+788	
+789	    // Mie scattering veil: micro-features scatter a fraction of light
+790	    // isotropically, adding a white haze proportional to depth
+791	    float veil = depth * 0.3 + meniscus * 0.08;
+792	    contentColor = mix(contentColor, vec3(1.0), veil);
+793	
+794	    // Perspective view direction
+795	    vec3 V = normalize(vec3((uv - 0.5) * vec2(aspect, 1.0) * 0.7, -1.0));
+796	
+797	    // Fresnel reflection — also scattered by the rough surface
+798	    float NdV = max(dot(N, -V), 0.0);
+799	    float fresnel = R0 + (1.0 - R0) * pow(1.0 - NdV, 5.0);
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:31:17Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/shapes-droplets.js`
+
+```text
+800	
+801	    // Environment reflection is diffused (rough surface scatters it)
+802	    vec3 R = reflect(V, N);
+803	    vec3 envColor = envMap(R);
+804	
+805	    // Specular: very broad lobe from the micro-facet distribution
+806	    // No tight mirror peak — the surface is too rough
+807	    vec3 L = normalize(vec3((uLightPos - uv) * vec2(aspect, 1.0), 0.85));
+808	    vec3 H = normalize(L - V);
+809	    float NdH = max(dot(N, H), 0.0);
+810	    float specBroad = pow(NdH, 8.0) * 0.15;
+811	    float specMid   = pow(NdH, 40.0) * meniscus * 0.08;
+812	
+813	    // Composite
+814	    vec3 color = contentColor;
+815	    color = mix(color, envColor, fresnel);
+816	    color += specBroad + specMid;
+817	
+818	    float alpha = smoothstep(THRESHOLD, THRESHOLD + 0.045, f);
+819	    gl_FragColor = vec4(color, alpha);
+820	  }
+821	`;
+822	
+823	// ─── FROZEN ICE FRAGMENT SHADER ────────────────
+824	//
+825	// Ice Ih (hexagonal ice, the common form).
+826	//
+827	// Refractive index:
+828	//   n_o = 1.309 (ordinary ray), n_e = 1.3104 (extraordinary ray)
+829	//   Birefringence Δn ≈ 0.0014 — causes faint double images through thick ice
+830	//   R₀ = ((1.309-1)/(1.309+1))² ≈ 0.018
+831	//
+832	// Chromatic dispersion (measured):
+833	//   n(400nm) ≈ 1.317  →  stronger refraction for blue
+834	//   n(550nm) ≈ 1.311
+835	//   n(700nm) ≈ 1.306  →  weaker refraction for red
+836	//   Δn across visible ≈ 0.011
+837	//
+838	// Beer-Lambert absorption (per metre, measured):
+839	//   700nm (red):   α ≈ 0.6  m⁻¹  — absorbed most
+840	//   550nm (green): α ≈ 0.1  m⁻¹
+841	//   400nm (blue):  α ≈ 0.01 m⁻¹  — absorbed least
+842	//   This gives ice its characteristic blue-cyan colour at depth.
+843	//
+844	// Internal structure:
+845	//   - Polycrystalline: grain boundaries form a Voronoi tessellation
+846	//     that scatters light (each grain has a different c-axis orientation)
+847	//   - Air bubbles: trapped during freezing, scatter light via TIR at
+848	//     the ice-air boundary, appearing as bright white points
+849	//   - Henyey-Greenstein forward scattering: g ≈ 0.89 for ice grains,
+850	//     meaning most scattered light continues roughly forward (translucent)
+851	//
+852	// Surface:
+853	//   - Frost forms at the contact line where ice is thinnest —
+854	//     dendritic microcrystals scatter light broadly (white appearance)
+855	//   - Interior is smooth and glassy where thickness provides structure
+856	
+857	const fragmentShaderIce = /* glsl */ `
+858	  precision highp float;
+859	  varying vec2 vUv;
+860	
+861	  uniform vec2 uResolution;
+862	  uniform sampler2D uContentTex;
+863	  uniform sampler2D uEnvMap;
+864	  uniform vec3 uDroplets[${MAX_DROPLETS}];
+865	  uniform vec2 uLightPos;
+866	
+867	  const float THRESHOLD = 0.45;
+868	  const float R0 = 0.018;
+869	  const float PI = 3.14159265;
+870	
+871	  // Measured Beer-Lambert coefficients for ice (per unit depth, scaled for our geometry)
+872	  const vec3 ICE_ABSORPTION = vec3(0.6, 0.1, 0.01);  // red, green, blue per metre
+873	  // Forward-scattering asymmetry parameter
+874	  const float HG_G = 0.89;
+875	
+876	  float field(vec2 p, float aspect) {
+877	    float sum = 0.0;
+878	    for (int i = 0; i < ${MAX_DROPLETS}; i++) {
+879	      vec2 centre = uDroplets[i].xy;
+880	      float radius = uDroplets[i].z;
+881	      if (radius < 0.001) continue;
+882	      vec2 diff = p - centre;
+883	      diff.x *= aspect;
+884	      sum += exp(-dot(diff, diff) / (2.0 * radius * radius));
+885	    }
+886	    return sum;
+887	  }
+888	
+889	  vec3 getNormal(vec2 p, float f, float aspect) {
+890	    float e = 0.004;
+891	    float l = field(p - vec2(e, 0.0), aspect);
+892	    float r = field(p + vec2(e, 0.0), aspect);
+893	    float d = field(p - vec2(0.0, e), aspect);
+894	    float u = field(p + vec2(0.0, e), aspect);
+895	    float distFromEdge = max(f - THRESHOLD, 0.0);
+896	    float meniscus = exp(-distFromEdge * 8.0);
+897	    return normalize(vec3((l - r) * meniscus, (d - u) * meniscus, e * 55.0));
+898	  }
+899	
+900	  vec3 envMap(vec3 dir) {
+901	    float phi   = atan(dir.z, dir.x);
+902	    float theta = asin(clamp(dir.y, -1.0, 1.0));
+903	    vec2 envUV  = vec2(phi / 6.28318 + 0.5, theta / 3.14159 + 0.5);
+904	    vec3 hdr    = texture2D(uEnvMap, envUV).rgb;
+905	    hdr *= 1.8;
+906	    return hdr / (hdr + 1.0);
+907	  }
+908	
+909	  // ── Hash functions for procedural patterns ──
+910	  float hash(vec2 p) {
+911	    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+912	  }
+913	  vec2 hash2(vec2 p) {
+914	    return vec2(
+915	      fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453),
+916	      fract(sin(dot(p, vec2(269.5, 183.3))) * 43758.5453)
+917	    );
+918	  }
+919	
+920	  // ── Voronoi grain boundaries ──
+921	  // Polycrystalline ice: each grain has a different crystal axis.
+922	  // Light scatters at the boundaries between grains.
+923	  // Returns: x = distance to nearest boundary, y = cell hash
+924	  vec2 voronoi(vec2 p, float scale) {
+925	    vec2 sp = p * scale;
+926	    vec2 n = floor(sp);
+927	    vec2 f = fract(sp);
+928	    float minDist = 10.0;
+929	    float secondDist = 10.0;
+930	    float cellId = 0.0;
+931	    for (int j = -1; j <= 1; j++) {
+932	      for (int i = -1; i <= 1; i++) {
+933	        vec2 g = vec2(float(i), float(j));
+934	        vec2 o = hash2(n + g);
+935	        vec2 r = g + o - f;
+936	        float d = dot(r, r);
+937	        if (d < minDist) {
+938	          secondDist = minDist;
+939	          minDist = d;
+940	          cellId = hash(n + g);
+941	        } else if (d < secondDist) {
+942	          secondDist = d;
+943	        }
+944	      }
+945	    }
+946	    // Boundary proximity: small when close to a grain boundary
+947	    float boundary = sqrt(secondDist) - sqrt(minDist);
+948	    return vec2(boundary, cellId);
+949	  }
+950	
+951	  // ── Air bubble inclusions ──
+952	  // Trapped air appears as bright white points from TIR at ice-air boundary
+953	  float airBubbles(vec2 p, float depth) {
+954	    float bubbles = 0.0;
+955	    // Two scales of bubbles
+956	    for (int s = 0; s < 2; s++) {
+957	      float scale = (s == 0) ? 60.0 : 120.0;
+958	      vec2 g = floor(p * scale);
+959	      float h = hash(g + float(s) * 100.0);
+960	      vec2 centre = (g + hash2(g + float(s) * 50.0)) / scale;
+961	      float d = length(p - centre) * scale;
+962	      float radius = (s == 0) ? 0.4 : 0.25;
+963	      // Only some cells have bubbles, and only where there's depth
+964	      float bubble = (1.0 - smoothstep(0.0, radius, d)) * step(0.82, h) * depth;
+965	      bubbles += bubble;
+966	    }
+967	    return clamp(bubbles, 0.0, 1.0);
+968	  }
+969	
+970	  void main() {
+971	    vec2 uv = vUv;
+972	    float aspect = uResolution.x / uResolution.y;
+973	    float f = field(uv, aspect);
+974	
+975	    // ── Outside: caustic band with blue tint ──
+976	    if (f < THRESHOLD) {
+977	      float caustic = smoothstep(THRESHOLD * 0.65, THRESHOLD * 0.92, f)
+978	                    * (1.0 - smoothstep(THRESHOLD * 0.92, THRESHOLD, f));
+979	      gl_FragColor = vec4(vec3(0.75, 0.88, 0.98), caustic * 0.08);
+980	      return;
+981	    }
+982	
+983	    vec3 N = getNormal(uv, f, aspect);
+984	    float distFromEdge = max(f - THRESHOLD, 0.0);
+985	    float meniscus = exp(-distFromEdge * 8.0);
+986	    float iceDepth = smoothstep(THRESHOLD, THRESHOLD + 0.2, f);
+987	
+988	    // ── Chromatic dispersion (measured Δn ≈ 0.011 across visible) ──
+989	    // n_red = 1.306, n_green = 1.311, n_blue = 1.317
+990	    // Blue refracts more → larger offset; red less → smaller offset
+991	    float baseRefraction = 0.012 * meniscus;
+992	    float dispersion = 0.006 * meniscus;  // half of Δn/n scaled
+993	    vec2 uvR = clamp(uv + N.xy * (baseRefraction - dispersion), 0.0, 1.0);
+994	    vec2 uvG = clamp(uv + N.xy * baseRefraction, 0.0, 1.0);
+995	    vec2 uvB = clamp(uv + N.xy * (baseRefraction + dispersion), 0.0, 1.0);
+996	
+997	    // ── Birefringence (Δn ≈ 0.0014) ──
+998	    // Ordinary and extraordinary rays travel at slightly different speeds,
+999	    // creating a faint double image. We blend two slightly offset samples.
+1000	    float birefringence = 0.002 * iceDepth;
+1001	    // The extraordinary ray offset depends on crystal axis — use a per-grain direction
+1002	    vec2 vor = voronoi(uv, 18.0);
+1003	    float grainAngle = vor.y * PI * 2.0;
+1004	    vec2 birefDir = vec2(cos(grainAngle), sin(grainAngle)) * birefringence;
+1005	
+1006	    vec3 contentColor;
+1007	    // Ordinary ray
+1008	    vec3 ordinary;
+1009	    ordinary.r = texture2D(uContentTex, uvR).r;
+1010	    ordinary.g = texture2D(uContentTex, uvG).g;
+1011	    ordinary.b = texture2D(uContentTex, uvB).b;
+1012	    // Extraordinary ray (offset by birefringence along grain c-axis)
+1013	    vec3 extraordinary;
+1014	    extraordinary.r = texture2D(uContentTex, clamp(uvR + birefDir, 0.0, 1.0)).r;
+1015	    extraordinary.g = texture2D(uContentTex, clamp(uvG + birefDir, 0.0, 1.0)).g;
+1016	    extraordinary.b = texture2D(uContentTex, clamp(uvB + birefDir, 0.0, 1.0)).b;
+1017	    // Equal power split between o-ray and e-ray
+1018	    contentColor = mix(ordinary, extraordinary, 0.5);
+1019	
+1020	    // ── Beer-Lambert spectral absorption ──
+1021	    // Depth-dependent: red absorbed most, blue least → blue colour emerges
+1022	    vec3 absorption = exp(-ICE_ABSORPTION * iceDepth * 4.5);
+1023	    contentColor *= absorption;
+1024	
+1025	    // ── Subsurface scattering (Henyey-Greenstein forward scatter) ──
+1026	    // Light that enters the ice bounces off grain boundaries and bubbles.
+1027	    // With g=0.89, most continues forward but with slight spreading.
+1028	    // We approximate this as a depth-dependent luminance contribution
+1029	    // from the average scene colour, tinted by the ice absorption.
+1030	    vec3 scatterColor = vec3(0.6, 0.78, 0.92); // blue-shifted scattered light
+1031	    float scatterStrength = iceDepth * 0.15 * (1.0 - HG_G);  // small because g is high
+1032	    contentColor += scatterColor * scatterStrength;
+1033	
+1034	    // ── Grain boundary scattering (Voronoi edges) ──
+1035	    float boundary = vor.x;
+1036	    // Thin bright lines at grain boundaries where light is redirected
+1037	    float grainScatter = (1.0 - smoothstep(0.0, 0.08, boundary)) * iceDepth;
+1038	    contentColor += vec3(0.55, 0.72, 0.88) * grainScatter * 0.25;
+1039	
+1040	    // ── Air bubble inclusions ──
+1041	    float bubbles = airBubbles(uv, iceDepth);
+1042	    contentColor = mix(contentColor, vec3(0.92, 0.96, 1.0), bubbles * 0.6);
+1043	
+1044	    // ── Surface frost at meniscus ──
+1045	    // Where ice is thinnest, dendritic microcrystals scatter light broadly
+1046	    // creating a white frost appearance
+1047	    float frost = meniscus * 0.35;
+1048	    // Add some spatial variation to the frost using a high-frequency hash
+1049	    float frostNoise = hash(floor(uv * 200.0)) * 0.3 + 0.7;
+1050	    frost *= frostNoise;
+1051	    contentColor = mix(contentColor, vec3(0.92, 0.95, 1.0), frost);
+1052	
+1053	    // ── Perspective view direction ──
+1054	    vec3 V = normalize(vec3((uv - 0.5) * vec2(aspect, 1.0) * 0.7, -1.0));
+1055	
+1056	    // ── Fresnel reflection ──
+1057	    float NdV = max(dot(N, -V), 0.0);
+1058	    float fresnel = R0 + (1.0 - R0) * pow(1.0 - NdV, 5.0);
+1059	
+1060	    // Environment reflection — tinted by absorption through the surface
+1061	    vec3 R = reflect(V, N);
+1062	    vec3 envColor = envMap(R);
+1063	    // Ice surface is smooth at the macro scale → sharp reflection
+1064	    envColor *= vec3(0.85, 0.92, 1.0);  // slight blue tint from surface
+1065	
+1066	    // ── Specular ──
+1067	    vec3 L = normalize(vec3((uLightPos - uv) * vec2(aspect, 1.0), 0.85));
+1068	    vec3 H = normalize(L - V);
+1069	    float NdH = max(dot(N, H), 0.0);
+1070	    // Sharp crystalline highlight — ice surface is smooth
+1071	    float specMirror = pow(NdH, 800.0);
+1072	    // Broader lobe from the meniscus curvature
+1073	    float specBroad = pow(NdH, 50.0) * meniscus;
+1074	
+1075	    // ── Composite ──
+1076	    vec3 color = contentColor;
+1077	    color = mix(color, envColor, fresnel);
+1078	    color += specMirror * 0.35;
+1079	    color += specBroad * 0.04;
+1080	
+1081	    float alpha = smoothstep(THRESHOLD, THRESHOLD + 0.045, f);
+1082	    gl_FragColor = vec4(color, alpha);
+1083	  }
+1084	`;
+1085	
+1086	// ─── LIFECYCLE ──────────────────────────────────
+1087	
+1088	const active = [];
+1089	
+1090	/** Dispose all active WebGL renderers — call before re-render */
+1091	export function disposeDroplets() {
+1092	  for (const a of active) {
+1093	    a.renderer.dispose();
+1094	    a.material.dispose();
+1095	    a.geometry.dispose();
+1096	    if (a.contentTex) a.contentTex.dispose();
+1097	  }
+1098	  active.length = 0;
+1099	}
+1100	
+1101	/**
+1102	 * Capture the slide content and set up the Three.js refraction scene.
+1103	 * Async because html2canvas capture is asynchronous.
+1104	 */
+1105	export async function initDropletCanvas(slideEl, slideIndex) {
+1106	  const inner = slideEl.querySelector('.slide-inner');
+1107	  const canvas = inner?.querySelector('.droplet-canvas');
+1108	  if (!canvas) return;
+1109	
+1110	  // Hide canvas so html2canvas doesn't capture it
+1111	  canvas.style.visibility = 'hidden';
+1112	
+1113	  try {
+1114	    await document.fonts.ready;
+1115	
+1116	    // Bail if slide was removed from the DOM (e.g. HMR reload, re-render)
+1117	    if (!document.contains(canvas)) return;
+1118	
+1119	    const rect = inner.getBoundingClientRect();
+1120	    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+1121	
+1122	    // Capture the slide content (excluding the droplet canvas)
+1123	    const capturedCanvas = await html2canvas(inner, {
+1124	      backgroundColor: null,
+1125	      scale: dpr,
+1126	      logging: false,
+1127	      useCORS: true,
+1128	      ignoreElements: (el) => el.classList.contains('droplet-canvas'),
+1129	    });
+1130	
+1131	    // Bail if DOM was torn down during async capture
+1132	    if (!document.contains(canvas)) return;
+1133	
+1134	    // Content texture
+1135	    const contentTexture = new THREE.CanvasTexture(capturedCanvas);
+1136	    contentTexture.minFilter = THREE.LinearFilter;
+1137	    contentTexture.magFilter = THREE.LinearFilter;
+1138	
+1139	    // Load shared HDR environment map (theatre interior, CC0 Poly Haven)
+1140	    const envTexture = await loadEnvTexture();
+1141	
+1142	    if (!document.contains(canvas)) return;
+1143	
+1144	    // Show canvas (now on top of everything)
+1145	    canvas.style.visibility = 'visible';
+1146	
+1147	    // Three.js setup
+1148	    const droplets = generateDroplets(slideIndex);
+1149	
+1150	    const renderer = new THREE.WebGLRenderer({
+1151	      canvas,
+1152	      alpha: true,
+1153	      antialias: true,
+1154	      premultipliedAlpha: false,
+1155	      preserveDrawingBuffer: true,
+1156	    });
+1157	    renderer.setPixelRatio(dpr);
+1158	    renderer.setSize(rect.width, rect.height, false);
+1159	
+1160	    const scene = new THREE.Scene();
+1161	    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+1162	    const geometry = new THREE.PlaneGeometry(2, 2);
+1163	
+1164	    const material = new THREE.ShaderMaterial({
+1165	      vertexShader,
+1166	      fragmentShader,
+1167	      transparent: true,
+1168	      depthTest: false,
+1169	      uniforms: {
+1170	        uResolution: { value: new THREE.Vector2(rect.width * dpr, rect.height * dpr) },
+1171	        uContentTex: { value: contentTexture },
+1172	        uEnvMap:     { value: envTexture },
+1173	        uDroplets:   { value: droplets },
+1174	        uLightPos:   { value: new THREE.Vector2(0.72, 0.78) },
+1175	      },
+1176	    });
+1177	
+1178	    scene.add(new THREE.Mesh(geometry, material));
+1179	    renderer.render(scene, camera);
+1180	
+1181	    active.push({ renderer, material, geometry, contentTex: contentTexture });
+1182	  } catch (e) {
+1183	    console.warn('Droplet init failed:', e);
+1184	    canvas.style.visibility = 'visible';
+1185	  }
+1186	}
+1187	
+1188	/**
+1189	 * Tinted variant — same metaball refraction but with coloured water.
+1190	 * @param {HTMLElement} slideEl
+1191	 * @param {number} slideIndex
+1192	 * @param {number[]} rgb  Linear RGB tint, e.g. [0.784, 0.941, 0.847] for Monzo mint
+1193	 */
+1194	export async function initDropletCanvasTinted(slideEl, slideIndex, rgb) {
+1195	  const inner = slideEl.querySelector('.slide-inner');
+1196	  const canvas = inner?.querySelector('.droplet-canvas');
+1197	  if (!canvas) return;
+1198	
+1199	  canvas.style.visibility = 'hidden';
+1200	
+1201	  try {
+1202	    await document.fonts.ready;
+1203	
+1204	    if (!document.contains(canvas)) return;
+1205	
+1206	    const rect = inner.getBoundingClientRect();
+1207	    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+1208	
+1209	    const capturedCanvas = await html2canvas(inner, {
+1210	      backgroundColor: null,
+1211	      scale: dpr,
+1212	      logging: false,
+1213	      useCORS: true,
+1214	      ignoreElements: (el) => el.classList.contains('droplet-canvas'),
+1215	    });
+1216	
+1217	    if (!document.contains(canvas)) return;
+1218	
+1219	    const contentTexture = new THREE.CanvasTexture(capturedCanvas);
+1220	    contentTexture.minFilter = THREE.LinearFilter;
+1221	    contentTexture.magFilter = THREE.LinearFilter;
+1222	
+1223	    const envTexture = await loadEnvTexture();
+1224	
+1225	    if (!document.contains(canvas)) return;
+1226	
+1227	    canvas.style.visibility = 'visible';
+1228	
+1229	    const droplets = generateDroplets(slideIndex);
+1230	
+1231	    const renderer = new THREE.WebGLRenderer({
+1232	      canvas,
+1233	      alpha: true,
+1234	      antialias: true,
+1235	      premultipliedAlpha: false,
+1236	      preserveDrawingBuffer: true,
+1237	    });
+1238	    renderer.setPixelRatio(dpr);
+1239	    renderer.setSize(rect.width, rect.height, false);
+1240	
+1241	    const scene = new THREE.Scene();
+1242	    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+1243	    const geometry = new THREE.PlaneGeometry(2, 2);
+1244	
+1245	    const material = new THREE.ShaderMaterial({
+1246	      vertexShader,
+1247	      fragmentShader: fragmentShaderTinted,
+1248	      transparent: true,
+1249	      depthTest: false,
+1250	      uniforms: {
+1251	        uResolution: { value: new THREE.Vector2(rect.width * dpr, rect.height * dpr) },
+1252	        uContentTex: { value: contentTexture },
+1253	        uEnvMap:     { value: envTexture },
+1254	        uDroplets:   { value: droplets },
+1255	        uLightPos:   { value: new THREE.Vector2(0.72, 0.78) },
+1256	        uWaterColor: { value: new THREE.Vector3(rgb[0], rgb[1], rgb[2]) },
+1257	      },
+1258	    });
+1259	
+1260	    scene.add(new THREE.Mesh(geometry, material));
+1261	    renderer.render(scene, camera);
+1262	
+1263	    active.push({ renderer, material, geometry, contentTex: contentTexture });
+1264	  } catch (e) {
+1265	    console.warn('Tinted droplet init failed:', e);
+1266	    canvas.style.visibility = 'visible';
+1267	  }
+1268	}
+1269	
+1270	/**
+1271	 * Crude oil variant — dark opaque fluid with thin-film iridescence.
+1272	 */
+1273	export async function initDropletCanvasOil(slideEl, slideIndex) {
+1274	  const inner = slideEl.querySelector('.slide-inner');
+1275	  const canvas = inner?.querySelector('.droplet-canvas');
+1276	  if (!canvas) return;
+1277	
+1278	  canvas.style.visibility = 'hidden';
+1279	
+1280	  try {
+1281	    await document.fonts.ready;
+1282	
+1283	    if (!document.contains(canvas)) return;
+1284	
+1285	    const rect = inner.getBoundingClientRect();
+1286	    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+1287	
+1288	    const capturedCanvas = await html2canvas(inner, {
+1289	      backgroundColor: null,
+1290	      scale: dpr,
+1291	      logging: false,
+1292	      useCORS: true,
+1293	      ignoreElements: (el) => el.classList.contains('droplet-canvas'),
+1294	    });
+1295	
+1296	    if (!document.contains(canvas)) return;
+1297	
+1298	    const contentTexture = new THREE.CanvasTexture(capturedCanvas);
+1299	    contentTexture.minFilter = THREE.LinearFilter;
+1300	    contentTexture.magFilter = THREE.LinearFilter;
+1301	
+1302	    const envTexture = await loadEnvTexture();
+1303	
+1304	    if (!document.contains(canvas)) return;
+1305	
+1306	    canvas.style.visibility = 'visible';
+1307	
+1308	    const droplets = generateDroplets(slideIndex);
+1309	
+1310	    const renderer = new THREE.WebGLRenderer({
+1311	      canvas,
+1312	      alpha: true,
+1313	      antialias: true,
+1314	      premultipliedAlpha: false,
+1315	      preserveDrawingBuffer: true,
+1316	    });
+1317	    renderer.setPixelRatio(dpr);
+1318	    renderer.setSize(rect.width, rect.height, false);
+1319	
+1320	    const scene = new THREE.Scene();
+1321	    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+1322	    const geometry = new THREE.PlaneGeometry(2, 2);
+1323	
+1324	    const material = new THREE.ShaderMaterial({
+1325	      vertexShader,
+1326	      fragmentShader: fragmentShaderOil,
+1327	      transparent: true,
+1328	      depthTest: false,
+1329	      uniforms: {
+1330	        uResolution: { value: new THREE.Vector2(rect.width * dpr, rect.height * dpr) },
+1331	        uContentTex: { value: contentTexture },
+1332	        uEnvMap:     { value: envTexture },
+1333	        uDroplets:   { value: droplets },
+1334	        uLightPos:   { value: new THREE.Vector2(0.72, 0.78) },
+1335	      },
+1336	    });
+1337	
+1338	    scene.add(new THREE.Mesh(geometry, material));
+1339	    renderer.render(scene, camera);
+1340	
+1341	    active.push({ renderer, material, geometry, contentTex: contentTexture });
+1342	  } catch (e) {
+1343	    console.warn('Oil droplet init failed:', e);
+1344	    canvas.style.visibility = 'visible';
+1345	  }
+1346	}
+1347	
+1348	/** Generic init helper — shared boilerplate for custom shaders with no extra uniforms */
+1349	async function initDropletCanvasGeneric(slideEl, slideIndex, frag, label) {
+1350	  const inner = slideEl.querySelector('.slide-inner');
+1351	  const canvas = inner?.querySelector('.droplet-canvas');
+1352	  if (!canvas) return;
+1353	
+1354	  canvas.style.visibility = 'hidden';
+1355	
+1356	  try {
+1357	    await document.fonts.ready;
+1358	    if (!document.contains(canvas)) return;
+1359	
+1360	    const rect = inner.getBoundingClientRect();
+1361	    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+1362	
+1363	    const capturedCanvas = await html2canvas(inner, {
+1364	      backgroundColor: null,
+1365	      scale: dpr,
+1366	      logging: false,
+1367	      useCORS: true,
+1368	      ignoreElements: (el) => el.classList.contains('droplet-canvas'),
+1369	    });
+1370	
+1371	    if (!document.contains(canvas)) return;
+1372	
+1373	    const contentTexture = new THREE.CanvasTexture(capturedCanvas);
+1374	    contentTexture.minFilter = THREE.LinearFilter;
+1375	    contentTexture.magFilter = THREE.LinearFilter;
+1376	
+1377	    const envTexture = await loadEnvTexture();
+1378	    if (!document.contains(canvas)) return;
+1379	
+1380	    canvas.style.visibility = 'visible';
+1381	
+1382	    const droplets = generateDroplets(slideIndex);
+1383	
+1384	    const renderer = new THREE.WebGLRenderer({
+1385	      canvas,
+1386	      alpha: true,
+1387	      antialias: true,
+1388	      premultipliedAlpha: false,
+1389	      preserveDrawingBuffer: true,
+1390	    });
+1391	    renderer.setPixelRatio(dpr);
+1392	    renderer.setSize(rect.width, rect.height, false);
+1393	
+1394	    const scene = new THREE.Scene();
+1395	    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+1396	    const geometry = new THREE.PlaneGeometry(2, 2);
+1397	
+1398	    const material = new THREE.ShaderMaterial({
+1399	      vertexShader,
+1400	      fragmentShader: frag,
+1401	      transparent: true,
+1402	      depthTest: false,
+1403	      uniforms: {
+1404	        uResolution: { value: new THREE.Vector2(rect.width * dpr, rect.height * dpr) },
+1405	        uContentTex: { value: contentTexture },
+1406	        uEnvMap:     { value: envTexture },
+1407	        uDroplets:   { value: droplets },
+1408	        uLightPos:   { value: new THREE.Vector2(0.72, 0.78) },
+1409	      },
+1410	    });
+1411	
+1412	    scene.add(new THREE.Mesh(geometry, material));
+1413	    renderer.render(scene, camera);
+1414	
+1415	    active.push({ renderer, material, geometry, contentTex: contentTexture });
+1416	  } catch (e) {
+1417	    console.warn(`${label} droplet init failed:`, e);
+1418	    canvas.style.visibility = 'visible';
+1419	  }
+1420	}
+1421	
+1422	export async function initDropletCanvasMercury(slideEl, slideIndex) {
+1423	  return initDropletCanvasGeneric(slideEl, slideIndex, fragmentShaderMercury, 'Mercury');
+1424	}
+1425	
+1426	export async function initDropletCanvasFrosted(slideEl, slideIndex) {
+1427	  return initDropletCanvasGeneric(slideEl, slideIndex, fragmentShaderFrosted, 'Frosted');
+1428	}
+1429	
+1430	export async function initDropletCanvasIce(slideEl, slideIndex) {
+1431	  return initDropletCanvasGeneric(slideEl, slideIndex, fragmentShaderIce, 'Ice');
+1432	}
+1433
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:31:48Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-03 10:31:49Z)**_
+
+Now let me see how main.js wires up the droplet initialization.
+
+_**Agent (claude-opus-4-6 2026-04-03 10:31:50Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/main.js`
+
+```text
+1	import { layoutRegistry } from './layouts.js';
+2	import { shapeRegistry, cleanupShapes } from './shapes.js';
+3	
+4	const CONFIG_URL = '/config.json';
+5	const CONTENT_URL = '/content.json';
+6	
+7	const PALETTES = [
+8	  { value: 'monzo',         label: 'Monzo — coral / mint' },
+9	  { value: 'dia',           label: 'DIA — charcoal / gesso' },
+10	  { value: 'beyond-trends', label: 'Beyond Trends — cream / charcoal' },
+11	  { value: 'artsy',         label: 'Artsy — white / multi-hue' },
+12	  { value: 'ace-tate',      label: 'Ace & Tate — lime / black' },
+13	  { value: 'glide',         label: 'Glide — black / teal' },
+14	  { value: 'space10',       label: 'SPACE10 — monochrome' },
+15	  { value: 'superlist',     label: 'Superlist — navy / coral' },
+16	  { value: 'wetransfer',    label: 'WeTransfer — black / pastels' },
+17	];
+18	
+19	const TYPOGRAPHY = [
+20	  { value: 'monzo',         label: 'Monzo — bold rounded sans' },
+21	  { value: 'dia',           label: 'DIA — light serif, all-caps' },
+22	  { value: 'beyond-trends', label: 'Beyond Trends — soft rounded serif' },
+23	  { value: 'artsy',         label: 'Artsy — geometric sans' },
+24	  { value: 'ace-tate',      label: 'Ace & Tate — Didone serif' },
+25	  { value: 'glide',         label: 'Glide — geometric sans, tight' },
+26	  { value: 'space10',       label: 'SPACE10 — light clean sans' },
+27	  { value: 'superlist',     label: 'Superlist — bold geometric sans' },
+28	  { value: 'wetransfer',    label: 'WeTransfer — heavy editorial serif' },
+29	];
+30	
+31	const SHAPES = [
+32	  { value: 'none',        label: 'None' },
+33	  { value: 'pills',       label: 'Pills — WeTransfer' },
+34	  { value: 'blobs',       label: 'Blobs — Ace & Tate' },
+35	  { value: 'blocks',      label: 'Colour Blocks — Artsy' },
+36	  { value: 'golden-rect', label: 'Golden Rectangle — DIA' },
+37	  { value: 'droplets',        label: 'Water Droplets — WebGL' },
+38	  { value: 'droplets-tinted', label: 'Tinted Droplets — WebGL (mint)' },
+39	  { value: 'droplets-coral',  label: 'Tinted Droplets — WebGL (coral)' },
+40	  { value: 'droplets-oil',     label: 'Crude Oil — WebGL (iridescent)' },
+41	  { value: 'droplets-mercury', label: 'Mercury — WebGL (liquid metal)' },
+42	  { value: 'droplets-frosted', label: 'Frosted — WebGL (ground glass)' },
+43	  { value: 'droplets-ice',     label: 'Frozen Ice — WebGL (crystalline)' },
+44	];
+45	
+46	const PINSTRIPES = [
+47	  { value: 'none',       label: 'None' },
+48	  { value: 'vertical',   label: 'Vertical' },
+49	  { value: 'horizontal', label: 'Horizontal' },
+50	  { value: 'diagonal',   label: 'Diagonal' },
+51	];
+52	
+53	// Layout options grouped by slide type
+54	const LAYOUT_OPTIONS = {
+55	  cover:             [
+56	    { value: 'cover-bold-full',    label: 'Bold Full — Monzo' },
+57	    { value: 'cover-dark-minimal', label: 'Dark Minimal — Glide' },
+58	  ],
+59	  'section-divider': [
+60	    { value: 'divider-color-burst',    label: 'Colour Burst — Monzo / DIA' },
+61	    { value: 'divider-dark-cinematic', label: 'Dark Cinematic — Glide' },
+62	  ],
+63	  content:           [
+64	    { value: 'content-split-cards', label: 'Split Cards — Beyond Trends' },
+65	    { value: 'content-wide-visual', label: 'Wide Visual — Monzo / DIA' },
+66	  ],
+67	  data:              [
+68	    { value: 'data-big-numbers', label: 'Big Numbers — Artsy' },
+69	    { value: 'data-full-bleed',  label: 'Full Bleed — Artsy area' },
+70	  ],
+71	  statement:         [
+72	    { value: 'statement-centered',  label: 'Centered — Superlist' },
+73	    { value: 'statement-editorial', label: 'Editorial — WeTransfer' },
+74	  ],
+75	};
+76	
+77	/** Editable text fields per slide type */
+78	const EDITABLE_FIELDS = {
+79	  cover:             ['title', 'subtitle', 'author', 'badge', 'date'],
+80	  statement:         ['section', 'text', 'highlight', 'attribution'],
+81	  'section-divider': ['title', 'subtitle'],
+82	  content:           ['section', 'heading', 'body'],
+83	  data:              ['section', 'heading', 'body'],
+84	};
+85	
+86	/** Stored state */
+87	let currentConfig = null;
+88	let currentContent = null;
+89	let contentDirty = false;
+90	const SLIDES_PER_PAGE = 5;
+91	let currentPage = Number(sessionStorage.getItem('deckPage') || 0);
+92	let deckPostInitsReady = Promise.resolve();
+93	
+94	/** Update page and persist to sessionStorage */
+95	function setPage(page) {
+96	  currentPage = page;
+97	  sessionStorage.setItem('deckPage', page);
+98	}
+99	
+100	/** Navigate to a page, re-render, and scroll */
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:31:55Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./src/main.js` pattern `initDroplet`
+
+```text
+No matches found
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:31:59Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./src/main.js` pattern `droplet|shapes-droplet`
+
+```text
+37:  { value: 'droplets',        label: 'Water Droplets — WebGL' },
+38:  { value: 'droplets-tinted', label: 'Tinted Droplets — WebGL (mint)' },
+39:  { value: 'droplets-coral',  label: 'Tinted Droplets — WebGL (coral)' },
+40:  { value: 'droplets-oil',     label: 'Crude Oil — WebGL (iridescent)' },
+41:  { value: 'droplets-mercury', label: 'Mercury — WebGL (liquid metal)' },
+42:  { value: 'droplets-frosted', label: 'Frosted — WebGL (ground glass)' },
+43:  { value: 'droplets-ice',     label: 'Frozen Ice — WebGL (crystalline)' },
+476:    // ── 4:3 capture — full re-render at 4:3 so droplets get fresh content textures ──
+973:    // captures them for WebGL refraction through water droplets
+993:  // captures them — both for WebGL droplet content textures and PNG export.
+994:  // Must run BEFORE postInits (which capture slide content for droplet refraction).
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:32:03Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./src/main.js` pattern `postInit|shapes-droplet`
+
+```text
+850-  deck.innerHTML = '';
+851-
+852-  // Collect any post-DOM init callbacks (for WebGL shapes)
+853:  const postInits = [];
+854-
+855-  const startIdx = currentPage * SLIDES_PER_PAGE;
+856-  const pageSlides = content.slides.slice(startIdx, startIdx + SLIDES_PER_PAGE);
+--
+965-
+966-      // Queue init callback if present (needs DOM to be attached first)
+967-      if (typeof shapeResult === 'object' && shapeResult.init) {
+968:        postInits.push(() => shapeResult.init(slideEl));
+969-      }
+970-    }
+971-
+--
+991-
+992-  // Resolve pinstripes from CSS gradients to tiled images so html2canvas
+993-  // captures them — both for WebGL droplet content textures and PNG export.
+994:  // Must run BEFORE postInits (which capture slide content for droplet refraction).
+995-  document.querySelectorAll('.texture-pinstripes').forEach(el => {
+996-    const slide = el.closest('.slide');
+997-    if (!slide) return;
+--
+1007-  // Store promise so exportAllSlides can await it
+1008-  deckPostInitsReady = new Promise(resolve => {
+1009-    requestAnimationFrame(async () => {
+1010:      for (const fn of postInits) {
+1011-        await fn();
+1012-      }
+1013-      resolve();
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:32:06Z)**_
+
+Now let me see how shapes.js connects the droplet init to slides.
+
+_**Agent (claude-opus-4-6 2026-04-03 10:32:07Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./src/shapes.js` pattern `droplet|initDroplet`
+
+```text
+2- * Shape generators — return HTML strings or { html, init } objects for overlays.
+3- *
+4- * Simple shapes return an HTML string.
+5: * WebGL shapes (droplets) return { html, init } where init(slideEl) sets up the
+6- * Three.js scene after the element is in the DOM.
+7- */
+8:import { initDropletCanvas, initDropletCanvasTinted, initDropletCanvasOil, initDropletCanvasMercury, initDropletCanvasFrosted, initDropletCanvasIce, disposeDroplets } from './shapes-droplets.js';
+9-
+10-/** Call before re-rendering the deck to clean up WebGL contexts */
+11-export function cleanupShapes() {
+--
+125-}
+126-
+127-/**
+128: * Water droplets — WebGL metaballs with refraction + specular
+129- * Returns { html, init } — canvas is inserted as HTML, Three.js starts in init().
+130- */
+131-export function shapesDroplets(slideIndex) {
+132-  return {
+133:    html: '<canvas class="droplet-canvas shape-overlay"></canvas>',
+134:    init: (slideEl) => initDropletCanvas(slideEl, slideIndex),
+135-  };
+136-}
+137-
+138-/**
+139: * Tinted water droplets — same optics with Beer-Lambert absorption.
+140- * Monzo mint #C8F0D8 as test colour.
+141- */
+142-export function shapesDropletsTinted(slideIndex) {
+143-  return {
+144:    html: '<canvas class="droplet-canvas shape-overlay"></canvas>',
+145:    init: (slideEl) => initDropletCanvasTinted(slideEl, slideIndex, [0.784, 0.941, 0.847]),
+146-  };
+147-}
+148-
+149-/**
+150: * Coral water droplets — Beer-Lambert absorption with Monzo hot coral #FF5C57.
+151- */
+152-export function shapesDropletsCoral(slideIndex) {
+153-  return {
+154:    html: '<canvas class="droplet-canvas shape-overlay"></canvas>',
+155:    init: (slideEl) => initDropletCanvasTinted(slideEl, slideIndex, [1.0, 0.361, 0.341]),
+156-  };
+157-}
+158-
+159-/**
+160: * Crude oil droplets — dark opaque fluid with thin-film iridescence.
+161- */
+162-export function shapesDropletsOil(slideIndex) {
+163-  return {
+164:    html: '<canvas class="droplet-canvas shape-overlay"></canvas>',
+165:    init: (slideEl) => initDropletCanvasOil(slideEl, slideIndex),
+166-  };
+167-}
+168-
+169-/**
+170: * Mercury droplets — liquid metal, highly reflective.
+171- */
+172-export function shapesDropletsMercury(slideIndex) {
+173-  return {
+174:    html: '<canvas class="droplet-canvas shape-overlay"></canvas>',
+175:    init: (slideEl) => initDropletCanvasMercury(slideEl, slideIndex),
+176-  };
+177-}
+178-
+179-/**
+180: * Frosted droplets — blurred content, milky white overlay.
+181- */
+182-export function shapesDropletsFrosted(slideIndex) {
+183-  return {
+184:    html: '<canvas class="droplet-canvas shape-overlay"></canvas>',
+185:    init: (slideEl) => initDropletCanvasFrosted(slideEl, slideIndex),
+186-  };
+187-}
+188-
+189-/**
+190: * Frozen ice droplets — blue tint, internal fractures, frosted edges.
+191- */
+192-export function shapesDropletsIce(slideIndex) {
+193-  return {
+194:    html: '<canvas class="droplet-canvas shape-overlay"></canvas>',
+195:    init: (slideEl) => initDropletCanvasIce(slideEl, slideIndex),
+196-  };
+197-}
+198-
+--
+203-  blobs:       shapesBlobs,
+204-  blocks:      shapesBlocks,
+205-  'golden-rect': shapesGoldenRect,
+206:  droplets:    shapesDroplets,
+207:  'droplets-tinted': shapesDropletsTinted,
+208:  'droplets-coral':  shapesDropletsCoral,
+209:  'droplets-oil':     shapesDropletsOil,
+210:  'droplets-mercury': shapesDropletsMercury,
+211:  'droplets-frosted': shapesDropletsFrosted,
+212:  'droplets-ice':     shapesDropletsIce,
+213-};
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:32:10Z)**_
+
+Now let me check how the lens markers get wired up — specifically, I need to see where slides are rendered and find where I can hook in the droplet badge init.
+
+_**Agent (claude-opus-4-6 2026-04-03 10:32:11Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./src/main.js` pattern `lens-marker|renderLens|postInits\.push`
+
+```text
+966-      // Queue init callback if present (needs DOM to be attached first)
+967-      if (typeof shapeResult === 'object' && shapeResult.init) {
+968:        postInits.push(() => shapeResult.init(slideEl));
+969-      }
+970-    }
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:32:15Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/main.js`
+
+```text
+960	
+961	    if (shapeResult && inner) {
+962	      // Shape can return a plain HTML string or { html, init }
+963	      const html = typeof shapeResult === 'string' ? shapeResult : shapeResult.html;
+964	      if (html) inner.insertAdjacentHTML('afterbegin', html);
+965	
+966	      // Queue init callback if present (needs DOM to be attached first)
+967	      if (typeof shapeResult === 'object' && shapeResult.init) {
+968	        postInits.push(() => shapeResult.init(slideEl));
+969	      }
+970	    }
+971	
+972	    // Inject texture overlays as real DOM elements so html2canvas
+973	    // captures them for WebGL refraction through water droplets
+974	    if (inner) {
+975	      if (config.pinstripes !== 'none') {
+976	        inner.insertAdjacentHTML('afterbegin', '<div class="shape-overlay texture-pinstripes"></div>');
+977	      }
+978	      inner.insertAdjacentHTML(
+979	        'afterbegin',
+980	        `<div class="shape-overlay texture-noise" style="background-image:url(${noiseDataURL});opacity:${config.noise / 100}"></div>`,
+981	      );
+982	    }
+983	
+984	    wrapper.appendChild(slideEl);
+985	    deck.appendChild(wrapper);
+986	  });
+987	
+988	  // Adaptive text colour and sizing for stat blocks (needs computed styles from DOM)
+989	  fixStatBlockContrast();
+990	  fitStatSizes();
+991	
+992	  // Resolve pinstripes from CSS gradients to tiled images so html2canvas
+993	  // captures them — both for WebGL droplet content textures and PNG export.
+994	  // Must run BEFORE postInits (which capture slide content for droplet refraction).
+995	  document.querySelectorAll('.texture-pinstripes').forEach(el => {
+996	    const slide = el.closest('.slide');
+997	    if (!slide) return;
+998	    const dir = slide.dataset.pinstripes;
+999	    if (!dir || dir === 'none') return;
+1000	    const color = getComputedStyle(el).color;
+1001	    const url = generatePinstripeTexture(dir, color);
+1002	    el.style.background = `url(${url}) repeat`;
+1003	  });
+1004	
+1005	  // Run post-DOM init callbacks serially (avoids concurrent html2canvas
+1006	  // captures and WebGL context pressure)
+1007	  // Store promise so exportAllSlides can await it
+1008	  deckPostInitsReady = new Promise(resolve => {
+1009	    requestAnimationFrame(async () => {
+1010	      for (const fn of postInits) {
+1011	        await fn();
+1012	      }
+1013	      resolve();
+1014	    });
+1015	  });
+1016	
+1017	  renderPagination();
+1018	}
+1019
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:32:30Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-03 10:32:32Z)**_
+
+Now I have a complete picture. Here's the plan:
+
+1. Change the transparency marker HTML to contain a canvas + overlaid "T" 
+2. Add a lightweight droplet init for badge-sized canvases in `shapes-droplets.js`
+3. Wire it up in `main.js` postInits
+4. Style the new badge in CSS
+
+Let me implement all of this.
+
+_**Agent (claude-opus-4-6 2026-04-03 10:32:37Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/layouts.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:32:41Z)**_
+
+Now add the badge droplet init function to `shapes-droplets.js`:
+
+_**Agent (claude-opus-4-6 2026-04-03 10:33:05Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/shapes-droplets.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:33:10Z)**_
+
+Now wire it up in `main.js` — import and call it in the postInits:
+
+_**Agent (claude-opus-4-6 2026-04-03 10:33:10Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/main.js`
+
+```text
+1	import { layoutRegistry } from './layouts.js';
+2	import { shapeRegistry, cleanupShapes } from './shapes.js';
+3	
+4	const CONFIG_URL = '/config.json';
+5	const CONTENT_URL = '/content.json';
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:33:16Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/main.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:33:20Z)**_
+
+Now add the lens badge init call after the other postInits:
+
+_**Agent (claude-opus-4-6 2026-04-03 10:33:22Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/main.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:33:26Z)**_
+
+Now update the CSS for the droplet badge:
+
+_**Agent (claude-opus-4-6 2026-04-03 10:33:30Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:33:35Z)**_
+
+Let me check the browser console for any errors by looking at the dev server output, and also verify that at least one slide has the `transparency` lens set.
+
+_**Agent (claude-opus-4-6 2026-04-03 10:33:37Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./content.json` pattern `"transparency"`
+
+```text
+120-      "lenses": [
+121:        "transparency",
+122-        "distortion",
+--
+167-      "lenses": [
+168:        "transparency"
+169-      ]
+--
+198-      "lenses": [
+199:        "transparency"
+200-      ]
+--
+229-      "lenses": [
+230:        "transparency"
+231-      ]
+--
+260-      "lenses": [
+261:        "transparency"
+262-      ]
+--
+278-      "lenses": [
+279:        "transparency"
+280-      ]
+--
+306-      "lenses": [
+307:        "transparency"
+308-      ]
+--
+734-      "lenses": [
+735:        "transparency",
+736-        "extraction"
+--
+1014-      "lenses": [
+1015:        "transparency",
+1016-        "extraction"
+--
+1154-      "lenses": [
+1155:        "transparency",
+1156-        "extraction"
+--
+1217-      "lenses": [
+1218:        "transparency",
+1219-        "distortion"
+--
+1236-      "lenses": [
+1237:        "transparency"
+1238-      ]
+--
+1264-      "lenses": [
+1265:        "transparency"
+1266-      ]
+--
+1396-      "lenses": [
+1397:        "transparency"
+1398-      ]
+--
+1427-      "lenses": [
+1428:        "transparency"
+1429-      ]
+--
+1458-      "lenses": [
+1459:        "transparency",
+1460-        "extraction"
+--
+1477-      "lenses": [
+1478:        "transparency",
+1479-        "distortion",
+--
+1584-      "lenses": [
+1585:        "transparency",
+1586-        "distortion",
+--
+1617-      "lenses": [
+1618:        "transparency",
+1619-        "distortion",
+--
+1637-      "lenses": [
+1638:        "transparency",
+1639-        "distortion",
+--
+1657-      "lenses": [
+1658:        "transparency",
+1659-        "distortion",
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:33:40Z)**_
+
+Good, plenty of slides use the `transparency` lens. The changes should be visible. Let me verify the dev server is still running.
+
+_**Agent (claude-opus-4-6 2026-04-03 10:33:43Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `/private/tmp/claude-501/-Users-stugrey-Documents-Student-Voice-ICD-Conferences-Webinars-Teesside-Keynote-deck-generator/182d2bb5-0dd7-4acf-b9a7-7c269e097a6f/tasks/bnr4nhq1u.output`
+
+```text
+1	
+2	  VITE v6.4.1  ready in 125 ms
+3	
+4	  ➜  Local:   http://localhost:5173/
+5	  ➜  Network: use --host to expose
+6	11:25:22 [vite] (client) page reload src/layouts.js
+7	11:25:26 [vite] (client) page reload src/layouts.js
+8	11:25:30 [vite] (client) hmr update /src/style.css?direct
+9	11:25:37 [vite] (client) hmr update /src/style.css?direct
+10	11:28:36 [vite] (client) page reload src/layouts.js
+11	11:28:44 [vite] (client) hmr update /src/style.css?direct
+12	11:28:52 [vite] (client) hmr update /src/style.css?direct
+13	11:28:56 [vite] (client) hmr update /src/style.css?direct
+14	11:32:37 [vite] (client) page reload src/layouts.js
+15	11:33:05 [vite] (client) page reload src/shapes-droplets.js
+16	11:33:05 [vite] (client) page reload src/shapes-droplets.js
+17	11:33:16 [vite] (client) page reload src/main.js
+18	11:33:22 [vite] (client) page reload src/main.js
+19	11:33:26 [vite] (client) page reload src/main.js
+20	11:33:30 [vite] (client) hmr update /src/style.css?direct
+21
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:33:49Z)**_
+
+Server is running and hot-reloading all the changes. The transparency badge should now appear as a clear water droplet with the "T" refracted through it — using the same metaball physics, Fresnel reflections, chromatic aberration, and environment map as the full-slide droplets, just rendered at badge scale. Take a look at http://localhost:5173/.
+
+---
+
+_**User (2026-04-03 10:36:13Z)**_
+
+The droplet needs to be bigger.
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-03 10:36:18Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:36:21Z)**_
+
+Bumped it from 1.55rem to 2.4rem. Check the result — want it even bigger?
+
+---
+
+_**User (2026-04-03 10:40:09Z)**_
+
+Make it bigger again.
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-03 10:40:13Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:40:15Z)**_
+
+Up to 3.2rem now. How's that?
+
+---
+
+_**User (2026-04-03 10:41:31Z)**_
+
+Have the letter above the droplet, not below it.
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-03 10:41:42Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-03 10:41:47Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/shapes-droplets.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:41:52Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/shapes-droplets.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:41:55Z)**_
+
+Now also remove the unused `fgColor` variable since we no longer need it:
+
+_**Agent (claude-opus-4-6 2026-04-03 10:41:57Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/shapes-droplets.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:42:01Z)**_
+
+Now make the HTML letter more prominent in the CSS:
+
+_**Agent (claude-opus-4-6 2026-04-03 10:42:03Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:42:07Z)**_
+
+Done. The "T" letter now sits on top of the droplet as an HTML overlay, and the droplet itself is pure clear water with no embedded text.
+
+---
+
+_**User (2026-04-03 10:43:01Z)**_
+
+Bump the text size of the T to be bigger and also make the drop bigger. Need to be a little bit more visually larger on this slide.
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-03 10:43:05Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:43:09Z)**_
+
+Droplet is now 4rem and the T is 1.1rem. How's that looking?
+
+---
+
+_**User (2026-04-03 10:44:21Z)**_
+
+Great, now do the same for the distortion and the extraction droplets. Using the mercury and crude oil droplets instead of the transparent ones
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-03 10:44:30Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-03 10:44:31Z)**_
+
+I need to update the marker HTML for all three types, generalize the badge init to pick the right shader, and add CSS for the new variants.
+
+_**Agent (claude-opus-4-6 2026-04-03 10:44:35Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/layouts.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:44:39Z)**_
+
+Now update the init function in `shapes-droplets.js` to pick the correct shader per lens type:
+
+_**Agent (claude-opus-4-6 2026-04-03 10:44:42Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/shapes-droplets.js`
+
+```text
+1432	}
+1433	
+1434	// ─── LENS BADGE DROPLET ───────────────────────
+1435	// Renders a single clear water droplet at badge size (~1.55rem).
+1436	// The "T" letter is drawn onto a 2D canvas as the content texture,
+1437	// then refracted through the droplet using the clear water shader.
+1438	
+1439	const BADGE_PX = 64;   // render resolution (CSS size set by stylesheet)
+1440	const BADGE_DROPLETS_COUNT = 5;  // small cluster for organic shape
+1441	
+1442	function generateBadgeDroplets() {
+1443	  // Tight central cluster to form a single blobby droplet
+1444	  const drops = [
+1445	    new THREE.Vector3(0.50, 0.50, 0.14),   // large central blob
+1446	    new THREE.Vector3(0.42, 0.46, 0.07),   // slight left
+1447	    new THREE.Vector3(0.57, 0.53, 0.06),   // slight right
+1448	    new THREE.Vector3(0.48, 0.58, 0.05),   // below
+1449	    new THREE.Vector3(0.53, 0.42, 0.05),   // above
+1450	  ];
+1451	  // Pad to MAX_DROPLETS
+1452	  while (drops.length < MAX_DROPLETS) {
+1453	    drops.push(new THREE.Vector3(0, 0, 0));
+1454	  }
+1455	  return drops;
+1456	}
+1457	
+1458	function createBadgeBgTexture(bgColor) {
+1459	  const size = BADGE_PX * 2;
+1460	  const c = document.createElement('canvas');
+1461	  c.width = size;
+1462	  c.height = size;
+1463	  const ctx = c.getContext('2d');
+1464	
+1465	  // Plain background — the letter is overlaid as HTML on top of the droplet
+1466	  ctx.fillStyle = bgColor;
+1467	  ctx.fillRect(0, 0, size, size);
+1468	
+1469	  return c;
+1470	}
+1471	
+1472	/**
+1473	 * Initialise all .lens-droplet-canvas elements on the page.
+1474	 * Call after the DOM is attached and fonts are loaded.
+1475	 */
+1476	export async function initLensBadgeDroplets() {
+1477	  const canvases = document.querySelectorAll('.lens-droplet-canvas');
+1478	  if (!canvases.length) return;
+1479	
+1480	  await document.fonts.ready;
+1481	
+1482	  let envTexture;
+1483	  try {
+1484	    envTexture = await loadEnvTexture();
+1485	  } catch (e) {
+1486	    console.warn('Lens badge env load failed:', e);
+1487	    return;
+1488	  }
+1489	
+1490	  const droplets = generateBadgeDroplets();
+1491	
+1492	  for (const canvas of canvases) {
+1493	    if (!document.contains(canvas)) continue;
+1494	
+1495	    try {
+1496	      // Detect background: walk up to .slide-inner and sample its computed bg
+1497	      const slideInner = canvas.closest('.slide-inner');
+1498	      const computedBg = slideInner
+1499	        ? getComputedStyle(slideInner).backgroundColor
+1500	        : '#ffffff';
+1501	      // Use a semi-transparent dark text for the T
+1502	      const bgCanvas = createBadgeBgTexture(computedBg);
+1503	      const contentTexture = new THREE.CanvasTexture(bgCanvas);
+1504	      contentTexture.minFilter = THREE.LinearFilter;
+1505	      contentTexture.magFilter = THREE.LinearFilter;
+1506	
+1507	      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+1508	      canvas.width = BADGE_PX * dpr;
+1509	      canvas.height = BADGE_PX * dpr;
+1510	
+1511	      const renderer = new THREE.WebGLRenderer({
+1512	        canvas,
+1513	        alpha: true,
+1514	        antialias: true,
+1515	        premultipliedAlpha: false,
+1516	        preserveDrawingBuffer: true,
+1517	      });
+1518	      renderer.setPixelRatio(1);  // already scaled
+1519	      renderer.setSize(BADGE_PX * dpr, BADGE_PX * dpr, false);
+1520	
+1521	      const scene = new THREE.Scene();
+1522	      const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+1523	      const geometry = new THREE.PlaneGeometry(2, 2);
+1524	
+1525	      const material = new THREE.ShaderMaterial({
+1526	        vertexShader,
+1527	        fragmentShader,
+1528	        transparent: true,
+1529	        depthTest: false,
+1530	        uniforms: {
+1531	          uResolution: { value: new THREE.Vector2(BADGE_PX * dpr, BADGE_PX * dpr) },
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:44:45Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/shapes-droplets.js`
+
+```text
+1530	        uniforms: {
+1531	          uResolution: { value: new THREE.Vector2(BADGE_PX * dpr, BADGE_PX * dpr) },
+1532	          uContentTex: { value: contentTexture },
+1533	          uEnvMap:     { value: envTexture },
+1534	          uDroplets:   { value: droplets },
+1535	          uLightPos:   { value: new THREE.Vector2(0.72, 0.78) },
+1536	        },
+1537	      });
+1538	
+1539	      scene.add(new THREE.Mesh(geometry, material));
+1540	      renderer.render(scene, camera);
+1541	
+1542	      active.push({ renderer, material, geometry, contentTex: contentTexture });
+1543	    } catch (e) {
+1544	      console.warn('Lens badge droplet init failed:', e);
+1545	    }
+1546	  }
+1547	}
+1548	
+1549	/** Simple dark-colour check for choosing T letter contrast */
+1550	function isDarkColor(color) {
+1551	  const m = color.match(/\d+/g);
+1552	  if (!m || m.length < 3) return false;
+1553	  const luma = 0.2126 * +m[0] + 0.7152 * +m[1] + 0.0722 * +m[2];
+1554	  return luma < 128;
+1555	}
+1556
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:44:49Z)**_
+
+Now I'll replace the init function to select the shader based on the `data-lens` attribute:
+
+_**Agent (claude-opus-4-6 2026-04-03 10:45:11Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/shapes-droplets.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:45:15Z)**_
+
+Now update the CSS — the old distortion and extraction flat styles need the droplet override too:
+
+_**Agent (claude-opus-4-6 2026-04-03 10:45:18Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:45:24Z)**_
+
+Done. All three lens badges are now physics-based droplets:
+- **Transparency (T)** → clear water with refraction
+- **Distortion (D)** → mercury liquid metal
+- **Extraction (E)** → crude oil with iridescence
+
+Each renders with the same metaball physics, Fresnel, specular, and env map as the full-slide effects, just at badge scale. Check http://localhost:5173/.
+
+---
+
+_**User (2026-04-03 10:46:06Z)**_
+
+When there is more than one Lens badge, make them a bit closer to
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-03 10:46:11Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:46:14Z)**_
+
+That overlaps them slightly so they cluster together. How's that look?
+
+---
+
+_**User (2026-04-03 10:46:30Z)**_
+
+No, there's still quite a large gap in between them.
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-03 10:46:35Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-03 10:46:36Z)**_
+
+Negative `gap` doesn't work in flexbox. Let me use negative margins on the markers instead.
+
+_**Agent (claude-opus-4-6 2026-04-03 10:46:37Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:46:42Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:46:45Z)**_
+
+That should overlap them by 0.8rem. How's that?
+
+---
+
+_**User (2026-04-03 10:47:00Z)**_
+
+There's still a gap in between them. Work out what is in the layout.
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-03 10:47:04Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/style.css`
+
+```text
+411	.lens-marker-group {
+412	  position: absolute;
+413	  right: 1rem;
+414	  bottom: 0.9rem;
+415	  left: auto;
+416	  width: max-content;
+417	  display: flex;
+418	  align-items: center;
+419	  gap: 0;
+420	  z-index: 3;
+421	  pointer-events: none;
+422	}
+423	
+424	.lens-marker {
+425	  width: 1.55rem;
+426	  height: 1.55rem;
+427	  border-radius: 999px;
+428	  display: inline-flex;
+429	  align-items: center;
+430	  justify-content: center;
+431	  font-family: 'DM Mono', monospace;
+432	  font-size: 0.7rem;
+433	  font-weight: 700;
+434	  letter-spacing: 0.02em;
+435	  backdrop-filter: blur(10px);
+436	  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
+437	}
+438	
+439	.lens-marker--transparency:not(.lens-marker--droplet) {
+440	  background: rgba(103, 220, 255, 0.16);
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:47:12Z)**_
+
+The base `.lens-marker` has `width: 1.55rem` and `height: 1.55rem` — the droplet overrides to 4rem, but the base dimensions are still creating the box size for layout. The real issue is the `1.55rem` base width is being used even though the droplet canvas visually only fills 4rem. The droplet's canvas renders the blob within its bounds, so the 4rem box is correct, but the base `.lens-marker` `width` is being overridden. Let me check if the `inline-flex` + base width is fighting the override.
+
+Actually — the `.lens-droplet-canvas` is `position: absolute` filling the marker, so the WebGL renders inside the 4rem box. But the droplet blob itself is centered in a circular area. The gap is likely just the transparent edges of the rendered droplet. The metaball cluster doesn't fill the full canvas — let me make the blobs bigger so they fill more of the badge area.
+
+_**Agent (claude-opus-4-6 2026-04-03 10:47:16Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/shapes-droplets.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:47:20Z)**_
+
+The central blob radius went from 0.14 to 0.22 and satellites are bigger too, so the droplet fills much more of the badge. The negative margins should now actually cause visible overlap. How's that?
+
+---
+
+_**User (2026-04-03 10:48:15Z)**_
+
+Reduce overall size a little bit.
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-03 10:48:19Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:48:22Z)**_
+
+Down to 3.2rem with 0.95rem text. How's that?
+
+---
+
+_**User (2026-04-03 10:48:57Z)**_
+
+On the content split cards, which have a lighter background, I need the distortion and extraction badges to still have the white text because they aren't transparent.
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-03 10:49:03Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:49:06Z)**_
+
+The D and E letters are now always white with a stronger shadow so they read clearly against the mercury and oil droplets, regardless of slide background.

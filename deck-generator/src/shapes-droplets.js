@@ -1430,3 +1430,122 @@ export async function initDropletCanvasFrosted(slideEl, slideIndex) {
 export async function initDropletCanvasIce(slideEl, slideIndex) {
   return initDropletCanvasGeneric(slideEl, slideIndex, fragmentShaderIce, 'Ice');
 }
+
+// ─── LENS BADGE DROPLETS ──────────────────────
+// Renders physics-based droplet badges for each lens type:
+//   transparency → clear water
+//   distortion   → mercury (liquid metal)
+//   extraction   → crude oil (iridescent)
+
+const BADGE_PX = 64;   // render resolution (CSS size set by stylesheet)
+
+const BADGE_SHADERS = {
+  transparency: fragmentShader,
+  distortion:   fragmentShaderMercury,
+  extraction:   fragmentShaderOil,
+};
+
+function generateBadgeDroplets() {
+  // Tight central cluster — blobs sized to fill most of the badge area
+  const drops = [
+    new THREE.Vector3(0.50, 0.50, 0.22),   // large central blob
+    new THREE.Vector3(0.38, 0.44, 0.10),   // left
+    new THREE.Vector3(0.62, 0.55, 0.09),   // right
+    new THREE.Vector3(0.46, 0.62, 0.08),   // below
+    new THREE.Vector3(0.55, 0.38, 0.08),   // above
+  ];
+  while (drops.length < MAX_DROPLETS) {
+    drops.push(new THREE.Vector3(0, 0, 0));
+  }
+  return drops;
+}
+
+function createBadgeBgTexture(bgColor) {
+  const size = BADGE_PX * 2;
+  const c = document.createElement('canvas');
+  c.width = size;
+  c.height = size;
+  const ctx = c.getContext('2d');
+  ctx.fillStyle = bgColor;
+  ctx.fillRect(0, 0, size, size);
+  return c;
+}
+
+/**
+ * Initialise all .lens-droplet-canvas elements on the page.
+ * Call after the DOM is attached and fonts are loaded.
+ */
+export async function initLensBadgeDroplets() {
+  const canvases = document.querySelectorAll('.lens-droplet-canvas');
+  if (!canvases.length) return;
+
+  await document.fonts.ready;
+
+  let envTexture;
+  try {
+    envTexture = await loadEnvTexture();
+  } catch (e) {
+    console.warn('Lens badge env load failed:', e);
+    return;
+  }
+
+  const droplets = generateBadgeDroplets();
+
+  for (const canvas of canvases) {
+    if (!document.contains(canvas)) continue;
+
+    try {
+      const lensType = canvas.dataset.lens || 'transparency';
+      const frag = BADGE_SHADERS[lensType] || fragmentShader;
+
+      const slideInner = canvas.closest('.slide-inner');
+      const computedBg = slideInner
+        ? getComputedStyle(slideInner).backgroundColor
+        : '#ffffff';
+
+      const bgCanvas = createBadgeBgTexture(computedBg);
+      const contentTexture = new THREE.CanvasTexture(bgCanvas);
+      contentTexture.minFilter = THREE.LinearFilter;
+      contentTexture.magFilter = THREE.LinearFilter;
+
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = BADGE_PX * dpr;
+      canvas.height = BADGE_PX * dpr;
+
+      const renderer = new THREE.WebGLRenderer({
+        canvas,
+        alpha: true,
+        antialias: true,
+        premultipliedAlpha: false,
+        preserveDrawingBuffer: true,
+      });
+      renderer.setPixelRatio(1);
+      renderer.setSize(BADGE_PX * dpr, BADGE_PX * dpr, false);
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+      const geometry = new THREE.PlaneGeometry(2, 2);
+
+      const material = new THREE.ShaderMaterial({
+        vertexShader,
+        fragmentShader: frag,
+        transparent: true,
+        depthTest: false,
+        uniforms: {
+          uResolution: { value: new THREE.Vector2(BADGE_PX * dpr, BADGE_PX * dpr) },
+          uContentTex: { value: contentTexture },
+          uEnvMap:     { value: envTexture },
+          uDroplets:   { value: droplets },
+          uLightPos:   { value: new THREE.Vector2(0.72, 0.78) },
+        },
+      });
+
+      scene.add(new THREE.Mesh(geometry, material));
+      renderer.render(scene, camera);
+
+      active.push({ renderer, material, geometry, contentTex: contentTexture });
+    } catch (e) {
+      console.warn('Lens badge droplet init failed:', e);
+    }
+  }
+}

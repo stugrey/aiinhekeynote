@@ -17,7 +17,7 @@ function renderLensMarkers(slide) {
     .filter(lens => LENS_META[lens])
     .map((lens) => {
       const meta = LENS_META[lens];
-      return `<span class="lens-marker lens-marker--${lens}" title="${meta.label}">${meta.short}</span>`;
+      return `<span class="lens-marker lens-marker--${lens} lens-marker--droplet" title="${meta.label}"><canvas class="lens-droplet-canvas" data-lens="${lens}"></canvas><span class="lens-droplet-letter">${meta.short}</span></span>`;
     })
     .join('');
 
