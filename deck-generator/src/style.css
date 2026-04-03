@@ -280,6 +280,10 @@ body {
   gap: 0.2rem;
 }
 
+.edit-group--full {
+  grid-column: 1 / -1;
+}
+
 .edit-label {
   font-family: 'DM Mono', monospace;
   font-size: 0.6rem;
@@ -316,6 +320,15 @@ body {
   padding-top: 0.5rem;
   border-top: 1px solid #333;
   margin-top: 0.2rem;
+}
+
+.edit-notes-help {
+  grid-column: 1 / -1;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: #8B8B8B;
+  line-height: 1.4;
+  margin-top: -0.1rem;
 }
 
 .slide-edit-btn {

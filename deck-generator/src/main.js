@@ -542,6 +542,16 @@ function markDirty() {
   if (btn) { btn.disabled = false; btn.textContent = 'Save'; }
 }
 
+/** Ensure a slide has a notes object with the expected shape */
+function ensureSlideNotes(slide) {
+  if (!slide.notes || typeof slide.notes !== 'object') {
+    slide.notes = { transition: '', points: [] };
+  }
+  if (typeof slide.notes.transition !== 'string') slide.notes.transition = '';
+  if (!Array.isArray(slide.notes.points)) slide.notes.points = [];
+  return slide.notes;
+}
+
 /** Build the collapsible edit panel for a slide */
 function buildEditPanel(slide, slideIndex) {
   const fields = EDITABLE_FIELDS[slide.type] || [];
@@ -647,6 +657,63 @@ function buildEditPanel(slide, slideIndex) {
       });
     });
   }
+
+  const notes = ensureSlideNotes(currentContent.slides[slideIndex]);
+
+  const notesHeader = document.createElement('div');
+  notesHeader.className = 'edit-nested-header';
+  notesHeader.textContent = 'Speaker Notes';
+  panel.appendChild(notesHeader);
+
+  const notesHelp = document.createElement('div');
+  notesHelp.className = 'edit-notes-help';
+  notesHelp.textContent = 'Private practice notes. These do not render on the slide.';
+  panel.appendChild(notesHelp);
+
+  const transitionGroup = document.createElement('div');
+  transitionGroup.className = 'edit-group edit-group--full';
+
+  const transitionLabel = document.createElement('label');
+  transitionLabel.className = 'edit-label';
+  transitionLabel.textContent = 'transition';
+
+  const transitionInput = document.createElement('textarea');
+  transitionInput.className = 'edit-input';
+  transitionInput.rows = 2;
+  transitionInput.value = notes.transition ?? '';
+  transitionInput.placeholder = 'How you move into this slide and what it is doing.';
+  transitionInput.addEventListener('input', () => {
+    ensureSlideNotes(currentContent.slides[slideIndex]).transition = transitionInput.value;
+    markDirty();
+  });
+
+  transitionGroup.appendChild(transitionLabel);
+  transitionGroup.appendChild(transitionInput);
+  panel.appendChild(transitionGroup);
+
+  const notePointsGroup = document.createElement('div');
+  notePointsGroup.className = 'edit-group edit-group--full';
+
+  const notePointsLabel = document.createElement('label');
+  notePointsLabel.className = 'edit-label';
+  notePointsLabel.textContent = 'points (one bullet per line)';
+
+  const notePointsInput = document.createElement('textarea');
+  notePointsInput.className = 'edit-input';
+  notePointsInput.rows = Math.max(4, notes.points.length || 0);
+  notePointsInput.value = notes.points.join('\n');
+  notePointsInput.placeholder = 'Key ideas to hit while speaking.';
+  notePointsInput.addEventListener('input', () => {
+    ensureSlideNotes(currentContent.slides[slideIndex]).points = notePointsInput.value
+      .split('\n')
+      .map(line => line.trim())
+      .filter(Boolean);
+    markDirty();
+  });
+
+  notePointsGroup.appendChild(notePointsLabel);
+  notePointsGroup.appendChild(notePointsInput);
+  panel.appendChild(notePointsGroup);
 
   return panel;
 }

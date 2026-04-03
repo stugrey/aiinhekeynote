@@ -1,0 +1,206 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - heading "Deck Generator" [level=2] [ref=e4]
+      - generic [ref=e5]:
+        - button "Save" [disabled] [ref=e6]
+        - button "Export All" [ref=e7] [cursor=pointer]
+        - button "Collapse" [ref=e8] [cursor=pointer]
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - generic [ref=e11]:
+          - generic [ref=e12]: Palette
+          - combobox "Palette" [ref=e13] [cursor=pointer]:
+            - option "Monzo — coral / mint" [selected]
+            - option "DIA — charcoal / gesso"
+            - option "Beyond Trends — cream / charcoal"
+            - option "Artsy — white / multi-hue"
+            - option "Ace & Tate — lime / black"
+            - option "Glide — black / teal"
+            - option "SPACE10 — monochrome"
+            - option "Superlist — navy / coral"
+            - option "WeTransfer — black / pastels"
+        - generic [ref=e14]:
+          - generic [ref=e15]: Typography
+          - combobox "Typography" [ref=e16] [cursor=pointer]:
+            - option "Monzo — bold rounded sans" [selected]
+            - option "DIA — light serif, all-caps"
+            - option "Beyond Trends — soft rounded serif"
+            - option "Artsy — geometric sans"
+            - option "Ace & Tate — Didone serif"
+            - option "Glide — geometric sans, tight"
+            - option "SPACE10 — light clean sans"
+            - option "Superlist — bold geometric sans"
+            - option "WeTransfer — heavy editorial serif"
+        - generic [ref=e17]:
+          - generic [ref=e18]: Shapes
+          - combobox "Shapes" [ref=e19] [cursor=pointer]:
+            - option "None" [selected]
+            - option "Pills — WeTransfer"
+            - option "Blobs — Ace & Tate"
+            - option "Colour Blocks — Artsy"
+            - option "Golden Rectangle — DIA"
+            - option "Water Droplets — WebGL"
+            - option "Tinted Droplets — WebGL (mint)"
+            - option "Tinted Droplets — WebGL (coral)"
+            - option "Crude Oil — WebGL (iridescent)"
+            - option "Mercury — WebGL (liquid metal)"
+            - option "Frosted — WebGL (ground glass)"
+            - option "Frozen Ice — WebGL (crystalline)"
+        - generic [ref=e20]:
+          - generic [ref=e21]: Pinstripes
+          - combobox "Pinstripes" [ref=e22] [cursor=pointer]:
+            - option "None"
+            - option "Vertical"
+            - option "Horizontal"
+            - option "Diagonal" [selected]
+        - generic [ref=e23]:
+          - generic [ref=e24]: Noise 5%
+          - slider "Noise 5%" [ref=e25] [cursor=pointer]: "5"
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - generic [ref=e28]: cover
+          - combobox "cover" [ref=e29] [cursor=pointer]:
+            - option "Bold Full — Monzo" [selected]
+            - option "Dark Minimal — Glide"
+        - generic [ref=e30]:
+          - generic [ref=e31]: section-divider
+          - combobox "section-divider" [ref=e32] [cursor=pointer]:
+            - option "Colour Burst — Monzo / DIA" [selected]
+            - option "Dark Cinematic — Glide"
+        - generic [ref=e33]:
+          - generic [ref=e34]: content
+          - combobox "content" [ref=e35] [cursor=pointer]:
+            - option "Split Cards — Beyond Trends" [selected]
+            - option "Wide Visual — Monzo / DIA"
+        - generic [ref=e36]:
+          - generic [ref=e37]: data
+          - combobox "data" [ref=e38] [cursor=pointer]:
+            - option "Big Numbers — Artsy" [selected]
+            - option "Full Bleed — Artsy area"
+        - generic [ref=e39]:
+          - generic [ref=e40]: statement
+          - combobox "statement" [ref=e41] [cursor=pointer]:
+            - option "Centered — Superlist" [selected]
+            - option "Editorial — WeTransfer"
+      - button "Randomise" [ref=e43] [cursor=pointer]
+  - generic [ref=e44]:
+    - button "← Prev" [disabled] [ref=e45]
+    - generic [ref=e46]: Slides 1–5 of 65
+    - button "Next →" [ref=e47] [cursor=pointer]
+  - generic [ref=e48]:
+    - generic [ref=e49]:
+      - generic [ref=e50]:
+        - generic [ref=e51]: 01 — cover — cover-bold-full
+        - combobox [ref=e52] [cursor=pointer]:
+          - option "None"
+          - option "Pills — WeTransfer"
+          - option "Blobs — Ace & Tate"
+          - option "Colour Blocks — Artsy"
+          - option "Golden Rectangle — DIA"
+          - option "Water Droplets — WebGL" [selected]
+          - option "Tinted Droplets — WebGL (mint)"
+          - option "Tinted Droplets — WebGL (coral)"
+          - option "Crude Oil — WebGL (iridescent)"
+          - option "Mercury — WebGL (liquid metal)"
+          - option "Frosted — WebGL (ground glass)"
+          - option "Frozen Ice — WebGL (crystalline)"
+        - button "Edit" [ref=e53] [cursor=pointer]
+        - button "Duplicate" [ref=e54] [cursor=pointer]
+        - button "Export PNG" [ref=e55] [cursor=pointer]
+      - generic [ref=e57]:
+        - generic [ref=e58]: Who Will Control the AI Infrastructure of Higher Education?
+        - generic [ref=e59]: From useful tools to structural dependence, and how universities can still shape their future
+        - generic [ref=e60]:
+          - generic [ref=e61]: Dr Stuart Grey
+          - generic [ref=e62]: April 15th 2026
+    - generic [ref=e63]:
+      - generic [ref=e64]:
+        - generic [ref=e65]: 02 — section-divider — divider-color-burst
+        - combobox [ref=e66] [cursor=pointer]:
+          - option "None" [selected]
+          - option "Pills — WeTransfer"
+          - option "Blobs — Ace & Tate"
+          - option "Colour Blocks — Artsy"
+          - option "Golden Rectangle — DIA"
+          - option "Water Droplets — WebGL"
+          - option "Tinted Droplets — WebGL (mint)"
+          - option "Tinted Droplets — WebGL (coral)"
+          - option "Crude Oil — WebGL (iridescent)"
+          - option "Mercury — WebGL (liquid metal)"
+          - option "Frosted — WebGL (ground glass)"
+          - option "Frozen Ice — WebGL (crystalline)"
+        - button "Edit" [ref=e67] [cursor=pointer]
+        - button "Duplicate" [ref=e68] [cursor=pointer]
+        - button "Export PNG" [ref=e69] [cursor=pointer]
+      - generic [ref=e71]:
+        - generic [ref=e72]: Dr Stuart Grey
+        - generic [ref=e73]: "02"
+    - generic [ref=e74]:
+      - generic [ref=e75]:
+        - generic [ref=e76]: 03 — section-divider — divider-color-burst
+        - combobox [ref=e77] [cursor=pointer]:
+          - option "None" [selected]
+          - option "Pills — WeTransfer"
+          - option "Blobs — Ace & Tate"
+          - option "Colour Blocks — Artsy"
+          - option "Golden Rectangle — DIA"
+          - option "Water Droplets — WebGL"
+          - option "Tinted Droplets — WebGL (mint)"
+          - option "Tinted Droplets — WebGL (coral)"
+          - option "Crude Oil — WebGL (iridescent)"
+          - option "Mercury — WebGL (liquid metal)"
+          - option "Frosted — WebGL (ground glass)"
+          - option "Frozen Ice — WebGL (crystalline)"
+        - button "Edit" [ref=e78] [cursor=pointer]
+        - button "Duplicate" [ref=e79] [cursor=pointer]
+        - button "Export PNG" [ref=e80] [cursor=pointer]
+      - generic [ref=e82]:
+        - generic [ref=e83]: Distributed Agents for Autonomous Spacecraft
+        - generic [ref=e84]: "03"
+    - generic [ref=e85]:
+      - generic [ref=e86]:
+        - generic [ref=e87]: 04 — section-divider — divider-color-burst
+        - combobox [ref=e88] [cursor=pointer]:
+          - option "None" [selected]
+          - option "Pills — WeTransfer"
+          - option "Blobs — Ace & Tate"
+          - option "Colour Blocks — Artsy"
+          - option "Golden Rectangle — DIA"
+          - option "Water Droplets — WebGL"
+          - option "Tinted Droplets — WebGL (mint)"
+          - option "Tinted Droplets — WebGL (coral)"
+          - option "Crude Oil — WebGL (iridescent)"
+          - option "Mercury — WebGL (liquid metal)"
+          - option "Frosted — WebGL (ground glass)"
+          - option "Frozen Ice — WebGL (crystalline)"
+        - button "Edit" [ref=e89] [cursor=pointer]
+        - button "Duplicate" [ref=e90] [cursor=pointer]
+        - button "Export PNG" [ref=e91] [cursor=pointer]
+      - generic [ref=e93]:
+        - generic [ref=e94]: Free Text Analysis with Student Voice AI
+        - generic [ref=e95]: "04"
+    - generic [ref=e96]:
+      - generic [ref=e97]:
+        - generic [ref=e98]: 05 — statement — statement-centered
+        - combobox [ref=e99] [cursor=pointer]:
+          - option "None"
+          - option "Pills — WeTransfer"
+          - option "Blobs — Ace & Tate"
+          - option "Colour Blocks — Artsy"
+          - option "Golden Rectangle — DIA"
+          - option "Water Droplets — WebGL" [selected]
+          - option "Tinted Droplets — WebGL (mint)"
+          - option "Tinted Droplets — WebGL (coral)"
+          - option "Crude Oil — WebGL (iridescent)"
+          - option "Mercury — WebGL (liquid metal)"
+          - option "Frosted — WebGL (ground glass)"
+          - option "Frozen Ice — WebGL (crystalline)"
+        - button "Edit" [ref=e100] [cursor=pointer]
+        - button "Duplicate" [ref=e101] [cursor=pointer]
+        - button "Export PNG" [ref=e102] [cursor=pointer]
+      - generic [ref=e105]: Transparency
+  - generic [ref=e106]:
+    - button "← Prev" [disabled] [ref=e107]
+    - generic [ref=e108]: Slides 1–5 of 65
+    - button "Next →" [ref=e109] [cursor=pointer]

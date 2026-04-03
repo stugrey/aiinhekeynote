@@ -1,0 +1,918 @@
+
+
+Editable working document for keynote development
+Who Will Ultimately Control the AI Infrastructure that Higher Education Is Coming to Depend On?
+Deep research dossier and keynote drafting pack
+Prepared as a full briefing pack: conference reading, abstract stress-test, annotated concept notebook, evidence base, policy agenda, slide storyboard, and Q&A backup.
+Core framing The conference is asking how higher education should use AI. This keynote asks who will control the infrastructure on which those uses depend.
+
+Conference
+Future Facing Learning and AI in Higher Education 2026, Teesside University
+Conference dates
+15–17 April 2026
+Programme slot
+Day 1 keynote, 1:30–2:15 pm, immediately before the panel on reimagining the purpose and promise of universities
+Purpose
+To give you a full set of notes, definitions, evidence, cautions, policy levers, slide architecture, and Q&A backup for drafting the keynote
+Last updated
+17 March 2026
+
+Use this pack as raw material. It is not a finished script; it is a deliberately over-complete set of arguments, evidence, examples, cautions, and speaking lines you can cut down into a 45-minute keynote.
+
+Contents
+• 1. Executive synthesis
+• 2. Reading the room: conference themes, programme tensions, and audience implications
+• 3. Stress-testing your abstract
+• 4. Annotated concept notebook: every note, definition, and linked idea expanded
+• 5. Evidence base for the keynote
+• 6. Strategic synthesis: the position your keynote can own
+• 7. Practical policy agenda for universities
+• 8. Suggested slide architecture and speaking notes
+• 9. Backup Q&A
+• 10. Coverage map of your original notes and selected sources
+This dossier is designed to be worked with quickly: every main section ends with implications for the talk, and the later sections translate the research into slides, lines, and likely answers.
+
+1. Executive synthesis
+The conference programme is rich in pedagogy, assessment, ethics, literacy, and practice. Your keynote can do something different and complementary: make the infrastructure question explicit. The strongest version of the talk is not anti-AI and not anti-industry. It is anti-passivity. It argues that universities are moving from occasional tool use to structural dependence, and that once AI is infrastructural the key question shifts from capability to control, accountability, resilience, and bargaining power.
+The central strategic move is to reframe adoption as governance. Instead of asking only whether a model is impressive, cheap, or convenient, the talk asks who shapes the defaults built into teaching, assessment, advising, analytics, and institutional decision-making. That reframe allows you to connect seemingly separate topics in the programme—assessment redesign, learner analytics, AI literacy, ethics, accessibility, vendor platforms, and institutional strategy—into one coherent argument.
+The talk works best as a three-step argument. First, AI is already becoming invisible infrastructure in higher education: student use is mainstream, assessment has already changed, and tools are being stitched into everyday workflows. Second, the infrastructure layer is highly concentrated, capital-intensive, and increasingly controlled by external firms whose incentives are not identical to the public mission of universities. Third, lock-in is happening now, while standards, contracts, norms, integrations, and expectations are still fluid. This is the small window in which universities can still move from passive consumption to active stewardship.
+What the room most needs from this keynote Your keynote should sound like a governance keynote for a room that has mostly been invited to think about pedagogy, productivity, and assessment. That difference is your advantage. It lets you connect the whole programme rather than compete with the sessions already focused on tools.
+Three claims worth making clearly and early
+• AI in higher education is no longer just a set of optional tools. It is becoming part of the substrate through which teaching, assessment, support, and governance are delivered.
+• Infrastructure matters because it shapes what institutions can see, do, audit, export, contest, and change. Control does not have to mean owning every component, but it does require legibility, bargaining power, portability, and evaluation capacity.
+• The practical choice is not between total in-house sovereignty and total outsourcing. It is between institutions that remain capable stewards of their AI stack and institutions that become captive customers inside an extractive ecosystem.
+The overall tone to strike
+• Serious, practical, and public-interest oriented rather than apocalyptic.
+• Critical of structural dependency, but not dismissive of vendors, open-source communities, or the genuine usefulness of AI systems.
+• Comfortable with experimentation, but insistent that experimentation without governance becomes lock-in by default.
+• Focused on educational purpose: what universities are for, what students deserve, and what academic values require from infrastructure.
+One-sentence takeaway
+Universities are not only deciding whether to use AI; they are helping fix the defaults that may govern higher education for years, and the question is whether they will do so as passive customers or active stewards.
+
+2. Reading the room: conference themes, programme tensions, and audience implications
+What the conference is explicitly about. Future Facing Learning and AI in Higher Education 2026 is framed as a multi-day gathering on the opportunities, challenges, and future directions of AI in higher education. The conference pages foreground AI-enhanced pedagogy, research and innovation, responsible AI and digital ethics, and rethinking assessment in the age of AI. The call for contributions broadens this into pedagogy and assessment, learning analytics and data use, equity and inclusion, student voice, institutional strategy, and EdTech practice.
+What the programme is practically about. The scheduled sessions show a room preoccupied with assessment, writing, feedback, student use, practical integration, and institutional adaptation. There are keynotes and sessions on being human in a digital world, designing learning for a world where answers are free, Baymax-or-Terminator style questions about academic writing, learner analytics, oral assessment, AI literacy, prompt design, creative and critical pedagogy, and digital resilience.
+Why this matters for your keynote. Most sessions ask how universities should use AI. Your keynote can ask who governs the layer on which all of those uses depend. That gives you the 'control plane' perspective for the conference: the structural question beneath the practical ones.
+Conference-fit matrix
+Theme in the room
+What the programme signals
+What your keynote should add
+AI-enhanced pedagogy
+The programme highlights tutoring, feedback, prompt design, learning design, and practical teaching use cases.
+Show that pedagogic possibilities are shaped by the architecture, data rights, and defaults built into the systems institutions buy or approve.
+Rethinking assessment
+Assessment is one of the conference's strongest through-lines, from keynote sessions to sponsor talks and workshops.
+Argue that assessment redesign is inseparable from infrastructure design: logging, provenance, model access, auditability, and permitted uses are infrastructural questions.
+Responsible AI and digital ethics
+The programme includes equity, ethics, inclusion, and resilience concerns.
+Move the conversation from abstract ethics to operational governance: procurement, data use, evaluation, resilience, and student rights.
+Institutional change and strategy
+The call for papers explicitly includes institutional change, strategy, and student voice.
+Position your keynote as a strategic intervention: universities need decision rights, not just guidance documents.
+Vendor–institution interface
+The event includes major sponsor and partner presence across the programme.
+Critique dependency structurally rather than theatrically. The aim is better partnership terms, not performative hostility.
+Slot dynamics
+• Your talk sits on Day 1 immediately after lunch and immediately before a panel on reimagining the purpose and promise of universities. That means you should open concrete and vivid rather than theoretical. A service outage, a procurement question, or a lock-in example will land better than a long conceptual preamble.
+• Because the keynote hands into a panel about university purpose, you have an ideal closing move: translate your argument into three or four decisions institutions must make about the kind of university they want to be in an AI-mediated environment.
+• The earlier programme includes keynotes and provocations about assessment and learning design. That gives you permission to move up a level and talk about the conditions under which any of those pedagogic ambitions remain accountable.
+Sponsor ecology and why it is relevant
+The sponsor mix is part of the substance of the keynote, not just background. The conference pages present AWS as headline sponsor, with additional visibility for companies such as Kortext, FeedbackFruits, and Plato. Their messaging is useful because it shows what the market is already offering universities: institutionally governed AI, analytics visibility, approved content layers, assessment support, and integrated learning design. In other words, the room is already being invited to think in terms of vendor-mediated AI infrastructure.
+That is not a problem to denounce. It is a reason to sharpen the talk. The room contains people who buy, integrate, govern, research, critique, and market AI systems. Your argument should therefore be: partnerships are inevitable and often valuable, but universities need the capacity to set terms, evaluate claims, preserve exit options, and align systems with academic values.
+Useful line for the room This is the right room to say: the question is not whether universities should work with industry. They already do. The question is whether those relationships remain governable, reciprocal, and consistent with the public mission of higher education.
+Audience map
+Audience segment
+What they are likely listening for
+What to emphasise
+Senior leaders
+Risk, mission, reputation, cost, and strategic positioning
+Use language of resilience, bargaining power, public value, and long-term institutional autonomy.
+Learning technologists and digital teams
+Integration, support burden, standards, and operations
+Talk about interoperability, service continuity, model evaluation, and fallback options.
+Academic staff
+Assessment, writing, feedback, judgment, and workload
+Connect infrastructure choices to pedagogy and professional purpose rather than generic efficiency claims.
+Researchers and doctoral students
+Conceptual framing and evidence quality
+Bring in Lessig, path dependence, extractivism, industry concentration, and grounding debates with care.
+Vendors and partners
+Credibility and fairness
+Acknowledge value creation; focus on transparent claims, data terms, shared standards, and trust-building.
+Bottom line for conference fit
+This keynote should function as the programme's infrastructure argument. It should not try to outdo the tool demos, nor out-moralise the ethics sessions, nor out-speculate the futurists. Its job is to connect those strands and show that procurement, governance, evaluation, and sector collaboration determine whether all the other hopes on the programme become public-interest infrastructure or a new layer of dependency.
+
+3. Stress-testing your abstract
+Your abstract is already strong because it makes a structural claim rather than a generic capability claim. It avoids both hype and refusal, and it names the practical levers—procurement, data governance, evaluation, collaboration—that convert the keynote from diagnosis to action. The best use of this section is to sharpen how each sentence can work in the talk.
+Abstract sentence
+What it is doing
+How to make it work in the keynote
+“Artificial intelligence is becoming part of the invisible infrastructure of higher education.”
+This is your conceptual hinge. It says AI has moved from visible, optional tools into the background systems and workflows through which work happens.
+Open with an outage or workflow dependency so 'infrastructure' feels concrete rather than metaphorical.
+“It no longer exists as a set of optional tools, but underpins how universities teach, assess, advise and govern.”
+This expands the scope from classroom tools to institutional operations. It is important because it reaches into assessment, support, analytics, and governance.
+Use examples across four domains: teaching assistance, assessment redesign, student support, and institutional analytics/decision systems.
+“Much of this infrastructure is built, owned and maintained by external organisations whose incentives often don’t align with the public mission of universities.”
+This is the political-economy sentence. It moves from adoption to control, ownership, and incentive alignment.
+Support this with industry concentration, cloud dependence, and sponsor/ecosystem analysis, but keep the tone measured: misalignment is structural, not personal.
+“This keynote asks a simple question: who will control the AI infrastructure that higher education is increasingly dependent on?”
+Excellent framing question. It is memorable, open enough to invite reflection, and practical enough to guide the entire talk.
+Repeat it at least three times during the keynote: once near the opening, once after the evidence base, and once in the conclusion.
+“Drawing on trends in AI investment, the fragility of essential digital services, and the effects of surveillance capitalism and data extractivism …”
+This gives you three evidence pillars: economic concentration, operational fragility, and political-economic critique.
+Keep each pillar concrete: capex and market share for investment; Canvas/Teams/ICC examples for fragility; Zuboff/Couldry–Mejias/Pasquinelli for extractive logics.
+“Higher education is at a crossroads.”
+This is the decision point of the talk. It prevents the keynote from becoming descriptive only.
+Make the crossroads visible on a slide: passive customer in an extractive ecosystem versus steward/co-designer of critical systems.
+“By focusing on practical policy choices around procurement, data governance, model evaluation and sector-level collaboration …”
+This rescues the talk from abstraction. It also distinguishes your keynote from broader cultural commentary.
+This section should be crisp and constructive. Give the audience a minimum move, a better move, and a long-term move for each lever.
+“Ensuring that future AI infrastructure remains accountable to academic values and student interests.”
+This is the moral landing point. It names who governance is for.
+End with students, academic purpose, and public mission rather than with a technical or vendor comparison.
+What the abstract quietly gets right
+• It treats AI as infrastructure rather than as a novelty. That is more analytically useful and more future-proof.
+• It avoids the false choice between naive enthusiasm and total rejection.
+• It identifies the correct policy levers. Procurement and evaluation are often missing from higher education discussions that stay at the level of pedagogy or ethics.
+• It foregrounds accountability to academic values and student interests, which stops the talk from drifting into abstract sovereignty rhetoric.
+What to sharpen in the live talk
+• Define invisible infrastructure fast and concretely. Do not assume the room will instantly hear the depth of the claim.
+• Separate the argument into a descriptive half and a normative half: first explain the dependency, then explain what should be done.
+• Use one or two examples of fragility that are educationally legible before moving to broader geopolitical or theoretical cases.
+• Name the third position explicitly: neither passive consumerism nor romantic self-sufficiency, but active stewardship.
+• End with institutional decisions, not just concerns.
+
+4. Annotated concept notebook: every note, definition, and linked idea expanded
+This section expands every topic in your note list and turns it into usable keynote material. For each item, the aim is the same: define the concept, explain why it matters for this talk, show how to use it, and flag any caveat or overclaim to avoid.
+How to use this section A good keynote does not need to mention all of these concepts explicitly. The value here is optionality. You can choose two or three main frameworks for the spoken talk and keep the rest as backup material for transitions, questions, or later writing.
+The Benefits of Bubbles: when speculative booms build durable infrastructure
+Definition: Ben Thompson's argument is that some bubbles are socially productive because overinvestment can finance infrastructure and ecosystem formation before ordinary market logic would. The bubble may still be a bubble, but it can leave behind assets that become genuinely useful.
+Deep dive: For your keynote, this is valuable because it stops the analysis from collapsing into 'AI hype is fake'. The stronger claim is that AI may well be in an overinvestment phase and still be building real compute capacity, software stacks, integration layers, and organisational habits that higher education will end up using. The question then becomes not whether the boom is entirely rational, but who owns the infrastructure after the exuberance settles and under what conditions universities gain access to it.
+How it helps the keynote: Use this idea to frame the AI boom as politically consequential rather than merely speculative. It lets you say: even if the bubble produces socially useful infrastructure, universities should not confuse access with control. The public value question begins after the data centres are built.
+Caution: Do not imply that all AI spending is wise or that every bubble is productive. Your contrast is between bubbles that leave behind infrastructure and bubbles that leave behind almost nothing of public value.
+Possible line: The question is not whether the AI boom will build useful infrastructure. It probably will. The question is who gets to govern that infrastructure when universities start to treat it as normal.
+
+Bad bubbles: tulips, Beanie Babies, Pogs, Panini stickers, bitcoin as rhetorical contrasts
+Definition: These examples function as shorthand for speculative manias in which asset prices detach from durable underlying value, or at least from the kind of shared infrastructure value that would justify broad public dependence.
+Deep dive: They matter because they help you distinguish between two kinds of hype story. One is simple speculative frenzy. The other is an investment surge that can also accelerate real build-out. AI looks more like the second category than the first because it is tied to datacentres, chips, networking, developer tooling, and enterprise integration, even if many valuations and claims may still be inflated.
+How it helps the keynote: Use these examples briefly and rhetorically, not as the centre of the analysis. They are useful for a sentence or a slide contrast: not every bubble leaves behind railways, fibre, or compute; some only leave behind collectibles and regret.
+Caution: Do not spend long on financial analogies. The point is simply to create conceptual contrast before moving back to higher education.
+
+ICC account disruption and the digital-sovereignty lesson
+Definition: This note points to the widely discussed 2025 controversy around the International Criminal Court and Microsoft services. Reporting and later parliamentary answers make clear that the exact mechanics were disputed, so the safest framing is not 'Microsoft simply switched off the ICC', but that the episode exposed anxiety about dependence on cloud and software infrastructures that can be affected by sanctions, legal pressure, and geopolitical conflict.
+Deep dive: The deep importance of the example is that infrastructure risk is not only about outages or price rises. It is also about jurisdiction, coercion, continuity, and the ability of institutions to keep operating when political pressures hit the layers they depend on. Microsoft's later European cloud commitments and resilience promises show that the episode was serious enough to trigger public reassurance and policy debate.
+How it helps the keynote: Use this example later in the keynote, after simpler educational examples such as a learning-platform outage. It expands the argument from operational fragility to sovereignty and control. It says: dependence on external infrastructure is never only a technical matter.
+Caution: Be precise. Say that the case raised digital-sovereignty concerns and that details of the account interruption were contested. Avoid oversimplified claims that could be rebutted easily.
+
+Lessig's four modalities of regulation: law, norms, market, and code
+Definition: Lawrence Lessig's key insight is that behaviour in digital environments is regulated by at least four interacting forces: law, social norms, markets, and code or architecture. Code matters because it determines what is possible, easy, difficult, visible, or impossible. Architecture is therefore not neutral background; it is a regulator.
+Deep dive: This framework is particularly useful for higher-education AI because universities often talk as if policy alone will solve governance. Lessig helps show why policy documents are only one modality. Law may set obligations, but market concentration limits choices, local norms affect what staff and students actually do, and code determines defaults such as data retention, logging, explainability, exportability, and access control.
+How it helps the keynote: Use Lessig as the bridge between abstract ethics and concrete system design. It lets you say that procurement is governance because procurement shapes code; code then shapes behaviour.
+Caution: Keep the framework practical. The room does not need a theory lecture; it needs to see why institutional behaviour is shaped by architecture.
+
+Lessig modality
+What it regulates
+HE AI example
+Law
+Regulation, contracts, data protection, copyright, malpractice rules
+Institutional policies, DfE guidance, the EU AI Act, procurement clauses
+Norms
+What people see as acceptable, normal, clever, risky, or fair
+Whether staff and students treat public AI tools as harmless defaults
+Market
+Prices, concentration, switching costs, procurement frameworks
+Dependence on a small number of cloud and model providers
+Code / architecture
+What the system makes visible, easy, difficult, or impossible
+Default logging, model choice, data-sharing settings, export options, fallback modes
+Viable System Model: how an institution can remain governable while adapting
+Definition: Stafford Beer's viable system model describes how complex organisations stay coherent in changing environments. In shorthand: System 1 handles operations; System 2 coordinates; System 3 controls and allocates resources; System 4 scans the environment and adapts; System 5 defines policy, identity, and overall direction. The model is recursive: viable subsystems also need these functions.
+Deep dive: This is a powerful governance lens for universities because AI adoption is currently often heavy on local experimentation and light on systemic coordination. Faculties, departments, and services may already be acting as System 1 units, experimenting with tools and workflows. But many institutions have weak System 2 coordination, patchy System 3 assurance, thin System 4 foresight and evaluation capability, and underdeveloped System 5 clarity about institutional purpose in an AI-mediated environment.
+How it helps the keynote: Use the model to diagnose the current organisational pattern: lots of innovation at the edge, not enough capability at the centre to coordinate, evaluate, bargain, and set mission-level direction. It gives you a governance model that is richer than simply saying 'we need a policy'.
+Caution: Keep the language plain. You can mention the model by name if the room is receptive, but the main payoff is the diagnosis.
+
+VSM layer
+University equivalent
+Why it matters for AI
+System 1: operations
+Faculties, programmes, library, learning technology, student support
+Where experimentation with AI tools is already happening
+System 2: coordination
+Cross-institution standards, guidance, interoperability, communities of practice
+Prevents fragmentation and duplicative risk
+System 3: control
+Procurement, audit, risk management, resource allocation, assurance
+Tests claims and governs institutional exposure
+System 4: intelligence
+Horizon scanning, model evaluation, scenario planning, sector watching
+Builds foresight instead of reactive compliance
+System 5: policy/identity
+Mission, academic values, student rights, strategic direction
+Answers what kind of university this institution wants to be
+The Times Higher Education argument: the real risk is irrelevance through non-engagement
+Definition: The Times Higher Education opinion piece you flagged argues that universities risk irrelevance if they fail to engage fully with AI. Its underlying claim is that the biggest danger is not AI in the abstract but institutional inertia, lack of imagination, and treating AI only as a plagiarism or IT issue.
+Deep dive: This is useful because it provides the most credible pro-engagement counterpart to your argument. You do not need to reject it. In fact, your keynote becomes stronger if it agrees that disengagement is a mistake and then adds the missing condition: engagement without stewardship simply hands institutional leverage to external actors.
+How it helps the keynote: Use this source to signal that you are not defending a nostalgic return to pre-AI higher education. You are defending a more serious form of engagement—one that includes governance, bargaining power, and public-purpose design.
+Possible line: The choice is not between engagement and resistance. The choice is between shallow engagement on someone else's terms and serious engagement on terms universities can help shape.
+
+Dan McQuillan as the counter-pole: a critique of inevitability, extractivism, and harm
+Definition: McQuillan's writing offers a sharper anti-GenAI position, linking generative AI to ecological cost, labour exploitation, austerity politics, concentration of power, and the erosion of social relations. It resists the framing that generative AI is simply inevitable progress to be integrated as quickly as possible.
+Deep dive: This is valuable because it reminds you not to naturalise the current AI trajectory. It highlights the material and political costs that can disappear in managerial accounts of adoption. It also helps prevent the keynote from sounding like a governance-only talk that quietly accepts all the premises of Big Tech.
+How it helps the keynote: Use McQuillan as a boundary marker, not as your main destination. You can borrow his insistence that alternatives remain possible and that the issue is not just classroom convenience. But your own position is more constructive and institution-building: universities should shape, constrain, co-design, and selectively build, not simply refuse.
+Caution: Because your note says 'too far', treat McQuillan as an external critical pressure that sharpens your analysis without dictating your prescription.
+
+Augment, Adopt, Align, Adapt: a practical behavioural framework for organisational AI use
+Definition: The Behavioural Insights Team framework breaks the issue into four linked questions. Augment asks how AI can extend human capability rather than merely automate tasks. Adopt examines the conditions under which people will actually use systems, especially motivation, capability, and trust. Align asks whether systems reflect human intentions and values. Adapt asks how humans and institutions change in response to using AI over time.
+Deep dive: This framework is unusually useful for your keynote because it translates abstract governance questions into behavioural and organisational design. It helps you say that good AI policy is not only about access or prohibition. It is about designing institutions that can use systems well, distrust them appropriately, evaluate them continuously, and adapt without surrendering educational purpose.
+How it helps the keynote: You can use the four-part structure either as a hidden organising device for your policy section or explicitly as a slide. Motivation, capability, and trust are especially valuable because they explain why higher education adoption is messy: people use tools not only because they are available, but because they feel pressured, under-supported, or uncertain.
+
+BIT frame
+Use in a university AI strategy
+Augment
+Where AI should extend judgment, feedback, search, synthesis, or accessibility without replacing core educational purposes
+Adopt
+Why people use or avoid systems: motivation, capability, and trust determine uptake
+Align
+How systems are tested against values, intentions, risks, and bounded alignment problems
+Adapt
+How norms, skills, dependencies, and expectations change once AI becomes normal
+Path dependence, QWERTY, and the danger of early lock-in
+Definition: Path dependence means that early choices, accidents, complementarities, and network effects can shape later outcomes in self-reinforcing ways. Once standards, habits, contracts, data formats, and training investments accumulate around a particular path, change becomes costly even when alternatives improve.
+Deep dive: The classic QWERTY keyboard story is useful as a metaphor, but it should be handled carefully because the strongest historical claim—that QWERTY is obviously inferior and won by accident alone—has been challenged. The broader lesson remains sound: history matters, default choices matter, and coordination effects can entrench a system long after the original reasons for choosing it have faded.
+How it helps the keynote: This is one of the best concepts for your keynote because AI in higher education is still in a fluid phase. Assessment practices, approved tools, integrations, data arrangements, vendor contracts, and user habits are settling now. That is exactly the moment in which path dependence takes shape.
+Caution: Say that the QWERTY anecdote is a metaphor for lock-in rather than a simple proof that 'worse technologies always win'.
+
+Creative work as a conversation with the medium
+Definition: The idea here is that creative and intellectual work is not simply the execution of a pre-existing idea. It is an iterative conversation with the medium itself: writing changes thinking, sketching changes seeing, coding changes design, and drafting changes judgment. The medium pushes back.
+Deep dive: You could not verify a single canonical source for this exact phrasing, so it is best treated as an unattributed conceptual principle rather than a formal quotation. Its importance for the keynote is substantial because it clarifies why higher education should not treat AI only as an answer engine. If students and staff increasingly think, write, and design through AI systems, the medium will shape their habits of inquiry, revision, confidence, and judgment.
+How it helps the keynote: Use this idea to connect infrastructure to pedagogy. If the medium changes, the educational process changes. That means the infrastructure question is not external to teaching and learning; it sits inside them.
+Caution: Do not present the phrase as a verified quote from a specific thinker unless you later source it securely.
+
+Surveillance capitalism: from industrial extraction to behavioural extraction
+Definition: Shoshana Zuboff's concept of surveillance capitalism names a regime in which human experience is rendered as data, captured as behavioural surplus, and used to generate prediction products and behavioural influence. The key move is not only extracting value from labour or manufacturing, but from the monitoring and modulation of behaviour itself.
+Deep dive: For higher education, the relevance is that AI systems can turn interaction data into a valuable asset. Every prompt, click, revision, chat exchange, and feedback loop can become part of an optimisation apparatus. The risk is not only privacy loss in a narrow sense; it is that educational activity becomes legible mainly through the metrics and incentives of external platforms.
+How it helps the keynote: Use surveillance capitalism to widen the argument beyond plagiarism or bias. Ask what happens when the behavioural traces of learning become raw material for systems optimised around engagement, retention, sales, or model improvement rather than around educational purpose.
+
+Extractivism, data colonialism, and knowledge extractivism
+Definition: These related ideas help differentiate levels of the problem. Data colonialism, associated with Nick Couldry and Ulises Mejias, describes the appropriation of everyday life in the form of data through unequal relations of power. Extractivism more broadly names the logic of taking value from people, environments, or communities without reciprocal stewardship. Knowledge extractivism, as in Matteo Pasquinelli's work, points to how AI systems extract patterns, labour, and intelligence from human traces and repackage them as proprietary or controlled computational assets.
+Deep dive: This matters because higher education is a knowledge-producing environment. Teaching materials, student work, scholarly communication, advising interactions, and institutional records are not neutral raw materials waiting to be harvested. They are socially produced, mission-governed, and often rights-bearing. Once they are folded into external AI pipelines without clear terms, universities risk participating in the extraction of their own intellectual and relational commons.
+How it helps the keynote: Use these concepts to sharpen the public-interest stakes. The issue is not merely that universities might pay too much for tools. It is that educational activity can be transformed into a source of value capture for actors whose accountability to students and academic communities is partial at best.
+
+Most frontier models are built by industry, not by public-interest institutions
+Definition: The empirical point here is straightforward: the overwhelming majority of notable frontier models now come from industry, and the frontier stack is financed by corporations with enormous capital budgets and clear profit motives. That does not mean public-interest actors are powerless. It means they should not mistake access to a model API for control over the strategic direction of the ecosystem.
+Deep dive: This is the basis for a crucial practical argument in your keynote. Universities should not try to win a brute-force scaling race against hyperscalers. Their leverage lies elsewhere: domain data, educational workflows, trust relationships, institutional knowledge, and the ability to evaluate whether systems actually work for teaching, assessment, and support.
+How it helps the keynote: Use this point to pivot to the build-versus-buy continuum. Universities may sometimes buy, sometimes partner, sometimes self-host smaller open models, sometimes add retrieval layers, and sometimes fine-tune. What they need in every case is evaluation capacity and governance clarity.
+
+Language-centric scaling versus grounding critiques
+Definition: The language-centric scaling view holds that because so much human knowledge is expressed in language, training on vast textual corpora can recover a surprising amount of world structure and practical competence. The grounding critique argues that language alone is not enough: human understanding is also sensorimotor, situational, embodied, institutional, and action-linked. Text-only fluency does not guarantee grounded understanding.
+Deep dive: For your keynote, this distinction matters because universities can be seduced by generic linguistic competence. A model that sounds informed is not the same as a system that is grounded in local institutional rules, student needs, disciplinary standards, or educational outcomes. Grounding can come through retrieval, structured data, domain adaptation, workflow integration, and careful evaluation, but it must be designed.
+How it helps the keynote: Use this concept to counter a simplistic scaling narrative. If universities want systems that genuinely work in their contexts, the answer is not always 'use a bigger general model'. Often it is 'use a more grounded, better-evaluated, more accountable one'.
+Caution: Treat 'language hypothesis' and 'grounding hypothesis' as useful labels for a debate, not as rigid textbook categories.
+
+Task versus purpose: the radiology lesson
+Definition: A recurring mistake in automation discourse is to jump from task substitution to occupational or institutional disappearance. Radiology is a useful analogue because it has long been discussed as a domain ripe for AI automation, yet workforce demand and professional need have remained strong. The more realistic pattern is task reconfiguration: throughput, triage, prioritisation, checking, documentation, and supervision shift, but professional purpose persists and often becomes more visible.
+Deep dive: For higher education, the question is therefore not only which tasks AI can perform, but what teaching, advising, assessment, and scholarly work are for. If the purpose includes judgment, trust, challenge, care, accountability, interpretation, and community formation, then AI changes the configuration of work rather than making the institution unnecessary.
+How it helps the keynote: Use this argument to resist lazy substitution claims. It helps you align with the conference's pedagogic concerns while keeping the focus on infrastructure and purpose.
+Possible line: The right question is not 'which tasks can AI do?' but 'what purposes must universities continue to serve, and how should tasks be reorganised in support of those purposes?'
+
+Veritasium and the difference between information access and learning
+Definition: The broad educational lesson associated with the Veritasium reference is that knowing the answer is not the same as learning. Durable learning depends on effort, retrieval, correction, feedback, accountability, and often productive struggle. A world in which answers are instantly available does not make teaching obsolete; it changes the role of teaching.
+Deep dive: This is a useful companion to the programme's concern with designing learning for a world where answers are free. If answers are abundant, then infrastructure choices matter even more because they shape how students practise, draft, revise, verify, and receive feedback. AI systems can support or short-circuit learning depending on how they are integrated.
+How it helps the keynote: Use this to keep the keynote grounded in educational purpose. The infrastructure question is not detached from learning theory; it affects whether systems cultivate dependence, confidence, or deep engagement.
+
+Use institutional higher-education data and workflow knowledge rather than chasing pure scale
+Definition: This note captures a very strong strategic insight. Universities are unlikely to outspend hyperscalers on frontier pretraining, but they do possess something more relevant to many real educational problems: domain-specific data, workflow knowledge, task definitions, quality criteria, and evaluative contexts. In many cases the winning move is not super-scaling a general model but grounding, adapting, or fine-tuning a smaller one for specific institutional purposes.
+Deep dive: The practical implication is not 'dump all student data into a model'. It is the opposite: be selective, governed, and purpose-limited. Use de-identified, rights-cleared, or teacher-generated corpora where possible. Build retrieval and evaluation layers. Distinguish between operational use, model improvement, and external training. Treat student work and interaction traces as governed educational assets, not free raw material.
+How it helps the keynote: Use this idea in the constructive half of the talk. It lets you propose a realistic stewardship agenda: local or sectoral eval suites, retrieval-grounded systems, curated fine-tuning data, and open-model experimentation where justified.
+Caution: Because this area touches student rights, privacy, and copyright, the keynote should pair the opportunity claim with a clear governance claim.
+
+A quick operational lens: motivation, capability, and trust
+Factor
+What it means
+Key keynote implication
+Motivation
+Why students and staff reach for AI in the first place
+Time pressure, workload, ambiguity, accessibility needs, assessment design, and institutional signals all shape use.
+Capability
+Whether people can use systems well and critically
+Training, disciplinary guidance, prompt literacy, verification habits, and support structures determine whether use is naive or reflective.
+Trust
+Whether people feel the system is reliable, fair, and permitted
+Unclear rules, inaccurate outputs, privacy concerns, and inconsistent institutional messaging can produce covert or anxious use rather than responsible use.
+What not to overclaim
+Topic
+Unsafe overclaim
+Safer version
+ICC case
+Do not say a simple, uncontested story in which one vendor unilaterally turned off an entire court.
+Say the episode exposed dependency and sovereignty risk, with disputed mechanics but real continuity concerns.
+QWERTY
+Do not claim it proves inferior systems always win.
+Use it as a lock-in metaphor and point to broader path dependence.
+Creative work line
+Do not attribute the phrase to a specific thinker unless you later source it.
+Treat it as a conceptual principle about medium and cognition.
+Language versus grounding
+Do not set up a false certainty that text-only scale equals human-like understanding.
+Use the debate to justify contextual grounding and evaluation.
+Fine-tuning with HE data
+Do not imply that institutions should freely use student work for model training.
+Stress consent, governance, purpose limitation, rights clearance, and secure local use.
+Conceptual synthesis
+Taken together, these concepts produce a coherent worldview for the keynote. The AI boom may build real infrastructure, but bubbles do not determine governance. Path dependence means early choices harden quickly. Lessig explains why architecture regulates behaviour. The viable system model shows that institutions need more than frontline experimentation; they need coordination, foresight, and mission-level steering. Surveillance capitalism and extractivism explain why apparently neutral data practices carry political and economic consequences. Grounding debates and fine-tuning research suggest that bigger is not always better for institutional use. And the educational perspective—creative work as medium, learning as more than answer retrieval, tasks as distinct from purposes—keeps the whole argument anchored in what universities are for.
+
+5. Evidence base for the keynote
+This section gives you the factual backbone for the talk. It is organised around the four claims most worth evidencing: AI use is already mainstream in higher education; institutional governance is lagging; the underlying infrastructure is concentrated and expensive; and meaningful alternatives exist through evaluation, grounding, and selective local or sectoral capability.
+5.1 Adoption is ahead of governance
+The headline educational fact is that student use is already mainstream. The 2026 HEPI student survey reports that 95 percent of UK full-time undergraduates use AI in at least one way and 94 percent use generative AI to help with assessed work. The same survey reports that 65 percent think assessment has changed significantly in response to AI. The 2025 HEPI survey already showed similar momentum one year earlier, along with limited training and mixed institutional encouragement.
+The governance fact is that policy and organisational maturity are not keeping pace. Jisc's AI maturity work suggests most tertiary institutions are still in an experimental phase, and its governance guidance warns that when AI is left to chance, adoption fragments and risk rises. UNESCO's higher-education survey found that formal institutional policy remains uneven, with many institutions still uncertain or developing frameworks rather than operating settled governance regimes.
+Metric
+Current figure
+Why it matters
+Source
+Student AI use in UK HE
+95% of UK full-time undergraduates use AI in at least one way
+AI is already normalised, not fringe
+HEPI Student Generative AI Survey 2026
+Use for assessed work
+94% use generative AI to help with assessed work
+Assessment policy can no longer assume rare or exceptional use
+HEPI 2026
+Assessment change
+65% say assessment has changed significantly because of AI
+Assessment redesign is already an institutional response, not a future debate
+HEPI 2026
+Institutional encouragement gap
+Only 29% in the 2025 survey agreed their institution encouraged AI use; 40% disagreed
+Student practice and institutional signalling are misaligned
+HEPI 2025
+Skills and support
+Only 36% in the 2025 survey reported institutional AI skills training
+Capability-building lags behind usage
+HEPI 2025
+Policy maturity
+UNESCO found only a minority of responding institutions already had formal AI policy, with many still developing frameworks
+Governance remains uneven and provisional
+UNESCO 2025 HE survey
+What this means for the talk
+• You can say with confidence that the governance problem is immediate, not speculative.
+• The room does not need to be convinced that AI matters. It needs help understanding what kind of institutional response is adequate to its scale.
+• Assessment is a particularly strong bridge into your infrastructure argument because the conference is already focused on it and the data show it is being reshaped in real time.
+5.2 Invisible infrastructure becomes visible when it fails
+A key rhetorical problem with 'infrastructure' is that the term can sound abstract until failure makes it visible. That is why outage and continuity examples are so useful. The 2025 AWS outage that hit Canvas disrupted access to course materials, messaging, assignments, and related services. Universities and students felt immediately what it means when a platform treated as background utility becomes unavailable. Separate 2025 incidents affecting Teams for Education also showed how assignments and grades can become inaccessible through upstream service issues.
+Case
+Why it matters
+How to use it
+Canvas / AWS outage
+Students lose access to content, messaging, submissions, and assessments when a cloud dependency fails
+Shows that teaching and assessment are already infrastructure-dependent
+Teams for Education service issues
+Assignments and grades become unavailable even when local campus intent and teaching plans remain unchanged
+Shows that essential functions can be shaped by remote service continuity
+ICC / cloud sovereignty episode
+A politically charged case reveals that dependency is not just operational but also jurisdictional and geopolitical
+Useful later in the talk as the higher-stakes version of the same structural problem
+5.3 Concentration: a small number of firms shape the infrastructure layer
+The concentration story has at least two layers. At the cloud layer, a small number of hyperscalers command most of the market. At the model layer, the frontier is increasingly dominated by industry rather than universities or public labs. Together these facts explain why higher education cannot assume that public values will automatically be reflected in the systems it depends on.
+Indicator
+What the latest evidence suggests
+Why your audience should care
+Public cloud concentration
+The top three cloud providers held around 68% of the public-cloud market in 2025
+Universities do not buy AI in a neutral market; they buy into concentrated infrastructure.
+Industry dominance in frontier models
+Nearly 90% of notable AI models in 2024 came from industry
+The frontier is being defined mainly by corporate labs rather than public-interest institutions.
+US lead in notable models
+US institutions produced 40 notable models in 2024 versus much smaller output elsewhere
+Geography, capital, and platform power are unevenly distributed.
+Azure scale
+Microsoft reported Azure annual revenue above $75 billion with demand still exceeding supply
+The companies shaping the stack operate at a scale far beyond single universities.
+Google capex
+Alphabet signalled 2026 capital expenditure of roughly $175–185 billion, largely for technical infrastructure
+Compute concentration is being reinforced, not diluted.
+Strategic GPU deals
+Major AI partnerships involve commitments on the order of tens of billions of dollars
+The frontier stack is capital-intensive and difficult to replicate institution by institution.
+This evidence should not push you toward fatalism. Its function in the talk is to clarify where leverage does and does not lie. Universities are unlikely to outspend hyperscalers, but they can still influence architecture through procurement standards, sector collaboration, open-model use, local hosting where appropriate, domain adaptation, and independent evaluation.
+5.4 Evaluation, open models, and the case for grounded smaller systems
+The constructive evidence base matters as much as the critical one. Recent work suggests three important points: first, the performance gap between open and closed frontier systems has narrowed in many areas; second, smaller specialised models can match or beat larger general models on narrow tasks when fine-tuned well; third, independent evaluation remains essential because vendor claims alone do not tell institutions what a model can safely and usefully do in their context.
+Finding
+What it suggests
+Key keynote implication
+Open versus closed gap
+The UK AI Security Institute's 2025 trends report notes a narrowing gap between open and closed systems
+This expands the feasible design space for universities and sector consortia.
+Specialised smaller models
+Research shows that with enough labelled data, smaller specialised models can outperform larger general systems on target tasks
+Institutional advantage may come from domain data and evaluation, not brute scale.
+Domain adaptation
+Continued pretraining, supervised fine-tuning, model merging, and retrieval can materially improve domain performance
+Local context can be more valuable than frontier size for many educational uses.
+Education-specific fine-tuning
+Recent educational research shows fine-tuned models can outperform prompt-only approaches in specific feedback tasks
+There is real scope for carefully governed, task-specific systems.
+Independent evaluation
+AISI and NIST both emphasise evaluation as a core component of trustworthy use
+Evaluation is not a luxury add-on; it is part of institutional stewardship.
+A practical pivot away from defeatism A strong constructive line is this: universities do not need to beat the frontier at generic scale. They need to get better at selecting, grounding, evaluating, and governing the systems that matter for their own purposes.
+5.5 Regulation and guidance: useful, but not enough
+The policy environment is moving. The EU AI Act timetable is progressing, and UK sector guidance from the Department for Education and the ICO reinforces caution around personal data, copyright, risk assessment, and accountability. But external regulation will not solve the institutional design problem on its own. Universities still need internal capability to interpret obligations, negotiate vendors, run evaluations, and make design choices aligned with mission.
+Policy layer
+Why it matters
+How to use it briefly
+EU AI Act
+Important for obligations, literacy, and governance expectations
+Mention if you want to show that the environment is tightening, not because it answers every practical question.
+DfE guidance
+Useful on personal-data caution, copyright, and safe use
+Shows that some of the governance issues are already recognised at sector level.
+ICO / UK standards
+Useful on risk, transparency, and complaints mechanisms
+Supports your claim that institutions need operational governance, not vague ethics language.
+Evidence synthesis
+The evidence base supports a very specific story. AI use is mainstream and reshaping assessment. Governance maturity is uneven. The infrastructure layer is concentrated, capital-intensive, and partly fragile. Yet there is still strategic room for universities to act—through evaluation, domain grounding, procurement, and collaboration. That is the exact combination of urgency and possibility a keynote needs.
+
+6. Strategic synthesis: the position your keynote can own
+The strongest keynote position sits between two inadequate poles. On one side is institutional boosterism: adopt faster, integrate more deeply, and trust the market to deliver what universities need. On the other side is total refusal: treat generative AI as inherently corrosive and aim mainly to resist it. Your abstract already suggests a more useful third position: engaged stewardship.
+The third position in one paragraph
+Engaged stewardship means universities neither retreat from AI nor surrender to it. They accept that AI will be part of the operating environment, but they refuse to treat vendor defaults as destiny. They build enough institutional capability to evaluate systems, negotiate terms, protect educational data, preserve exit options, and collaborate across the sector where single institutions are too small to act alone. They may buy some things, build some things, adapt some things, and reject some things—but they do so from a position of deliberate governance rather than dependency by drift.
+Why this position is stronger than generic ethics talk
+• It turns values into decisions. Ethics alone can remain decorative; procurement, data terms, evaluation, and architectural choices are operational.
+• It speaks to the real structure of the ecosystem. Concentrated markets and capital asymmetries mean that institutions need bargaining strategy, not just aspiration.
+• It matches the mood of the conference. The room is practical, not theoretical; stewardship gives a constructive answer without sounding naive.
+• It keeps students and academic purpose at the centre. Infrastructure is judged by whom it serves and under what conditions.
+A possible high-level formulation for the keynote
+AI is becoming part of higher education's invisible infrastructure. That fact changes the question universities must ask. The issue is no longer simply whether a given tool is impressive or convenient. The issue is who controls the stack on which teaching, assessment, support, and governance increasingly rely. Because that stack is concentrated, expensive, and often externally owned, universities are now choosing whether to become passive customers in an extractive ecosystem or active stewards of the systems they depend on. The window for making that choice is small because standards, contracts, data arrangements, and institutional norms are hardening now.
+A useful definition of control Control does not mean owning every layer. It means being able to understand, evaluate, contest, negotiate, and, when necessary, switch or reconfigure the systems on which core university functions depend.
+The conceptual arc in one line
+Claim type
+How it functions in the talk
+Descriptive claim
+AI has shifted from optional toolset to infrastructural layer.
+Political-economic claim
+That layer is disproportionately owned and shaped by actors whose incentives are not identical to universities' public missions.
+Temporal claim
+Path dependence means that choices made during this fluid period may lock in future dependency.
+Normative claim
+Universities therefore need stewardship capacity: procurement discipline, data governance, evaluation, resilience, and collaboration.
+Educational claim
+The goal is not control for its own sake but accountability to learning, academic values, and student interests.
+Lines that can do a lot of work
+• Most infrastructure is invisible until it breaks, becomes expensive, or answers to someone else.
+• The real issue is not whether AI enters higher education. It already has. The issue is on whose terms.
+• A university that cannot evaluate the systems it depends on is not governing its AI future; it is renting one.
+• The alternative to passive dependence is not heroic self-sufficiency. It is practical stewardship.
+• The point of public-interest AI in universities is not to win a race with hyperscalers. It is to keep core educational systems legible, portable, governable, and aligned with purpose.
+
+7. Practical policy agenda for universities
+This section translates the argument into institutional moves. The point is not to produce a maximal wish-list, but to define the practical capacities that distinguish a steward from a passive customer. For each area, the keynote can offer a minimum move now, a stronger medium-term move, and a long-term direction.
+7.1 Procurement: treat buying decisions as governance decisions
+AI procurement is one of the most under-discussed control points in higher education. If procurement is weak, ethics remain rhetorical. Contracts and purchasing criteria determine which models are used, how data flow, what can be audited, which features can be switched off, whether outputs can be exported, and what happens when services change or fail.
+Level
+What to do
+Minimum move now
+Use a cross-functional AI procurement checklist involving IT, legal, teaching and learning, data governance, accessibility, procurement, and academic representation.
+Stronger move
+Require vendors to specify underlying model dependencies, data use for training or improvement, logging and retention practices, evaluation evidence, accessibility features, bias mitigation steps, and continuity arrangements.
+Longer-term direction
+Develop shared sector procurement standards and bargaining consortia so universities are not negotiating core clauses alone.
+Procurement questions worth asking explicitly
+• Which model or models power the product, and can that dependency change without customer notice?
+• Are user prompts, outputs, metadata, or feedback used to train, fine-tune, or improve either the product itself or any external base model?
+• Can the institution opt out of all model-improvement uses of its data?
+• What evidence exists that the system performs well on higher-education tasks rather than only on generic benchmarks?
+• What independent evaluation has been done, and can the institution run or commission its own tests?
+• What logging, explainability, and audit features exist for misconduct reviews, appeals, or quality assurance?
+• What export, portability, and off-ramp provisions exist if the institution later wants to switch provider or self-host alternatives?
+• What happens during an outage, legal dispute, or upstream model change? What are the service-continuity and fallback arrangements?
+• How does the system meet accessibility requirements and support equitable use?
+• Who bears liability for harmful outputs, rights infringements, or misleading advice in high-stakes contexts?
+7.2 Data governance: treat educational data as governed institutional assets
+The data-governance question is not only about compliance. It is about purpose, rights, legitimacy, and institutional trust. Student work, feedback interactions, advising records, and usage traces are not free raw material. Universities need clear distinctions between data used to operate a service, data used to evaluate a service, and data used to improve or train models.
+Level
+What to do
+Minimum move now
+Define approved, restricted, and prohibited data categories for AI use. Make it easy for staff and students to know what should never be pasted into public tools.
+Stronger move
+Create documented pathways for secure local experimentation, de-identification, teacher-generated corpora, and rights-cleared datasets for retrieval or fine-tuning.
+Longer-term direction
+Build institutional or sectoral governance structures for educational data use in AI, including student representation, purpose limitation, retention rules, and oversight of training uses.
+Key data-governance principles to name
+• Purpose limitation: only collect and use what is genuinely needed for a clear educational purpose.
+• Rights awareness: respect privacy, copyright, consent, and the particular sensitivity of student work and support data.
+• Separation of functions: distinguish operational delivery from model training and from research use.
+• Transparency: staff and students should know when AI is present, what data it uses, and what institutional position governs that use.
+• Proportionality: use the least intrusive method that achieves the educational purpose.
+• Oversight: high-impact uses should not be left to local enthusiasm alone.
+7.3 Evaluation: make model assessment a core university capability
+Evaluation is the quiet centrepiece of the stewardship argument. Without evaluation, universities cannot distinguish fluency from reliability, impressive demos from genuine educational value, or acceptable from unacceptable risk. This applies whether the system is bought from a vendor, accessed via a public API, or hosted locally.
+Level
+What to do
+Minimum move now
+Create simple benchmark tasks for the university's highest-priority use cases: assessment support, feedback, advising, search, writing assistance, or triage.
+Stronger move
+Develop cross-functional evaluation routines including hallucination checks, rights and privacy checks, fairness review, disciplinary review, and user testing with staff and students.
+Longer-term direction
+Participate in or help build shared sector evaluation suites, red-teaming networks, and open reporting norms so institutions are not each reinventing assurance from scratch.
+What to evaluate
+• Accuracy and faithfulness on real institutional tasks
+• Robustness under prompt variation and adversarial use
+• Ability to cite sources, reveal uncertainty, and fail safely
+• Disciplinary adequacy rather than only generic language quality
+• Fairness and differential error patterns across student groups or use cases
+• Privacy and data leakage risk
+• User experience: whether the system actually supports learning, judgment, and staff work rather than merely generating text quickly
+7.4 Architecture and resilience: preserve legibility, modularity, and exit options
+A university does not need to own every layer of its AI stack, but it does need to understand its dependencies. Infrastructure becomes dangerous when the institution cannot map which functions depend on which upstream services, what data cross boundaries, or how to continue operating if a provider changes terms, fails, or disappears.
+Level
+What to do
+Minimum move now
+Map AI dependencies in critical workflows: where teaching, assessment, support, or governance functions rely on upstream cloud or model providers.
+Stronger move
+Prefer modular architectures where possible: retrieval layers, model abstraction layers, and exportable data structures that reduce single-vendor lock-in.
+Longer-term direction
+Invest selectively in local hosting, open models, or shared services for the highest-value or highest-risk use cases where control and continuity matter most.
+Resilience questions
+• If the service went down for a day during assessment week, what would fail?
+• If the vendor changed its underlying model, how would we know whether quality improved or degraded?
+• If a legal or commercial dispute interrupted service, what could we still do locally?
+• Could we export our prompts, logs, configuration, and evaluation records in a usable format?
+• Would students and staff know where AI was embedded and what the fallback route was?
+7.5 Sector-level collaboration: universities are too small to bargain alone
+Single institutions often lack bargaining power, evaluation capacity, or compute budgets at the scale the ecosystem now demands. That makes collaboration a practical necessity rather than a nice extra. The keynote can be strong here without sounding utopian: shared procurement clauses, shared evaluation suites, model cards for educational tasks, and collective guidance on data terms are all feasible forms of collaboration.
+Level
+What to do
+Minimum move now
+Share procurement questions, evaluation templates, and approved-use guidance across institutions rather than treating them as local secrets.
+Stronger move
+Create regional or mission-based consortia for model evaluation, secure experimentation, and bargaining with vendors.
+Longer-term direction
+Develop public-interest AI infrastructure for higher education: shared open models, retrieval services, domain datasets, and governance frameworks with student and staff oversight.
+7.6 Pedagogy, work, and student rights: do not separate governance from educational purpose
+The keynote should not let policy feel detached from teaching and learning. Infrastructure choices shape the conditions under which students draft, revise, verify, disclose, appeal, and receive support. They shape how staff exercise professional judgment and how workload is redistributed. Stewardship therefore has to include pedagogic design, staff capability, and student rights.
+Group
+What stewardship requires
+Students need
+Clear rules, fair assessment design, transparency about AI use, and rights around their work and data.
+Staff need
+Support, guidance, evaluation evidence, and systems that augment rather than deskill professional judgment.
+Institutions need
+An explicit statement of educational purpose so efficiency claims do not silently displace learning goals.
+The agenda in one contrast A useful contrast for the talk: the passive customer asks, 'Which tool should we buy?' The steward asks, 'Which capabilities do we need to govern, and which relationships will preserve mission, rights, and resilience?'
+A concise Monday-morning agenda
+• Map where AI is already embedded in assessment, feedback, support, and admin workflows.
+• Create or tighten an AI procurement checklist and make it cross-functional.
+• Define what data may and may not be used in external AI tools.
+• Set up a small evaluation routine for one or two high-value use cases.
+• Identify one area where sector collaboration would be better than acting alone.
+
+8. Suggested slide architecture and speaking notes
+Your slot is forty-five minutes, post-lunch, and positioned before a panel on the purpose of universities. That argues for a structure of roughly 12–14 slides with a clear narrative spine, generous pace, and minimal conceptual clutter. Start concrete, climb to the structural argument, and land in institutional choices.
+Recommended narrative arc
+• Visible failure: make invisible infrastructure concrete.
+• Mainstream adoption: show that AI is already embedded in student and staff practice.
+• Concentration and incentives: explain why dependence matters.
+• Lock-in window: argue that choices made now will harden.
+• Governance response: move from diagnosis to stewardship.
+• Public mission: end on the kind of university we want these systems to serve.
+Three possible openings
+Opening style
+What it does
+When to choose it
+Operational opening
+Begin with the Canvas/AWS outage or a similar service interruption
+Best if you want the room to feel the infrastructure argument immediately and intuitively.
+Economic opening
+Begin with the AI investment surge and the idea that bubbles can build infrastructure
+Best if you want to set up the political economy quickly and show that hype may still leave durable systems behind.
+Lock-in opening
+Begin with QWERTY/path dependence and the notion that early defaults are hard to unwind
+Best if you want a more conceptual but still accessible opening that frames the small window for action.
+Recommended 13-slide storyboard
+Slide 1 — When invisible infrastructure fails
+Purpose: make the theme concrete.
+Evidence / content: brief Canvas/AWS or Teams example.
+Visual idea: a simple outage/status image, or a minimalist title slide with one stark sentence.
+Possible line: 'Most infrastructure is invisible until it breaks.'
+
+Slide 2 — AI is becoming infrastructure, not just a tool
+Purpose: state the thesis.
+Evidence / content: your abstract sentence plus four functions—teach, assess, advise, govern.
+Visual idea: a layered stack or four icons arranged as institutional functions.
+Possible line: 'The issue is no longer whether AI is on campus. It is how deeply it is entering the substrate.'
+
+Slide 3 — Adoption is already mainstream
+Purpose: establish urgency.
+Evidence / content: HEPI figures on student use and assessment change.
+Visual idea: three large numbers only.
+Possible line: 'This is not a niche behaviour. It is now normal student practice.'
+
+Slide 4 — Governance is lagging
+Purpose: show the gap.
+Evidence / content: Jisc maturity framing and UNESCO policy immaturity.
+Visual idea: two columns—high use, lower institutional maturity.
+Possible line: 'We have mass adoption without equivalent stewardship.'
+
+Slide 5 — The boom is building real infrastructure
+Purpose: bring in the bubble argument without sounding dismissive.
+Evidence / content: hyperscaler capex, strategic partnerships, datacentre build-out.
+Visual idea: simple capex/market concentration callouts.
+Possible line: 'The question is not whether capital is flowing. It is who owns what that capital is building.'
+
+Slide 6 — Why ownership and incentives matter
+Purpose: pivot to political economy.
+Evidence / content: industry dominance in notable models; surveillance-capitalism and extractivist logic.
+Visual idea: a triangle linking data, models, and institutional dependence.
+Possible line: 'When educational activity becomes data exhaust, efficiency and extraction can look deceptively similar.'
+
+Slide 7 — Lock-in is happening now
+Purpose: introduce path dependence.
+Evidence / content: QWERTY/path dependence metaphor; early standard-setting in assessments, integrations, contracts, norms.
+Visual idea: a funnel from fluid options to hardened defaults.
+Possible line: 'This is the short window before today's convenience becomes tomorrow's dependency.'
+
+Slide 8 — Architecture regulates behaviour
+Purpose: use Lessig to show why procurement is governance.
+Evidence / content: law, norms, market, code.
+Visual idea: four-quadrant Lessig slide.
+Possible line: 'Policy matters, but so do the defaults in the systems we buy.'
+
+Slide 9 — What universities are missing organisationally
+Purpose: use the viable-system diagnosis.
+Evidence / content: lots of experimentation, too little coordination, foresight, and mission-level steering.
+Visual idea: simplified five-part VSM mapping.
+Possible line: 'Many institutions are rich in local experimentation and thin in systemic stewardship.'
+
+Slide 10 — The alternative is stewardship
+Purpose: state the third position clearly.
+Evidence / content: procurement, data governance, evaluation, resilience, collaboration.
+Visual idea: crossroads or capability ladder.
+Possible line: 'The alternative to passive dependence is not heroic self-sufficiency. It is practical stewardship.'
+
+Slide 11 — What stewardship looks like in practice
+Purpose: get operational.
+Evidence / content: a concise list of actions.
+Visual idea: five boxes or a maturity ladder.
+Possible line: 'Control means understanding, testing, negotiating, and preserving options.'
+
+Slide 12 — What this means for students and academic work
+Purpose: bring the argument back to educational purpose.
+Evidence / content: learning is more than answer retrieval; creative work changes with the medium; tasks versus purposes.
+Visual idea: simple contrast between answer production and learning/judgment.
+Possible line: 'The point is not to protect old tasks. It is to protect educational purposes.'
+
+Slide 13 — The question for the sector
+Purpose: end with a decision and hand off to the panel.
+Evidence / content: passive customer versus active steward.
+Visual idea: a final two-column contrast or one closing question.
+Possible line: 'Who will ultimately control the AI infrastructure higher education comes to depend on—and what kind of university will that make possible?'
+
+Timing guidance
+• Spend only the first three or four minutes on the opening example. The audience needs the concept quickly.
+• Slides 3 to 7 carry the analytical weight. This is where the evidence and the lock-in argument should be clearest.
+• Do not leave policy to the last ninety seconds. Give the stewardship section real time so the keynote lands as constructive rather than diagnostic.
+• Reserve the final two or three minutes for the public-mission conclusion and for clean handoff into the panel.
+What to trim if time becomes tight
+• Keep Lessig but compress the explanation to one sentence.
+• Use either the bubble frame or the QWERTY frame at full strength, not both at length.
+• Treat the ICC case as backup unless the room needs the sovereignty escalation.
+• Keep the policy section and the closing contrast; those are core.
+Strong closing move before the panel
+End by converting the talk into three decisions for the sector. For example: What must universities retain control over? What should they collaborate to build or evaluate together? And what rights should students have over the systems and data that increasingly mediate their education? Those questions hand neatly into a panel on the purpose and promise of universities.
+
+9. Backup Q&A
+These are the questions most likely to arise from leaders, practitioners, and sceptics in the room. Each answer is written in a way that can be spoken briefly and then expanded if needed.
+Are you saying universities should build everything themselves?
+No. The alternative to passive dependence is not building every layer in-house. It is preserving enough understanding, bargaining power, evaluation capacity, and exit options that core educational functions are not wholly governed by external defaults.
+
+Isn't this just anti-vendor politics?
+No. Universities will continue to work with vendors. The question is whether those relationships are structured as governable partnerships or as one-way dependencies. Good vendors should welcome clearer standards, stronger evaluation, and better institutional capability.
+
+Can smaller or open models really compete with the frontier?
+Not on every generic benchmark. But they do not have to. For many institutional tasks, grounded and well-evaluated smaller systems can be more appropriate, more controllable, and more cost-effective than the largest general models.
+
+Isn't buying from the market simply more realistic than trying to do all this locally?
+Buying from the market is realistic. Buying carelessly is not. The point of stewardship is to buy intelligently, know the dependencies, protect data, require evidence, and collaborate where a single institution lacks scale.
+
+Students are already using public tools anyway. Isn't this too late?
+It is too late for a denial strategy and too early for resignation. Student use being mainstream is exactly why institutions need better guidance, clearer assessment design, approved options, and more visible governance now.
+
+Won't tighter governance slow innovation?
+Bad governance slows innovation by creating fear and inconsistency. Good governance speeds useful innovation because it clarifies what is allowed, what is risky, and what evidence is needed.
+
+Why focus on control when universities are under huge financial pressure?
+Because financial pressure can turn short-term convenience into long-term dependency. Control matters most when budgets are tight, because switching costs, opaque pricing, and hidden data terms become even more consequential.
+
+Are you underestimating how fast frontier models are improving?
+No. Faster improvement is actually part of the argument. When capabilities move quickly, institutions need more evaluation and stronger architectural discipline, not less, because today's product may rely on tomorrow's unknown upstream changes.
+
+What would one small university realistically do first?
+Start with an AI dependency map, a procurement checklist, simple data rules, and one evaluation routine for a high-priority use case. Then look for partners rather than acting alone on everything.
+
+How do we use institutional data ethically for fine-tuning or retrieval?
+By being selective and governed: de-identify where possible, separate operational data from training data, obtain the right legal and ethical basis, involve oversight, and avoid treating student work as free raw material.
+
+Is the real problem AI, or the wider platform model of higher education technology?
+It is both. AI intensifies a pre-existing platform and cloud dependency problem. That is why the keynote talks about invisible infrastructure rather than about a single tool category.
+
+What should students hear in this argument?
+That the issue is not simply whether they use AI. It is whether the systems shaping their education are fair, transparent, governable, and accountable to their interests rather than only to vendor incentives.
+
+How do you measure success if an institution takes stewardship seriously?
+Success looks like clearer approved-use pathways, fewer unmanaged risky uses, better evidence on what works, stronger contractual terms, greater resilience, and decisions that remain visibly tied to educational purpose.
+
+Where does academic freedom fit into this?
+Academic freedom matters, but it sits inside institutional responsibility. Stewardship should widen meaningful choice and support critical use, not impose a single approved way of thinking or teaching.
+
+A one-minute answer if someone asks, 'So what is your actual proposal?'
+My proposal is that universities stop treating AI adoption as mainly a matter of guidance and start treating it as a matter of stewardship. That means buying more carefully, governing educational data more seriously, building evaluation capability, preserving architectural options, and collaborating across the sector where no single institution has enough leverage. The aim is not to own everything. It is to ensure that the systems higher education comes to depend on remain accountable to academic purpose and student interests.
+
+10. Coverage map of your original notes and selected sources
+This section makes the research coverage explicit so nothing in your original list disappears. It also records where a concept is slightly contested or where source attribution should be handled with care.
+Original note / link
+Where used
+How it is used
+Status / caveat
+Ben Thompson, “The Benefits of Bubbles”
+Section 4
+Used as the infrastructure-bubble frame: overinvestment can build durable systems.
+Useful and well-aligned.
+ICC Outlook / account disruption note
+Sections 4 and 5
+Used as a digital-sovereignty and continuity example.
+Mechanics are disputed; use carefully.
+Lessig / laws of cyberspace PDF
+Sections 4 and 8
+Used to explain law, norms, market, and code as interacting regulators.
+Strong framework if kept practical.
+Viable System Model
+Sections 4 and 8
+Used to diagnose organisational weakness in coordination, foresight, and mission-level steering.
+Good if translated into plain language.
+Times Higher Education opinion piece
+Sections 4 and 6
+Used as the pro-engagement counterweight to anti-AI narratives.
+Very useful for tone.
+Dan McQuillan essay
+Sections 4 and 6
+Used as the critical counter-pole stressing anti-inevitability and extractivism.
+Helpful boundary marker; not the main prescription.
+Bad bubbles / tulips / Beanie Babies / Pogs / Panini / bitcoin
+Section 4
+Used briefly as contrast with infrastructure-building bubbles.
+Rhetorical only.
+Augment / Adopt / Align / Adapt
+Sections 4 and 7
+Used as a practical behavioural and governance frame.
+Strong operational scaffold.
+Motivation / capability / trust
+Sections 4 and 7
+Used to explain messy real-world adoption dynamics.
+Excellent for policy design.
+QWERTY / lock-in
+Sections 4, 6, and 8
+Used as the path-dependence and small-window-for-action frame.
+Use with caveat that the simple inefficiency story is contested.
+Creative work is a conversation with the medium
+Section 4
+Used to connect infrastructure to pedagogy and cognition.
+Attribution unclear; treat as a principle, not a quotation.
+Surveillance capitalism
+Sections 4 and 5
+Used to name the behavioural-extraction logic of data-rich AI systems.
+Strong concept if linked to concrete university examples.
+Extractivism
+Sections 4 and 5
+Used to frame educational data and knowledge as politically contested resources.
+Very useful when tied to reciprocity and governance.
+Industry-built models / profit motive / build our own or fine-tune / need evals
+Sections 4, 5, and 7
+Used to argue for domain grounding, open-model options, and evaluation capacity rather than brute-force scaling.
+Central to the constructive half of the talk.
+Language hypothesis vs grounding hypothesis
+Section 4
+Used to critique scale-only thinking and justify local grounding and evals.
+Use as debate labels, not settled doctrine.
+Task vs purpose / radiology
+Sections 4 and 8
+Used to resist simplistic automation narratives.
+Good bridge back to educational purpose.
+Veritasium link
+Section 4
+Used to distinguish answer access from learning.
+Useful for pedagogic grounding.
+Use proprietary HE data rather than superscaling
+Sections 4, 5, and 7
+Used as a strategy for domain adaptation under governance.
+Pair with strong data-rights caveats.
+Selected additional research that materially strengthens the keynote
+Additional source cluster
+Contribution to the argument
+Conference pages and programme
+Used to read the room, map sponsor ecology, and situate your slot inside the wider narrative of the event.
+HEPI student surveys 2025 and 2026
+Used to establish that student adoption and assessment change are already mainstream.
+Jisc AI maturity and governance resources
+Used to evidence organisational lag and to support procurement/governance recommendations.
+UNESCO guidance and HE survey
+Used to show uneven institutional policy maturity and the risk of unplanned embedding.
+Synergy Research and company earnings
+Used to evidence concentration, capex, and infrastructure scale.
+Stanford AI Index 2025
+Used to show industry dominance in notable frontier-model development.
+UK AI Security Institute and NIST guidance
+Used to justify evaluation as a core institutional capability.
+Outage reporting and institutional notices
+Used to make invisible infrastructure vivid and concrete.
+Research on specialised smaller models and domain adaptation
+Used to support the argument for grounding and selective local capability rather than pure frontier competition.
+Mini-glossary
+Term
+Working definition for the keynote
+Invisible infrastructure
+Systems so embedded in ordinary practice that they disappear from view until they fail, become contested, or shape behaviour in unwanted ways.
+Path dependence
+The way early choices and reinforcing feedback make some future options easier and others harder.
+Stewardship
+The active governance of systems so they remain legible, evaluable, negotiable, and aligned with mission.
+Grounding
+The extent to which an AI system is connected to the relevant world, context, data, and task constraints rather than only generic language patterns.
+Evaluation
+Structured testing of whether a system works adequately and safely for the tasks and values that matter in context.
+Extractivism
+The logic of taking value from people, environments, or institutions without reciprocal stewardship or fair return.
+Surveillance capitalism
+A regime in which human experience and behaviour are captured as data and converted into prediction and influence.
+Hyperscaler
+A very large cloud and infrastructure provider operating at a scale far beyond ordinary enterprise or public-sector actors.
+Lock-in
+A condition in which switching away from a system becomes costly because of technical, contractual, social, or organisational dependencies.
+Source note
+This document cites sources by title and organisation in the main body rather than with formal academic referencing. That is deliberate: it is designed as a drafting pack, not as a publication-ready essay. If you later turn the keynote into a paper or article, you should convert the strongest sections into full citations.
+
+11. Slide-ready statistics and citation prompts
+These are the figures most worth carrying into slides or speaker notes. Use them sparingly. In a keynote, a few precise numbers are better than a wall of metrics.
+Figure or line
+Slide-ready wording
+Source prompt
+Best use
+Student AI use
+95% of UK full-time undergraduates use AI in at least one way
+HEPI Student Generative AI Survey 2026
+Best for establishing that AI use is already normal.
+AI in assessed work
+94% use generative AI to help with assessed work
+HEPI 2026
+Best for the assessment transition slide.
+Assessment change
+65% say assessment has changed significantly in response to AI
+HEPI 2026
+Best for linking your argument to the conference's assessment focus.
+Cloud concentration
+Top three cloud providers held roughly 68% of public-cloud market share in 2025
+Synergy Research 2025
+Best for the concentration / ownership slide.
+Industry dominance
+Nearly 90% of notable AI models in 2024 came from industry
+Stanford AI Index 2025
+Best for the profit-motive / who builds the stack slide.
+Azure scale
+Azure annual revenue exceeded $75 billion
+Microsoft FY25 Q4
+Best for making the infrastructure scale legible.
+Google capex
+Alphabet signalled 2026 capex of roughly $175–185 billion
+Alphabet Q4 2025 / 2026 outlook
+Best for showing how expensive the frontier build-out has become.
+Policy maturity lag
+Only a minority of UNESCO respondents already had formal institutional AI policy
+UNESCO 2025 HE survey
+Best for the governance-gap slide.
+Main institutional risk
+Jisc says that where AI is left to chance, adoption fragments and risk increases
+Jisc guidance
+Best as a one-line institutional warning rather than a numerical statistic.
+Open–closed narrowing
+AISI notes a narrowing gap between open and closed models
+UK AI Security Institute 2025 trends report
+Best for the constructive section on alternatives and evaluation.
+A compact closing formula
+You can condense the keynote into four sentences if needed. AI is becoming part of higher education's invisible infrastructure. Student adoption and institutional dependence are already mainstream. The infrastructure layer is increasingly shaped by concentrated external actors, so the real question is not merely use but control. The practical alternative to passive dependence is stewardship through procurement, data governance, evaluation, resilience, and sector collaboration.
+
+Appendix: selected links for direct follow-up
+These are the main user-provided anchors and a few especially useful current references to revisit while drafting. Where a current source was more important than the original link, the source title is named in the line itself.
+Conference programme page: https://www.tees.ac.uk/landing/ffl/ffl-programme.cfm
+Times Higher Education opinion piece: https://www.timeshighereducation.com/opinion/universities-risk-irrelevance-failing-engage-fully-ai
+Dan McQuillan essay: https://danmcquillan.org/resisting_genai_highered_cjuu.html
+Behavioural Insights Team publication: AI and Human Behaviour: https://www.bi.team/publications/ai-and-human-behaviour/
+Veritasium video reference: https://youtu.be/0xS68sl2D70?si=zjCRsZG7ohD1bNMT
+• Stratechery, “The Benefits of Bubbles” (used for the infrastructure-bubble argument).
+• HEPI Student Generative AI Survey 2026 and 2025 editions (used for adoption and assessment figures).
+• Jisc AI maturity and governance guidance (used for organisational lag and governance design).
+• UNESCO higher-education survey on AI and earlier guidance on generative AI in education (used for policy maturity and the risk of unplanned embedding).
+• Stanford AI Index 2025 (used for industry dominance in frontier-model development).
+• Synergy Research Group cloud-market reports and major company earnings releases (used for concentration and capex evidence).
+• UK AI Security Institute and NIST materials on evaluation and trustworthiness (used for the evaluation argument).
