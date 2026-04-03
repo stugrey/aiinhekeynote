@@ -4,6 +4,27 @@
  * Layouts reference CSS custom properties — never hard-coded colours/fonts.
  */
 
+const LENS_META = {
+  transparency: { short: 'T', label: 'Transparency' },
+  distortion: { short: 'D', label: 'Distortion' },
+  extraction: { short: 'E', label: 'Extraction' },
+};
+
+function renderLensMarkers(slide) {
+  if (!Array.isArray(slide.lenses) || slide.lenses.length === 0) return '';
+
+  const markers = slide.lenses
+    .filter(lens => LENS_META[lens])
+    .map((lens) => {
+      const meta = LENS_META[lens];
+      return `<span class="lens-marker lens-marker--${lens}" title="${meta.label}">${meta.short}</span>`;
+    })
+    .join('');
+
+  if (!markers) return '';
+  return `<div class="lens-marker-group" aria-label="Applied lenses">${markers}</div>`;
+}
+
 // ─── COVER LAYOUTS ──────────────────────────────
 
 export function coverBoldFull(slide) {
@@ -15,6 +36,7 @@ export function coverBoldFull(slide) {
         <div class="cover-author">${slide.author || ''}</div>
         <div class="cover-date-pill">${slide.date || ''}</div>
       </div>
+      ${renderLensMarkers(slide)}
     </div>
   `;
 }
@@ -28,6 +50,7 @@ export function coverDarkMinimal(slide) {
       </div>
       <div class="cover-title">${slide.title}</div>
       <div class="cover-subtitle">${slide.subtitle || ''}</div>
+      ${renderLensMarkers(slide)}
     </div>
   `;
 }
@@ -42,6 +65,7 @@ export function dividerColorBurst(slide, page) {
         : ''}
       <div class="divider-title">${slide.title}</div>
       <div class="divider-page">${String(page).padStart(2, '0')}</div>
+      ${renderLensMarkers(slide)}
     </div>
   `;
 }
@@ -57,6 +81,7 @@ export function dividerDarkCinematic(slide, page) {
       </div>
       <div class="divider-title">${slide.title}</div>
       ${slide.subtitle ? `<div class="divider-subtitle">${slide.subtitle}</div>` : ''}
+      ${renderLensMarkers(slide)}
     </div>
   `;
 }
@@ -94,6 +119,7 @@ export function contentSplitCards(slide, page) {
       </div>
       <div class="content-footer">
         <span class="page-number">${String(page).padStart(2, '0')}</span>
+        ${renderLensMarkers(slide)}
       </div>
     </div>
   `;
@@ -127,6 +153,7 @@ export function contentWideVisual(slide, page) {
           ${cards}
         </div>
       </div>
+      ${renderLensMarkers(slide)}
     </div>
   `;
 }
@@ -160,7 +187,10 @@ export function dataBigNumbers(slide, page) {
           ${blocks}
         </div>
       </div>
-      <div class="data-page">${String(page).padStart(2, '0')}</div>
+      <div class="data-footer">
+        <span class="data-page">${String(page).padStart(2, '0')}</span>
+        ${renderLensMarkers(slide)}
+      </div>
     </div>
   `;
 }
@@ -184,6 +214,7 @@ export function dataFullBleed(slide, page) {
   return `
     <div class="slide-inner data-full-bleed">
       ${blocks}
+      ${renderLensMarkers(slide)}
     </div>
   `;
 }
@@ -201,6 +232,7 @@ export function statementCentered(slide) {
       <div class="statement-label">${slide.section || ''}</div>
       <div class="statement-text">${text}</div>
       ${slide.attribution ? `<div class="statement-attribution">${slide.attribution}</div>` : ''}
+      ${renderLensMarkers(slide)}
     </div>
   `;
 }
@@ -216,6 +248,7 @@ export function statementEditorial(slide) {
       <div class="statement-label">${slide.section || ''}</div>
       <div class="statement-text">${text}</div>
       ${slide.attribution ? `<div class="statement-attribution">${slide.attribution}</div>` : ''}
+      ${renderLensMarkers(slide)}
     </div>
   `;
 }

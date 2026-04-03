@@ -1,0 +1,127 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - heading "Deck Generator" [level=2] [ref=e4]
+    - generic [ref=e5]:
+      - button "Save" [disabled] [ref=e6]
+      - button "Export All" [ref=e7] [cursor=pointer]
+      - button "Expand" [ref=e8] [cursor=pointer]
+  - generic [ref=e9]:
+    - button "← Prev" [disabled] [ref=e10]
+    - generic [ref=e11]: Slides 1–5 of 65
+    - button "Next →" [ref=e12] [cursor=pointer]
+  - generic [ref=e13]:
+    - generic [ref=e14]:
+      - generic [ref=e15]:
+        - generic [ref=e16]: 01 — cover — cover-bold-full
+        - combobox [ref=e17] [cursor=pointer]:
+          - option "None"
+          - option "Pills — WeTransfer"
+          - option "Blobs — Ace & Tate"
+          - option "Colour Blocks — Artsy"
+          - option "Golden Rectangle — DIA"
+          - option "Water Droplets — WebGL" [selected]
+          - option "Tinted Droplets — WebGL (mint)"
+          - option "Tinted Droplets — WebGL (coral)"
+          - option "Crude Oil — WebGL (iridescent)"
+          - option "Mercury — WebGL (liquid metal)"
+          - option "Frosted — WebGL (ground glass)"
+          - option "Frozen Ice — WebGL (crystalline)"
+        - button "Edit" [ref=e18] [cursor=pointer]
+        - button "Duplicate" [ref=e19] [cursor=pointer]
+        - button "Export PNG" [ref=e20] [cursor=pointer]
+      - generic [ref=e22]:
+        - generic [ref=e23]: Who Will Control the AI Infrastructure of Higher Education?
+        - generic [ref=e24]: From useful tools to structural dependence, and how universities can still shape their future
+        - generic [ref=e25]:
+          - generic [ref=e26]: Dr Stuart Grey
+          - generic [ref=e27]: April 15th 2026
+    - generic [ref=e28]:
+      - generic [ref=e29]:
+        - generic [ref=e30]: 02 — section-divider — divider-color-burst
+        - combobox [ref=e31] [cursor=pointer]:
+          - option "None" [selected]
+          - option "Pills — WeTransfer"
+          - option "Blobs — Ace & Tate"
+          - option "Colour Blocks — Artsy"
+          - option "Golden Rectangle — DIA"
+          - option "Water Droplets — WebGL"
+          - option "Tinted Droplets — WebGL (mint)"
+          - option "Tinted Droplets — WebGL (coral)"
+          - option "Crude Oil — WebGL (iridescent)"
+          - option "Mercury — WebGL (liquid metal)"
+          - option "Frosted — WebGL (ground glass)"
+          - option "Frozen Ice — WebGL (crystalline)"
+        - button "Edit" [ref=e32] [cursor=pointer]
+        - button "Duplicate" [ref=e33] [cursor=pointer]
+        - button "Export PNG" [ref=e34] [cursor=pointer]
+      - generic [ref=e36]:
+        - generic [ref=e37]: Dr Stuart Grey
+        - generic [ref=e38]: "02"
+    - generic [ref=e39]:
+      - generic [ref=e40]:
+        - generic [ref=e41]: 03 — section-divider — divider-color-burst
+        - combobox [ref=e42] [cursor=pointer]:
+          - option "None" [selected]
+          - option "Pills — WeTransfer"
+          - option "Blobs — Ace & Tate"
+          - option "Colour Blocks — Artsy"
+          - option "Golden Rectangle — DIA"
+          - option "Water Droplets — WebGL"
+          - option "Tinted Droplets — WebGL (mint)"
+          - option "Tinted Droplets — WebGL (coral)"
+          - option "Crude Oil — WebGL (iridescent)"
+          - option "Mercury — WebGL (liquid metal)"
+          - option "Frosted — WebGL (ground glass)"
+          - option "Frozen Ice — WebGL (crystalline)"
+        - button "Edit" [ref=e43] [cursor=pointer]
+        - button "Duplicate" [ref=e44] [cursor=pointer]
+        - button "Export PNG" [ref=e45] [cursor=pointer]
+      - generic [ref=e47]:
+        - generic [ref=e48]: Distributed Agents for Autonomous Spacecraft
+        - generic [ref=e49]: "03"
+    - generic [ref=e50]:
+      - generic [ref=e51]:
+        - generic [ref=e52]: 04 — section-divider — divider-color-burst
+        - combobox [ref=e53] [cursor=pointer]:
+          - option "None" [selected]
+          - option "Pills — WeTransfer"
+          - option "Blobs — Ace & Tate"
+          - option "Colour Blocks — Artsy"
+          - option "Golden Rectangle — DIA"
+          - option "Water Droplets — WebGL"
+          - option "Tinted Droplets — WebGL (mint)"
+          - option "Tinted Droplets — WebGL (coral)"
+          - option "Crude Oil — WebGL (iridescent)"
+          - option "Mercury — WebGL (liquid metal)"
+          - option "Frosted — WebGL (ground glass)"
+          - option "Frozen Ice — WebGL (crystalline)"
+        - button "Edit" [ref=e54] [cursor=pointer]
+        - button "Duplicate" [ref=e55] [cursor=pointer]
+        - button "Export PNG" [ref=e56] [cursor=pointer]
+      - generic [ref=e58]:
+        - generic [ref=e59]: Free Text Analysis with Student Voice AI
+        - generic [ref=e60]: "04"
+    - generic [ref=e61]:
+      - generic [ref=e62]:
+        - generic [ref=e63]: 05 — statement — statement-centered
+        - combobox [ref=e64] [cursor=pointer]:
+          - option "None"
+          - option "Pills — WeTransfer"
+          - option "Blobs — Ace & Tate"
+          - option "Colour Blocks — Artsy"
+          - option "Golden Rectangle — DIA"
+          - option "Water Droplets — WebGL" [selected]
+          - option "Tinted Droplets — WebGL (mint)"
+          - option "Tinted Droplets — WebGL (coral)"
+          - option "Crude Oil — WebGL (iridescent)"
+          - option "Mercury — WebGL (liquid metal)"
+          - option "Frosted — WebGL (ground glass)"
+          - option "Frozen Ice — WebGL (crystalline)"
+        - button "Edit" [ref=e65] [cursor=pointer]
+        - button "Duplicate" [ref=e66] [cursor=pointer]
+        - button "Export PNG" [ref=e67] [cursor=pointer]
+      - generic [ref=e70]: Transparency
+  - generic [ref=e71]:
+    - button "← Prev" [disabled] [ref=e72]
+    - generic [ref=e73]: Slides 1–5 of 65
+    - button "Next →" [ref=e74] [cursor=pointer]

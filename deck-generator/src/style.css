@@ -408,6 +408,75 @@ body {
   min-width: 0;
 }
 
+.lens-marker-group {
+  position: absolute;
+  right: 1rem;
+  bottom: 0.9rem;
+  left: auto;
+  width: max-content;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.lens-marker {
+  width: 1.55rem;
+  height: 1.55rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
+}
+
+.lens-marker--transparency {
+  background: rgba(103, 220, 255, 0.16);
+  color: #DFF9FF;
+  border: 1px solid rgba(103, 220, 255, 0.45);
+}
+
+.lens-marker--distortion {
+  background: rgba(255, 183, 77, 0.16);
+  color: #FFF1D5;
+  border: 1px solid rgba(255, 183, 77, 0.45);
+}
+
+.lens-marker--extraction {
+  background: rgba(255, 112, 102, 0.16);
+  color: #FFE3DE;
+  border: 1px solid rgba(255, 112, 102, 0.48);
+}
+
+.cover-bold-full .lens-marker-group,
+.cover-dark-minimal .lens-marker-group {
+  bottom: 1.2rem;
+}
+
+.content-split-cards .content-footer .lens-marker-group {
+  position: static;
+  margin-left: auto;
+}
+
+.statement-centered .lens-marker-group,
+.statement-editorial .lens-marker-group {
+  right: 1.15rem;
+  bottom: 1.05rem;
+}
+
+
+.divider-color-burst .lens-marker,
+.cover-bold-full .lens-marker,
+.data-full-bleed .lens-marker {
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+}
+
 
 /* ============================================
    LAYOUT: cover-bold-full
@@ -728,6 +797,7 @@ body {
 
 .content-split-cards .content-footer {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   padding-top: 0.75rem;
   border-top: 1px solid rgba(0, 0, 0, 0.06);
@@ -917,11 +987,20 @@ body {
   line-height: 1.4;
 }
 
-.data-big-numbers .data-page {
+.data-big-numbers .data-footer {
+  display: flex;
+  align-items: center;
   margin-top: auto;
+}
+
+.data-big-numbers .data-page {
   font-size: var(--caption-size);
   opacity: 0.3;
-  text-align: right;
+}
+
+.data-big-numbers .data-footer .lens-marker-group {
+  position: static;
+  margin-left: auto;
 }
 
 
@@ -1176,7 +1255,7 @@ body {
 }
 
 /* Ensure content sits above shapes */
-.slide-inner > *:not(.shape-overlay) {
+.slide-inner > *:not(.shape-overlay):not(.lens-marker-group) {
   position: relative;
   z-index: 1;
 }

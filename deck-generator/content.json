@@ -116,7 +116,12 @@
           "Say the deeper question is who sets the terms of dependence as AI becomes normal infrastructure.",
           "Use this as the bridge from the opening frame into the body of the talk."
         ]
-      }
+      },
+      "lenses": [
+        "transparency",
+        "distortion",
+        "extraction"
+      ]
     },
     {
       "type": "section-divider",
@@ -158,7 +163,10 @@
           "Student support and admin: Copilots, triage systems and analytics are creeping into advising, helpdesks and routine services.",
           "Research and governance: Search, synthesis, coding, grant development and management reporting increasingly run through AI-mediated layers."
         ]
-      }
+      },
+      "lenses": [
+        "transparency"
+      ]
     },
     {
       "type": "data",
@@ -186,7 +194,10 @@
           "Link the assessment figure directly to the conference context: the room already knows assessment is changing.",
           "The point is not surprise at student use; the point is that institutional governance can no longer lag behind it."
         ]
-      }
+      },
+      "lenses": [
+        "transparency"
+      ]
     },
     {
       "type": "content",
@@ -214,7 +225,10 @@
           "Uneven capability: Staff literacy, procurement confidence and evaluation capacity vary widely across campuses.",
           "Ambiguous signals: Students are told AI matters, but often receive little clear support about how, when or why to use it."
         ]
-      }
+      },
+      "lenses": [
+        "transparency"
+      ]
     },
     {
       "type": "content",
@@ -242,7 +256,10 @@
           "Upstream dependency: A change made by a provider can alter outputs, reliability or availability without the university changing anything locally.",
           "Sovereignty and resilience: Once core services sit elsewhere, governance is also about jurisdiction, coercion and the ability to keep operating under stress."
         ]
-      }
+      },
+      "lenses": [
+        "transparency"
+      ]
     },
     {
       "type": "statement",
@@ -257,7 +274,10 @@
           "Pause slightly here; this is one of the key hinge lines of the talk.",
           "Use it to introduce the first practical implication: governance has to become a system, not just a sentiment."
         ]
-      }
+      },
+      "lenses": [
+        "transparency"
+      ]
     },
     {
       "type": "content",
@@ -282,7 +302,10 @@
           "The institution needs coordination, assurance, foresight and mission-level steering across the whole system.",
           "Use this as the first practical move so the talk does not leave action until the end."
         ]
-      }
+      },
+      "lenses": [
+        "transparency"
+      ]
     },
     {
       "type": "section-divider",
@@ -408,7 +431,11 @@
           "Pedagogic learning: Universities are discovering which AI uses support learning and which merely simulate support.",
           "Capability learning: Staff are developing literacy in prompting, workflow design, evaluation and critical comparison across tools."
         ]
-      }
+      },
+      "lenses": [
+        "distortion",
+        "extraction"
+      ]
     },
     {
       "type": "content",
@@ -436,7 +463,10 @@
           "Misplaced priorities: Leaders can chase visible partnerships and shiny features while neglecting pedagogy, people and core digital resilience.",
           "Capture of norms: The first systems to scale often end up defining what counts as modern, efficient or inevitable."
         ]
-      }
+      },
+      "lenses": [
+        "extraction"
+      ]
     },
     {
       "type": "statement",
@@ -451,7 +481,10 @@
           "Say that temporary access to powerful systems is not the same as governing the terms on which they become normal.",
           "Use this line to pivot into the next section: if not universities, who is setting the defaults?"
         ]
-      }
+      },
+      "lenses": [
+        "extraction"
+      ]
     },
     {
       "type": "section-divider",
@@ -493,7 +526,10 @@
           "Infrastructure layer: Cloud concentration gives the same firms leverage over cost, continuity and technical standards.",
           "Interface layer: Existing campus software ecosystems become the channel through which AI is normalised."
         ]
-      }
+      },
+      "lenses": [
+        "extraction"
+      ]
     },
     {
       "type": "content",
@@ -521,7 +557,10 @@
           "Bargaining power matters: Without strong institutions, efficiency narratives can define the agenda before educators and students get a say.",
           "Narratives matter: The story that 'AI is inevitable' can make resistance to bad design sound backward rather than responsible."
         ]
-      }
+      },
+      "lenses": [
+        "distortion"
+      ]
     },
     {
       "type": "content",
@@ -549,7 +588,10 @@
           "Vendor incentives: The platform wants adoption, telemetry, stickiness and cross-product integration.",
           "Academic and student interests: Universities are supposed to privilege learning, judgment, accessibility, care and public value."
         ]
-      }
+      },
+      "lenses": [
+        "distortion"
+      ]
     },
     {
       "type": "content",
@@ -577,7 +619,11 @@
           "Pedagogic agenda-setting: Teaching begins to bend toward what the tool can easily generate, score or measure.",
           "Ethical narrowing: Safety and compliance get more attention than labour, justice, pluralism or democratic control."
         ]
-      }
+      },
+      "lenses": [
+        "distortion",
+        "extraction"
+      ]
     },
     {
       "type": "data",
@@ -605,7 +651,10 @@
           "This is not a reason to give up; it is a reason to know where leverage has to come from.",
           "Say that universities will rarely win by outspending the frontier, but they can still govern how they connect to it."
         ]
-      }
+      },
+      "lenses": [
+        "extraction"
+      ]
     },
     {
       "type": "content",
@@ -633,7 +682,11 @@
           "Default pathways: Institution-wide licences quietly define which tools staff and students see as normal or approved.",
           "Contractual gravity: Once workflows, content and reporting are built into one stack, future decisions become less free than they appear."
         ]
-      }
+      },
+      "lenses": [
+        "distortion",
+        "extraction"
+      ]
     },
     {
       "type": "statement",
@@ -648,7 +701,11 @@
           "The point is that infrastructure settles before institutions have fully debated its consequences.",
           "Use it to introduce a procurement implication: the way universities buy now will shape the future they are still able to contest."
         ]
-      }
+      },
+      "lenses": [
+        "distortion",
+        "extraction"
+      ]
     },
     {
       "type": "content",
@@ -673,7 +730,11 @@
           "Assume every platform will eventually change price, terms, quality or direction.",
           "The practical test is whether portability, open standards and exit planning are preserved from the start."
         ]
-      }
+      },
+      "lenses": [
+        "transparency",
+        "extraction"
+      ]
     },
     {
       "type": "section-divider",
@@ -715,7 +776,10 @@
           "Substitution: AI can also be used to replace teaching presence, automate first-pass support and standardise assessment in thinner ways.",
           "Institutional test: Every use case should be judged by whether it improves educational experience and professional autonomy, not merely cost."
         ]
-      }
+      },
+      "lenses": [
+        "distortion"
+      ]
     },
     {
       "type": "content",
@@ -743,7 +807,10 @@
           "Automated feedback: Fully automated marking and commentary promise speed but can reduce contestability, nuance and trust.",
           "Surveillance systems: Student-success dashboards and risk scoring can become monitoring infrastructure rather than support infrastructure."
         ]
-      }
+      },
+      "lenses": [
+        "distortion"
+      ]
     },
     {
       "type": "content",
@@ -771,7 +838,10 @@
           "Accessibility and inclusion: Translation, captioning, alternative formats and scaffolded support can widen participation when designed well.",
           "Formative scaffolds: AI can support low-stakes practice and feedback that academics then interpret, deepen and challenge."
         ]
-      }
+      },
+      "lenses": [
+        "distortion"
+      ]
     },
     {
       "type": "content",
@@ -799,7 +869,10 @@
           "Surface metrics: Completion, engagement and usage are privileged because they are measurable, even when they are weak proxies for learning.",
           "Partner visibility: Platforms and publishers can become the default route through which content, prompts and resources are surfaced."
         ]
-      }
+      },
+      "lenses": [
+        "distortion"
+      ]
     },
     {
       "type": "content",
@@ -827,7 +900,10 @@
           "Institutional dependency: The model that best 'knows' how your university writes and works may be one you do not own.",
           "Upstream capture: Value created from public educational activity can be turned into private rent streams."
         ]
-      }
+      },
+      "lenses": [
+        "extraction"
+      ]
     },
     {
       "type": "data",
@@ -855,7 +931,11 @@
           "Institutions with more money, skill, and bargaining power will get better human-plus-AI arrangements.",
           "That makes stewardship a sector issue as well as an institutional one."
         ]
-      }
+      },
+      "lenses": [
+        "distortion",
+        "extraction"
+      ]
     },
     {
       "type": "content",
@@ -883,7 +963,10 @@
           "Reduced pluralism: Open, local or public-interest models struggle for attention when corporate stacks are easiest to deploy.",
           "Legitimacy transfer: Universities can become testing grounds and legitimacy providers for tools they did not shape."
         ]
-      }
+      },
+      "lenses": [
+        "distortion"
+      ]
     },
     {
       "type": "statement",
@@ -898,7 +981,11 @@
           "The concern is how much educational purpose gets rewritten by commercial defaults.",
           "Use this to introduce the data-governance implication: educational traces cannot just slide upstream by default."
         ]
-      }
+      },
+      "lenses": [
+        "distortion",
+        "extraction"
+      ]
     },
     {
       "type": "content",
@@ -923,7 +1010,11 @@
           "Separate operational delivery, evaluation, and model-improvement uses rather than letting them blur together.",
           "This is where student rights and institutional legitimacy become concrete."
         ]
-      }
+      },
+      "lenses": [
+        "transparency",
+        "extraction"
+      ]
     },
     {
       "type": "section-divider",
@@ -965,7 +1056,10 @@
           "Rapid value: Drafting, summarising, coding support and search assistance can deliver immediate productivity gains.",
           "Soft terms: Data clauses and dependencies feel abstract because the practical benefits are visible now."
         ]
-      }
+      },
+      "lenses": [
+        "extraction"
+      ]
     },
     {
       "type": "content",
@@ -993,7 +1087,11 @@
           "Buyer logic: Enterprise customers are offered dashboards, nudges and metrics that serve management priorities first.",
           "Behaviour shaping: The platform starts 'twiddling the knobs' to improve monetisation, retention or partner visibility."
         ]
-      }
+      },
+      "lenses": [
+        "distortion",
+        "extraction"
+      ]
     },
     {
       "type": "content",
@@ -1021,7 +1119,10 @@
           "Paywalled capability: Features that become pedagogically important move behind higher-priced plans.",
           "Proprietary dependency: AI-authored content, tuned workflows and analytics histories live inside hard-to-export systems."
         ]
-      }
+      },
+      "lenses": [
+        "extraction"
+      ]
     },
     {
       "type": "content",
@@ -1049,7 +1150,11 @@
           "Capability lock-in: Staff training, user habits and local expertise become specific to one environment.",
           "Data lock-in: Prompts, logs, evaluations and historic outputs are difficult to move or reuse elsewhere."
         ]
-      }
+      },
+      "lenses": [
+        "transparency",
+        "extraction"
+      ]
     },
     {
       "type": "content",
@@ -1077,7 +1182,10 @@
           "Investment compounds: Training, integrations and custom workflows make the original choice seem ever more rational.",
           "Alternatives narrow: Institutions eventually face not a free choice, but a high-cost break from their own accumulated history."
         ]
-      }
+      },
+      "lenses": [
+        "distortion"
+      ]
     },
     {
       "type": "content",
@@ -1105,7 +1213,11 @@
           "Market: Concentration and bundling shape what appears affordable or realistic.",
           "Norms and law: Institutional expectations and regulation matter most when they are translated into architecture and contracts."
         ]
-      }
+      },
+      "lenses": [
+        "transparency",
+        "distortion"
+      ]
     },
     {
       "type": "statement",
@@ -1120,7 +1232,10 @@
           "This is not about planning to leave every system; it is about never becoming unable to.",
           "Use it to introduce an architectural implication: modularity and plural ecosystems preserve options before the squeeze arrives."
         ]
-      }
+      },
+      "lenses": [
+        "transparency"
+      ]
     },
     {
       "type": "content",
@@ -1145,7 +1260,10 @@
           "Modularity and plural ecosystems preserve bargaining power, resilience and room to adapt.",
           "This is how you keep options open before convenience hardens into culture."
         ]
-      }
+      },
+      "lenses": [
+        "transparency"
+      ]
     },
     {
       "type": "section-divider",
@@ -1215,7 +1333,10 @@
           "Inclusion and accessibility: Prioritise translation, captioning, alternative formats and scaffolded support.",
           "Mission guardrail: Explicitly reject headcount reduction or content automation in place of teaching as primary aims."
         ]
-      }
+      },
+      "lenses": [
+        "distortion"
+      ]
     },
     {
       "type": "content",
@@ -1271,7 +1392,10 @@
           "Independent scrutiny: Review hallucination risk, bias, privacy leakage, citation behaviour and fail-safe performance.",
           "Continuous review: Re-evaluate when underlying models, terms or integrations change upstream."
         ]
-      }
+      },
+      "lenses": [
+        "transparency"
+      ]
     },
     {
       "type": "data",
@@ -1299,7 +1423,10 @@
           "Say that institutions do not need one hundred principles; they need a small set of capabilities used consistently.",
           "This slide should make the constructive section feel manageable."
         ]
-      }
+      },
+      "lenses": [
+        "transparency"
+      ]
     },
     {
       "type": "content",
@@ -1327,7 +1454,11 @@
           "Shared evaluation: Build common test suites, model cards and red-teaming practices for educational use cases.",
           "Public-interest infrastructure: Explore national, regional or mission-based alternatives where the market produces choke points."
         ]
-      }
+      },
+      "lenses": [
+        "transparency",
+        "extraction"
+      ]
     },
     {
       "type": "statement",
@@ -1342,7 +1473,12 @@
           "This line matters because it keeps the keynote from sounding like a sovereignty fantasy.",
           "Pause slightly; this is the constructive counterpart to the earlier warnings."
         ]
-      }
+      },
+      "lenses": [
+        "transparency",
+        "distortion",
+        "extraction"
+      ]
     },
     {
       "type": "section-divider",
@@ -1412,7 +1548,11 @@
           "Thin provision: Lower-status students and institutions get automated, standardised provision while wealthier parts of the sector preserve human-rich models.",
           "Opaque governance: Research, pedagogy and student support are increasingly shaped by systems the university cannot fully audit or challenge."
         ]
-      }
+      },
+      "lenses": [
+        "distortion",
+        "extraction"
+      ]
     },
     {
       "type": "content",
@@ -1440,7 +1580,12 @@
           "What should we build or evaluate together?: Identify the areas where sector collaboration creates more leverage than acting alone.",
           "What rights should students have?: Make explicit the rights to transparency, contestability, accessibility and non-AI pathways in core processes."
         ]
-      }
+      },
+      "lenses": [
+        "transparency",
+        "distortion",
+        "extraction"
+      ]
     },
     {
       "type": "content",
@@ -1468,7 +1613,12 @@
           "Tighten the basics: Create a cross-functional procurement checklist, clear data rules and one evaluation routine for a high-priority use case.",
           "Act collectively: Join or build a coalition for shared bargaining, evaluation or open alternatives before the defaults settle."
         ]
-      }
+      },
+      "lenses": [
+        "transparency",
+        "distortion",
+        "extraction"
+      ]
     },
     {
       "type": "statement",
@@ -1483,7 +1633,12 @@
           "Universities are helping set the defaults that will structure higher education for years.",
           "This is the right slide to widen the frame before the final question."
         ]
-      }
+      },
+      "lenses": [
+        "transparency",
+        "distortion",
+        "extraction"
+      ]
     },
     {
       "type": "statement",
@@ -1498,7 +1653,12 @@
           "The point is to force the room to connect infrastructure control with the kind of university it wants to make possible.",
           "Do not rush the last line; it is the civic and institutional landing point."
         ]
-      }
+      },
+      "lenses": [
+        "transparency",
+        "distortion",
+        "extraction"
+      ]
     }
   ]
 }
