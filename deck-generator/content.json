@@ -255,7 +255,32 @@
         "points": [
           "The takeaway is a conceptual shift: from asking what AI can do to asking who controls the conditions under which it operates.",
           "Pause slightly here; this is one of the key hinge lines of the talk.",
-          "Use it to set up the next question: if control matters, who is actually building and owning the infrastructure?"
+          "Use it to introduce the first practical implication: governance has to become a system, not just a sentiment."
+        ]
+      }
+    },
+    {
+      "type": "content",
+      "section": "From tool to substrate",
+      "heading": "Universities need a viable system for AI governance, not just a policy",
+      "body": "Many institutions already have local experimentation. What they often lack is coordination, assurance, foresight and mission-level steering across the whole system.",
+      "points": [
+        {
+          "title": "Coordinate the edge"
+        },
+        {
+          "title": "Build assurance"
+        },
+        {
+          "title": "Steer by mission"
+        }
+      ],
+      "notes": {
+        "transition": "Before leaving the opening diagnosis, turn it into the first institutional implication.",
+        "points": [
+          "If governance is lagging behind use, the answer cannot be a thin guidance document.",
+          "The institution needs coordination, assurance, foresight and mission-level steering across the whole system.",
+          "Use this as the first practical move so the talk does not leave action until the end."
         ]
       }
     },
@@ -265,11 +290,11 @@
       "title": "The build-out",
       "subtitle": "Why the boom matters even if the hype does not last",
       "notes": {
-        "transition": "Move from embedded use to the upstream build-out behind it.",
+        "transition": "Having sketched the first implication, zoom back out to the upstream build-out behind it.",
         "points": [
-          "This section is about political economy: why the boom matters even if some of the hype does not last.",
-          "Signal that the next slides are not dismissing AI as bubble talk; they are asking what durable capacity the boom is creating, and for whom.",
-          "This is the bridge from campus use to the wider stack."
+          "This section moves from campus use to the political economy of the wider stack.",
+          "Signal that the next slides are not dismissing AI as hype; they are asking what durable capacity the boom is creating, and for whom.",
+          "This is the bridge from institutional dependence to the infrastructure being built upstream."
         ]
       }
     },
@@ -621,7 +646,32 @@
         "points": [
           "This is one of the strongest lines in the deck, so give it air.",
           "The point is that infrastructure settles before institutions have fully debated its consequences.",
-          "Use the pause here to prepare the room for the next question: what does that dependence do inside the university?"
+          "Use it to introduce a procurement implication: the way universities buy now will shape the future they are still able to contest."
+        ]
+      }
+    },
+    {
+      "type": "content",
+      "section": "Who sets the defaults?",
+      "heading": "Buy infrastructure like it will one day disappoint you",
+      "body": "Good procurement assumes that every platform will eventually change price, terms, quality or strategic direction. The question is whether the university remains able to respond.",
+      "points": [
+        {
+          "title": "Portability"
+        },
+        {
+          "title": "Open standards"
+        },
+        {
+          "title": "Exit planning"
+        }
+      ],
+      "notes": {
+        "transition": "Having shown how vendor terms shape the future, give the room a procurement rule.",
+        "points": [
+          "Treat procurement as governance rather than as a back-office purchase.",
+          "Assume every platform will eventually change price, terms, quality or direction.",
+          "The practical test is whether portability, open standards and exit planning are preserved from the start."
         ]
       }
     },
@@ -631,9 +681,9 @@
       "title": "What dependence does",
       "subtitle": "Pedagogy, labour, data and inequality",
       "notes": {
-        "transition": "Move from external power to internal effects.",
+        "transition": "After the procurement implication, move back into what dependence actually does inside the university.",
         "points": [
-          "This section asks what dependence actually changes in pedagogy, labour, data, and inequality.",
+          "This section asks what dependence changes in pedagogy, labour, data, and inequality.",
           "Signal that the next slides are about educational consequences, not just market structure.",
           "This is where the three opening lenses start paying off most clearly."
         ]
@@ -846,7 +896,32 @@
         "points": [
           "The concern is not that AI enters higher education; that is already happening.",
           "The concern is how much educational purpose gets rewritten by commercial defaults.",
-          "Pause here because this line ties the whole section back to mission."
+          "Use this to introduce the data-governance implication: educational traces cannot just slide upstream by default."
+        ]
+      }
+    },
+    {
+      "type": "content",
+      "section": "What dependence does",
+      "heading": "Treat educational data as a governed asset, not free raw material",
+      "body": "Student work, support data and interaction traces are mission-governed resources. They should not drift into open-ended upstream model improvement by default.",
+      "points": [
+        {
+          "title": "Purpose limitation"
+        },
+        {
+          "title": "No dark training"
+        },
+        {
+          "title": "Oversight"
+        }
+      ],
+      "notes": {
+        "transition": "After naming distortion and extraction in teaching and research, make the data implication explicit.",
+        "points": [
+          "Student work, support data and interaction traces are governed assets, not free raw material.",
+          "Separate operational delivery, evaluation, and model-improvement uses rather than letting them blur together.",
+          "This is where student rights and institutional legitimacy become concrete."
         ]
       }
     },
@@ -856,7 +931,7 @@
       "title": "The lifecycle of capture",
       "subtitle": "How convenience hardens into dependence",
       "notes": {
-        "transition": "Move from effects to process.",
+        "transition": "After the data implication, move from effects to process.",
         "points": [
           "This section explains how convenience hardens into dependence over time.",
           "Say that platforms rarely begin with a visible squeeze; they usually begin with generosity.",
@@ -1043,7 +1118,32 @@
         "points": [
           "The right of exit has to be protected before convenience becomes culture.",
           "This is not about planning to leave every system; it is about never becoming unable to.",
-          "Use this as the hinge into the constructive section."
+          "Use it to introduce an architectural implication: modularity and plural ecosystems preserve options before the squeeze arrives."
+        ]
+      }
+    },
+    {
+      "type": "content",
+      "section": "The lifecycle of capture",
+      "heading": "Prefer modular architecture and plural ecosystems",
+      "body": "The goal is not to build everything locally. It is to avoid allowing one stack to become the only imaginable path.",
+      "points": [
+        {
+          "title": "Modular design"
+        },
+        {
+          "title": "Plural model exposure"
+        },
+        {
+          "title": "Right-sized models"
+        }
+      ],
+      "notes": {
+        "transition": "Turn the right of exit into an architectural principle.",
+        "points": [
+          "Do not let one stack become the only imaginable route through the institution.",
+          "Modularity and plural ecosystems preserve bargaining power, resilience and room to adapt.",
+          "This is how you keep options open before convenience hardens into culture."
         ]
       }
     },
@@ -1053,11 +1153,11 @@
       "title": "A different strategy",
       "subtitle": "Engaged stewardship instead of passive consumption",
       "notes": {
-        "transition": "Now pivot from diagnosis to response.",
+        "transition": "Now gather the earlier implications into a more coherent strategy.",
         "points": [
-          "This section should feel like a release of pressure: there is a workable alternative.",
-          "Signal that the answer is neither refusal nor surrender.",
-          "We are now moving from critique to institutional design."
+          "The audience has already seen governance, procurement, data and architecture implications earlier in the talk.",
+          "This section consolidates those scattered implications into an explicit stewardship posture.",
+          "The answer remains neither refusal nor surrender; it is now being named more fully."
         ]
       }
     },
@@ -1148,90 +1248,6 @@
     {
       "type": "content",
       "section": "A different strategy",
-      "heading": "Universities need a viable system for AI governance, not just a policy",
-      "body": "Many institutions already have local experimentation. What they often lack is coordination, assurance, foresight and mission-level steering across the whole system.",
-      "points": [
-        {
-          "title": "Coordinate the edge"
-        },
-        {
-          "title": "Build assurance"
-        },
-        {
-          "title": "Steer by mission"
-        }
-      ],
-      "notes": {
-        "transition": "Translate stewardship into organisational form.",
-        "points": [
-          "The institution needs a viable system for AI governance, not just a policy document.",
-          "Say that many campuses are rich in experimentation at the edge and thin in coordination, assurance, foresight, and mission-level steering.",
-          "This is the plain-language version of the viable system diagnosis.",
-          "Coordinate the edge: Connect faculties, services and pilots so AI practice does not fragment into isolated local experiments.",
-          "Build assurance: Procurement, audit, risk review and evaluation need institutional authority, not just enthusiasm.",
-          "Steer by mission: Senior governance must articulate what kind of university the AI stack is supposed to serve."
-        ]
-      }
-    },
-    {
-      "type": "content",
-      "section": "A different strategy",
-      "heading": "Buy infrastructure like it will one day disappoint you",
-      "body": "Good procurement assumes that every platform will eventually change price, terms, quality or strategic direction. The question is whether the university remains able to respond.",
-      "points": [
-        {
-          "title": "Portability"
-        },
-        {
-          "title": "Open standards"
-        },
-        {
-          "title": "Exit planning"
-        }
-      ],
-      "notes": {
-        "transition": "Bring the procurement lesson home.",
-        "points": [
-          "Buy infrastructure on the assumption that price, quality, or direction will eventually change.",
-          "That means portability, open standards, and exit planning are not pessimism; they are competence.",
-          "This slide works well if delivered as hard-earned institutional realism.",
-          "Portability: Require usable export paths for content, prompts, logs, fine-tuning data and configurations.",
-          "Open standards: Avoid proprietary formats that bury core teaching workflows inside one vendor's stack.",
-          "Exit planning: Build fallback routes, review points and sunset clauses into every important AI contract."
-        ]
-      }
-    },
-    {
-      "type": "content",
-      "section": "A different strategy",
-      "heading": "Treat educational data as a governed asset, not free raw material",
-      "body": "Student work, support data and interaction traces are mission-governed resources. They should not drift into open-ended upstream model improvement by default.",
-      "points": [
-        {
-          "title": "Purpose limitation"
-        },
-        {
-          "title": "No dark training"
-        },
-        {
-          "title": "Oversight"
-        }
-      ],
-      "notes": {
-        "transition": "Now focus on data.",
-        "points": [
-          "Educational data is a governed asset, not free raw material.",
-          "Separate operational use, evaluation use, and training/improvement use in your explanation.",
-          "This is where you make clear that stewardship includes student rights and institutional legitimacy.",
-          "Purpose limitation: Separate service delivery from model training and from research uses.",
-          "No dark training: Ban open-ended commercial model training on student and staff data without explicit sector governance.",
-          "Oversight: High-impact data uses need scrutiny from legal, ethical, academic and student perspectives."
-        ]
-      }
-    },
-    {
-      "type": "content",
-      "section": "A different strategy",
       "heading": "Make evaluation a core institutional capability",
       "body": "Universities should not rely on product demos, generic benchmarks or marketing claims to decide what is acceptable in teaching and governance.",
       "points": [
@@ -1254,34 +1270,6 @@
           "Task-based testing: Build benchmark tasks for feedback, retrieval, advising, accessibility and disciplinary use cases.",
           "Independent scrutiny: Review hallucination risk, bias, privacy leakage, citation behaviour and fail-safe performance.",
           "Continuous review: Re-evaluate when underlying models, terms or integrations change upstream."
-        ]
-      }
-    },
-    {
-      "type": "content",
-      "section": "A different strategy",
-      "heading": "Prefer modular architecture and plural ecosystems",
-      "body": "The goal is not to build everything locally. It is to avoid allowing one stack to become the only imaginable path.",
-      "points": [
-        {
-          "title": "Modular design"
-        },
-        {
-          "title": "Plural model exposure"
-        },
-        {
-          "title": "Right-sized models"
-        }
-      ],
-      "notes": {
-        "transition": "Broaden from buying rules to technical design.",
-        "points": [
-          "The goal is not to build everything locally; it is to avoid allowing one stack to become the only imaginable path.",
-          "Use modularity, plural model exposure, and right-sized models as practical design principles.",
-          "This is where the audience should hear that architecture choices can preserve agency.",
-          "Modular design: Use abstraction layers, retrieval components and portable data structures wherever feasible.",
-          "Plural model exposure: Ensure staff and students can compare multiple systems, including open or locally hosted options.",
-          "Right-sized models: For many educational tasks, grounded and well-evaluated smaller systems may be better than the biggest generic model."
         ]
       }
     },
