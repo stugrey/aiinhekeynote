@@ -11,17 +11,18 @@ const LENS_META = {
 };
 
 function renderLensMarkers(slide) {
-  if (!Array.isArray(slide.lenses) || slide.lenses.length === 0) return '';
+  const hasLenses = Array.isArray(slide.lenses) && slide.lenses.length > 0;
 
-  const markers = slide.lenses
-    .filter(lens => LENS_META[lens])
-    .map((lens) => {
-      const meta = LENS_META[lens];
-      return `<span class="lens-marker lens-marker--${lens} lens-marker--droplet" title="${meta.label}"><canvas class="lens-droplet-canvas" data-lens="${lens}"></canvas><span class="lens-droplet-letter">${meta.short}</span></span>`;
-    })
-    .join('');
+  const markers = hasLenses
+    ? slide.lenses
+        .filter(lens => LENS_META[lens])
+        .map((lens) => {
+          const meta = LENS_META[lens];
+          return `<span class="lens-marker lens-marker--${lens} lens-marker--droplet" title="${meta.label}"><canvas class="lens-droplet-canvas" data-lens="${lens}"></canvas><span class="lens-droplet-letter">${meta.short}</span></span>`;
+        })
+        .join('')
+    : '';
 
-  if (!markers) return '';
   return `<div class="lens-marker-group" aria-label="Applied lenses">${markers}</div>`;
 }
 
@@ -60,12 +61,16 @@ export function coverDarkMinimal(slide) {
 export function dividerColorBurst(slide, page) {
   return `
     <div class="slide-inner divider-color-burst">
-      ${slide.section_number != null
-        ? `<div class="divider-badge">Section ${slide.section_number}</div>`
-        : ''}
-      <div class="divider-title">${slide.title}</div>
-      <div class="divider-page">${String(page).padStart(2, '0')}</div>
-      ${renderLensMarkers(slide)}
+      <div class="divider-center">
+        ${slide.section_number != null
+          ? `<div class="divider-badge">Section ${slide.section_number}</div>`
+          : ''}
+        <div class="divider-title">${slide.title}</div>
+      </div>
+      <div class="divider-footer">
+        <span class="divider-page">${String(page).padStart(2, '0')}</span>
+        ${renderLensMarkers(slide)}
+      </div>
     </div>
   `;
 }

@@ -179,6 +179,7 @@ function renderControls() {
     <div class="ctrl-header">
       <h2>Deck Generator</h2>
       <div class="ctrl-header-actions">
+        <button id="btn-play" class="ctrl-btn ctrl-btn--export">Play</button>
         <button id="btn-save" class="ctrl-btn ctrl-btn--save" disabled>Save</button>
         <button id="btn-export-all" class="ctrl-btn ctrl-btn--export">Export All</button>
         <button id="btn-toggle" class="ctrl-btn ctrl-btn--toggle">${collapsed ? 'Expand' : 'Collapse'}</button>
@@ -290,6 +291,7 @@ function renderControls() {
 
   el.querySelector('#btn-save').addEventListener('click', saveContent);
   el.querySelector('#btn-export-all').addEventListener('click', exportAllSlides);
+  el.querySelector('#btn-play').addEventListener('click', enterPlayMode);
 
   // Restore dirty state if controls were rebuilt mid-session
   if (contentDirty) {
@@ -835,7 +837,8 @@ function fixStatBlockContrast() {
     if (slide) {
       const slideL = luminance(getComputedStyle(slide).backgroundColor);
       const contrast = Math.abs(blockL - slideL);
-      block.style.border = contrast < 0.05 ? '1px solid rgba(255,255,255,0.15)' : '';
+      block.style.outline = contrast < 0.1 ? '1px solid rgba(255,255,255,0.15)' : '';
+      block.style.outlineOffset = contrast < 0.1 ? '-1px' : '';
     }
   });
 }
@@ -1019,4 +1022,145 @@ function renderDeck() {
   renderPagination();
 }
 
+// ─── PLAY MODE ─────────────────────────────────
+// Fullscreen single-slide presentation. Arrow keys navigate, Escape exits.
+
+let playMode = false;
+let playSlideIndex = 0;
+let playOverlay = null;
+
+function enterPlayMode() {
+  if (!currentContent || !currentContent.slides.length) return;
+  playMode = true;
+  playSlideIndex = currentPage * SLIDES_PER_PAGE;  // start from current page's first slide
+
+  playOverlay = document.createElement('div');
+  playOverlay.id = 'play-overlay';
+  playOverlay.innerHTML = `
+    <div class="play-label" id="play-label"></div>
+    <div class="play-slide-container">
+      <div class="play-slide" id="play-slide"></div>
+    </div>
+    <div class="play-counter" id="play-counter"></div>
+  `;
+  document.body.appendChild(playOverlay);
+
+  renderPlaySlide();
+}
+
+function exitPlayMode() {
+  if (!playMode) return;
+  playMode = false;
+  if (playOverlay) {
+    // Clean up any WebGL contexts in the play slide
+    playOverlay.remove();
+    playOverlay = null;
+  }
+}
+
+function renderPlaySlide() {
+  if (!playOverlay || !currentContent) return;
+  const config = currentConfig;
+  const slide = currentContent.slides[playSlideIndex];
+  const page = playSlideIndex + 1;
+
+  const layoutName = config.layouts[slide.type] || Object.values(config.layouts)[0];
+  const layoutFn = layoutRegistry[layoutName];
+  if (!layoutFn) return;
+
+  const slideEl = document.createElement('div');
+  slideEl.className = 'slide';
+  slideEl.dataset.palette = config.palette;
+  slideEl.dataset.typography = config.typography;
+  if (config.pinstripes !== 'none') slideEl.dataset.pinstripes = config.pinstripes;
+  slideEl.innerHTML = layoutFn(slide, page);
+
+  // Add shape overlay
+  const slideShape = config.slideShapes[playSlideIndex] ?? config.shapes;
+  const shapeFn = shapeRegistry[slideShape];
+  const inner = slideEl.querySelector('.slide-inner');
+  let shapeInit = null;
+
+  if (shapeFn && inner) {
+    const shapeResult = shapeFn(playSlideIndex);
+    const html = typeof shapeResult === 'string' ? shapeResult : shapeResult.html;
+    if (html) inner.insertAdjacentHTML('afterbegin', html);
+    if (typeof shapeResult === 'object' && shapeResult.init) {
+      shapeInit = () => shapeResult.init(slideEl);
+    }
+  }
+
+  // Textures
+  if (inner) {
+    if (config.pinstripes !== 'none') {
+      inner.insertAdjacentHTML('afterbegin', '<div class="shape-overlay texture-pinstripes"></div>');
+    }
+    inner.insertAdjacentHTML(
+      'afterbegin',
+      `<div class="shape-overlay texture-noise" style="background-image:url(${noiseDataURL});opacity:${config.noise / 100}"></div>`,
+    );
+  }
+
+  const container = playOverlay.querySelector('#play-slide');
+  container.innerHTML = '';
+  container.appendChild(slideEl);
+
+  // Label + counter
+  const label = playOverlay.querySelector('#play-label');
+  label.textContent = `${slide.type} — ${layoutName}`;
+
+  const counter = playOverlay.querySelector('#play-counter');
+  counter.textContent = `${page} / ${currentContent.slides.length}`;
+
+  // Apply same post-render fixes as renderDeck
+  fixStatBlockContrast();
+  fitStatSizes();
+
+  // Resolve pinstripes
+  slideEl.querySelectorAll('.texture-pinstripes').forEach(el => {
+    const dir = slideEl.dataset.pinstripes;
+    if (!dir || dir === 'none') return;
+    const color = getComputedStyle(el).color;
+    const url = generatePinstripeTexture(dir, color);
+    el.style.background = `url(${url}) repeat`;
+  });
+
+  // Post-init (WebGL shapes + lens badges)
+  requestAnimationFrame(async () => {
+    if (shapeInit) await shapeInit();
+    await initLensBadgeDroplets();
+  });
+}
+
 init();
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (!currentContent) return;
+  const total = currentContent.slides.length;
+
+  // ── Play mode controls ──
+  if (playMode) {
+    if (e.key === 'Escape') {
+      exitPlayMode();
+    } else if (e.key === 'ArrowRight' && playSlideIndex < total - 1) {
+      playSlideIndex++;
+      renderPlaySlide();
+    } else if (e.key === 'ArrowLeft' && playSlideIndex > 0) {
+      playSlideIndex--;
+      renderPlaySlide();
+    }
+    return;
+  }
+
+  // ── Normal mode: paginate deck ──
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+  const totalPages = Math.ceil(total / SLIDES_PER_PAGE);
+
+  if (e.key === 'ArrowLeft' && currentPage > 0) {
+    goToPage(currentPage - 1, 'back');
+  } else if (e.key === 'ArrowRight' && currentPage < totalPages - 1) {
+    goToPage(currentPage + 1, 'forward');
+  }
+});

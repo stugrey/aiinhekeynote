@@ -410,10 +410,11 @@ body {
 
 .lens-marker-group {
   position: absolute;
-  right: 1rem;
-  bottom: 0.9rem;
+  right: var(--slide-padding);
+  bottom: var(--slide-padding);
   left: auto;
   width: max-content;
+  min-height: 2.8rem;
   display: flex;
   align-items: center;
   gap: 0;
@@ -444,9 +445,9 @@ body {
 
 .lens-marker--droplet {
   position: relative;
-  width: 3.2rem;
-  height: 3.2rem;
-  font-size: 0.95rem;
+  width: 2.8rem;
+  height: 2.8rem;
+  font-size: 0.85rem;
   background: transparent;
   border: none;
   box-shadow: none;
@@ -505,8 +506,8 @@ body {
 
 .statement-centered .lens-marker-group,
 .statement-editorial .lens-marker-group {
-  right: 1.15rem;
-  bottom: 1.05rem;
+  right: var(--slide-padding);
+  bottom: var(--slide-padding);
 }
 
 
@@ -676,12 +677,27 @@ body {
   word-break: break-word;
 }
 
+.divider-color-burst .divider-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.divider-color-burst .divider-footer {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
 .divider-color-burst .divider-page {
-  position: absolute;
-  top: var(--slide-padding);
-  right: var(--slide-padding);
   font-size: var(--caption-size);
   opacity: 0.5;
+}
+
+.divider-color-burst .divider-footer .lens-marker-group {
+  position: static;
+  margin-left: auto;
 }
 
 
@@ -1297,4 +1313,59 @@ body {
 .slide-inner > *:not(.shape-overlay):not(.lens-marker-group) {
   position: relative;
   z-index: 1;
+}
+
+
+/* ============================================
+   PLAY MODE — fullscreen single-slide view
+   ============================================ */
+
+#play-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#play-overlay .play-slide-container {
+  /* Fill viewport while maintaining 16:9 */
+  width: min(100vw, 177.78vh);   /* 16/9 * 100vh */
+  height: min(100vh, 56.25vw);   /* 9/16 * 100vw */
+}
+
+#play-overlay #play-slide {
+  width: 100%;
+  height: 100%;
+}
+
+#play-overlay .play-slide-container .slide {
+  width: 100%;
+  aspect-ratio: auto;
+  height: 100%;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+#play-overlay .play-label {
+  position: fixed;
+  top: 1.2rem;
+  left: 1.5rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+}
+
+#play-overlay .play-counter {
+  position: fixed;
+  bottom: 1.2rem;
+  right: 1.5rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.3);
+  pointer-events: none;
 }

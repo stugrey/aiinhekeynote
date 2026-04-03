@@ -4743,3 +4743,1687 @@ The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teessid
 _**Agent (claude-opus-4-6 2026-04-03 10:49:06Z)**_
 
 The D and E letters are now always white with a stronger shadow so they read clearly against the mercury and oil droplets, regardless of slide background.
+
+---
+
+_**User (2026-04-03 10:49:51Z)**_
+
+Can you add keyboard shortcuts to go forward and backwards through the pagination of the slide?
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-03 10:49:56Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./src/main.js` pattern `goToPage|renderPagination|pg-btn`
+
+```text
+100-
+101-/** Navigate to a page, re-render, and scroll */
+102:function goToPage(page, direction) {
+103-  setPage(page);
+104-  renderDeck();
+105:  renderPagination();
+106-  if (direction === 'forward') {
+107-    document.getElementById('deck').scrollIntoView({ behavior: 'smooth', block: 'start' });
+--
+220-
+221-  // Pagination controls (injected after the layout row)
+222:  renderPagination();
+223-
+224-  // Toggle collapse/expand
+--
+313-
+314-  nav.innerHTML = `
+315:    <button class="pg-btn pg-prev" ${currentPage === 0 ? 'disabled' : ''}>&larr; Prev</button>
+316-    <span class="pg-info">Slides ${start}–${end} of ${totalSlides}</span>
+317:    <button class="pg-btn pg-next" ${currentPage >= totalPages - 1 ? 'disabled' : ''}>Next &rarr;</button>
+318-  `;
+319-
+320-  nav.querySelector('.pg-prev').addEventListener('click', () => {
+321:    if (currentPage > 0) goToPage(currentPage - 1, 'back');
+322-  });
+323-  nav.querySelector('.pg-next').addEventListener('click', () => {
+324:    if (currentPage < totalPages - 1) goToPage(currentPage + 1, 'forward');
+325-  });
+326-
+--
+329-
+330-/** Render pagination controls above and below the deck */
+331:function renderPagination() {
+332-  const totalSlides = currentContent ? currentContent.slides.length : 0;
+333-  const totalPages = Math.ceil(totalSlides / SLIDES_PER_PAGE);
+--
+1017-  });
+1018-
+1019:  renderPagination();
+1020-}
+1021-
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:49:59Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/main.js`
+
+```text
+330	/** Render pagination controls above and below the deck */
+331	function renderPagination() {
+332	  const totalSlides = currentContent ? currentContent.slides.length : 0;
+333	  const totalPages = Math.ceil(totalSlides / SLIDES_PER_PAGE);
+334	
+335	  // Remove existing pagination elements
+336	  document.getElementById('pagination-top')?.remove();
+337	  document.getElementById('pagination-bottom')?.remove();
+338	
+339	  if (totalPages <= 1) return;
+340	
+341	  // Top pagination (after controls)
+342	  document.getElementById('controls').after(createPaginationNav('pagination-top'));
+343	
+344	  // Bottom pagination (after deck)
+345	  document.getElementById('deck').after(createPaginationNav('pagination-bottom'));
+346	}
+347	
+348	/** Generate a pinstripe tile as a data URL for html2canvas export */
+349	function generatePinstripeTexture(direction, color) {
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:50:06Z)**_
+
+Now let me find where the app initializes to add the keyboard listener:
+
+_**Agent (claude-opus-4-6 2026-04-03 10:50:07Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./src/main.js` pattern `addEventListener.*DOMContentLoaded|window\.addEventListener|document\.addEventListener`
+
+```text
+No matches found
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:50:12Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./src/main.js` pattern `^async function init|^function init|renderDeck\(\)"`
+
+```text
+130-  noiseDataURL = canvas.toDataURL('image/png');
+131-}
+132-
+133:async function init() {
+134-  generateNoiseTexture();
+135-
+136-  const [config, content] = await Promise.all([
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:50:18Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./src/main.js` pattern `^init\(\)"`
+
+```text
+No matches found
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:50:23Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./src/main.js` pattern `init\(\)"`
+
+```text
+No matches found
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:50:33Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./src/main.js` pattern `init\("`
+
+```text
+No matches found
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:50:40Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./src/main.js` pattern `init\(\)`
+
+```text
+133:async function init() {
+1022:init();
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:50:45Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/main.js`
+
+```text
+1019	  renderPagination();
+1020	}
+1021	
+1022	init();
+1023
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:50:56Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/main.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:51:02Z)**_
+
+Done. Left/right arrow keys now navigate between pages. They're ignored when you're focused on an input or textarea.
+
+---
+
+_**User (2026-04-03 10:52:01Z)**_
+
+Can you also add a play mode button to the top menu bar that, when selected, shows one slide at a time using the arrow keys to go through them? Escape exits play mode.
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-03 10:52:07Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-03 10:52:08Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/main.js`
+
+```text
+133	async function init() {
+134	  generateNoiseTexture();
+135	
+136	  const [config, content] = await Promise.all([
+137	    fetch(CONFIG_URL).then(r => r.json()),
+138	    fetch(CONTENT_URL).then(r => r.json()),
+139	  ]);
+140	
+141	  // Initialise per-slide shapes map if not present
+142	  if (!config.slideShapes) config.slideShapes = {};
+143	
+144	  currentConfig = config;
+145	  currentContent = content;
+146	
+147	  // Clamp restored page in case content changed
+148	  const maxPage = Math.max(0, Math.ceil(content.slides.length / SLIDES_PER_PAGE) - 1);
+149	  if (currentPage > maxPage) setPage(maxPage);
+150	
+151	  renderControls();
+152	  renderDeck();
+153	}
+154	
+155	/** Build a <select> dropdown */
+156	function buildSelect(id, options, currentValue) {
+157	  const opts = options.map(o =>
+158	    `<option value="${o.value}"${o.value === currentValue ? ' selected' : ''}>${o.label}</option>`
+159	  ).join('');
+160	  return `<select id="${id}" class="ctrl-select">${opts}</select>`;
+161	}
+162	
+163	/** Render the interactive controls panel */
+164	function renderControls() {
+165	  const el = document.getElementById('controls');
+166	  const c = currentConfig;
+167	
+168	  // Layout selects for each slide type
+169	  const layoutSelects = Object.entries(LAYOUT_OPTIONS).map(([type, options]) => `
+170	    <div class="ctrl-group">
+171	      <label class="ctrl-label" for="layout-${type}">${type}</label>
+172	      ${buildSelect(`layout-${type}`, options, c.layouts[type])}
+173	    </div>
+174	  `).join('');
+175	
+176	  const collapsed = sessionStorage.getItem('ctrlCollapsed') === '1';
+177	
+178	  el.innerHTML = `
+179	    <div class="ctrl-header">
+180	      <h2>Deck Generator</h2>
+181	      <div class="ctrl-header-actions">
+182	        <button id="btn-save" class="ctrl-btn ctrl-btn--save" disabled>Save</button>
+183	        <button id="btn-export-all" class="ctrl-btn ctrl-btn--export">Export All</button>
+184	        <button id="btn-toggle" class="ctrl-btn ctrl-btn--toggle">${collapsed ? 'Expand' : 'Collapse'}</button>
+185	      </div>
+186	    </div>
+187	
+188	    <div class="ctrl-body" ${collapsed ? 'style="display:none"' : ''}>
+189	      <div class="ctrl-row">
+190	        <div class="ctrl-group">
+191	          <label class="ctrl-label" for="sel-palette">Palette</label>
+192	          ${buildSelect('sel-palette', PALETTES, c.palette)}
+193	        </div>
+194	        <div class="ctrl-group">
+195	          <label class="ctrl-label" for="sel-typography">Typography</label>
+196	          ${buildSelect('sel-typography', TYPOGRAPHY, c.typography)}
+197	        </div>
+198	        <div class="ctrl-group">
+199	          <label class="ctrl-label" for="sel-shapes">Shapes</label>
+200	          ${buildSelect('sel-shapes', SHAPES, c.shapes)}
+201	        </div>
+202	        <div class="ctrl-group">
+203	          <label class="ctrl-label" for="sel-pinstripes">Pinstripes</label>
+204	          ${buildSelect('sel-pinstripes', PINSTRIPES, c.pinstripes)}
+205	        </div>
+206	        <div class="ctrl-group">
+207	          <label class="ctrl-label" for="sld-noise">Noise <span id="noise-val">${c.noise}%</span></label>
+208	          <input type="range" id="sld-noise" class="ctrl-range" min="0" max="30" step="1" value="${c.noise}" />
+209	        </div>
+210	      </div>
+211	
+212	      <div class="ctrl-row ctrl-row--layouts">
+213	        ${layoutSelects}
+214	      </div>
+215	      <div class="ctrl-row ctrl-row--actions">
+216	        <button id="btn-randomise" class="ctrl-btn">Randomise</button>
+217	      </div>
+218	    </div>
+219	  `;
+220	
+221	  // Pagination controls (injected after the layout row)
+222	  renderPagination();
+223	
+224	  // Toggle collapse/expand
+225	  el.querySelector('#btn-toggle').addEventListener('click', () => {
+226	    const body = el.querySelector('.ctrl-body');
+227	    const btn = el.querySelector('#btn-toggle');
+228	    const isHidden = body.style.display === 'none';
+229	    body.style.display = isHidden ? '' : 'none';
+230	    btn.textContent = isHidden ? 'Collapse' : 'Expand';
+231	    sessionStorage.setItem('ctrlCollapsed', isHidden ? '0' : '1');
+232	  });
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:52:19Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/main.js`
+
+```text
+232	  });
+233	
+234	  // Wire up event listeners
+235	  el.querySelector('#sel-palette').addEventListener('change', e => {
+236	    currentConfig.palette = e.target.value;
+237	    markDirty();
+238	    renderDeck();
+239	  });
+240	  el.querySelector('#sel-typography').addEventListener('change', e => {
+241	    currentConfig.typography = e.target.value;
+242	    markDirty();
+243	    renderDeck();
+244	  });
+245	  el.querySelector('#sel-shapes').addEventListener('change', e => {
+246	    currentConfig.shapes = e.target.value;
+247	    const total = currentContent ? currentContent.slides.length : 0;
+248	    for (let s = 0; s < total; s++) currentConfig.slideShapes[s] = e.target.value;
+249	    markDirty();
+250	    renderDeck();
+251	  });
+252	  el.querySelector('#sel-pinstripes').addEventListener('change', e => {
+253	    currentConfig.pinstripes = e.target.value;
+254	    markDirty();
+255	    renderDeck();
+256	  });
+257	  el.querySelector('#sld-noise').addEventListener('input', e => {
+258	    const val = Number(e.target.value);
+259	    currentConfig.noise = val;
+260	    markDirty();
+261	    el.querySelector('#noise-val').textContent = `${val}%`;
+262	    document.querySelectorAll('.texture-noise').forEach(el => {
+263	      el.style.opacity = val / 100;
+264	    });
+265	  });
+266	
+267	  Object.keys(LAYOUT_OPTIONS).forEach(type => {
+268	    el.querySelector(`#layout-${type}`).addEventListener('change', e => {
+269	      currentConfig.layouts[type] = e.target.value;
+270	      markDirty();
+271	      renderDeck();
+272	    });
+273	  });
+274	
+275	  el.querySelector('#btn-randomise').addEventListener('click', () => {
+276	    const pick = arr => arr[Math.floor(Math.random() * arr.length)].value;
+277	    currentConfig.palette = pick(PALETTES);
+278	    currentConfig.typography = pick(TYPOGRAPHY);
+279	    currentConfig.shapes = pick(SHAPES);
+280	    const total = currentContent ? currentContent.slides.length : 0;
+281	    for (let s = 0; s < total; s++) currentConfig.slideShapes[s] = currentConfig.shapes;
+282	    currentConfig.pinstripes = pick(PINSTRIPES);
+283	    currentConfig.noise = Math.floor(Math.random() * 16);
+284	    Object.keys(LAYOUT_OPTIONS).forEach(type => {
+285	      currentConfig.layouts[type] = pick(LAYOUT_OPTIONS[type]);
+286	    });
+287	    renderControls();
+288	    renderDeck();
+289	  });
+290	
+291	  el.querySelector('#btn-save').addEventListener('click', saveContent);
+292	  el.querySelector('#btn-export-all').addEventListener('click', exportAllSlides);
+293	
+294	  // Restore dirty state if controls were rebuilt mid-session
+295	  if (contentDirty) {
+296	    const btn = el.querySelector('#btn-save');
+297	    btn.disabled = false;
+298	    btn.textContent = 'Save';
+299	  }
+300	}
+301	
+302	/** Build pagination HTML and wire up listeners */
+303	function createPaginationNav(id) {
+304	  const totalSlides = currentContent ? currentContent.slides.length : 0;
+305	  const totalPages = Math.ceil(totalSlides / SLIDES_PER_PAGE);
+306	
+307	  const nav = document.createElement('div');
+308	  nav.id = id;
+309	  nav.className = 'pagination';
+310	
+311	  const start = currentPage * SLIDES_PER_PAGE + 1;
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:52:28Z)**_
+
+Now let me see how slides are rendered in renderDeck so I know the DOM structure:
+
+_**Agent (claude-opus-4-6 2026-04-03 10:52:28Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/main.js`
+
+```text
+840	  });
+841	}
+842	
+843	/** Render all slides into the #deck container */
+844	function renderDeck() {
+845	  const config = currentConfig;
+846	  const content = currentContent;
+847	  const deck = document.getElementById('deck');
+848	
+849	  // Clean up previous WebGL contexts before clearing DOM
+850	  cleanupShapes();
+851	  deck.innerHTML = '';
+852	
+853	  // Collect any post-DOM init callbacks (for WebGL shapes)
+854	  const postInits = [];
+855	
+856	  const startIdx = currentPage * SLIDES_PER_PAGE;
+857	  const pageSlides = content.slides.slice(startIdx, startIdx + SLIDES_PER_PAGE);
+858	
+859	  pageSlides.forEach((slide, j) => {
+860	    const i = startIdx + j;
+861	    const page = i + 1;
+862	
+863	    // Determine layout for this slide type
+864	    const layoutName = config.layouts[slide.type] || Object.values(config.layouts)[0];
+865	    const layoutFn = layoutRegistry[layoutName];
+866	
+867	    if (!layoutFn) {
+868	      console.warn(`Layout "${layoutName}" not found for slide type "${slide.type}"`);
+869	      return;
+870	    }
+871	
+872	    // Create wrapper
+873	    const wrapper = document.createElement('div');
+874	    wrapper.className = 'slide-wrapper';
+875	
+876	    // Label + per-slide shape control + export button
+877	    const labelRow = document.createElement('div');
+878	    labelRow.className = 'slide-label';
+879	
+880	    const labelText = document.createElement('span');
+881	    labelText.textContent = `${String(page).padStart(2, '0')} — ${slide.type} — ${layoutName}`;
+882	
+883	    const slideShape = config.slideShapes[i] ?? config.shapes;
+884	    const shapeSelect = document.createElement('select');
+885	    shapeSelect.className = 'ctrl-select slide-shape-select';
+886	    SHAPES.forEach(opt => {
+887	      const o = document.createElement('option');
+888	      o.value = opt.value;
+889	      o.textContent = opt.label;
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:52:34Z)**_
+
+Now I have a good understanding. I'll add a Play button, a fullscreen play mode overlay, and the keyboard logic.
+
+_**Agent (claude-opus-4-6 2026-04-03 10:52:37Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/main.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:52:53Z)**_
+
+Now wire up the Play button and add the play mode logic. Let me find where the other button listeners are:
+
+_**Agent (claude-opus-4-6 2026-04-03 10:52:55Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/main.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:53:05Z)**_
+
+Now add the play mode state and functions before `init()`:
+
+_**Agent (claude-opus-4-6 2026-04-03 10:53:22Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/main.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:53:24Z)**_
+
+Now update the keyboard handler to handle play mode:
+
+_**Agent (claude-opus-4-6 2026-04-03 10:53:31Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/main.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:53:33Z)**_
+
+Now add the CSS for the play mode overlay:
+
+_**Agent (claude-opus-4-6 2026-04-03 10:53:39Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:53:43Z)**_
+
+I also need to make sure `generatePinstripeTexture` and `noiseDataURL` are accessible from the play mode function. Let me check if `noiseDataURL` is in scope:
+
+_**Agent (claude-opus-4-6 2026-04-03 10:53:44Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./src/main.js` pattern `noiseDataURL`
+
+```text
+114:let noiseDataURL = '';
+130:  noiseDataURL = canvas.toDataURL('image/png');
+748:    `<div class="shape-overlay texture-noise" style="background-image:url(${noiseDataURL});opacity:${config.noise / 100}"></div>`,
+983:        `<div class="shape-overlay texture-noise" style="background-image:url(${noiseDataURL});opacity:${config.noise / 100}"></div>`,
+1098:      `<div class="shape-overlay texture-noise" style="background-image:url(${noiseDataURL});opacity:${config.noise / 100}"></div>`,
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:53:48Z)**_
+
+Good, both `noiseDataURL` and `generatePinstripeTexture` are module-level. Everything should work. The play mode overlay will show slides at full viewport width with 16:9 aspect ratio.
+
+Done. Click **Play** in the top bar to enter presentation mode — arrow keys navigate one slide at a time, Escape exits back to the editor.
+
+---
+
+_**User (2026-04-03 10:54:22Z)**_
+
+Play mode just shows a black screen.
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-03 10:54:26Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/main.js`
+
+```text
+1022	}
+1023	
+1024	// ─── PLAY MODE ─────────────────────────────────
+1025	// Fullscreen single-slide presentation. Arrow keys navigate, Escape exits.
+1026	
+1027	let playMode = false;
+1028	let playSlideIndex = 0;
+1029	let playOverlay = null;
+1030	
+1031	function enterPlayMode() {
+1032	  if (!currentContent || !currentContent.slides.length) return;
+1033	  playMode = true;
+1034	  playSlideIndex = currentPage * SLIDES_PER_PAGE;  // start from current page's first slide
+1035	
+1036	  playOverlay = document.createElement('div');
+1037	  playOverlay.id = 'play-overlay';
+1038	  playOverlay.innerHTML = `
+1039	    <div class="play-slide-container">
+1040	      <div class="play-slide" id="play-slide"></div>
+1041	    </div>
+1042	    <div class="play-counter" id="play-counter"></div>
+1043	  `;
+1044	  document.body.appendChild(playOverlay);
+1045	
+1046	  renderPlaySlide();
+1047	}
+1048	
+1049	function exitPlayMode() {
+1050	  if (!playMode) return;
+1051	  playMode = false;
+1052	  if (playOverlay) {
+1053	    // Clean up any WebGL contexts in the play slide
+1054	    playOverlay.remove();
+1055	    playOverlay = null;
+1056	  }
+1057	}
+1058	
+1059	function renderPlaySlide() {
+1060	  if (!playOverlay || !currentContent) return;
+1061	  const config = currentConfig;
+1062	  const slide = currentContent.slides[playSlideIndex];
+1063	  const page = playSlideIndex + 1;
+1064	
+1065	  const layoutName = config.layouts[slide.type] || Object.values(config.layouts)[0];
+1066	  const layoutFn = layoutRegistry[layoutName];
+1067	  if (!layoutFn) return;
+1068	
+1069	  const slideEl = document.createElement('div');
+1070	  slideEl.className = 'slide';
+1071	  slideEl.dataset.palette = config.palette;
+1072	  slideEl.dataset.typography = config.typography;
+1073	  if (config.pinstripes !== 'none') slideEl.dataset.pinstripes = config.pinstripes;
+1074	  slideEl.innerHTML = layoutFn(slide, page);
+1075	
+1076	  // Add shape overlay
+1077	  const slideShape = config.slideShapes[playSlideIndex] ?? config.shapes;
+1078	  const shapeFn = shapeRegistry[slideShape];
+1079	  const inner = slideEl.querySelector('.slide-inner');
+1080	  let shapeInit = null;
+1081	
+1082	  if (shapeFn && inner) {
+1083	    const shapeResult = shapeFn(playSlideIndex);
+1084	    const html = typeof shapeResult === 'string' ? shapeResult : shapeResult.html;
+1085	    if (html) inner.insertAdjacentHTML('afterbegin', html);
+1086	    if (typeof shapeResult === 'object' && shapeResult.init) {
+1087	      shapeInit = () => shapeResult.init(slideEl);
+1088	    }
+1089	  }
+1090	
+1091	  // Textures
+1092	  if (inner) {
+1093	    if (config.pinstripes !== 'none') {
+1094	      inner.insertAdjacentHTML('afterbegin', '<div class="shape-overlay texture-pinstripes"></div>');
+1095	    }
+1096	    inner.insertAdjacentHTML(
+1097	      'afterbegin',
+1098	      `<div class="shape-overlay texture-noise" style="background-image:url(${noiseDataURL});opacity:${config.noise / 100}"></div>`,
+1099	    );
+1100	  }
+1101
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:54:32Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/main.js`
+
+```text
+1100	  }
+1101	
+1102	  const container = playOverlay.querySelector('#play-slide');
+1103	  container.innerHTML = '';
+1104	  container.appendChild(slideEl);
+1105	
+1106	  // Counter
+1107	  const counter = playOverlay.querySelector('#play-counter');
+1108	  counter.textContent = `${page} / ${currentContent.slides.length}`;
+1109	
+1110	  // Resolve pinstripes
+1111	  slideEl.querySelectorAll('.texture-pinstripes').forEach(el => {
+1112	    const dir = slideEl.dataset.pinstripes;
+1113	    if (!dir || dir === 'none') return;
+1114	    const color = getComputedStyle(el).color;
+1115	    const url = generatePinstripeTexture(dir, color);
+1116	    el.style.background = `url(${url}) repeat`;
+1117	  });
+1118	
+1119	  // Post-init (WebGL shapes + lens badges)
+1120	  requestAnimationFrame(async () => {
+1121	    if (shapeInit) await shapeInit();
+1122	    await initLensBadgeDroplets();
+1123	  });
+1124	}
+1125	
+1126	init();
+1127	
+1128	// Keyboard navigation
+1129	document.addEventListener('keydown', (e) => {
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:54:37Z)**_
+
+The issue is that the `.slide` element needs the CSS custom properties from the palette/typography data attributes, but those are applied via `data-palette` and `data-typography` on the `.slide` element. Let me check how the normal deck applies these — there might be a parent element or a CSS loading mechanism I'm missing.
+
+_**Agent (claude-opus-4-6 2026-04-03 10:54:38Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./src/main.js` pattern `data-palette|data-typography|applyPalette|applyTheme|loadPalette`
+
+```text
+No matches found
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:54:42Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./src/main.js` pattern `palette|typography`
+
+```text
+192:          <label class="ctrl-label" for="sel-palette">Palette</label>
+193:          ${buildSelect('sel-palette', PALETTES, c.palette)}
+196:          <label class="ctrl-label" for="sel-typography">Typography</label>
+197:          ${buildSelect('sel-typography', TYPOGRAPHY, c.typography)}
+236:  el.querySelector('#sel-palette').addEventListener('change', e => {
+237:    currentConfig.palette = e.target.value;
+241:  el.querySelector('#sel-typography').addEventListener('change', e => {
+242:    currentConfig.typography = e.target.value;
+278:    currentConfig.palette = pick(PALETTES);
+279:    currentConfig.typography = pick(TYPOGRAPHY);
+950:    slideEl.dataset.palette = config.palette;
+951:    slideEl.dataset.typography = config.typography;
+1071:  slideEl.dataset.palette = config.palette;
+1072:  slideEl.dataset.typography = config.typography;
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:54:45Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/main.js`
+
+```text
+940	    wrapper.appendChild(labelRow);
+941	
+942	    // Collapsible edit panel
+943	    const editPanel = buildEditPanel(slide, i);
+944	    wrapper.appendChild(editPanel);
+945	
+946	    // Create the slide container
+947	    const slideEl = document.createElement('div');
+948	    slideEl.className = 'slide';
+949	    slideEl.id = `slide-${page}`;
+950	    slideEl.dataset.palette = config.palette;
+951	    slideEl.dataset.typography = config.typography;
+952	    slideEl.dataset.pinstripes = config.pinstripes;
+953	
+954	    // Render layout
+955	    slideEl.innerHTML = layoutFn(slide, page);
+956	
+957	    // Inject shape overlays (inside the slide-inner)
+958	    const slideShapeKey = config.slideShapes[i] ?? config.shapes;
+959	    const shapeFn = shapeRegistry[slideShapeKey] || shapeRegistry.none;
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:54:50Z)**_
+
+So the slide uses `dataset.palette` and `dataset.typography`. Let me check how these are consumed — likely in CSS via `[data-palette]` selectors.
+
+_**Agent (claude-opus-4-6 2026-04-03 10:54:51Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./` pattern `data-palette`
+
+```text
+No files found
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:54:58Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Glob"><details>
+<summary>Tool use: **Glob**</summary>
+ path `./` pattern `**/*.css`
+
+```text
+tokens/monzo.css
+tokens/dia.css
+tokens/beyond-trends.css
+tokens/artsy.css
+tokens/ace-tate.css
+tokens/glide.css
+tokens/space10.css
+tokens/superlist.css
+tokens/wetransfer.css
+node_modules/playwright-core/lib/vite/recorder/assets/codeMirrorModule-DYBRYzYX.css
+node_modules/playwright-core/lib/vite/traceViewer/codeMirrorModule.DYBRYzYX.css
+node_modules/playwright-core/lib/vite/traceViewer/defaultSettingsView.7ch9cixO.css
+node_modules/playwright-core/lib/vite/recorder/assets/index-BSjZa4pk.css
+node_modules/playwright-core/lib/vite/traceViewer/index.BVu7tZDe.css
+node_modules/playwright-core/lib/vite/traceViewer/uiMode.Btcz36p_.css
+node_modules/playwright-core/lib/vite/traceViewer/xtermModule.DYP7pi_n.css
+src/style.css
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:55:02Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./tokens/monzo.css`
+
+```text
+1	/* ============================================
+2	   MONZO — Hot coral + mint, bold rounded sans
+3	   Friendly, bold, playful-but-authoritative
+4	   ============================================ */
+5	
+6	/* --- Palette --- */
+7	[data-palette="monzo"] {
+8	  --color-bg-primary:    #F2F5F0;   /* soft off-white with faint green tint */
+9	  --color-bg-secondary:  #FFFFFF;
+10	  --color-bg-dark:       #1B2A3D;   /* deep navy */
+11	  --color-bg-accent:     #C8F0D8;   /* pale mint */
+12	  --color-bg-accent-2:   #FF5C57;   /* hot coral as bg */
+13	
+14	  --color-text-primary:  #1B2A3D;   /* navy on light */
+15	  --color-text-secondary:#5A6B7A;   /* muted slate */
+16	  --color-text-on-dark:  #FFFFFF;
+17	  --color-text-on-accent:#FF5C57;   /* coral on mint */
+18	
+19	  --color-accent-1:      #FF5C57;   /* hot coral — THE Monzo colour */
+20	  --color-accent-2:      #C8F0D8;   /* mint */
+21	  --color-accent-3:      #1B2A3D;   /* navy */
+22	  --color-accent-4:      #00A0A0;   /* teal (from app icon) */
+23	
+24	  --color-shape-1:       #FF5C57;
+25	  --color-shape-2:       #C8F0D8;
+26	  --color-shape-3:       #1B2A3D;
+27	}
+28	
+29	/* --- Typography --- */
+30	[data-typography="monzo"] {
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:55:09Z)**_
+
+Now I see — the CSS custom properties are applied via `[data-palette="monzo"]` on the slide element itself. The slide has the correct data attributes, so they should cascade. The problem is likely that the `.play-slide-container` has no size, or the `.slide` inside it isn't getting dimensions.
+
+The issue is that `.play-slide-container` uses `aspect-ratio: 16/9` but has no explicit width/height constraints that would size it within the viewport. And the `.slide` inside uses `width: 100%` and `aspect-ratio`, but the container needs to constrain properly. Let me also check — the `#play-slide` wrapper div has no styles at all.
+
+_**Agent (claude-opus-4-6 2026-04-03 10:55:13Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:55:18Z)**_
+
+Also need to check the `#play-slide` wrapper isn't collapsing:
+
+_**Agent (claude-opus-4-6 2026-04-03 10:55:19Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:55:24Z)**_
+
+Also need to check that the tokens CSS files are actually loaded. Let me see how they're imported:
+
+_**Agent (claude-opus-4-6 2026-04-03 10:55:25Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./` pattern `tokens|monzo\.css`
+
+```text
+/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/index.html:14:  <link rel="stylesheet" href="/tokens/monzo.css" />
+/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/index.html:15:  <link rel="stylesheet" href="/tokens/dia.css" />
+/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/index.html:16:  <link rel="stylesheet" href="/tokens/beyond-trends.css" />
+/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/index.html:17:  <link rel="stylesheet" href="/tokens/artsy.css" />
+/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/index.html:18:  <link rel="stylesheet" href="/tokens/ace-tate.css" />
+/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/index.html:19:  <link rel="stylesheet" href="/tokens/glide.css" />
+/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/index.html:20:  <link rel="stylesheet" href="/tokens/space10.css" />
+/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/index.html:21:  <link rel="stylesheet" href="/tokens/superlist.css" />
+/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/index.html:22:  <link rel="stylesheet" href="/tokens/wetransfer.css" />
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:55:35Z)**_
+
+Good, tokens are loaded globally. The CSS custom properties should work. The fix should be the sizing — the container now fills the viewport at 16:9 and the slide fills it. Try it now.
+
+---
+
+_**User (2026-04-03 10:57:32Z)**_
+
+Have the drop cap positioning on the statement centered slides be the same as that on all other slides so they line up as we're going through the
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-03 10:57:38Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./src` pattern `statement-centered.*lens|statement.*lens-marker"`
+
+```text
+/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/style.css-504-}
+/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/style.css-505-
+/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/style.css:506:.statement-centered .lens-marker-group,
+/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/style.css-507-.statement-editorial .lens-marker-group {
+/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/style.css-508-  right: 1.15rem;
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:57:43Z)**_
+
+The statement-centered and statement-editorial layouts use absolute positioning for the lens markers (right: 1.15rem, bottom: 1.05rem), while the content-split-cards and data-big-numbers use an inline footer. Let me check how the statement layouts render the markers — they're not in a footer, they're just appended at the end of `.slide-inner`.
+
+_**Agent (claude-opus-4-6 2026-04-03 10:57:44Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./src/layouts.js` pattern `renderLensMarkers`
+
+```text
+10-  extraction: { short: 'E', label: 'Extraction' },
+11-};
+12-
+13:function renderLensMarkers(slide) {
+14-  if (!Array.isArray(slide.lenses) || slide.lenses.length === 0) return '';
+15-
+16-  const markers = slide.lenses
+--
+36-        <div class="cover-author">${slide.author || ''}</div>
+37-        <div class="cover-date-pill">${slide.date || ''}</div>
+38-      </div>
+39:      ${renderLensMarkers(slide)}
+40-    </div>
+41-  `;
+42-}
+--
+50-      </div>
+51-      <div class="cover-title">${slide.title}</div>
+52-      <div class="cover-subtitle">${slide.subtitle || ''}</div>
+53:      ${renderLensMarkers(slide)}
+54-    </div>
+55-  `;
+56-}
+--
+65-        : ''}
+66-      <div class="divider-title">${slide.title}</div>
+67-      <div class="divider-page">${String(page).padStart(2, '0')}</div>
+68:      ${renderLensMarkers(slide)}
+69-    </div>
+70-  `;
+71-}
+--
+81-      </div>
+82-      <div class="divider-title">${slide.title}</div>
+83-      ${slide.subtitle ? `<div class="divider-subtitle">${slide.subtitle}</div>` : ''}
+84:      ${renderLensMarkers(slide)}
+85-    </div>
+86-  `;
+87-}
+--
+119-      </div>
+120-      <div class="content-footer">
+121-        <span class="page-number">${String(page).padStart(2, '0')}</span>
+122:        ${renderLensMarkers(slide)}
+123-      </div>
+124-    </div>
+125-  `;
+--
+153-          ${cards}
+154-        </div>
+155-      </div>
+156:      ${renderLensMarkers(slide)}
+157-    </div>
+158-  `;
+159-}
+--
+189-      </div>
+190-      <div class="data-footer">
+191-        <span class="data-page">${String(page).padStart(2, '0')}</span>
+192:        ${renderLensMarkers(slide)}
+193-      </div>
+194-    </div>
+195-  `;
+--
+214-  return `
+215-    <div class="slide-inner data-full-bleed">
+216-      ${blocks}
+217:      ${renderLensMarkers(slide)}
+218-    </div>
+219-  `;
+220-}
+--
+232-      <div class="statement-label">${slide.section || ''}</div>
+233-      <div class="statement-text">${text}</div>
+234-      ${slide.attribution ? `<div class="statement-attribution">${slide.attribution}</div>` : ''}
+235:      ${renderLensMarkers(slide)}
+236-    </div>
+237-  `;
+238-}
+--
+248-      <div class="statement-label">${slide.section || ''}</div>
+249-      <div class="statement-text">${text}</div>
+250-      ${slide.attribution ? `<div class="statement-attribution">${slide.attribution}</div>` : ''}
+251:      ${renderLensMarkers(slide)}
+252-    </div>
+253-  `;
+254-}
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:57:49Z)**_
+
+The statement layouts have the markers absolutely positioned. The content-split-cards and data-big-numbers put them in an inline footer at the bottom-right. To make statement-centered consistent, I need to match the same position — bottom-right, below a line, aligned with where the page number/footer would be on other slides. The simplest fix is to override the absolute position of the lens-marker-group on statement-centered to match the other slides' footer position.
+
+_**Agent (claude-opus-4-6 2026-04-03 10:57:50Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:57:54Z)**_
+
+Now let me also check the default `.lens-marker-group` position and the content-split-cards footer position to make sure they all align at the same inset:
+
+_**Agent (claude-opus-4-6 2026-04-03 10:57:55Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/style.css`
+
+```text
+411	.lens-marker-group {
+412	  position: absolute;
+413	  right: 1rem;
+414	  bottom: 0.9rem;
+415	  left: auto;
+416	  width: max-content;
+417	  display: flex;
+418	  align-items: center;
+419	  gap: 0;
+420	  z-index: 3;
+421	  pointer-events: none;
+422	}
+423	
+424	.lens-marker {
+425	  width: 1.55rem;
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:58:00Z)**_
+
+The default absolute position uses `right: 1rem; bottom: 0.9rem`. The content-split-cards and data-big-numbers use `position: static` inside their footers, which are padded by `var(--slide-padding)`. Let me update the default and statement overrides to all use `var(--slide-padding)` so they're consistent:
+
+_**Agent (claude-opus-4-6 2026-04-03 10:58:01Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:58:05Z)**_
+
+Now all slides use `var(--slide-padding)` for the badge positioning — matching the inset used by the page numbers and footers. The badges should stay in a consistent position as you navigate through slides in play mode.
+
+---
+
+_**User (2026-04-03 10:59:39Z)**_
+
+In play mode, could you also show the slide type above the demonstrated slide, just so I can reference it for when making changes?
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-03 10:59:44Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/main.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:59:49Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/main.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:59:54Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 10:59:58Z)**_
+
+Done. You'll now see the slide type and layout name (e.g. "content — content-split-cards") in the top-left corner during play mode.
+
+---
+
+_**User (2026-04-03 11:00:22Z)**_
+
+On the divider color burst slides, could you put the page number in the same place as in all the other slide templates, please?
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-03 11:00:25Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/style.css`
+
+```text
+639	
+640	
+641	/* ============================================
+642	   LAYOUT: divider-color-burst
+643	   Inspired by: Monzo / DIA
+644	   Full-bleed accent background, huge title
+645	   ============================================ */
+646
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 11:00:29Z)**_
+
+Currently the divider-color-burst page number is positioned `top right`. Let me move it to bottom-left to match other slides.
+
+_**Agent (claude-opus-4-6 2026-04-03 11:00:30Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 11:00:35Z)**_
+
+Moved the page number to bottom-left, matching the content-split-cards and data-big-numbers layouts.
+
+---
+
+_**User (2026-04-03 11:01:04Z)**_
+
+No, that's not now gone behind the text. Think about how it's positioned on the other slides and put it in exactly the same place. When he's flicking between slides, the numbers don't move position.
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-03 11:01:14Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-03 11:01:15Z)**_
+
+Let me look at how the page number is positioned in content-split-cards — it's in an inline footer, not absolute. I need to do the same for divider-color-burst.
+
+_**Agent (claude-opus-4-6 2026-04-03 11:01:15Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/layouts.js`
+
+```text
+60	export function dividerColorBurst(slide, page) {
+61	  return `
+62	    <div class="slide-inner divider-color-burst">
+63	      ${slide.section_number != null
+64	        ? `<div class="divider-badge">Section ${slide.section_number}</div>`
+65	        : ''}
+66	      <div class="divider-title">${slide.title}</div>
+67	      <div class="divider-page">${String(page).padStart(2, '0')}</div>
+68	      ${renderLensMarkers(slide)}
+69	    </div>
+70	  `;
+71	}
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 11:01:18Z)**_
+
+Now let me look at the content-split-cards footer for reference:
+
+_**Agent (claude-opus-4-6 2026-04-03 11:01:19Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/layouts.js`
+
+```text
+108	  return `
+109	    <div class="slide-inner content-split-cards">
+110	      <div class="content-nav">${slide.section || ''}</div>
+111	      <div class="content-body-area">
+112	        <div class="content-left">
+113	          <h2>${slide.heading}</h2>
+114	          ${slide.body ? `<p>${slide.body}</p>` : ''}
+115	        </div>
+116	        <div class="content-right">
+117	          ${cards}
+118	        </div>
+119	      </div>
+120	      <div class="content-footer">
+121	        <span class="page-number">${String(page).padStart(2, '0')}</span>
+122	        ${renderLensMarkers(slide)}
+123	      </div>
+124	    </div>
+125	  `;
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 11:01:24Z)**_
+
+Same pattern — footer with page number left, lens markers right, pushed to bottom with `margin-top: auto`. Let me restructure divider-color-burst the same way.
+
+_**Agent (claude-opus-4-6 2026-04-03 11:01:27Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/layouts.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 11:01:30Z)**_
+
+Now update the CSS — replace the absolute positioning with a footer layout:
+
+_**Agent (claude-opus-4-6 2026-04-03 11:01:33Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 11:01:42Z)**_
+
+Done. The page number on divider-color-burst now sits in a footer at the bottom-left, same as content-split-cards and data-big-numbers — consistent position when flicking between slides.
+
+---
+
+_**User (2026-04-03 11:02:13Z)**_
+
+But now the main title, et cetera, in the divider color burst slide is at the top of the slide. I want it vertically centered.
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-03 11:02:18Z)**_
+
+
+
+The `justify-content: center` on `.divider-color-burst` was centering everything, but now the footer with `margin-top: auto` pushes it up. I need to wrap the main content so it centers between the top and the footer.
+
+_**Agent (claude-opus-4-6 2026-04-03 11:02:21Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/layouts.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 11:02:26Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 11:02:30Z)**_
+
+The title/badge content is now wrapped in a `.divider-center` that takes up the remaining space and vertically centers its children, while the footer stays pinned at the bottom.
+
+---
+
+_**User (2026-04-03 11:03:45Z)**_
+
+There's a difference in layout between the slides with the TDE droplets and those without, as it is pushing them around. Can you please reduce the padding on the droplets and maybe put a transparent element there where they're not there, just so all the layout doesn't reshift between each slide?
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-03 11:03:56Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-03 11:03:57Z)**_
+
+The cleanest fix is to always render the `.lens-marker-group` container (even when empty) so the footer height stays constant.
+
+_**Agent (claude-opus-4-6 2026-04-03 11:04:02Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/layouts.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 11:04:06Z)**_
+
+Now give the group a fixed min-height matching the droplet size, and reduce the droplets slightly:
+
+_**Agent (claude-opus-4-6 2026-04-03 11:04:08Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 11:04:13Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 11:04:17Z)**_
+
+Now the `.lens-marker-group` always renders (even empty) with a fixed `min-height: 2.8rem` matching the droplet size, so footers stay the same height across all slides. Droplets are also slightly smaller at 2.8rem.
+
+---
+
+_**User (2026-04-03 11:07:50Z)**_
+
+The thin white line is not showing around the third dark blue block in the data of big numbers.
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-03 11:07:55Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-03 11:07:57Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./src/style.css` pattern `stat-block|data-big-numbers.*stat`
+
+```text
+1016-}
+1017-
+1018:.data-big-numbers .stat-block {
+1019-  flex: 1;
+1020-  border-radius: var(--card-border-radius);
+--
+1027-}
+1028-
+1029:.data-big-numbers .stat-block .stat-value {
+1030-  font-family: var(--font-display);
+1031-  font-weight: var(--font-display-weight);
+--
+1036-}
+1037-
+1038:.data-big-numbers .stat-block .stat-label {
+1039-  font-family: var(--font-body);
+1040-  font-size: var(--caption-size);
+--
+1073-}
+1074-
+1075:.data-full-bleed .stat-block {
+1076-  flex: 1;
+1077-  display: flex;
+--
+1082-}
+1083-
+1084:.data-full-bleed .stat-block .stat-value {
+1085-  font-family: var(--font-display);
+1086-  font-weight: var(--font-display-weight);
+--
+1091-}
+1092-
+1093:.data-full-bleed .stat-block .stat-label {
+1094-  font-family: var(--font-body);
+1095-  font-size: 1rem;
+--
+1098-}
+1099-
+1100:.data-full-bleed .stat-block .stat-year {
+1101-  position: absolute;
+1102-  top: 2.5rem;
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 11:08:02Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./src/main.js` pattern `fixStatBlock|stat.*contrast|stat.*color|stat.*border`
+
+```text
+463-  for (let pg = 0; pg < totalPages; pg++) {
+464-    setPage(pg);
+465-    renderDeck();
+466:    fixStatBlockContrast();
+467-    fitStatSizes();
+468-
+469-    // Wait for all WebGL shapes to finish rendering
+--
+480-    btn.textContent = `4:3 page ${pg + 1}/${totalPages}…`;
+481-    document.documentElement.style.setProperty('--export-aspect', '4 / 3');
+482-    renderDeck();
+483:    fixStatBlockContrast();
+484-    fitStatSizes();
+485-    await deckPostInitsReady;
+486-    await capturePage(pageSlides, startIdx, '4x3');
+--
+748-    `<div class="shape-overlay texture-noise" style="background-image:url(${noiseDataURL});opacity:${config.noise / 100}"></div>`,
+749-  );
+750-
+751:  // Fix stat block contrast if this is a data slide
+752-  slideEl.querySelectorAll('.stat-block').forEach(block => {
+753-    const blockL = luminance(getComputedStyle(block).backgroundColor);
+754-    block.style.color = blockL > 0.18 ? '#1B2A3D' : '#FFFFFF';
+--
+826-  });
+827-}
+828-
+829:/** Set adaptive text colour on stat blocks and add border when block disappears into slide bg */
+830:function fixStatBlockContrast() {
+831-  document.querySelectorAll('.stat-block').forEach(block => {
+832-    const blockL = luminance(getComputedStyle(block).backgroundColor);
+833-    block.style.color = blockL > 0.18 ? '#1B2A3D' : '#FFFFFF';
+--
+989-  });
+990-
+991-  // Adaptive text colour and sizing for stat blocks (needs computed styles from DOM)
+992:  fixStatBlockContrast();
+993-  fitStatSizes();
+994-
+995-  // Resolve pinstripes from CSS gradients to tiled images so html2canvas
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 11:08:06Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/main.js`
+
+```text
+829	/** Set adaptive text colour on stat blocks and add border when block disappears into slide bg */
+830	function fixStatBlockContrast() {
+831	  document.querySelectorAll('.stat-block').forEach(block => {
+832	    const blockL = luminance(getComputedStyle(block).backgroundColor);
+833	    block.style.color = blockL > 0.18 ? '#1B2A3D' : '#FFFFFF';
+834	
+835	    // Add border when block blends into slide background
+836	    const slide = block.closest('.slide-inner');
+837	    if (slide) {
+838	      const slideL = luminance(getComputedStyle(slide).backgroundColor);
+839	      const contrast = Math.abs(blockL - slideL);
+840	      block.style.border = contrast < 0.05 ? '1px solid rgba(255,255,255,0.15)' : '';
+841	    }
+842	  });
+843	}
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 11:08:11Z)**_
+
+The issue is in `fixStatBlockContrast` — it only adds a border when the contrast between block and slide background is less than 0.05. The dark blue block (accent-3, `#1B2A3D`) on the dark slide background (`#1B2A3D`) should trigger this, but likely the luminance values are just barely different enough to skip it. Let me check what the colors are and widen the threshold.
+
+_**Agent (claude-opus-4-6 2026-04-03 11:08:12Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./tokens/monzo.css` pattern `color-accent-3|color-bg-dark`
+
+```text
+10:  --color-bg-dark:       #1B2A3D;   /* deep navy */
+21:  --color-accent-3:      #1B2A3D;   /* navy */
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 11:08:17Z)**_
+
+They're identical — both `#1B2A3D`. So the contrast is exactly 0, which is `< 0.05`, so the border *should* be added. But the stat blocks use `accent-1` through `accent-4` as backgrounds. Let me check the order — the third block (index 2) gets `accent-3`.
+
+_**Agent (claude-opus-4-6 2026-04-03 11:08:18Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/layouts.js`
+
+```text
+163	  `;
+164	}
+165	
+166	// ─── DATA LAYOUTS ───────────────────────────────
+167	
+168	export function dataBigNumbers(slide, page) {
+169	  const bgColors = [
+170	    'var(--color-accent-1)',
+171	    'var(--color-accent-2)',
+172	    'var(--color-accent-3)',
+173	    'var(--color-accent-4)',
+174	  ];
+175	
+176	  const blocks = (slide.stats || []).map((stat, i) => `
+177	    <div class="stat-block" data-accent="${i % bgColors.length}" style="background: ${bgColors[i % bgColors.length]}">
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 11:08:22Z)**_
+
+The third block uses `--color-accent-3` which is `#1B2A3D`, same as `--color-bg-dark`. The contrast should be 0 so the border should apply. Maybe the issue is that `getComputedStyle` is reading the inline `background` shorthand rather than `backgroundColor`. Let me check what's happening — the inline style uses `background:` not `background-color:`.
+
+_**Agent (claude-opus-4-6 2026-04-03 11:08:23Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/main.js`
+
+```text
+795	
+796	/** Scale stat values so the longest text fills its block width, and all others match that size */
+797	function fitStatSizes() {
+798	  document.querySelectorAll('.data-big-numbers').forEach(slide => {
+799	    const values = slide.querySelectorAll('.stat-value');
+800	    if (values.length === 0) return;
+801	
+802	    // Reset and prevent wrapping for measurement
+803	    values.forEach(v => { v.style.fontSize = ''; v.style.whiteSpace = 'nowrap'; });
+804	
+805	    // Find the size that makes the longest text exactly fill its block
+806	    let minFitted = Infinity;
+807	    values.forEach(v => {
+808	      const block = v.closest('.stat-block');
+809	      const padL = parseFloat(getComputedStyle(block).paddingLeft);
+810	      const padR = parseFloat(getComputedStyle(block).paddingRight);
+811	      const available = block.clientWidth - padL - padR;
+812	      const currentSize = parseFloat(getComputedStyle(v).fontSize);
+813	      const textWidth = v.scrollWidth;
+814	      if (textWidth > 0) {
+815	        minFitted = Math.min(minFitted, currentSize * (available / textWidth));
+816	      }
+817	    });
+818	
+819	    if (minFitted !== Infinity) {
+820	      // Cap at 55% of block height so label text still fits
+821	      const firstBlock = values[0].closest('.stat-block');
+822	      const blockH = firstBlock.clientHeight - parseFloat(getComputedStyle(firstBlock).paddingTop) - parseFloat(getComputedStyle(firstBlock).paddingBottom);
+823	      const finalSize = Math.min(minFitted, blockH * 0.55);
+824	      values.forEach(v => v.style.fontSize = `${finalSize}px`);
+825	    }
+826	  });
+827	}
+828	
+829	/** Set adaptive text colour on stat blocks and add border when block disappears into slide bg */
+830	function fixStatBlockContrast() {
+831	  document.querySelectorAll('.stat-block').forEach(block => {
+832	    const blockL = luminance(getComputedStyle(block).backgroundColor);
+833	    block.style.color = blockL > 0.18 ? '#1B2A3D' : '#FFFFFF';
+834
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 11:08:34Z)**_
+
+The issue is that the inline style sets `background` (shorthand), but `getComputedStyle(block).backgroundColor` should still resolve correctly since `background` sets `background-color` as part of the shorthand. However, the problem might be that setting `block.style.border` gets overwritten or that the border is being set but then wiped by `block.style.border = ''` on a re-render because of a subtle timing issue.
+
+Actually, looking more carefully — the issue is likely that the `fixStatBlockContrast` sets the border, but then `block.style.border` also clears any previously set border via the else case. But for the third block with identical colors, it should set it. Let me widen the threshold to be safe — and also use `outline` instead of `border` so it doesn't affect layout:
+
+_**Agent (claude-opus-4-6 2026-04-03 11:08:35Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/main.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 11:08:39Z)**_
+
+Widened the threshold from 0.05 to 0.1 and switched to `outline` (inset) so it doesn't shift layout. The dark blue block should now show the thin white line.
+
+---
+
+_**User (2026-04-03 11:09:55Z)**_
+
+It shows on the main edit screen, but doesn't show when in play mode. I thought it would be using exactly the same CSS in both. This also applies to some of the text coloring that seems to only apply in edit mode and not in the play mode. Please make one set of CSS to apply for both. I want this to be an absolutely identical view.
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-03 11:10:05Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-03 11:10:06Z)**_
+
+The problem is that `fixStatBlockContrast()` and `fitStatSizes()` are called in `renderDeck()` but not in `renderPlaySlide()`. Let me add them.
+
+_**Agent (claude-opus-4-6 2026-04-03 11:10:06Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/main.js`
+
+```text
+1110	  label.textContent = `${slide.type} — ${layoutName}`;
+1111	
+1112	  const counter = playOverlay.querySelector('#play-counter');
+1113	  counter.textContent = `${page} / ${currentContent.slides.length}`;
+1114	
+1115	  // Resolve pinstripes
+1116	  slideEl.querySelectorAll('.texture-pinstripes').forEach(el => {
+1117	    const dir = slideEl.dataset.pinstripes;
+1118	    if (!dir || dir === 'none') return;
+1119	    const color = getComputedStyle(el).color;
+1120	    const url = generatePinstripeTexture(dir, color);
+1121	    el.style.background = `url(${url}) repeat`;
+1122	  });
+1123	
+1124	  // Post-init (WebGL shapes + lens badges)
+1125	  requestAnimationFrame(async () => {
+1126	    if (shapeInit) await shapeInit();
+1127	    await initLensBadgeDroplets();
+1128	  });
+1129	}
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 11:10:13Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/main.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 11:10:17Z)**_
+
+Now play mode runs `fixStatBlockContrast()` (text color + outline borders) and `fitStatSizes()` (stat value font scaling) on each slide, same as the editor. Should be identical now.
