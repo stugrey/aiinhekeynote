@@ -76,7 +76,6 @@ export function contentSplitCards(slide, page) {
       <div class="card-icon" style="background: ${colors[i % colors.length]}"></div>
       <div class="card-text">
         <h3>${point.title}</h3>
-        <p>${point.description}</p>
       </div>
     </div>
   `).join('');

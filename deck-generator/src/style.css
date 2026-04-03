@@ -716,8 +716,8 @@ body {
 .content-split-cards .evidence-card .card-text h3 {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 0.95rem;
-  margin-bottom: 0.3rem;
+  font-size: 1.3rem;
+  margin-bottom: 0;
 }
 
 .content-split-cards .evidence-card .card-text p {

@@ -139,16 +139,13 @@
       "body": "The important shift is not simply more campus use. It is that AI is being stitched into teaching, assessment, student support, research workflows and institutional decision-making. When that happens, AI stops looking like a product choice and starts behaving like infrastructure.",
       "points": [
         {
-          "title": "Teaching and assessment",
-          "description": "Generative tools now sit inside drafting, feedback, marking support and redesign of assessment."
+          "title": "Teaching and assessment"
         },
         {
-          "title": "Student support and admin",
-          "description": "Copilots, triage systems and analytics are creeping into advising, helpdesks and routine services."
+          "title": "Student support and admin"
         },
         {
-          "title": "Research and governance",
-          "description": "Search, synthesis, coding, grant development and management reporting increasingly run through AI-mediated layers."
+          "title": "Research and governance"
         }
       ],
       "notes": {
@@ -156,7 +153,10 @@
         "points": [
           "AI is no longer just a tool someone opens; it is becoming part of how teaching, assessment, support, research, and governance are carried out.",
           "Stress the shift from optional use to embedded workflow.",
-          "Say that once many activities assume the system is there, AI stops behaving like a product choice and starts behaving like infrastructure."
+          "Say that once many activities assume the system is there, AI stops behaving like a product choice and starts behaving like infrastructure.",
+          "Teaching and assessment: Generative tools now sit inside drafting, feedback, marking support and redesign of assessment.",
+          "Student support and admin: Copilots, triage systems and analytics are creeping into advising, helpdesks and routine services.",
+          "Research and governance: Search, synthesis, coding, grant development and management reporting increasingly run through AI-mediated layers."
         ]
       }
     },
@@ -195,16 +195,13 @@
       "body": "Universities now face a familiar problem: mass uptake at the edge, patchy coordination at the centre, and inconsistent messaging in between. That is a recipe for drift.",
       "points": [
         {
-          "title": "Fragmented policy",
-          "description": "Many institutions are still experimenting with guidance rather than operating settled governance."
+          "title": "Fragmented policy"
         },
         {
-          "title": "Uneven capability",
-          "description": "Staff literacy, procurement confidence and evaluation capacity vary widely across campuses."
+          "title": "Uneven capability"
         },
         {
-          "title": "Ambiguous signals",
-          "description": "Students are told AI matters, but often receive little clear support about how, when or why to use it."
+          "title": "Ambiguous signals"
         }
       ],
       "notes": {
@@ -212,7 +209,10 @@
         "points": [
           "Mass adoption at the edge with patchy coordination at the centre is the governance problem.",
           "Emphasise fragmentation: policy, capability, and messaging are uneven.",
-          "If useful, say that this is exactly how institutions drift into dependence without ever formally deciding to."
+          "If useful, say that this is exactly how institutions drift into dependence without ever formally deciding to.",
+          "Fragmented policy: Many institutions are still experimenting with guidance rather than operating settled governance.",
+          "Uneven capability: Staff literacy, procurement confidence and evaluation capacity vary widely across campuses.",
+          "Ambiguous signals: Students are told AI matters, but often receive little clear support about how, when or why to use it."
         ]
       }
     },
@@ -223,16 +223,13 @@
       "body": "The easiest way to see infrastructure is through failure. Outages, upstream model changes, or jurisdictional pressure make clear just how much teaching and institutional continuity already depend on remote systems.",
       "points": [
         {
-          "title": "Service continuity",
-          "description": "When cloud-linked platforms fail, content, assignments, grades and communication fail with them."
+          "title": "Service continuity"
         },
         {
-          "title": "Upstream dependency",
-          "description": "A change made by a provider can alter outputs, reliability or availability without the university changing anything locally."
+          "title": "Upstream dependency"
         },
         {
-          "title": "Sovereignty and resilience",
-          "description": "Once core services sit elsewhere, governance is also about jurisdiction, coercion and the ability to keep operating under stress."
+          "title": "Sovereignty and resilience"
         }
       ],
       "notes": {
@@ -240,7 +237,10 @@
         "points": [
           "Most infrastructure feels abstract until an outage, upstream model change, or legal/jurisdictional issue exposes it.",
           "Use failure as the simplest way to show how much continuity already depends on remote systems.",
-          "This is where the word 'infrastructure' should start to feel real to the audience."
+          "This is where the word 'infrastructure' should start to feel real to the audience.",
+          "Service continuity: When cloud-linked platforms fail, content, assignments, grades and communication fail with them.",
+          "Upstream dependency: A change made by a provider can alter outputs, reliability or availability without the university changing anything locally.",
+          "Sovereignty and resilience: Once core services sit elsewhere, governance is also about jurisdiction, coercion and the ability to keep operating under stress."
         ]
       }
     },
@@ -280,16 +280,13 @@
       "body": "The current AI boom is not just hype. It is also an enormous build-out of compute, models, software tooling and enterprise integration. Even if many bets fail, the capacity being built will not simply disappear.",
       "points": [
         {
-          "title": "Compute and cloud",
-          "description": "Data centres, GPU fleets and inference infrastructure are expanding at extraordinary speed."
+          "title": "Compute and cloud"
         },
         {
-          "title": "Tooling and standards",
-          "description": "Evaluation suites, orchestration frameworks, safety tooling and deployment patterns are being hardened quickly."
+          "title": "Tooling and standards"
         },
         {
-          "title": "Organisational learning",
-          "description": "The frenzy is forcing universities and vendors alike to learn fast, even through messy pilots."
+          "title": "Organisational learning"
         }
       ],
       "notes": {
@@ -297,7 +294,10 @@
         "points": [
           "The key line is that speculative capital can still build real capacity.",
           "Point to compute, models, tooling, and integrations as durable inheritances of the current boom.",
-          "Say that the question is not whether infrastructure is being built; it is who will control what is left behind."
+          "Say that the question is not whether infrastructure is being built; it is who will control what is left behind.",
+          "Compute and cloud: Data centres, GPU fleets and inference infrastructure are expanding at extraordinary speed.",
+          "Tooling and standards: Evaluation suites, orchestration frameworks, safety tooling and deployment patterns are being hardened quickly.",
+          "Organisational learning: The frenzy is forcing universities and vendors alike to learn fast, even through messy pilots."
         ]
       }
     },
@@ -336,16 +336,13 @@
       "body": "If institutions are strategic, the boom years can amount to a temporary subsidy from speculative capital into durable capability that HE later uses more cheaply and more wisely.",
       "points": [
         {
-          "title": "Cheaper access later",
-          "description": "Competition, commoditisation and maturing open models can drive down cost and increase choice."
+          "title": "Cheaper access later"
         },
         {
-          "title": "Better institutional tooling",
-          "description": "Standards for VLE integration, evaluation, monitoring and retrieval are improving on someone else's budget."
+          "title": "Better institutional tooling"
         },
         {
-          "title": "More credible alternatives",
-          "description": "Mature open-weight models and sector hosting become more plausible once the ecosystem has been pushed forward."
+          "title": "More credible alternatives"
         }
       ],
       "notes": {
@@ -353,7 +350,10 @@
         "points": [
           "Say that boom periods can leave useful inheritances if universities are deliberate.",
           "Translate that inheritance into practical terms: cheaper access later, better institutional tooling, and more credible alternatives.",
-          "This is where you show you are not anti-development; you are anti-passivity."
+          "This is where you show you are not anti-development; you are anti-passivity.",
+          "Cheaper access later: Competition, commoditisation and maturing open models can drive down cost and increase choice.",
+          "Better institutional tooling: Standards for VLE integration, evaluation, monitoring and retrieval are improving on someone else's budget.",
+          "More credible alternatives: Mature open-weight models and sector hosting become more plausible once the ecosystem has been pushed forward."
         ]
       }
     },
@@ -364,16 +364,13 @@
       "body": "The real gain is not just hardware. It is the organisational knowledge institutions can build while the ecosystem is moving quickly.",
       "points": [
         {
-          "title": "Policy learning",
-          "description": "Assessment guidance, data rules, DPIAs and usage norms are being stress-tested in real time."
+          "title": "Policy learning"
         },
         {
-          "title": "Pedagogic learning",
-          "description": "Universities are discovering which AI uses support learning and which merely simulate support."
+          "title": "Pedagogic learning"
         },
         {
-          "title": "Capability learning",
-          "description": "Staff are developing literacy in prompting, workflow design, evaluation and critical comparison across tools."
+          "title": "Capability learning"
         }
       ],
       "notes": {
@@ -381,7 +378,10 @@
         "points": [
           "The boom is not only changing the market; it is forcing institutions to learn fast.",
           "Point to policy, pedagogy, and organisational capability as things universities can build during this period.",
-          "The implication is that institutions can waste the moment or use it to become better stewards."
+          "The implication is that institutions can waste the moment or use it to become better stewards.",
+          "Policy learning: Assessment guidance, data rules, DPIAs and usage norms are being stress-tested in real time.",
+          "Pedagogic learning: Universities are discovering which AI uses support learning and which merely simulate support.",
+          "Capability learning: Staff are developing literacy in prompting, workflow design, evaluation and critical comparison across tools."
         ]
       }
     },
@@ -392,16 +392,13 @@
       "body": "Build-outs do not guarantee healthy outcomes. The same boom that creates useful capacity can also create habits of lock-in, misallocated effort and narrow models of progress.",
       "points": [
         {
-          "title": "Lock-in during generosity",
-          "description": "Deep discounts and rapid integrations make dependence feel painless while switching costs are low and still rising."
+          "title": "Lock-in during generosity"
         },
         {
-          "title": "Misplaced priorities",
-          "description": "Leaders can chase visible partnerships and shiny features while neglecting pedagogy, people and core digital resilience."
+          "title": "Misplaced priorities"
         },
         {
-          "title": "Capture of norms",
-          "description": "The first systems to scale often end up defining what counts as modern, efficient or inevitable."
+          "title": "Capture of norms"
         }
       ],
       "notes": {
@@ -409,7 +406,10 @@
         "points": [
           "A boom can create dependency as easily as it creates capability.",
           "Emphasise generosity, convenience, and rapid integration as the conditions under which lock-in often begins.",
-          "This is the place to say that infrastructure built in a frenzy often embeds someone else's priorities."
+          "This is the place to say that infrastructure built in a frenzy often embeds someone else's priorities.",
+          "Lock-in during generosity: Deep discounts and rapid integrations make dependence feel painless while switching costs are low and still rising.",
+          "Misplaced priorities: Leaders can chase visible partnerships and shiny features while neglecting pedagogy, people and core digital resilience.",
+          "Capture of norms: The first systems to scale often end up defining what counts as modern, efficient or inevitable."
         ]
       }
     },
@@ -449,16 +449,13 @@
       "body": "AI is not arriving in higher education as a neutral marketplace of interchangeable tools. It is arriving through a concentrated stack of models, cloud, productivity suites, learning platforms and distribution channels.",
       "points": [
         {
-          "title": "Model layer",
-          "description": "A handful of providers dominate frontier model access and shape the pace of release."
+          "title": "Model layer"
         },
         {
-          "title": "Infrastructure layer",
-          "description": "Cloud concentration gives the same firms leverage over cost, continuity and technical standards."
+          "title": "Infrastructure layer"
         },
         {
-          "title": "Interface layer",
-          "description": "Existing campus software ecosystems become the channel through which AI is normalised."
+          "title": "Interface layer"
         }
       ],
       "notes": {
@@ -466,7 +463,10 @@
         "points": [
           "Explain that universities are not buying from a flat market of interchangeable tools.",
           "Show the layered dependence: model providers, cloud providers, and interface/platform providers.",
-          "The audience needs to see that concentration exists across multiple layers at once."
+          "The audience needs to see that concentration exists across multiple layers at once.",
+          "Model layer: A handful of providers dominate frontier model access and shape the pace of release.",
+          "Infrastructure layer: Cloud concentration gives the same firms leverage over cost, continuity and technical standards.",
+          "Interface layer: Existing campus software ecosystems become the channel through which AI is normalised."
         ]
       }
     },
@@ -477,16 +477,13 @@
       "body": "New systems do not automatically produce broad progress. The gains depend on who gets to decide what the tools are for, which kinds of work they replace, and who captures the surplus they create.",
       "points": [
         {
-          "title": "Direction matters",
-          "description": "AI can be used to remove drudgery and expand human capability, or to centralise control and reduce labour."
+          "title": "Direction matters"
         },
         {
-          "title": "Bargaining power matters",
-          "description": "Without strong institutions, efficiency narratives can define the agenda before educators and students get a say."
+          "title": "Bargaining power matters"
         },
         {
-          "title": "Narratives matter",
-          "description": "The story that 'AI is inevitable' can make resistance to bad design sound backward rather than responsible."
+          "title": "Narratives matter"
         }
       ],
       "notes": {
@@ -494,7 +491,10 @@
         "points": [
           "Technology does not arrive with its social purpose already settled.",
           "Stress that who decides the purpose of a system matters as much as what the system can do.",
-          "This is a good place to quietly introduce the idea that architecture and incentives shape educational outcomes."
+          "This is a good place to quietly introduce the idea that architecture and incentives shape educational outcomes.",
+          "Direction matters: AI can be used to remove drudgery and expand human capability, or to centralise control and reduce labour.",
+          "Bargaining power matters: Without strong institutions, efficiency narratives can define the agenda before educators and students get a say.",
+          "Narratives matter: The story that 'AI is inevitable' can make resistance to bad design sound backward rather than responsible."
         ]
       }
     },
@@ -505,16 +505,13 @@
       "body": "Most institutional AI projects appear to be about productivity, innovation or student experience. But beneath those labels lie different interests that do not always align.",
       "points": [
         {
-          "title": "Management incentives",
-          "description": "Financial pressure makes cost-saving and scalability tempting default objectives."
+          "title": "Management incentives"
         },
         {
-          "title": "Vendor incentives",
-          "description": "The platform wants adoption, telemetry, stickiness and cross-product integration."
+          "title": "Vendor incentives"
         },
         {
-          "title": "Academic and student interests",
-          "description": "Universities are supposed to privilege learning, judgment, accessibility, care and public value."
+          "title": "Academic and student interests"
         }
       ],
       "notes": {
@@ -522,7 +519,10 @@
         "points": [
           "Ask whose goals are being encoded when institutions talk about productivity, innovation, or student experience.",
           "Contrast management incentives, vendor incentives, and academic/student interests without caricaturing any of them.",
-          "The point is that those interests overlap imperfectly, so governance cannot be assumed."
+          "The point is that those interests overlap imperfectly, so governance cannot be assumed.",
+          "Management incentives: Financial pressure makes cost-saving and scalability tempting default objectives.",
+          "Vendor incentives: The platform wants adoption, telemetry, stickiness and cross-product integration.",
+          "Academic and student interests: Universities are supposed to privilege learning, judgment, accessibility, care and public value."
         ]
       }
     },
@@ -533,16 +533,13 @@
       "body": "Once universities depend on upstream systems, external firms gain quiet influence over what counts as good teaching infrastructure, sensible research workflows and acceptable institutional analytics.",
       "points": [
         {
-          "title": "Research agenda-setting",
-          "description": "Universities increasingly build on proprietary models rather than shaping the architecture, objectives or evaluation criteria."
+          "title": "Research agenda-setting"
         },
         {
-          "title": "Pedagogic agenda-setting",
-          "description": "Teaching begins to bend toward what the tool can easily generate, score or measure."
+          "title": "Pedagogic agenda-setting"
         },
         {
-          "title": "Ethical narrowing",
-          "description": "Safety and compliance get more attention than labour, justice, pluralism or democratic control."
+          "title": "Ethical narrowing"
         }
       ],
       "notes": {
@@ -550,7 +547,10 @@
         "points": [
           "Say the deepest problem is not only being unable to leave; it is having external actors quietly shape what counts as sensible teaching and governance.",
           "Use research, pedagogy, and ethical narrowing as examples of how defaults steer institutions.",
-          "This is where the talk becomes clearly about power, not just procurement."
+          "This is where the talk becomes clearly about power, not just procurement.",
+          "Research agenda-setting: Universities increasingly build on proprietary models rather than shaping the architecture, objectives or evaluation criteria.",
+          "Pedagogic agenda-setting: Teaching begins to bend toward what the tool can easily generate, score or measure.",
+          "Ethical narrowing: Safety and compliance get more attention than labour, justice, pluralism or democratic control."
         ]
       }
     },
@@ -589,16 +589,13 @@
       "body": "Universities rarely decide to abandon their mission. They drift when sensible short-term deals gradually rewrite the system around external priorities.",
       "points": [
         {
-          "title": "Bundled convenience",
-          "description": "AI arrives inside familiar productivity suites and platforms, making deeper dependency feel incremental."
+          "title": "Bundled convenience"
         },
         {
-          "title": "Default pathways",
-          "description": "Institution-wide licences quietly define which tools staff and students see as normal or approved."
+          "title": "Default pathways"
         },
         {
-          "title": "Contractual gravity",
-          "description": "Once workflows, content and reporting are built into one stack, future decisions become less free than they appear."
+          "title": "Contractual gravity"
         }
       ],
       "notes": {
@@ -606,7 +603,10 @@
         "points": [
           "Mission drift usually arrives through sensible local decisions, not dramatic declarations.",
           "Bundled convenience, default pathways, and contract terms rewrite the environment gradually.",
-          "This slide should make the risk feel familiar rather than ideological."
+          "This slide should make the risk feel familiar rather than ideological.",
+          "Bundled convenience: AI arrives inside familiar productivity suites and platforms, making deeper dependency feel incremental.",
+          "Default pathways: Institution-wide licences quietly define which tools staff and students see as normal or approved.",
+          "Contractual gravity: Once workflows, content and reporting are built into one stack, future decisions become less free than they appear."
         ]
       }
     },
@@ -646,16 +646,13 @@
       "body": "The most important design decision is not whether AI is present. It is whether AI is used to amplify human expertise or to thin it out.",
       "points": [
         {
-          "title": "Augmentation",
-          "description": "AI can remove admin burden, scaffold formative feedback and support accessibility so staff can focus on judgment and contact."
+          "title": "Augmentation"
         },
         {
-          "title": "Substitution",
-          "description": "AI can also be used to replace teaching presence, automate first-pass support and standardise assessment in thinner ways."
+          "title": "Substitution"
         },
         {
-          "title": "Institutional test",
-          "description": "Every use case should be judged by whether it improves educational experience and professional autonomy, not merely cost."
+          "title": "Institutional test"
         }
       ],
       "notes": {
@@ -663,7 +660,10 @@
         "points": [
           "The most important divide is augmentation versus substitution.",
           "Say that the question is not whether AI is present, but what kind of relationship to human expertise the institution is normalising.",
-          "This becomes the test you keep applying to the rest of the examples."
+          "This becomes the test you keep applying to the rest of the examples.",
+          "Augmentation: AI can remove admin burden, scaffold formative feedback and support accessibility so staff can focus on judgment and contact.",
+          "Substitution: AI can also be used to replace teaching presence, automate first-pass support and standardise assessment in thinner ways.",
+          "Institutional test: Every use case should be judged by whether it improves educational experience and professional autonomy, not merely cost."
         ]
       }
     },
@@ -674,16 +674,13 @@
       "body": "Universities under pressure are especially vulnerable to AI uses that look efficient because they industrialise surface tasks while hollowing out the human work students actually value.",
       "points": [
         {
-          "title": "Content at scale",
-          "description": "AI-authored slides, AI-voiced lectures and thin content automation can expand provision while shrinking teaching presence."
+          "title": "Content at scale"
         },
         {
-          "title": "Automated feedback",
-          "description": "Fully automated marking and commentary promise speed but can reduce contestability, nuance and trust."
+          "title": "Automated feedback"
         },
         {
-          "title": "Surveillance systems",
-          "description": "Student-success dashboards and risk scoring can become monitoring infrastructure rather than support infrastructure."
+          "title": "Surveillance systems"
         }
       ],
       "notes": {
@@ -691,7 +688,10 @@
         "points": [
           "The worst uses are attractive because they scale quickly under financial and workload pressure.",
           "Examples like industrialised content, automated feedback, and surveillance systems look efficient while thinning educational value.",
-          "Say this is where distortion shows up most clearly."
+          "Say this is where distortion shows up most clearly.",
+          "Content at scale: AI-authored slides, AI-voiced lectures and thin content automation can expand provision while shrinking teaching presence.",
+          "Automated feedback: Fully automated marking and commentary promise speed but can reduce contestability, nuance and trust.",
+          "Surveillance systems: Student-success dashboards and risk scoring can become monitoring infrastructure rather than support infrastructure."
         ]
       }
     },
@@ -702,16 +702,13 @@
       "body": "The most defensible AI applications are often the ones that complement human work rather than attempt to replace it.",
       "points": [
         {
-          "title": "Admin relief",
-          "description": "Triage, drafting, search and routine coordination can free staff time for high-value conversation."
+          "title": "Admin relief"
         },
         {
-          "title": "Accessibility and inclusion",
-          "description": "Translation, captioning, alternative formats and scaffolded support can widen participation when designed well."
+          "title": "Accessibility and inclusion"
         },
         {
-          "title": "Formative scaffolds",
-          "description": "AI can support low-stakes practice and feedback that academics then interpret, deepen and challenge."
+          "title": "Formative scaffolds"
         }
       ],
       "notes": {
@@ -719,7 +716,10 @@
         "points": [
           "The most defensible uses usually complement human work instead of replacing it.",
           "Stress admin relief, accessibility, and formative scaffolding as examples of augmentation.",
-          "This helps prevent the argument being heard as blanket resistance."
+          "This helps prevent the argument being heard as blanket resistance.",
+          "Admin relief: Triage, drafting, search and routine coordination can free staff time for high-value conversation.",
+          "Accessibility and inclusion: Translation, captioning, alternative formats and scaffolded support can widen participation when designed well.",
+          "Formative scaffolds: AI can support low-stakes practice and feedback that academics then interpret, deepen and challenge."
         ]
       }
     },
@@ -730,16 +730,13 @@
       "body": "Once AI tools are tightly integrated, course design can start adapting to the system rather than the other way round. That is how commercial logic becomes pedagogic logic.",
       "points": [
         {
-          "title": "Standardisation pressure",
-          "description": "Assessments and activities may drift toward formats that are easy to auto-score, summarise or monitor."
+          "title": "Standardisation pressure"
         },
         {
-          "title": "Surface metrics",
-          "description": "Completion, engagement and usage are privileged because they are measurable, even when they are weak proxies for learning."
+          "title": "Surface metrics"
         },
         {
-          "title": "Partner visibility",
-          "description": "Platforms and publishers can become the default route through which content, prompts and resources are surfaced."
+          "title": "Partner visibility"
         }
       ],
       "notes": {
@@ -747,7 +744,10 @@
         "points": [
           "Platforms nudge teaching toward what they can count, standardise, and render visible.",
           "Say that over time pedagogy can start adapting to platform logic rather than educational purpose.",
-          "This is a subtle but central claim: metrics and affordances become curricular pressure."
+          "This is a subtle but central claim: metrics and affordances become curricular pressure.",
+          "Standardisation pressure: Assessments and activities may drift toward formats that are easy to auto-score, summarise or monitor.",
+          "Surface metrics: Completion, engagement and usage are privileged because they are measurable, even when they are weak proxies for learning.",
+          "Partner visibility: Platforms and publishers can become the default route through which content, prompts and resources are surfaced."
         ]
       }
     },
@@ -758,16 +758,13 @@
       "body": "Universities sit on rich corpora of writing, interaction and workflow data. Once AI layers are integrated, those traces become commercially valuable far beyond their immediate educational use.",
       "points": [
         {
-          "title": "Behavioural exhaust",
-          "description": "Prompts, drafts, clicks, revisions and case interactions all become telemetry."
+          "title": "Behavioural exhaust"
         },
         {
-          "title": "Institutional dependency",
-          "description": "The model that best 'knows' how your university writes and works may be one you do not own."
+          "title": "Institutional dependency"
         },
         {
-          "title": "Upstream capture",
-          "description": "Value created from public educational activity can be turned into private rent streams."
+          "title": "Upstream capture"
         }
       ],
       "notes": {
@@ -775,7 +772,10 @@
         "points": [
           "Educational data does not only support services; it can become a rent stream.",
           "Explain behavioural exhaust, model improvement, and upstream value capture in plain institutional terms.",
-          "The room should hear that data governance is about political economy, not only compliance."
+          "The room should hear that data governance is about political economy, not only compliance.",
+          "Behavioural exhaust: Prompts, drafts, clicks, revisions and case interactions all become telemetry.",
+          "Institutional dependency: The model that best 'knows' how your university writes and works may be one you do not own.",
+          "Upstream capture: Value created from public educational activity can be turned into private rent streams."
         ]
       }
     },
@@ -814,16 +814,13 @@
       "body": "Once disciplines depend on proprietary models, higher education risks shifting from designing and interrogating tools to adapting around opaque systems made elsewhere.",
       "points": [
         {
-          "title": "Methodological narrowing",
-          "description": "Research workflows can default to one model's guardrails, training data and blind spots."
+          "title": "Methodological narrowing"
         },
         {
-          "title": "Reduced pluralism",
-          "description": "Open, local or public-interest models struggle for attention when corporate stacks are easiest to deploy."
+          "title": "Reduced pluralism"
         },
         {
-          "title": "Legitimacy transfer",
-          "description": "Universities can become testing grounds and legitimacy providers for tools they did not shape."
+          "title": "Legitimacy transfer"
         }
       ],
       "notes": {
@@ -831,7 +828,10 @@
         "points": [
           "Research workflows are affected when disciplines depend on proprietary systems built elsewhere.",
           "Point to methodological narrowing, reduced pluralism, and legitimacy transfer.",
-          "The takeaway is that dependence changes not only delivery but also how knowledge gets made."
+          "The takeaway is that dependence changes not only delivery but also how knowledge gets made.",
+          "Methodological narrowing: Research workflows can default to one model's guardrails, training data and blind spots.",
+          "Reduced pluralism: Open, local or public-interest models struggle for attention when corporate stacks are easiest to deploy.",
+          "Legitimacy transfer: Universities can become testing grounds and legitimacy providers for tools they did not shape."
         ]
       }
     },
@@ -871,16 +871,13 @@
       "body": "Early-stage platform ecosystems often look like public goods. Prices are low, credits are plentiful, integrations are rapid and the user experience is genuinely helpful.",
       "points": [
         {
-          "title": "Subsidised access",
-          "description": "Free tiers, education discounts and pilot credits make experimentation feel costless."
+          "title": "Subsidised access"
         },
         {
-          "title": "Rapid value",
-          "description": "Drafting, summarising, coding support and search assistance can deliver immediate productivity gains."
+          "title": "Rapid value"
         },
         {
-          "title": "Soft terms",
-          "description": "Data clauses and dependencies feel abstract because the practical benefits are visible now."
+          "title": "Soft terms"
         }
       ],
       "notes": {
@@ -888,7 +885,10 @@
         "points": [
           "Early-stage platforms often feel like public goods: low prices, credits, rapid integration, real usefulness.",
           "Do not sneer at this phase; acknowledge that the value is often genuine.",
-          "The point is that early generosity is exactly what makes later dependence possible."
+          "The point is that early generosity is exactly what makes later dependence possible.",
+          "Subsidised access: Free tiers, education discounts and pilot credits make experimentation feel costless.",
+          "Rapid value: Drafting, summarising, coding support and search assistance can deliver immediate productivity gains.",
+          "Soft terms: Data clauses and dependencies feel abstract because the practical benefits are visible now."
         ]
       }
     },
@@ -899,16 +899,13 @@
       "body": "As the platform matures, optimisation moves away from students and staff as users toward institutions, intermediaries and upstream business strategy.",
       "points": [
         {
-          "title": "Telemetry value",
-          "description": "Student and staff behaviour becomes raw material for model improvement, analytics and product design."
+          "title": "Telemetry value"
         },
         {
-          "title": "Buyer logic",
-          "description": "Enterprise customers are offered dashboards, nudges and metrics that serve management priorities first."
+          "title": "Buyer logic"
         },
         {
-          "title": "Behaviour shaping",
-          "description": "The platform starts 'twiddling the knobs' to improve monetisation, retention or partner visibility."
+          "title": "Behaviour shaping"
         }
       ],
       "notes": {
@@ -916,7 +913,10 @@
         "points": [
           "Over time, optimisation moves toward the platform's strategic customer and business model.",
           "Users still experience value, but the system is increasingly shaped around telemetry, procurement scale, and revenue logic.",
-          "This is the beginning of distortion at ecosystem level."
+          "This is the beginning of distortion at ecosystem level.",
+          "Telemetry value: Student and staff behaviour becomes raw material for model improvement, analytics and product design.",
+          "Buyer logic: Enterprise customers are offered dashboards, nudges and metrics that serve management priorities first.",
+          "Behaviour shaping: The platform starts 'twiddling the knobs' to improve monetisation, retention or partner visibility."
         ]
       }
     },
@@ -927,16 +927,13 @@
       "body": "Once the university is deeply integrated, the platform can change the terms of value capture without needing to make the system obviously unusable.",
       "points": [
         {
-          "title": "Price ratchets",
-          "description": "Per-seat AI costs and premium tiers rise as migration becomes more disruptive."
+          "title": "Price ratchets"
         },
         {
-          "title": "Paywalled capability",
-          "description": "Features that become pedagogically important move behind higher-priced plans."
+          "title": "Paywalled capability"
         },
         {
-          "title": "Proprietary dependency",
-          "description": "AI-authored content, tuned workflows and analytics histories live inside hard-to-export systems."
+          "title": "Proprietary dependency"
         }
       ],
       "notes": {
@@ -944,7 +941,10 @@
         "points": [
           "Once the institution is integrated, value capture can be rebalanced through pricing, features, and terms.",
           "The platform does not have to become unusable to become more extractive.",
-          "Say that this is why governance has to happen before dependence becomes normal."
+          "Say that this is why governance has to happen before dependence becomes normal.",
+          "Price ratchets: Per-seat AI costs and premium tiers rise as migration becomes more disruptive.",
+          "Paywalled capability: Features that become pedagogically important move behind higher-priced plans.",
+          "Proprietary dependency: AI-authored content, tuned workflows and analytics histories live inside hard-to-export systems."
         ]
       }
     },
@@ -955,16 +955,13 @@
       "body": "The deepest switching cost is not technical. It is social and organisational. By the time the squeeze is felt, the university has already reorganised itself around the platform.",
       "points": [
         {
-          "title": "Workflow lock-in",
-          "description": "Assessment routines, support scripts, integration logic and approval pathways already assume one stack."
+          "title": "Workflow lock-in"
         },
         {
-          "title": "Capability lock-in",
-          "description": "Staff training, user habits and local expertise become specific to one environment."
+          "title": "Capability lock-in"
         },
         {
-          "title": "Data lock-in",
-          "description": "Prompts, logs, evaluations and historic outputs are difficult to move or reuse elsewhere."
+          "title": "Data lock-in"
         }
       ],
       "notes": {
@@ -972,7 +969,10 @@
         "points": [
           "The deepest switching cost is not technical; it is organisational.",
           "By the time institutions want to exit, workflows, expectations, staff habits, and data structures have already adapted.",
-          "That is why exit rights have to be preserved early."
+          "That is why exit rights have to be preserved early.",
+          "Workflow lock-in: Assessment routines, support scripts, integration logic and approval pathways already assume one stack.",
+          "Capability lock-in: Staff training, user habits and local expertise become specific to one environment.",
+          "Data lock-in: Prompts, logs, evaluations and historic outputs are difficult to move or reuse elsewhere."
         ]
       }
     },
@@ -983,16 +983,13 @@
       "body": "Early choices about tools, contracts and norms do not stay local or temporary. They accumulate and become the pathway through which later decisions are constrained.",
       "points": [
         {
-          "title": "Standards harden",
-          "description": "File formats, APIs, assessment rules and reporting practices settle around early winners."
+          "title": "Standards harden"
         },
         {
-          "title": "Investment compounds",
-          "description": "Training, integrations and custom workflows make the original choice seem ever more rational."
+          "title": "Investment compounds"
         },
         {
-          "title": "Alternatives narrow",
-          "description": "Institutions eventually face not a free choice, but a high-cost break from their own accumulated history."
+          "title": "Alternatives narrow"
         }
       ],
       "notes": {
@@ -1000,7 +997,10 @@
         "points": [
           "This is path dependence at institutional scale.",
           "Today's local decisions accumulate into tomorrow's constrained options.",
-          "You can use QWERTY here as a light metaphor if helpful, but do not over-explain it."
+          "You can use QWERTY here as a light metaphor if helpful, but do not over-explain it.",
+          "Standards harden: File formats, APIs, assessment rules and reporting practices settle around early winners.",
+          "Investment compounds: Training, integrations and custom workflows make the original choice seem ever more rational.",
+          "Alternatives narrow: Institutions eventually face not a free choice, but a high-cost break from their own accumulated history."
         ]
       }
     },
@@ -1011,16 +1011,13 @@
       "body": "Law and policy matter, but so do the defaults built into code, market structure and everyday norms. Procurement is therefore not a back-office activity. It is a governance choice.",
       "points": [
         {
-          "title": "Code",
-          "description": "Systems decide what is easy, visible, logged, exportable, contestable or impossible."
+          "title": "Code"
         },
         {
-          "title": "Market",
-          "description": "Concentration and bundling shape what appears affordable or realistic."
+          "title": "Market"
         },
         {
-          "title": "Norms and law",
-          "description": "Institutional expectations and regulation matter most when they are translated into architecture and contracts."
+          "title": "Norms and law"
         }
       ],
       "notes": {
@@ -1028,7 +1025,10 @@
         "points": [
           "Architecture regulates behaviour whether institutions notice it or not.",
           "This is the place for the short Lessig bridge: code, market structure, norms, and law all matter.",
-          "Say plainly that procurement is governance because procurement shapes architecture."
+          "Say plainly that procurement is governance because procurement shapes architecture.",
+          "Code: Systems decide what is easy, visible, logged, exportable, contestable or impossible.",
+          "Market: Concentration and bundling shape what appears affordable or realistic.",
+          "Norms and law: Institutional expectations and regulation matter most when they are translated into architecture and contracts."
         ]
       }
     },
@@ -1068,16 +1068,13 @@
       "body": "Universities do not need a fantasy of total sovereignty, and they should not accept passive dependence either. The workable position is engaged stewardship.",
       "points": [
         {
-          "title": "Buy some things",
-          "description": "Use commercial infrastructure where it is genuinely useful and where the terms are governable."
+          "title": "Buy some things"
         },
         {
-          "title": "Build or host selectively",
-          "description": "Keep local or sector-controlled options for high-value or high-risk uses where continuity, privacy or contestability matter most."
+          "title": "Build or host selectively"
         },
         {
-          "title": "Refuse some things",
-          "description": "Reject deployments that undermine educational purpose even if they look efficient on paper."
+          "title": "Refuse some things"
         }
       ],
       "notes": {
@@ -1085,7 +1082,10 @@
         "points": [
           "The strongest response is engaged stewardship.",
           "Say that universities may buy some things, build or host some things, adapt some things, and refuse some things.",
-          "The important point is doing that from deliberate governance rather than drift."
+          "The important point is doing that from deliberate governance rather than drift.",
+          "Buy some things: Use commercial infrastructure where it is genuinely useful and where the terms are governable.",
+          "Build or host selectively: Keep local or sector-controlled options for high-value or high-risk uses where continuity, privacy or contestability matter most.",
+          "Refuse some things: Reject deployments that undermine educational purpose even if they look efficient on paper."
         ]
       }
     },
@@ -1096,16 +1096,13 @@
       "body": "An AI strategy should define what the university is trying to protect and improve before it defines what tools it plans to deploy.",
       "points": [
         {
-          "title": "Human contact",
-          "description": "Use AI to create more time for mentoring, feedback, discussion and care."
+          "title": "Human contact"
         },
         {
-          "title": "Inclusion and accessibility",
-          "description": "Prioritise translation, captioning, alternative formats and scaffolded support."
+          "title": "Inclusion and accessibility"
         },
         {
-          "title": "Mission guardrail",
-          "description": "Explicitly reject headcount reduction or content automation in place of teaching as primary aims."
+          "title": "Mission guardrail"
         }
       ],
       "notes": {
@@ -1113,7 +1110,10 @@
         "points": [
           "Strategy has to begin with what the university is trying to protect and improve, not with tool adoption targets.",
           "Use human contact, inclusion, and mission as guardrails.",
-          "This keeps the policy agenda tied to educational purpose rather than IT modernisation alone."
+          "This keeps the policy agenda tied to educational purpose rather than IT modernisation alone.",
+          "Human contact: Use AI to create more time for mentoring, feedback, discussion and care.",
+          "Inclusion and accessibility: Prioritise translation, captioning, alternative formats and scaffolded support.",
+          "Mission guardrail: Explicitly reject headcount reduction or content automation in place of teaching as primary aims."
         ]
       }
     },
@@ -1124,16 +1124,13 @@
       "body": "Good strategy recognises that use is not governed only by rules. It is governed by why people reach for systems, whether they know how to use them well, and whether the institution gives them reason to trust the arrangements.",
       "points": [
         {
-          "title": "Motivation",
-          "description": "Time pressure, workload, ambiguity and accessibility needs all drive real-world use."
+          "title": "Motivation"
         },
         {
-          "title": "Capability",
-          "description": "Training, discipline-specific guidance and verification habits determine whether use is shallow or reflective."
+          "title": "Capability"
         },
         {
-          "title": "Trust",
-          "description": "Clear permissions, transparent data rules and reliable tools reduce covert, anxious or inconsistent use."
+          "title": "Trust"
         }
       ],
       "notes": {
@@ -1141,7 +1138,10 @@
         "points": [
           "People reach for AI through motivation, capability, and trust.",
           "Governance fails if it treats use as something controlled only by rules.",
-          "This is a useful slide for showing that stewardship includes culture and support, not just restriction."
+          "This is a useful slide for showing that stewardship includes culture and support, not just restriction.",
+          "Motivation: Time pressure, workload, ambiguity and accessibility needs all drive real-world use.",
+          "Capability: Training, discipline-specific guidance and verification habits determine whether use is shallow or reflective.",
+          "Trust: Clear permissions, transparent data rules and reliable tools reduce covert, anxious or inconsistent use."
         ]
       }
     },
@@ -1152,16 +1152,13 @@
       "body": "Many institutions already have local experimentation. What they often lack is coordination, assurance, foresight and mission-level steering across the whole system.",
       "points": [
         {
-          "title": "Coordinate the edge",
-          "description": "Connect faculties, services and pilots so AI practice does not fragment into isolated local experiments."
+          "title": "Coordinate the edge"
         },
         {
-          "title": "Build assurance",
-          "description": "Procurement, audit, risk review and evaluation need institutional authority, not just enthusiasm."
+          "title": "Build assurance"
         },
         {
-          "title": "Steer by mission",
-          "description": "Senior governance must articulate what kind of university the AI stack is supposed to serve."
+          "title": "Steer by mission"
         }
       ],
       "notes": {
@@ -1169,7 +1166,10 @@
         "points": [
           "The institution needs a viable system for AI governance, not just a policy document.",
           "Say that many campuses are rich in experimentation at the edge and thin in coordination, assurance, foresight, and mission-level steering.",
-          "This is the plain-language version of the viable system diagnosis."
+          "This is the plain-language version of the viable system diagnosis.",
+          "Coordinate the edge: Connect faculties, services and pilots so AI practice does not fragment into isolated local experiments.",
+          "Build assurance: Procurement, audit, risk review and evaluation need institutional authority, not just enthusiasm.",
+          "Steer by mission: Senior governance must articulate what kind of university the AI stack is supposed to serve."
         ]
       }
     },
@@ -1180,16 +1180,13 @@
       "body": "Good procurement assumes that every platform will eventually change price, terms, quality or strategic direction. The question is whether the university remains able to respond.",
       "points": [
         {
-          "title": "Portability",
-          "description": "Require usable export paths for content, prompts, logs, fine-tuning data and configurations."
+          "title": "Portability"
         },
         {
-          "title": "Open standards",
-          "description": "Avoid proprietary formats that bury core teaching workflows inside one vendor's stack."
+          "title": "Open standards"
         },
         {
-          "title": "Exit planning",
-          "description": "Build fallback routes, review points and sunset clauses into every important AI contract."
+          "title": "Exit planning"
         }
       ],
       "notes": {
@@ -1197,7 +1194,10 @@
         "points": [
           "Buy infrastructure on the assumption that price, quality, or direction will eventually change.",
           "That means portability, open standards, and exit planning are not pessimism; they are competence.",
-          "This slide works well if delivered as hard-earned institutional realism."
+          "This slide works well if delivered as hard-earned institutional realism.",
+          "Portability: Require usable export paths for content, prompts, logs, fine-tuning data and configurations.",
+          "Open standards: Avoid proprietary formats that bury core teaching workflows inside one vendor's stack.",
+          "Exit planning: Build fallback routes, review points and sunset clauses into every important AI contract."
         ]
       }
     },
@@ -1208,16 +1208,13 @@
       "body": "Student work, support data and interaction traces are mission-governed resources. They should not drift into open-ended upstream model improvement by default.",
       "points": [
         {
-          "title": "Purpose limitation",
-          "description": "Separate service delivery from model training and from research uses."
+          "title": "Purpose limitation"
         },
         {
-          "title": "No dark training",
-          "description": "Ban open-ended commercial model training on student and staff data without explicit sector governance."
+          "title": "No dark training"
         },
         {
-          "title": "Oversight",
-          "description": "High-impact data uses need scrutiny from legal, ethical, academic and student perspectives."
+          "title": "Oversight"
         }
       ],
       "notes": {
@@ -1225,7 +1222,10 @@
         "points": [
           "Educational data is a governed asset, not free raw material.",
           "Separate operational use, evaluation use, and training/improvement use in your explanation.",
-          "This is where you make clear that stewardship includes student rights and institutional legitimacy."
+          "This is where you make clear that stewardship includes student rights and institutional legitimacy.",
+          "Purpose limitation: Separate service delivery from model training and from research uses.",
+          "No dark training: Ban open-ended commercial model training on student and staff data without explicit sector governance.",
+          "Oversight: High-impact data uses need scrutiny from legal, ethical, academic and student perspectives."
         ]
       }
     },
@@ -1236,16 +1236,13 @@
       "body": "Universities should not rely on product demos, generic benchmarks or marketing claims to decide what is acceptable in teaching and governance.",
       "points": [
         {
-          "title": "Task-based testing",
-          "description": "Build benchmark tasks for feedback, retrieval, advising, accessibility and disciplinary use cases."
+          "title": "Task-based testing"
         },
         {
-          "title": "Independent scrutiny",
-          "description": "Review hallucination risk, bias, privacy leakage, citation behaviour and fail-safe performance."
+          "title": "Independent scrutiny"
         },
         {
-          "title": "Continuous review",
-          "description": "Re-evaluate when underlying models, terms or integrations change upstream."
+          "title": "Continuous review"
         }
       ],
       "notes": {
@@ -1253,7 +1250,10 @@
         "points": [
           "Evaluation is the quiet centrepiece of stewardship.",
           "Say that universities cannot rely on demos, generic benchmarks, or marketing claims for high-stakes uses.",
-          "Stress task-based testing, independent scrutiny, and continuous review."
+          "Stress task-based testing, independent scrutiny, and continuous review.",
+          "Task-based testing: Build benchmark tasks for feedback, retrieval, advising, accessibility and disciplinary use cases.",
+          "Independent scrutiny: Review hallucination risk, bias, privacy leakage, citation behaviour and fail-safe performance.",
+          "Continuous review: Re-evaluate when underlying models, terms or integrations change upstream."
         ]
       }
     },
@@ -1264,16 +1264,13 @@
       "body": "The goal is not to build everything locally. It is to avoid allowing one stack to become the only imaginable path.",
       "points": [
         {
-          "title": "Modular design",
-          "description": "Use abstraction layers, retrieval components and portable data structures wherever feasible."
+          "title": "Modular design"
         },
         {
-          "title": "Plural model exposure",
-          "description": "Ensure staff and students can compare multiple systems, including open or locally hosted options."
+          "title": "Plural model exposure"
         },
         {
-          "title": "Right-sized models",
-          "description": "For many educational tasks, grounded and well-evaluated smaller systems may be better than the biggest generic model."
+          "title": "Right-sized models"
         }
       ],
       "notes": {
@@ -1281,7 +1278,10 @@
         "points": [
           "The goal is not to build everything locally; it is to avoid allowing one stack to become the only imaginable path.",
           "Use modularity, plural model exposure, and right-sized models as practical design principles.",
-          "This is where the audience should hear that architecture choices can preserve agency."
+          "This is where the audience should hear that architecture choices can preserve agency.",
+          "Modular design: Use abstraction layers, retrieval components and portable data structures wherever feasible.",
+          "Plural model exposure: Ensure staff and students can compare multiple systems, including open or locally hosted options.",
+          "Right-sized models: For many educational tasks, grounded and well-evaluated smaller systems may be better than the biggest generic model."
         ]
       }
     },
@@ -1320,16 +1320,13 @@
       "body": "No single university has enough leverage to negotiate every clause, evaluate every model or build every critical service alone. Collaboration is a practical necessity.",
       "points": [
         {
-          "title": "Shared procurement",
-          "description": "Use sector bodies and consortia to negotiate stronger data terms, exit rights and auditability."
+          "title": "Shared procurement"
         },
         {
-          "title": "Shared evaluation",
-          "description": "Build common test suites, model cards and red-teaming practices for educational use cases."
+          "title": "Shared evaluation"
         },
         {
-          "title": "Public-interest infrastructure",
-          "description": "Explore national, regional or mission-based alternatives where the market produces choke points."
+          "title": "Public-interest infrastructure"
         }
       ],
       "notes": {
@@ -1337,7 +1334,10 @@
         "points": [
           "Single universities are too small to negotiate, evaluate, and build everything alone.",
           "Sector collaboration and public alternatives are not idealism; they are a realistic response to asymmetric markets.",
-          "This lets you sound practical without sounding institutionally isolated."
+          "This lets you sound practical without sounding institutionally isolated.",
+          "Shared procurement: Use sector bodies and consortia to negotiate stronger data terms, exit rights and auditability.",
+          "Shared evaluation: Build common test suites, model cards and red-teaming practices for educational use cases.",
+          "Public-interest infrastructure: Explore national, regional or mission-based alternatives where the market produces choke points."
         ]
       }
     },
@@ -1377,16 +1377,13 @@
       "body": "The optimistic future is not one in which universities beat hyperscalers at their own game. It is one in which they use the boom to build durable, plural and publicly oriented capability.",
       "points": [
         {
-          "title": "Cheaper infrastructure, better terms",
-          "description": "Institutions inherit mature tools and compute without surrendering all bargaining power."
+          "title": "Cheaper infrastructure, better terms"
         },
         {
-          "title": "Human-centred pedagogy",
-          "description": "AI is used to deepen feedback, accessibility and high-value contact rather than thin them out."
+          "title": "Human-centred pedagogy"
         },
         {
-          "title": "Stronger public capacity",
-          "description": "Sector collaboration creates standards, evaluation routines and alternatives that keep the system contestable."
+          "title": "Stronger public capacity"
         }
       ],
       "notes": {
@@ -1394,7 +1391,10 @@
         "points": [
           "A good future is not universities beating hyperscalers at their own game.",
           "It is cheaper infrastructure on better terms, human-centred pedagogy, and stronger public capability.",
-          "Keep the picture specific enough to feel plausible rather than utopian."
+          "Keep the picture specific enough to feel plausible rather than utopian.",
+          "Cheaper infrastructure, better terms: Institutions inherit mature tools and compute without surrendering all bargaining power.",
+          "Human-centred pedagogy: AI is used to deepen feedback, accessibility and high-value contact rather than thin them out.",
+          "Stronger public capacity: Sector collaboration creates standards, evaluation routines and alternatives that keep the system contestable."
         ]
       }
     },
@@ -1405,16 +1405,13 @@
       "body": "The pessimistic future is not spectacular collapse. It is a quieter form of dependency in which institutions keep functioning while their freedom, pluralism and educational quality erode.",
       "points": [
         {
-          "title": "Rent extraction",
-          "description": "AI becomes a permanent premium layer across teaching, admin, assessment and research workflows."
+          "title": "Rent extraction"
         },
         {
-          "title": "Thin provision",
-          "description": "Lower-status students and institutions get automated, standardised provision while wealthier parts of the sector preserve human-rich models."
+          "title": "Thin provision"
         },
         {
-          "title": "Opaque governance",
-          "description": "Research, pedagogy and student support are increasingly shaped by systems the university cannot fully audit or challenge."
+          "title": "Opaque governance"
         }
       ],
       "notes": {
@@ -1422,7 +1419,10 @@
         "points": [
           "The captured future is not dramatic collapse; it is ongoing functioning under worsening dependency.",
           "Emphasise rent extraction, thinner provision, and opaque governance.",
-          "The point is to show what slow loss of autonomy looks like in ordinary institutional life."
+          "The point is to show what slow loss of autonomy looks like in ordinary institutional life.",
+          "Rent extraction: AI becomes a permanent premium layer across teaching, admin, assessment and research workflows.",
+          "Thin provision: Lower-status students and institutions get automated, standardised provision while wealthier parts of the sector preserve human-rich models.",
+          "Opaque governance: Research, pedagogy and student support are increasingly shaped by systems the university cannot fully audit or challenge."
         ]
       }
     },
@@ -1433,16 +1433,13 @@
       "body": "Every institution does not need the same answer, but all of them need to decide what they will refuse to outsource by default.",
       "points": [
         {
-          "title": "What must we retain control over?",
-          "description": "Define the teaching, assessment, data or support functions where exit, auditability and human oversight are non-negotiable."
+          "title": "What must we retain control over?"
         },
         {
-          "title": "What should we build or evaluate together?",
-          "description": "Identify the areas where sector collaboration creates more leverage than acting alone."
+          "title": "What should we build or evaluate together?"
         },
         {
-          "title": "What rights should students have?",
-          "description": "Make explicit the rights to transparency, contestability, accessibility and non-AI pathways in core processes."
+          "title": "What rights should students have?"
         }
       ],
       "notes": {
@@ -1450,7 +1447,10 @@
         "points": [
           "Every institution has to decide what it will refuse to outsource by default.",
           "Use the three questions as decision tests: what must we retain control over, what should we build or evaluate together, and what rights should students have?",
-          "This sets up the closing agenda cleanly."
+          "This sets up the closing agenda cleanly.",
+          "What must we retain control over?: Define the teaching, assessment, data or support functions where exit, auditability and human oversight are non-negotiable.",
+          "What should we build or evaluate together?: Identify the areas where sector collaboration creates more leverage than acting alone.",
+          "What rights should students have?: Make explicit the rights to transparency, contestability, accessibility and non-AI pathways in core processes."
         ]
       }
     },
@@ -1461,16 +1461,13 @@
       "body": "The first moves are not glamorous. They are the foundations of a university that remains able to govern its own AI future.",
       "points": [
         {
-          "title": "Map dependence",
-          "description": "Identify where AI is already embedded in teaching, assessment, support, analytics and procurement."
+          "title": "Map dependence"
         },
         {
-          "title": "Tighten the basics",
-          "description": "Create a cross-functional procurement checklist, clear data rules and one evaluation routine for a high-priority use case."
+          "title": "Tighten the basics"
         },
         {
-          "title": "Act collectively",
-          "description": "Join or build a coalition for shared bargaining, evaluation or open alternatives before the defaults settle."
+          "title": "Act collectively"
         }
       ],
       "notes": {
@@ -1478,7 +1475,10 @@
         "points": [
           "The Monday-morning agenda shows that stewardship begins with unglamorous but doable steps.",
           "Map dependence, tighten the basics, and act collectively.",
-          "This is where the talk leaves the audience with something they can do next week."
+          "This is where the talk leaves the audience with something they can do next week.",
+          "Map dependence: Identify where AI is already embedded in teaching, assessment, support, analytics and procurement.",
+          "Tighten the basics: Create a cross-functional procurement checklist, clear data rules and one evaluation routine for a high-priority use case.",
+          "Act collectively: Join or build a coalition for shared bargaining, evaluation or open alternatives before the defaults settle."
         ]
       }
     },

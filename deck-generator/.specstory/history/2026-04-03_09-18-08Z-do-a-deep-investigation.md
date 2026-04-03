@@ -6151,3 +6151,2333 @@ _**Agent (claude-opus-4-6 2026-04-03 09:24:30Z)**_
 
 
 The earlier attempts failed (vite not in PATH), but the third one using `node_modules/.bin/vite --open` is running successfully — the server is live at **http://localhost:5173/**.
+
+---
+
+_**User (2026-04-03 09:51:24Z)**_
+
+For the template for the content split cards, there's too much text on here. Ideally, I'd like for each bullet point to keep it the same and have the same title, but then just put the text in each of the bullet point items into the notes field instead. We're just left with high-level titles against the red, green, and dark blue bullet points with slightly larger text size, and I can read out the text as I'm presenting. Do you understand what I mean? Make no changes.
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-03 09:51:37Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-03 09:51:38Z)**_
+
+Let me look at the current layout and content to make sure I've got it right.
+
+_**Agent (claude-opus-4-6 2026-04-03 09:51:38Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/layouts.js`
+
+```text
+1	/**
+2	 * Layout template functions.
+3	 * Each returns an HTML string for the slide's inner content.
+4	 * Layouts reference CSS custom properties — never hard-coded colours/fonts.
+5	 */
+6	
+7	// ─── COVER LAYOUTS ──────────────────────────────
+8	
+9	export function coverBoldFull(slide) {
+10	  return `
+11	    <div class="slide-inner cover-bold-full">
+12	      <div class="cover-title">${slide.title}</div>
+13	      ${slide.subtitle ? `<div class="cover-subtitle">${slide.subtitle}</div>` : ''}
+14	      <div class="cover-bottom">
+15	        <div class="cover-author">${slide.author || ''}</div>
+16	        <div class="cover-date-pill">${slide.date || ''}</div>
+17	      </div>
+18	    </div>
+19	  `;
+20	}
+21	
+22	export function coverDarkMinimal(slide) {
+23	  return `
+24	    <div class="slide-inner cover-dark-minimal">
+25	      <div class="cover-top">
+26	        <div class="cover-badge">${slide.badge || ''}</div>
+27	        <div class="cover-date-pill">${slide.date || ''}</div>
+28	      </div>
+29	      <div class="cover-title">${slide.title}</div>
+30	      <div class="cover-subtitle">${slide.subtitle || ''}</div>
+31	    </div>
+32	  `;
+33	}
+34	
+35	// ─── SECTION DIVIDER LAYOUTS ────────────────────
+36	
+37	export function dividerColorBurst(slide, page) {
+38	  return `
+39	    <div class="slide-inner divider-color-burst">
+40	      ${slide.section_number != null
+41	        ? `<div class="divider-badge">Section ${slide.section_number}</div>`
+42	        : ''}
+43	      <div class="divider-title">${slide.title}</div>
+44	      <div class="divider-page">${String(page).padStart(2, '0')}</div>
+45	    </div>
+46	  `;
+47	}
+48	
+49	export function dividerDarkCinematic(slide, page) {
+50	  return `
+51	    <div class="slide-inner divider-dark-cinematic">
+52	      <div class="divider-top">
+53	        ${slide.section_number != null
+54	          ? `<div class="divider-badge">Section ${slide.section_number}</div>`
+55	          : '<span></span>'}
+56	        <div class="divider-page">${String(page).padStart(2, '0')}</div>
+57	      </div>
+58	      <div class="divider-title">${slide.title}</div>
+59	      ${slide.subtitle ? `<div class="divider-subtitle">${slide.subtitle}</div>` : ''}
+60	    </div>
+61	  `;
+62	}
+63	
+64	// ─── CONTENT LAYOUTS ────────────────────────────
+65	
+66	export function contentSplitCards(slide, page) {
+67	  const colors = [
+68	    'var(--color-accent-1)',
+69	    'var(--color-accent-2)',
+70	    'var(--color-accent-3)',
+71	    'var(--color-accent-4)',
+72	  ];
+73	
+74	  const cards = (slide.points || []).map((point, i) => `
+75	    <div class="evidence-card">
+76	      <div class="card-icon" style="background: ${colors[i % colors.length]}"></div>
+77	      <div class="card-text">
+78	        <h3>${point.title}</h3>
+79	        <p>${point.description}</p>
+80	      </div>
+81	    </div>
+82	  `).join('');
+83	
+84	  return `
+85	    <div class="slide-inner content-split-cards">
+86	      <div class="content-nav">${slide.section || ''}</div>
+87	      <div class="content-body-area">
+88	        <div class="content-left">
+89	          <h2>${slide.heading}</h2>
+90	          ${slide.body ? `<p>${slide.body}</p>` : ''}
+91	        </div>
+92	        <div class="content-right">
+93	          ${cards}
+94	        </div>
+95	      </div>
+96	      <div class="content-footer">
+97	        <span class="page-number">${String(page).padStart(2, '0')}</span>
+98	      </div>
+99	    </div>
+100	  `;
+101	}
+102	
+103	export function contentWideVisual(slide, page) {
+104	  const colors = [
+105	    'var(--color-accent-1)',
+106	    'var(--color-accent-2)',
+107	    'var(--color-accent-3)',
+108	    'var(--color-accent-4)',
+109	  ];
+110	
+111	  const cards = (slide.points || []).map((point, i) => `
+112	    <div class="visual-card">
+113	      <div class="card-accent" style="background: ${colors[i % colors.length]}"></div>
+114	      <h3>${point.title}</h3>
+115	      <p>${point.description}</p>
+116	    </div>
+117	  `).join('');
+118	
+119	  return `
+120	    <div class="slide-inner content-wide-visual">
+121	      <div class="content-nav">${slide.section || ''}</div>
+122	      <div class="content-body-area">
+123	        <div class="content-left">
+124	          <h2>${slide.heading}</h2>
+125	          ${slide.body ? `<p>${slide.body}</p>` : ''}
+126	        </div>
+127	        <div class="content-right">
+128	          ${cards}
+129	        </div>
+130	      </div>
+131	    </div>
+132	  `;
+133	}
+134	
+135	// ─── DATA LAYOUTS ───────────────────────────────
+136	
+137	export function dataBigNumbers(slide, page) {
+138	  const bgColors = [
+139	    'var(--color-accent-1)',
+140	    'var(--color-accent-2)',
+141	    'var(--color-accent-3)',
+142	    'var(--color-accent-4)',
+143	  ];
+144	
+145	  const blocks = (slide.stats || []).map((stat, i) => `
+146	    <div class="stat-block" data-accent="${i % bgColors.length}" style="background: ${bgColors[i % bgColors.length]}">
+147	      <div class="stat-value">${stat.value}</div>
+148	      <div class="stat-label">${stat.label}</div>
+149	    </div>
+150	  `).join('');
+151	
+152	  return `
+153	    <div class="slide-inner data-big-numbers">
+154	      <div class="data-nav">${slide.section || ''}</div>
+155	      <div class="data-body">
+156	        <div class="data-left">
+157	          <h2>${slide.heading}</h2>
+158	          ${slide.body ? `<p>${slide.body}</p>` : ''}
+159	        </div>
+160	        <div class="data-right">
+161	          ${blocks}
+162	        </div>
+163	      </div>
+164	      <div class="data-page">${String(page).padStart(2, '0')}</div>
+165	    </div>
+166	  `;
+167	}
+168	
+169	export function dataFullBleed(slide, page) {
+170	  const bgColors = [
+171	    'var(--color-shape-1)',
+172	    'var(--color-shape-2)',
+173	    'var(--color-shape-3)',
+174	    'var(--color-accent-4)',
+175	  ];
+176	
+177	  const blocks = (slide.stats || []).map((stat, i) => `
+178	    <div class="stat-block" style="background: ${bgColors[i % bgColors.length]}; color: var(--color-text-on-dark);">
+179	      <div class="stat-year">${stat.year || ''}</div>
+180	      <div class="stat-value">${stat.value}</div>
+181	      <div class="stat-label">${stat.label}</div>
+182	    </div>
+183	  `).join('');
+184	
+185	  return `
+186	    <div class="slide-inner data-full-bleed">
+187	      ${blocks}
+188	    </div>
+189	  `;
+190	}
+191	
+192	// ─── STATEMENT LAYOUTS ──────────────────────────
+193	
+194	export function statementCentered(slide) {
+195	  const text = slide.text.replace(
+196	    new RegExp(`(${escapeRegex(slide.highlight)})`, 'gi'),
+197	    '<span class="highlight">$1</span>'
+198	  );
+199	
+200	  return `
+201	    <div class="slide-inner statement-centered">
+202	      <div class="statement-label">${slide.section || ''}</div>
+203	      <div class="statement-text">${text}</div>
+204	      ${slide.attribution ? `<div class="statement-attribution">${slide.attribution}</div>` : ''}
+205	    </div>
+206	  `;
+207	}
+208	
+209	export function statementEditorial(slide) {
+210	  const text = slide.text.replace(
+211	    new RegExp(`(${escapeRegex(slide.highlight)})`, 'gi'),
+212	    '<span class="highlight">$1</span>'
+213	  );
+214	
+215	  return `
+216	    <div class="slide-inner statement-editorial">
+217	      <div class="statement-label">${slide.section || ''}</div>
+218	      <div class="statement-text">${text}</div>
+219	      ${slide.attribution ? `<div class="statement-attribution">${slide.attribution}</div>` : ''}
+220	    </div>
+221	  `;
+222	}
+223	
+224	// ─── HELPERS ────────────────────────────────────
+225	
+226	function escapeRegex(str) {
+227	  if (!str) return '';
+228	  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+229	}
+230	
+231	// ─── LAYOUT REGISTRY ────────────────────────────
+232	
+233	export const layoutRegistry = {
+234	  // Covers
+235	  'cover-bold-full':      coverBoldFull,
+236	  'cover-dark-minimal':   coverDarkMinimal,
+237	
+238	  // Dividers
+239	  'divider-color-burst':     dividerColorBurst,
+240	  'divider-dark-cinematic':  dividerDarkCinematic,
+241	
+242	  // Content
+243	  'content-split-cards':  contentSplitCards,
+244	  'content-wide-visual':  contentWideVisual,
+245	
+246	  // Data
+247	  'data-big-numbers':     dataBigNumbers,
+248	  'data-full-bleed':      dataFullBleed,
+249	
+250	  // Statement
+251	  'statement-centered':   statementCentered,
+252	  'statement-editorial':  statementEditorial,
+253	};
+254
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 09:51:38Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./content.json`
+
+```text
+1	{
+2	  "slides": [
+3	    {
+4	      "type": "cover",
+5	      "title": "Who Will Control the AI Infrastructure of Higher Education?",
+6	      "subtitle": "From useful tools to structural dependence, and how universities can still shape their future",
+7	      "author": "Dr Stuart Grey",
+8	      "badge": "Future Facing Learning and AI in Higher Education 2026",
+9	      "date": "April 15th 2026",
+10	      "notes": {
+11	        "transition": "Open with the question, not with housekeeping.",
+12	        "points": [
+13	          "Frame the keynote as a shift from 'how should we use AI?' to 'who controls the infrastructure we are starting to rely on?'",
+14	          "Say this is a governance talk for a room already thinking about pedagogy, assessment, and practice.",
+15	          "Flag that the talk is neither anti-AI nor anti-industry; it is about stewardship."
+16	        ]
+17	      }
+18	    },
+19	    {
+20	      "type": "section-divider",
+21	      "section_number": null,
+22	      "title": "Dr Stuart Grey",
+23	      "subtitle": "",
+24	      "notes": {
+25	        "transition": "Move from the big question to why I am the person making this argument.",
+26	        "points": [
+27	          "Keep this very brief: this is not biography for its own sake.",
+28	          "Use it to establish that the perspective comes from both technical AI work and practical HE institutional work.",
+29	          "Set up the next two slides as the two halves of that perspective."
+30	        ]
+31	      }
+32	    },
+33	    {
+34	      "type": "section-divider",
+35	      "section_number": null,
+36	      "title": "Distributed Agents for Autonomous Spacecraft",
+37	      "subtitle": "",
+38	      "notes": {
+39	        "transition": "Take the first half of that perspective: technical grounding.",
+40	        "points": [
+41	          "Use this to show I have a machine learning / AI research background, not just a policy interest.",
+42	          "The point is that I understand AI systems as systems with architecture, coordination, and failure modes.",
+43	          "Do not dwell on the thesis details; translate it into credibility for seeing the stack."
+44	        ]
+45	      }
+46	    },
+47	    {
+48	      "type": "section-divider",
+49	      "section_number": null,
+50	      "title": "Free Text Analysis with Student Voice AI",
+51	      "subtitle": "",
+52	      "notes": {
+53	        "transition": "Then pivot from technical grounding to applied institutional grounding.",
+54	        "points": [
+55	          "Explain that most of my day-to-day work is free-text analysis with UK education institutions through Student Voice AI.",
+56	          "This means I see what AI and data practices look like inside real institutional workflows, not only in theory.",
+57	          "Say explicitly that the talk comes from looking at both the technology and the institutional consequences."
+58	        ]
+59	      }
+60	    },
+61	    {
+62	      "type": "statement",
+63	      "section": "",
+64	      "text": "Transparency",
+65	      "highlight": "Transparency",
+66	      "attribution": "",
+67	      "notes": {
+68	        "transition": "Now give the room the first of three lenses for reading the rest of the talk.",
+69	        "points": [
+70	          "Transparency asks: what can institutions actually see, inspect, explain, and contest?",
+71	          "Use it to frame provenance, auditability, model dependencies, data use, and institutional legibility.",
+72	          "Deliver it as a clean beat, not a full explanation yet."
+73	        ]
+74	      }
+75	    },
+76	    {
+77	      "type": "statement",
+78	      "section": "",
+79	      "text": "Distortion",
+80	      "highlight": "Distortion",
+81	      "attribution": "",
+82	      "notes": {
+83	        "transition": "Add the second lens by shifting from visibility to shape.",
+84	        "points": [
+85	          "Distortion asks what gets bent when systems reward what is easy to capture, measure, or automate.",
+86	          "This will later connect to assessment design, pedagogy, workflow simplification, and institutional incentives.",
+87	          "Keep the rhythm deliberate so the triad lands."
+88	        ]
+89	      }
+90	    },
+91	    {
+92	      "type": "statement",
+93	      "section": "",
+94	      "text": "Extraction",
+95	      "highlight": "Extraction",
+96	      "attribution": "",
+97	      "notes": {
+98	        "transition": "Complete the triad with the political-economy lens.",
+99	        "points": [
+100	          "Extraction asks who captures value when educational activity becomes data, workflow, or dependency.",
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 09:51:45Z)**_
+
+Let me see a few content slides to understand the current bullet point verbosity.
+
+_**Agent (claude-opus-4-6 2026-04-03 09:51:47Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./content.json` pattern `"type": "content"`
+
+```text
+136:      "type": "content",
+192:      "type": "content",
+220:      "type": "content",
+277:      "type": "content",
+333:      "type": "content",
+361:      "type": "content",
+389:      "type": "content",
+446:      "type": "content",
+474:      "type": "content",
+502:      "type": "content",
+530:      "type": "content",
+586:      "type": "content",
+643:      "type": "content",
+671:      "type": "content",
+699:      "type": "content",
+727:      "type": "content",
+755:      "type": "content",
+811:      "type": "content",
+868:      "type": "content",
+896:      "type": "content",
+924:      "type": "content",
+952:      "type": "content",
+980:      "type": "content",
+1008:      "type": "content",
+1065:      "type": "content",
+1093:      "type": "content",
+1121:      "type": "content",
+1149:      "type": "content",
+1177:      "type": "content",
+1205:      "type": "content",
+1233:      "type": "content",
+1261:      "type": "content",
+1317:      "type": "content",
+1374:      "type": "content",
+1402:      "type": "content",
+1430:      "type": "content",
+1458:      "type": "content",
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 09:51:56Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./content.json`
+
+```text
+136	      "type": "content",
+137	      "section": "From tool to substrate",
+138	      "heading": "AI is moving from visible tools to invisible systems",
+139	      "body": "The important shift is not simply more campus use. It is that AI is being stitched into teaching, assessment, student support, research workflows and institutional decision-making. When that happens, AI stops looking like a product choice and starts behaving like infrastructure.",
+140	      "points": [
+141	        {
+142	          "title": "Teaching and assessment",
+143	          "description": "Generative tools now sit inside drafting, feedback, marking support and redesign of assessment."
+144	        },
+145	        {
+146	          "title": "Student support and admin",
+147	          "description": "Copilots, triage systems and analytics are creeping into advising, helpdesks and routine services."
+148	        },
+149	        {
+150	          "title": "Research and governance",
+151	          "description": "Search, synthesis, coding, grant development and management reporting increasingly run through AI-mediated layers."
+152	        }
+153	      ],
+154	      "notes": {
+155	        "transition": "Start with the broad institutional picture before going to evidence.",
+156	        "points": [
+157	          "AI is no longer just a tool someone opens; it is becoming part of how teaching, assessment, support, research, and governance are carried out.",
+158	          "Stress the shift from optional use to embedded workflow.",
+159	          "Say that once many activities assume the system is there, AI stops behaving like a product choice and starts behaving like infrastructure."
+160	        ]
+161	      }
+162	    },
+163	    {
+164	      "type": "data",
+165	      "section": "From tool to substrate",
+166	      "heading": "Student adoption is already mainstream",
+167	      "body": "The governance problem is immediate because student practice has already normalised faster than institutional structures have adapted.",
+168	      "stats": [
+169	        {
+170	          "value": "95%",
+171	          "label": "of UK full-time undergraduates use AI in at least one way"
+172	        },
+173	        {
+174	          "value": "94%",
+175	          "label": "use generative AI to help with assessed work"
+176	        },
+177	        {
+178	          "value": "65%",
+179	          "label": "say assessment has changed significantly because of AI"
+180	        }
+181	      ],
+182	      "notes": {
+183	        "transition": "Back the previous claim with numbers so the room feels the urgency.",
+184	        "points": [
+185	          "Use the HEPI figures to show this is already mainstream student practice.",
+186	          "Link the assessment figure directly to the conference context: the room already knows assessment is changing.",
+187	          "The point is not surprise at student use; the point is that institutional governance can no longer lag behind it."
+188	        ]
+189	      }
+190	    },
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 09:52:09Z)**_
+
+Yes, I understand exactly what you mean. Here's the plan:
+
+**Currently**, each evidence card in the `content-split-cards` layout shows:
+- A coloured dot (accent-1/2/3)
+- A **title** (e.g. "Teaching and assessment")
+- A **description** paragraph (e.g. "Generative tools now sit inside drafting, feedback, marking support and redesign of assessment.")
+
+**What you want:**
+1. **Keep the slide heading and body** on the left as-is
+2. **Keep the bullet point titles** on the right cards — but **remove the description text from the visible card**
+3. **Move each description into the slide's `notes`** so you have it as speaker notes to read aloud
+4. **Make the remaining title-only cards slightly larger text** since they no longer compete with description text for space
+
+So visually you'd go from dense evidence cards to clean, punchy keyword cards — just the coloured dot + title like "Teaching and assessment" — and you'd have the detail in your notes. This would apply across all ~37 content slides.
+
+Two changes needed:
+- **Layout** (`layouts.js`): drop the `<p>${point.description}</p>` from the card template, bump the `<h3>` sizing
+- **Content** (`content.json`): migrate each point's `description` into the slide's `notes.points` array so you don't lose it
+
+Is that right, or did you want me to handle it differently (e.g. keep descriptions in the JSON but just not render them, rather than moving them)?
+
+---
+
+_**User (2026-04-03 09:52:52Z)**_
+
+So that's right. Just make sure to append the descriptions to the notes field for that slide
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-03 09:53:08Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-03 09:53:08Z)**_
+
+Let me read the CSS for the card styling first, then make both changes.
+
+_**Agent (claude-opus-4-6 2026-04-03 09:53:09Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./src/style.css` pattern `evidence-card|card-text|\.card-text h3`
+
+```text
+694-  justify-content: center;
+695-}
+696-
+697:.content-split-cards .evidence-card {
+698-  background: var(--color-bg-secondary);
+699-  border-radius: var(--card-border-radius);
+700-  padding: 1.4rem 1.6rem;
+--
+703-  gap: 1rem;
+704-}
+705-
+706:.content-split-cards .evidence-card .card-icon {
+707-  width: 2.5rem;
+708-  height: 2.5rem;
+709-  border-radius: var(--shape-border-radius);
+--
+713-  justify-content: center;
+714-}
+715-
+716:.content-split-cards .evidence-card .card-text h3 {
+717-  font-family: var(--font-display);
+718-  font-weight: 600;
+719-  font-size: 0.95rem;
+720-  margin-bottom: 0.3rem;
+721-}
+722-
+723:.content-split-cards .evidence-card .card-text p {
+724-  font-size: var(--caption-size);
+725-  color: var(--color-text-secondary);
+726-  line-height: 1.5;
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 09:53:12Z)**_
+
+Now let me read the full content.json so I can transform it.
+
+_**Agent (claude-opus-4-6 2026-04-03 09:53:13Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./content.json`
+
+```text
+File content (16281 tokens) exceeds maximum allowed tokens (10000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 09:53:20Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./content.json`
+
+```text
+1	{
+2	  "slides": [
+3	    {
+4	      "type": "cover",
+5	      "title": "Who Will Control the AI Infrastructure of Higher Education?",
+6	      "subtitle": "From useful tools to structural dependence, and how universities can still shape their future",
+7	      "author": "Dr Stuart Grey",
+8	      "badge": "Future Facing Learning and AI in Higher Education 2026",
+9	      "date": "April 15th 2026",
+10	      "notes": {
+11	        "transition": "Open with the question, not with housekeeping.",
+12	        "points": [
+13	          "Frame the keynote as a shift from 'how should we use AI?' to 'who controls the infrastructure we are starting to rely on?'",
+14	          "Say this is a governance talk for a room already thinking about pedagogy, assessment, and practice.",
+15	          "Flag that the talk is neither anti-AI nor anti-industry; it is about stewardship."
+16	        ]
+17	      }
+18	    },
+19	    {
+20	      "type": "section-divider",
+21	      "section_number": null,
+22	      "title": "Dr Stuart Grey",
+23	      "subtitle": "",
+24	      "notes": {
+25	        "transition": "Move from the big question to why I am the person making this argument.",
+26	        "points": [
+27	          "Keep this very brief: this is not biography for its own sake.",
+28	          "Use it to establish that the perspective comes from both technical AI work and practical HE institutional work.",
+29	          "Set up the next two slides as the two halves of that perspective."
+30	        ]
+31	      }
+32	    },
+33	    {
+34	      "type": "section-divider",
+35	      "section_number": null,
+36	      "title": "Distributed Agents for Autonomous Spacecraft",
+37	      "subtitle": "",
+38	      "notes": {
+39	        "transition": "Take the first half of that perspective: technical grounding.",
+40	        "points": [
+41	          "Use this to show I have a machine learning / AI research background, not just a policy interest.",
+42	          "The point is that I understand AI systems as systems with architecture, coordination, and failure modes.",
+43	          "Do not dwell on the thesis details; translate it into credibility for seeing the stack."
+44	        ]
+45	      }
+46	    },
+47	    {
+48	      "type": "section-divider",
+49	      "section_number": null,
+50	      "title": "Free Text Analysis with Student Voice AI",
+51	      "subtitle": "",
+52	      "notes": {
+53	        "transition": "Then pivot from technical grounding to applied institutional grounding.",
+54	        "points": [
+55	          "Explain that most of my day-to-day work is free-text analysis with UK education institutions through Student Voice AI.",
+56	          "This means I see what AI and data practices look like inside real institutional workflows, not only in theory.",
+57	          "Say explicitly that the talk comes from looking at both the technology and the institutional consequences."
+58	        ]
+59	      }
+60	    },
+61	    {
+62	      "type": "statement",
+63	      "section": "",
+64	      "text": "Transparency",
+65	      "highlight": "Transparency",
+66	      "attribution": "",
+67	      "notes": {
+68	        "transition": "Now give the room the first of three lenses for reading the rest of the talk.",
+69	        "points": [
+70	          "Transparency asks: what can institutions actually see, inspect, explain, and contest?",
+71	          "Use it to frame provenance, auditability, model dependencies, data use, and institutional legibility.",
+72	          "Deliver it as a clean beat, not a full explanation yet."
+73	        ]
+74	      }
+75	    },
+76	    {
+77	      "type": "statement",
+78	      "section": "",
+79	      "text": "Distortion",
+80	      "highlight": "Distortion",
+81	      "attribution": "",
+82	      "notes": {
+83	        "transition": "Add the second lens by shifting from visibility to shape.",
+84	        "points": [
+85	          "Distortion asks what gets bent when systems reward what is easy to capture, measure, or automate.",
+86	          "This will later connect to assessment design, pedagogy, workflow simplification, and institutional incentives.",
+87	          "Keep the rhythm deliberate so the triad lands."
+88	        ]
+89	      }
+90	    },
+91	    {
+92	      "type": "statement",
+93	      "section": "",
+94	      "text": "Extraction",
+95	      "highlight": "Extraction",
+96	      "attribution": "",
+97	      "notes": {
+98	        "transition": "Complete the triad with the political-economy lens.",
+99	        "points": [
+100	          "Extraction asks who captures value when educational activity becomes data, workflow, or dependency.",
+101	          "Later this will connect to data use, vendor leverage, rent streams, and platform power.",
+102	          "Make clear that these are not three separate topics; they are three ways of seeing the same infrastructure."
+103	        ]
+104	      }
+105	    },
+106	    {
+107	      "type": "statement",
+108	      "section": "",
+109	      "text": "The AI argument in higher education is no longer mainly about whether the tools are impressive. It is about who sets the terms of dependence.",
+110	      "highlight": "terms of dependence",
+111	      "attribution": "",
+112	      "notes": {
+113	        "transition": "Now make the frame explicit and turn the lenses into the keynote thesis.",
+114	        "points": [
+115	          "Say that the argument is no longer mainly about whether the tools are impressive.",
+116	          "Say the deeper question is who sets the terms of dependence as AI becomes normal infrastructure.",
+117	          "Use this as the bridge from the opening frame into the body of the talk."
+118	        ]
+119	      }
+120	    },
+121	    {
+122	      "type": "section-divider",
+123	      "section_number": 1,
+124	      "title": "From tool to substrate",
+125	      "subtitle": "How AI moved from optional assistance to background infrastructure",
+126	      "notes": {
+127	        "transition": "Having set up the lenses, move into the first descriptive claim.",
+128	        "points": [
+129	          "This section explains how AI moved from visible tool to background infrastructure.",
+130	          "Use the subtitle to tell the audience we are now moving from framing to diagnosis.",
+131	          "The job here is to make 'infrastructure' feel concrete."
+132	        ]
+133	      }
+134	    },
+135	    {
+136	      "type": "content",
+137	      "section": "From tool to substrate",
+138	      "heading": "AI is moving from visible tools to invisible systems",
+139	      "body": "The important shift is not simply more campus use. It is that AI is being stitched into teaching, assessment, student support, research workflows and institutional decision-making. When that happens, AI stops looking like a product choice and starts behaving like infrastructure.",
+140	      "points": [
+141	        {
+142	          "title": "Teaching and assessment",
+143	          "description": "Generative tools now sit inside drafting, feedback, marking support and redesign of assessment."
+144	        },
+145	        {
+146	          "title": "Student support and admin",
+147	          "description": "Copilots, triage systems and analytics are creeping into advising, helpdesks and routine services."
+148	        },
+149	        {
+150	          "title": "Research and governance",
+151	          "description": "Search, synthesis, coding, grant development and management reporting increasingly run through AI-mediated layers."
+152	        }
+153	      ],
+154	      "notes": {
+155	        "transition": "Start with the broad institutional picture before going to evidence.",
+156	        "points": [
+157	          "AI is no longer just a tool someone opens; it is becoming part of how teaching, assessment, support, research, and governance are carried out.",
+158	          "Stress the shift from optional use to embedded workflow.",
+159	          "Say that once many activities assume the system is there, AI stops behaving like a product choice and starts behaving like infrastructure."
+160	        ]
+161	      }
+162	    },
+163	    {
+164	      "type": "data",
+165	      "section": "From tool to substrate",
+166	      "heading": "Student adoption is already mainstream",
+167	      "body": "The governance problem is immediate because student practice has already normalised faster than institutional structures have adapted.",
+168	      "stats": [
+169	        {
+170	          "value": "95%",
+171	          "label": "of UK full-time undergraduates use AI in at least one way"
+172	        },
+173	        {
+174	          "value": "94%",
+175	          "label": "use generative AI to help with assessed work"
+176	        },
+177	        {
+178	          "value": "65%",
+179	          "label": "say assessment has changed significantly because of AI"
+180	        }
+181	      ],
+182	      "notes": {
+183	        "transition": "Back the previous claim with numbers so the room feels the urgency.",
+184	        "points": [
+185	          "Use the HEPI figures to show this is already mainstream student practice.",
+186	          "Link the assessment figure directly to the conference context: the room already knows assessment is changing.",
+187	          "The point is not surprise at student use; the point is that institutional governance can no longer lag behind it."
+188	        ]
+189	      }
+190	    },
+191	    {
+192	      "type": "content",
+193	      "section": "From tool to substrate",
+194	      "heading": "Governance is lagging behind everyday use",
+195	      "body": "Universities now face a familiar problem: mass uptake at the edge, patchy coordination at the centre, and inconsistent messaging in between. That is a recipe for drift.",
+196	      "points": [
+197	        {
+198	          "title": "Fragmented policy",
+199	          "description": "Many institutions are still experimenting with guidance rather than operating settled governance."
+200	        },
+201	        {
+202	          "title": "Uneven capability",
+203	          "description": "Staff literacy, procurement confidence and evaluation capacity vary widely across campuses."
+204	        },
+205	        {
+206	          "title": "Ambiguous signals",
+207	          "description": "Students are told AI matters, but often receive little clear support about how, when or why to use it."
+208	        }
+209	      ],
+210	      "notes": {
+211	        "transition": "Move from mainstream use to institutional response.",
+212	        "points": [
+213	          "Mass adoption at the edge with patchy coordination at the centre is the governance problem.",
+214	          "Emphasise fragmentation: policy, capability, and messaging are uneven.",
+215	          "If useful, say that this is exactly how institutions drift into dependence without ever formally deciding to."
+216	        ]
+217	      }
+218	    },
+219	    {
+220	      "type": "content",
+221	      "section": "From tool to substrate",
+222	      "heading": "Most infrastructure is invisible until it breaks",
+223	      "body": "The easiest way to see infrastructure is through failure. Outages, upstream model changes, or jurisdictional pressure make clear just how much teaching and institutional continuity already depend on remote systems.",
+224	      "points": [
+225	        {
+226	          "title": "Service continuity",
+227	          "description": "When cloud-linked platforms fail, content, assignments, grades and communication fail with them."
+228	        },
+229	        {
+230	          "title": "Upstream dependency",
+231	          "description": "A change made by a provider can alter outputs, reliability or availability without the university changing anything locally."
+232	        },
+233	        {
+234	          "title": "Sovereignty and resilience",
+235	          "description": "Once core services sit elsewhere, governance is also about jurisdiction, coercion and the ability to keep operating under stress."
+236	        }
+237	      ],
+238	      "notes": {
+239	        "transition": "Now make infrastructure tangible by talking about failure.",
+240	        "points": [
+241	          "Most infrastructure feels abstract until an outage, upstream model change, or legal/jurisdictional issue exposes it.",
+242	          "Use failure as the simplest way to show how much continuity already depends on remote systems.",
+243	          "This is where the word 'infrastructure' should start to feel real to the audience."
+244	        ]
+245	      }
+246	    },
+247	    {
+248	      "type": "statement",
+249	      "section": "Takeaway",
+250	      "text": "Once AI becomes part of the substrate, the question shifts from capability to control.",
+251	      "highlight": "capability to control",
+252	      "attribution": "",
+253	      "notes": {
+254	        "transition": "Compress the section into a single line and let it land.",
+255	        "points": [
+256	          "The takeaway is a conceptual shift: from asking what AI can do to asking who controls the conditions under which it operates.",
+257	          "Pause slightly here; this is one of the key hinge lines of the talk.",
+258	          "Use it to set up the next question: if control matters, who is actually building and owning the infrastructure?"
+259	        ]
+260	      }
+261	    },
+262	    {
+263	      "type": "section-divider",
+264	      "section_number": 2,
+265	      "title": "The build-out",
+266	      "subtitle": "Why the boom matters even if the hype does not last",
+267	      "notes": {
+268	        "transition": "Move from embedded use to the upstream build-out behind it.",
+269	        "points": [
+270	          "This section is about political economy: why the boom matters even if some of the hype does not last.",
+271	          "Signal that the next slides are not dismissing AI as bubble talk; they are asking what durable capacity the boom is creating, and for whom.",
+272	          "This is the bridge from campus use to the wider stack."
+273	        ]
+274	      }
+275	    },
+276	    {
+277	      "type": "content",
+278	      "section": "The build-out",
+279	      "heading": "Speculative capital is building real capacity",
+280	      "body": "The current AI boom is not just hype. It is also an enormous build-out of compute, models, software tooling and enterprise integration. Even if many bets fail, the capacity being built will not simply disappear.",
+281	      "points": [
+282	        {
+283	          "title": "Compute and cloud",
+284	          "description": "Data centres, GPU fleets and inference infrastructure are expanding at extraordinary speed."
+285	        },
+286	        {
+287	          "title": "Tooling and standards",
+288	          "description": "Evaluation suites, orchestration frameworks, safety tooling and deployment patterns are being hardened quickly."
+289	        },
+290	        {
+291	          "title": "Organisational learning",
+292	          "description": "The frenzy is forcing universities and vendors alike to learn fast, even through messy pilots."
+293	        }
+294	      ],
+295	      "notes": {
+296	        "transition": "Open the section by separating hype from infrastructure.",
+297	        "points": [
+298	          "The key line is that speculative capital can still build real capacity.",
+299	          "Point to compute, models, tooling, and integrations as durable inheritances of the current boom.",
+300	          "Say that the question is not whether infrastructure is being built; it is who will control what is left behind."
+301	        ]
+302	      }
+303	    },
+304	    {
+305	      "type": "data",
+306	      "section": "The build-out",
+307	      "heading": "The upstream build-out is vast — and highly concentrated",
+308	      "body": "The boom is leaving behind real infrastructure, but that infrastructure is being financed and controlled by a remarkably small set of actors.",
+309	      "stats": [
+310	        {
+311	          "value": "68%",
+312	          "label": "top three cloud providers' share of the public-cloud market in 2025"
+313	        },
+314	        {
+315	          "value": "$185bn",
+316	          "label": "Alphabet's signalled 2026 capital expenditure, largely for technical infrastructure"
+317	        },
+318	        {
+319	          "value": "$1T",
+320	          "label": "strategic AI partnerships and GPU commitments shaping the frontier stack"
+321	        }
+322	      ],
+323	      "notes": {
+324	        "transition": "Now show the scale and concentration numerically.",
+325	        "points": [
+326	          "Use these figures to make the upstream stack feel vast and unevenly owned.",
+327	          "The point is not memorising exact numbers; it is seeing how far beyond single-university scale this market operates.",
+328	          "This helps explain why universities are mostly downstream actors unless they collaborate strategically."
+329	        ]
+330	      }
+331	    },
+332	    {
+333	      "type": "content",
+334	      "section": "The build-out",
+335	      "heading": "The build-out can leave universities with real inheritances",
+336	      "body": "If institutions are strategic, the boom years can amount to a temporary subsidy from speculative capital into durable capability that HE later uses more cheaply and more wisely.",
+337	      "points": [
+338	        {
+339	          "title": "Cheaper access later",
+340	          "description": "Competition, commoditisation and maturing open models can drive down cost and increase choice."
+341	        },
+342	        {
+343	          "title": "Better institutional tooling",
+344	          "description": "Standards for VLE integration, evaluation, monitoring and retrieval are improving on someone else's budget."
+345	        },
+346	        {
+347	          "title": "More credible alternatives",
+348	          "description": "Mature open-weight models and sector hosting become more plausible once the ecosystem has been pushed forward."
+349	        }
+350	      ],
+351	      "notes": {
+352	        "transition": "Keep the section from sounding fatalistic.",
+353	        "points": [
+354	          "Say that boom periods can leave useful inheritances if universities are deliberate.",
+355	          "Translate that inheritance into practical terms: cheaper access later, better institutional tooling, and more credible alternatives.",
+356	          "This is where you show you are not anti-development; you are anti-passivity."
+357	        ]
+358	      }
+359	    },
+360	    {
+361	      "type": "content",
+362	      "section": "The build-out",
+363	      "heading": "The boom is also accelerating learning inside universities",
+364	      "body": "The real gain is not just hardware. It is the organisational knowledge institutions can build while the ecosystem is moving quickly.",
+365	      "points": [
+366	        {
+367	          "title": "Policy learning",
+368	          "description": "Assessment guidance, data rules, DPIAs and usage norms are being stress-tested in real time."
+369	        },
+370	        {
+371	          "title": "Pedagogic learning",
+372	          "description": "Universities are discovering which AI uses support learning and which merely simulate support."
+373	        },
+374	        {
+375	          "title": "Capability learning",
+376	          "description": "Staff are developing literacy in prompting, workflow design, evaluation and critical comparison across tools."
+377	        }
+378	      ],
+379	      "notes": {
+380	        "transition": "Shift from external capital to internal learning.",
+381	        "points": [
+382	          "The boom is not only changing the market; it is forcing institutions to learn fast.",
+383	          "Point to policy, pedagogy, and organisational capability as things universities can build during this period.",
+384	          "The implication is that institutions can waste the moment or use it to become better stewards."
+385	        ]
+386	      }
+387	    },
+388	    {
+389	      "type": "content",
+390	      "section": "The build-out",
+391	      "heading": "But infrastructure built in a frenzy can still produce dependency",
+392	      "body": "Build-outs do not guarantee healthy outcomes. The same boom that creates useful capacity can also create habits of lock-in, misallocated effort and narrow models of progress.",
+393	      "points": [
+394	        {
+395	          "title": "Lock-in during generosity",
+396	          "description": "Deep discounts and rapid integrations make dependence feel painless while switching costs are low and still rising."
+397	        },
+398	        {
+399	          "title": "Misplaced priorities",
+400	          "description": "Leaders can chase visible partnerships and shiny features while neglecting pedagogy, people and core digital resilience."
+401	        },
+402	        {
+403	          "title": "Capture of norms",
+404	          "description": "The first systems to scale often end up defining what counts as modern, efficient or inevitable."
+405	        }
+406	      ],
+407	      "notes": {
+408	        "transition": "Then add the caution.",
+409	        "points": [
+410	          "A boom can create dependency as easily as it creates capability.",
+411	          "Emphasise generosity, convenience, and rapid integration as the conditions under which lock-in often begins.",
+412	          "This is the place to say that infrastructure built in a frenzy often embeds someone else's priorities."
+413	        ]
+414	      }
+415	    },
+416	    {
+417	      "type": "statement",
+418	      "section": "takeaway",
+419	      "text": "The boom can be a subsidy for universities, if universities do not confuse access with control.",
+420	      "highlight": "access with control",
+421	      "attribution": "",
+422	      "notes": {
+423	        "transition": "Land the contrast in one phrase.",
+424	        "points": [
+425	          "The distinction is access versus control.",
+426	          "Say that temporary access to powerful systems is not the same as governing the terms on which they become normal.",
+427	          "Use this line to pivot into the next section: if not universities, who is setting the defaults?"
+428	        ]
+429	      }
+430	    },
+431	    {
+432	      "type": "section-divider",
+433	      "section_number": 3,
+434	      "title": "Who sets the defaults?",
+435	      "subtitle": "Power, agenda-setting and mission drift",
+436	      "notes": {
+437	        "transition": "Now move from capacity to power.",
+438	        "points": [
+439	          "This section asks who actually sets the defaults embedded in the stack.",
+440	          "Use the subtitle to signal that the issue is not only lock-in but agenda-setting and mission drift.",
+441	          "We are moving from 'how much is being built?' to 'whose assumptions shape what gets built?'"
+442	        ]
+443	      }
+444	    },
+445	    {
+446	      "type": "content",
+447	      "section": "Who sets the defaults?",
+448	      "heading": "A small number of firms increasingly control the stack",
+449	      "body": "AI is not arriving in higher education as a neutral marketplace of interchangeable tools. It is arriving through a concentrated stack of models, cloud, productivity suites, learning platforms and distribution channels.",
+450	      "points": [
+451	        {
+452	          "title": "Model layer",
+453	          "description": "A handful of providers dominate frontier model access and shape the pace of release."
+454	        },
+455	        {
+456	          "title": "Infrastructure layer",
+457	          "description": "Cloud concentration gives the same firms leverage over cost, continuity and technical standards."
+458	        },
+459	        {
+460	          "title": "Interface layer",
+461	          "description": "Existing campus software ecosystems become the channel through which AI is normalised."
+462	        }
+463	      ],
+464	      "notes": {
+465	        "transition": "Start with the stack itself.",
+466	        "points": [
+467	          "Explain that universities are not buying from a flat market of interchangeable tools.",
+468	          "Show the layered dependence: model providers, cloud providers, and interface/platform providers.",
+469	          "The audience needs to see that concentration exists across multiple layers at once."
+470	        ]
+471	      }
+472	    },
+473	    {
+474	      "type": "content",
+475	      "section": "Who sets the defaults?",
+476	      "heading": "Technology does not choose its own social purpose",
+477	      "body": "New systems do not automatically produce broad progress. The gains depend on who gets to decide what the tools are for, which kinds of work they replace, and who captures the surplus they create.",
+478	      "points": [
+479	        {
+480	          "title": "Direction matters",
+481	          "description": "AI can be used to remove drudgery and expand human capability, or to centralise control and reduce labour."
+482	        },
+483	        {
+484	          "title": "Bargaining power matters",
+485	          "description": "Without strong institutions, efficiency narratives can define the agenda before educators and students get a say."
+486	        },
+487	        {
+488	          "title": "Narratives matter",
+489	          "description": "The story that 'AI is inevitable' can make resistance to bad design sound backward rather than responsible."
+490	        }
+491	      ],
+492	      "notes": {
+493	        "transition": "Then make the normative move.",
+494	        "points": [
+495	          "Technology does not arrive with its social purpose already settled.",
+496	          "Stress that who decides the purpose of a system matters as much as what the system can do.",
+497	          "This is a good place to quietly introduce the idea that architecture and incentives shape educational outcomes."
+498	        ]
+499	      }
+500	    },
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 09:53:21Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./content.json`
+
+```text
+500	    },
+501	    {
+502	      "type": "content",
+503	      "section": "Who sets the defaults?",
+504	      "heading": "In universities, the first question is whose goals are being encoded",
+505	      "body": "Most institutional AI projects appear to be about productivity, innovation or student experience. But beneath those labels lie different interests that do not always align.",
+506	      "points": [
+507	        {
+508	          "title": "Management incentives",
+509	          "description": "Financial pressure makes cost-saving and scalability tempting default objectives."
+510	        },
+511	        {
+512	          "title": "Vendor incentives",
+513	          "description": "The platform wants adoption, telemetry, stickiness and cross-product integration."
+514	        },
+515	        {
+516	          "title": "Academic and student interests",
+517	          "description": "Universities are supposed to privilege learning, judgment, accessibility, care and public value."
+518	        }
+519	      ],
+520	      "notes": {
+521	        "transition": "Bring the argument fully into higher education.",
+522	        "points": [
+523	          "Ask whose goals are being encoded when institutions talk about productivity, innovation, or student experience.",
+524	          "Contrast management incentives, vendor incentives, and academic/student interests without caricaturing any of them.",
+525	          "The point is that those interests overlap imperfectly, so governance cannot be assumed."
+526	        ]
+527	      }
+528	    },
+529	    {
+530	      "type": "content",
+531	      "section": "Who sets the defaults?",
+532	      "heading": "The deepest risk is not only lock-in but agenda-setting",
+533	      "body": "Once universities depend on upstream systems, external firms gain quiet influence over what counts as good teaching infrastructure, sensible research workflows and acceptable institutional analytics.",
+534	      "points": [
+535	        {
+536	          "title": "Research agenda-setting",
+537	          "description": "Universities increasingly build on proprietary models rather than shaping the architecture, objectives or evaluation criteria."
+538	        },
+539	        {
+540	          "title": "Pedagogic agenda-setting",
+541	          "description": "Teaching begins to bend toward what the tool can easily generate, score or measure."
+542	        },
+543	        {
+544	          "title": "Ethical narrowing",
+545	          "description": "Safety and compliance get more attention than labour, justice, pluralism or democratic control."
+546	        }
+547	      ],
+548	      "notes": {
+549	        "transition": "Deepen the risk from lock-in to agenda-setting.",
+550	        "points": [
+551	          "Say the deepest problem is not only being unable to leave; it is having external actors quietly shape what counts as sensible teaching and governance.",
+552	          "Use research, pedagogy, and ethical narrowing as examples of how defaults steer institutions.",
+553	          "This is where the talk becomes clearly about power, not just procurement."
+554	        ]
+555	      }
+556	    },
+557	    {
+558	      "type": "data",
+559	      "section": "Who sets the defaults?",
+560	      "heading": "The frontier is upstream; universities are mostly downstream users",
+561	      "body": "The scale of the companies shaping the AI stack helps explain why universities cannot assume their values will be reflected automatically.",
+562	      "stats": [
+563	        {
+564	          "value": "~90%",
+565	          "label": "of notable AI models in 2024 came from industry"
+566	        },
+567	        {
+568	          "value": "40",
+569	          "label": "notable models in 2024 were produced by US institutions, far ahead of other national systems"
+570	        },
+571	        {
+572	          "value": "$75bn+",
+573	          "label": "Microsoft reported Azure annual revenue above this level in FY25"
+574	        }
+575	      ],
+576	      "notes": {
+577	        "transition": "Use the numbers to show why universities are mostly downstream.",
+578	        "points": [
+579	          "Industry dominance in models and hyperscaler scale explain the asymmetry.",
+580	          "This is not a reason to give up; it is a reason to know where leverage has to come from.",
+581	          "Say that universities will rarely win by outspending the frontier, but they can still govern how they connect to it."
+582	        ]
+583	      }
+584	    },
+585	    {
+586	      "type": "content",
+587	      "section": "Who sets the defaults?",
+588	      "heading": "Mission drift enters institutions through perfectly reasonable procurement",
+589	      "body": "Universities rarely decide to abandon their mission. They drift when sensible short-term deals gradually rewrite the system around external priorities.",
+590	      "points": [
+591	        {
+592	          "title": "Bundled convenience",
+593	          "description": "AI arrives inside familiar productivity suites and platforms, making deeper dependency feel incremental."
+594	        },
+595	        {
+596	          "title": "Default pathways",
+597	          "description": "Institution-wide licences quietly define which tools staff and students see as normal or approved."
+598	        },
+599	        {
+600	          "title": "Contractual gravity",
+601	          "description": "Once workflows, content and reporting are built into one stack, future decisions become less free than they appear."
+602	        }
+603	      ],
+604	      "notes": {
+605	        "transition": "Translate the structural argument into ordinary institutional behaviour.",
+606	        "points": [
+607	          "Mission drift usually arrives through sensible local decisions, not dramatic declarations.",
+608	          "Bundled convenience, default pathways, and contract terms rewrite the environment gradually.",
+609	          "This slide should make the risk feel familiar rather than ideological."
+610	        ]
+611	      }
+612	    },
+613	    {
+614	      "type": "statement",
+615	      "section": "TAKEAWAY",
+616	      "text": "If universities plug into the stack on vendor terms, the future arrives as infrastructure before it arrives as debate.",
+617	      "highlight": "arrives as infrastructure before it arrives as debate",
+618	      "attribution": "",
+619	      "notes": {
+620	        "transition": "Let the central warning crystallise.",
+621	        "points": [
+622	          "This is one of the strongest lines in the deck, so give it air.",
+623	          "The point is that infrastructure settles before institutions have fully debated its consequences.",
+624	          "Use the pause here to prepare the room for the next question: what does that dependence do inside the university?"
+625	        ]
+626	      }
+627	    },
+628	    {
+629	      "type": "section-divider",
+630	      "section_number": 4,
+631	      "title": "What dependence does",
+632	      "subtitle": "Pedagogy, labour, data and inequality",
+633	      "notes": {
+634	        "transition": "Move from external power to internal effects.",
+635	        "points": [
+636	          "This section asks what dependence actually changes in pedagogy, labour, data, and inequality.",
+637	          "Signal that the next slides are about educational consequences, not just market structure.",
+638	          "This is where the three opening lenses start paying off most clearly."
+639	        ]
+640	      }
+641	    },
+642	    {
+643	      "type": "content",
+644	      "section": "What dependence does",
+645	      "heading": "The crucial divide is between augmentation and substitution",
+646	      "body": "The most important design decision is not whether AI is present. It is whether AI is used to amplify human expertise or to thin it out.",
+647	      "points": [
+648	        {
+649	          "title": "Augmentation",
+650	          "description": "AI can remove admin burden, scaffold formative feedback and support accessibility so staff can focus on judgment and contact."
+651	        },
+652	        {
+653	          "title": "Substitution",
+654	          "description": "AI can also be used to replace teaching presence, automate first-pass support and standardise assessment in thinner ways."
+655	        },
+656	        {
+657	          "title": "Institutional test",
+658	          "description": "Every use case should be judged by whether it improves educational experience and professional autonomy, not merely cost."
+659	        }
+660	      ],
+661	      "notes": {
+662	        "transition": "Open with the central distinction.",
+663	        "points": [
+664	          "The most important divide is augmentation versus substitution.",
+665	          "Say that the question is not whether AI is present, but what kind of relationship to human expertise the institution is normalising.",
+666	          "This becomes the test you keep applying to the rest of the examples."
+667	        ]
+668	      }
+669	    },
+670	    {
+671	      "type": "content",
+672	      "section": "What dependence does",
+673	      "heading": "The wrong uses are easy to scale",
+674	      "body": "Universities under pressure are especially vulnerable to AI uses that look efficient because they industrialise surface tasks while hollowing out the human work students actually value.",
+675	      "points": [
+676	        {
+677	          "title": "Content at scale",
+678	          "description": "AI-authored slides, AI-voiced lectures and thin content automation can expand provision while shrinking teaching presence."
+679	        },
+680	        {
+681	          "title": "Automated feedback",
+682	          "description": "Fully automated marking and commentary promise speed but can reduce contestability, nuance and trust."
+683	        },
+684	        {
+685	          "title": "Surveillance systems",
+686	          "description": "Student-success dashboards and risk scoring can become monitoring infrastructure rather than support infrastructure."
+687	        }
+688	      ],
+689	      "notes": {
+690	        "transition": "Now name the tempting failure mode.",
+691	        "points": [
+692	          "The worst uses are attractive because they scale quickly under financial and workload pressure.",
+693	          "Examples like industrialised content, automated feedback, and surveillance systems look efficient while thinning educational value.",
+694	          "Say this is where distortion shows up most clearly."
+695	        ]
+696	      }
+697	    },
+698	    {
+699	      "type": "content",
+700	      "section": "What dependence does",
+701	      "heading": "The better uses are harder — but more valuable",
+702	      "body": "The most defensible AI applications are often the ones that complement human work rather than attempt to replace it.",
+703	      "points": [
+704	        {
+705	          "title": "Admin relief",
+706	          "description": "Triage, drafting, search and routine coordination can free staff time for high-value conversation."
+707	        },
+708	        {
+709	          "title": "Accessibility and inclusion",
+710	          "description": "Translation, captioning, alternative formats and scaffolded support can widen participation when designed well."
+711	        },
+712	        {
+713	          "title": "Formative scaffolds",
+714	          "description": "AI can support low-stakes practice and feedback that academics then interpret, deepen and challenge."
+715	        }
+716	      ],
+717	      "notes": {
+718	        "transition": "Then keep the talk balanced by naming the better uses.",
+719	        "points": [
+720	          "The most defensible uses usually complement human work instead of replacing it.",
+721	          "Stress admin relief, accessibility, and formative scaffolding as examples of augmentation.",
+722	          "This helps prevent the argument being heard as blanket resistance."
+723	        ]
+724	      }
+725	    },
+726	    {
+727	      "type": "content",
+728	      "section": "What dependence does",
+729	      "heading": "Pedagogy starts to bend around what the platform can measure",
+730	      "body": "Once AI tools are tightly integrated, course design can start adapting to the system rather than the other way round. That is how commercial logic becomes pedagogic logic.",
+731	      "points": [
+732	        {
+733	          "title": "Standardisation pressure",
+734	          "description": "Assessments and activities may drift toward formats that are easy to auto-score, summarise or monitor."
+735	        },
+736	        {
+737	          "title": "Surface metrics",
+738	          "description": "Completion, engagement and usage are privileged because they are measurable, even when they are weak proxies for learning."
+739	        },
+740	        {
+741	          "title": "Partner visibility",
+742	          "description": "Platforms and publishers can become the default route through which content, prompts and resources are surfaced."
+743	        }
+744	      ],
+745	      "notes": {
+746	        "transition": "Bring the distortion lens directly into pedagogy.",
+747	        "points": [
+748	          "Platforms nudge teaching toward what they can count, standardise, and render visible.",
+749	          "Say that over time pedagogy can start adapting to platform logic rather than educational purpose.",
+750	          "This is a subtle but central claim: metrics and affordances become curricular pressure."
+751	        ]
+752	      }
+753	    },
+754	    {
+755	      "type": "content",
+756	      "section": "What dependence does",
+757	      "heading": "Data becomes a new rent stream",
+758	      "body": "Universities sit on rich corpora of writing, interaction and workflow data. Once AI layers are integrated, those traces become commercially valuable far beyond their immediate educational use.",
+759	      "points": [
+760	        {
+761	          "title": "Behavioural exhaust",
+762	          "description": "Prompts, drafts, clicks, revisions and case interactions all become telemetry."
+763	        },
+764	        {
+765	          "title": "Institutional dependency",
+766	          "description": "The model that best 'knows' how your university writes and works may be one you do not own."
+767	        },
+768	        {
+769	          "title": "Upstream capture",
+770	          "description": "Value created from public educational activity can be turned into private rent streams."
+771	        }
+772	      ],
+773	      "notes": {
+774	        "transition": "Now bring in extraction.",
+775	        "points": [
+776	          "Educational data does not only support services; it can become a rent stream.",
+777	          "Explain behavioural exhaust, model improvement, and upstream value capture in plain institutional terms.",
+778	          "The room should hear that data governance is about political economy, not only compliance."
+779	        ]
+780	      }
+781	    },
+782	    {
+783	      "type": "data",
+784	      "section": "What dependence does",
+785	      "heading": "Capacity gaps are opening inside the sector",
+786	      "body": "The danger is not only that everyone gets the same AI. It is that the best human-plus-AI arrangements go to those with the most money, skill and bargaining power.",
+787	      "stats": [
+788	        {
+789	          "value": "29%",
+790	          "label": "in HEPI 2025, only this share agreed their institution encouraged AI use"
+791	        },
+792	        {
+793	          "value": "36%",
+794	          "label": "reported institutional AI skills training in the same survey"
+795	        },
+796	        {
+797	          "value": "95%",
+798	          "label": "yet by 2026, AI use of some form was already mainstream among full-time undergraduates"
+799	        }
+800	      ],
+801	      "notes": {
+802	        "transition": "Use this slide to show unevenness inside the sector.",
+803	        "points": [
+804	          "The risk is not only sameness; it is stratification.",
+805	          "Institutions with more money, skill, and bargaining power will get better human-plus-AI arrangements.",
+806	          "That makes stewardship a sector issue as well as an institutional one."
+807	        ]
+808	      }
+809	    },
+810	    {
+811	      "type": "content",
+812	      "section": "What dependence does",
+813	      "heading": "Research and knowledge production are affected too",
+814	      "body": "Once disciplines depend on proprietary models, higher education risks shifting from designing and interrogating tools to adapting around opaque systems made elsewhere.",
+815	      "points": [
+816	        {
+817	          "title": "Methodological narrowing",
+818	          "description": "Research workflows can default to one model's guardrails, training data and blind spots."
+819	        },
+820	        {
+821	          "title": "Reduced pluralism",
+822	          "description": "Open, local or public-interest models struggle for attention when corporate stacks are easiest to deploy."
+823	        },
+824	        {
+825	          "title": "Legitimacy transfer",
+826	          "description": "Universities can become testing grounds and legitimacy providers for tools they did not shape."
+827	        }
+828	      ],
+829	      "notes": {
+830	        "transition": "Widen the argument from teaching to knowledge production.",
+831	        "points": [
+832	          "Research workflows are affected when disciplines depend on proprietary systems built elsewhere.",
+833	          "Point to methodological narrowing, reduced pluralism, and legitimacy transfer.",
+834	          "The takeaway is that dependence changes not only delivery but also how knowledge gets made."
+835	        ]
+836	      }
+837	    },
+838	    {
+839	      "type": "statement",
+840	      "section": "TAKEAWAY",
+841	      "text": "The issue is not that AI enters teaching and research. The issue is how much educational purpose gets rewritten by commercial defaults.",
+842	      "highlight": "educational purpose",
+843	      "attribution": "",
+844	      "notes": {
+845	        "transition": "State the educational core of the argument.",
+846	        "points": [
+847	          "The concern is not that AI enters higher education; that is already happening.",
+848	          "The concern is how much educational purpose gets rewritten by commercial defaults.",
+849	          "Pause here because this line ties the whole section back to mission."
+850	        ]
+851	      }
+852	    },
+853	    {
+854	      "type": "section-divider",
+855	      "section_number": 5,
+856	      "title": "The lifecycle of capture",
+857	      "subtitle": "How convenience hardens into dependence",
+858	      "notes": {
+859	        "transition": "Move from effects to process.",
+860	        "points": [
+861	          "This section explains how convenience hardens into dependence over time.",
+862	          "Say that platforms rarely begin with a visible squeeze; they usually begin with generosity.",
+863	          "The audience should recognise a lifecycle, not a conspiracy."
+864	        ]
+865	      }
+866	    },
+867	    {
+868	      "type": "content",
+869	      "section": "The lifecycle of capture",
+870	      "heading": "The first phase of every platform feels unusually generous",
+871	      "body": "Early-stage platform ecosystems often look like public goods. Prices are low, credits are plentiful, integrations are rapid and the user experience is genuinely helpful.",
+872	      "points": [
+873	        {
+874	          "title": "Subsidised access",
+875	          "description": "Free tiers, education discounts and pilot credits make experimentation feel costless."
+876	        },
+877	        {
+878	          "title": "Rapid value",
+879	          "description": "Drafting, summarising, coding support and search assistance can deliver immediate productivity gains."
+880	        },
+881	        {
+882	          "title": "Soft terms",
+883	          "description": "Data clauses and dependencies feel abstract because the practical benefits are visible now."
+884	        }
+885	      ],
+886	      "notes": {
+887	        "transition": "Start the lifecycle with the attractive phase.",
+888	        "points": [
+889	          "Early-stage platforms often feel like public goods: low prices, credits, rapid integration, real usefulness.",
+890	          "Do not sneer at this phase; acknowledge that the value is often genuine.",
+891	          "The point is that early generosity is exactly what makes later dependence possible."
+892	        ]
+893	      }
+894	    },
+895	    {
+896	      "type": "content",
+897	      "section": "The lifecycle of capture",
+898	      "heading": "Then the real customer starts to shift",
+899	      "body": "As the platform matures, optimisation moves away from students and staff as users toward institutions, intermediaries and upstream business strategy.",
+900	      "points": [
+901	        {
+902	          "title": "Telemetry value",
+903	          "description": "Student and staff behaviour becomes raw material for model improvement, analytics and product design."
+904	        },
+905	        {
+906	          "title": "Buyer logic",
+907	          "description": "Enterprise customers are offered dashboards, nudges and metrics that serve management priorities first."
+908	        },
+909	        {
+910	          "title": "Behaviour shaping",
+911	          "description": "The platform starts 'twiddling the knobs' to improve monetisation, retention or partner visibility."
+912	        }
+913	      ],
+914	      "notes": {
+915	        "transition": "Then identify the subtle shift.",
+916	        "points": [
+917	          "Over time, optimisation moves toward the platform's strategic customer and business model.",
+918	          "Users still experience value, but the system is increasingly shaped around telemetry, procurement scale, and revenue logic.",
+919	          "This is the beginning of distortion at ecosystem level."
+920	        ]
+921	      }
+922	    },
+923	    {
+924	      "type": "content",
+925	      "section": "The lifecycle of capture",
+926	      "heading": "Then the institutional squeeze begins",
+927	      "body": "Once the university is deeply integrated, the platform can change the terms of value capture without needing to make the system obviously unusable.",
+928	      "points": [
+929	        {
+930	          "title": "Price ratchets",
+931	          "description": "Per-seat AI costs and premium tiers rise as migration becomes more disruptive."
+932	        },
+933	        {
+934	          "title": "Paywalled capability",
+935	          "description": "Features that become pedagogically important move behind higher-priced plans."
+936	        },
+937	        {
+938	          "title": "Proprietary dependency",
+939	          "description": "AI-authored content, tuned workflows and analytics histories live inside hard-to-export systems."
+940	        }
+941	      ],
+942	      "notes": {
+943	        "transition": "Now bring in the squeeze.",
+944	        "points": [
+945	          "Once the institution is integrated, value capture can be rebalanced through pricing, features, and terms.",
+946	          "The platform does not have to become unusable to become more extractive.",
+947	          "Say that this is why governance has to happen before dependence becomes normal."
+948	        ]
+949	      }
+950	    },
+951	    {
+952	      "type": "content",
+953	      "section": "The lifecycle of capture",
+954	      "heading": "Exit becomes expensive because the institution has already adapted",
+955	      "body": "The deepest switching cost is not technical. It is social and organisational. By the time the squeeze is felt, the university has already reorganised itself around the platform.",
+956	      "points": [
+957	        {
+958	          "title": "Workflow lock-in",
+959	          "description": "Assessment routines, support scripts, integration logic and approval pathways already assume one stack."
+960	        },
+961	        {
+962	          "title": "Capability lock-in",
+963	          "description": "Staff training, user habits and local expertise become specific to one environment."
+964	        },
+965	        {
+966	          "title": "Data lock-in",
+967	          "description": "Prompts, logs, evaluations and historic outputs are difficult to move or reuse elsewhere."
+968	        }
+969	      ],
+970	      "notes": {
+971	        "transition": "Explain why leaving is hard.",
+972	        "points": [
+973	          "The deepest switching cost is not technical; it is organisational.",
+974	          "By the time institutions want to exit, workflows, expectations, staff habits, and data structures have already adapted.",
+975	          "That is why exit rights have to be preserved early."
+976	        ]
+977	      }
+978	    },
+979	    {
+980	      "type": "content",
+981	      "section": "The lifecycle of capture",
+982	      "heading": "This is path dependence at institutional scale",
+983	      "body": "Early choices about tools, contracts and norms do not stay local or temporary. They accumulate and become the pathway through which later decisions are constrained.",
+984	      "points": [
+985	        {
+986	          "title": "Standards harden",
+987	          "description": "File formats, APIs, assessment rules and reporting practices settle around early winners."
+988	        },
+989	        {
+990	          "title": "Investment compounds",
+991	          "description": "Training, integrations and custom workflows make the original choice seem ever more rational."
+992	        },
+993	        {
+994	          "title": "Alternatives narrow",
+995	          "description": "Institutions eventually face not a free choice, but a high-cost break from their own accumulated history."
+996	        }
+997	      ],
+998	      "notes": {
+999	        "transition": "Name the mechanism.",
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 09:53:22Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./content.json`
+
+```text
+1000	        "points": [
+1001	          "This is path dependence at institutional scale.",
+1002	          "Today's local decisions accumulate into tomorrow's constrained options.",
+1003	          "You can use QWERTY here as a light metaphor if helpful, but do not over-explain it."
+1004	        ]
+1005	      }
+1006	    },
+1007	    {
+1008	      "type": "content",
+1009	      "section": "The lifecycle of capture",
+1010	      "heading": "Architecture is governance, whether institutions notice or not",
+1011	      "body": "Law and policy matter, but so do the defaults built into code, market structure and everyday norms. Procurement is therefore not a back-office activity. It is a governance choice.",
+1012	      "points": [
+1013	        {
+1014	          "title": "Code",
+1015	          "description": "Systems decide what is easy, visible, logged, exportable, contestable or impossible."
+1016	        },
+1017	        {
+1018	          "title": "Market",
+1019	          "description": "Concentration and bundling shape what appears affordable or realistic."
+1020	        },
+1021	        {
+1022	          "title": "Norms and law",
+1023	          "description": "Institutional expectations and regulation matter most when they are translated into architecture and contracts."
+1024	        }
+1025	      ],
+1026	      "notes": {
+1027	        "transition": "Make the governance claim explicit.",
+1028	        "points": [
+1029	          "Architecture regulates behaviour whether institutions notice it or not.",
+1030	          "This is the place for the short Lessig bridge: code, market structure, norms, and law all matter.",
+1031	          "Say plainly that procurement is governance because procurement shapes architecture."
+1032	        ]
+1033	      }
+1034	    },
+1035	    {
+1036	      "type": "statement",
+1037	      "section": "takeaway",
+1038	      "text": "Preserve the right of exit before convenience becomes culture.",
+1039	      "highlight": "right of exit",
+1040	      "attribution": "",
+1041	      "notes": {
+1042	        "transition": "Turn the section into a practical principle.",
+1043	        "points": [
+1044	          "The right of exit has to be protected before convenience becomes culture.",
+1045	          "This is not about planning to leave every system; it is about never becoming unable to.",
+1046	          "Use this as the hinge into the constructive section."
+1047	        ]
+1048	      }
+1049	    },
+1050	    {
+1051	      "type": "section-divider",
+1052	      "section_number": 6,
+1053	      "title": "A different strategy",
+1054	      "subtitle": "Engaged stewardship instead of passive consumption",
+1055	      "notes": {
+1056	        "transition": "Now pivot from diagnosis to response.",
+1057	        "points": [
+1058	          "This section should feel like a release of pressure: there is a workable alternative.",
+1059	          "Signal that the answer is neither refusal nor surrender.",
+1060	          "We are now moving from critique to institutional design."
+1061	        ]
+1062	      }
+1063	    },
+1064	    {
+1065	      "type": "content",
+1066	      "section": "A different strategy",
+1067	      "heading": "The strongest response is neither refusal nor surrender",
+1068	      "body": "Universities do not need a fantasy of total sovereignty, and they should not accept passive dependence either. The workable position is engaged stewardship.",
+1069	      "points": [
+1070	        {
+1071	          "title": "Buy some things",
+1072	          "description": "Use commercial infrastructure where it is genuinely useful and where the terms are governable."
+1073	        },
+1074	        {
+1075	          "title": "Build or host selectively",
+1076	          "description": "Keep local or sector-controlled options for high-value or high-risk uses where continuity, privacy or contestability matter most."
+1077	        },
+1078	        {
+1079	          "title": "Refuse some things",
+1080	          "description": "Reject deployments that undermine educational purpose even if they look efficient on paper."
+1081	        }
+1082	      ],
+1083	      "notes": {
+1084	        "transition": "State the third position clearly.",
+1085	        "points": [
+1086	          "The strongest response is engaged stewardship.",
+1087	          "Say that universities may buy some things, build or host some things, adapt some things, and refuse some things.",
+1088	          "The important point is doing that from deliberate governance rather than drift."
+1089	        ]
+1090	      }
+1091	    },
+1092	    {
+1093	      "type": "content",
+1094	      "section": "A different strategy",
+1095	      "heading": "Start from public-interest goals, not adoption goals",
+1096	      "body": "An AI strategy should define what the university is trying to protect and improve before it defines what tools it plans to deploy.",
+1097	      "points": [
+1098	        {
+1099	          "title": "Human contact",
+1100	          "description": "Use AI to create more time for mentoring, feedback, discussion and care."
+1101	        },
+1102	        {
+1103	          "title": "Inclusion and accessibility",
+1104	          "description": "Prioritise translation, captioning, alternative formats and scaffolded support."
+1105	        },
+1106	        {
+1107	          "title": "Mission guardrail",
+1108	          "description": "Explicitly reject headcount reduction or content automation in place of teaching as primary aims."
+1109	        }
+1110	      ],
+1111	      "notes": {
+1112	        "transition": "Start the constructive section from purpose.",
+1113	        "points": [
+1114	          "Strategy has to begin with what the university is trying to protect and improve, not with tool adoption targets.",
+1115	          "Use human contact, inclusion, and mission as guardrails.",
+1116	          "This keeps the policy agenda tied to educational purpose rather than IT modernisation alone."
+1117	        ]
+1118	      }
+1119	    },
+1120	    {
+1121	      "type": "content",
+1122	      "section": "A different strategy",
+1123	      "heading": "People adopt AI through motivation, capability and trust",
+1124	      "body": "Good strategy recognises that use is not governed only by rules. It is governed by why people reach for systems, whether they know how to use them well, and whether the institution gives them reason to trust the arrangements.",
+1125	      "points": [
+1126	        {
+1127	          "title": "Motivation",
+1128	          "description": "Time pressure, workload, ambiguity and accessibility needs all drive real-world use."
+1129	        },
+1130	        {
+1131	          "title": "Capability",
+1132	          "description": "Training, discipline-specific guidance and verification habits determine whether use is shallow or reflective."
+1133	        },
+1134	        {
+1135	          "title": "Trust",
+1136	          "description": "Clear permissions, transparent data rules and reliable tools reduce covert, anxious or inconsistent use."
+1137	        }
+1138	      ],
+1139	      "notes": {
+1140	        "transition": "Explain adoption more realistically.",
+1141	        "points": [
+1142	          "People reach for AI through motivation, capability, and trust.",
+1143	          "Governance fails if it treats use as something controlled only by rules.",
+1144	          "This is a useful slide for showing that stewardship includes culture and support, not just restriction."
+1145	        ]
+1146	      }
+1147	    },
+1148	    {
+1149	      "type": "content",
+1150	      "section": "A different strategy",
+1151	      "heading": "Universities need a viable system for AI governance, not just a policy",
+1152	      "body": "Many institutions already have local experimentation. What they often lack is coordination, assurance, foresight and mission-level steering across the whole system.",
+1153	      "points": [
+1154	        {
+1155	          "title": "Coordinate the edge",
+1156	          "description": "Connect faculties, services and pilots so AI practice does not fragment into isolated local experiments."
+1157	        },
+1158	        {
+1159	          "title": "Build assurance",
+1160	          "description": "Procurement, audit, risk review and evaluation need institutional authority, not just enthusiasm."
+1161	        },
+1162	        {
+1163	          "title": "Steer by mission",
+1164	          "description": "Senior governance must articulate what kind of university the AI stack is supposed to serve."
+1165	        }
+1166	      ],
+1167	      "notes": {
+1168	        "transition": "Translate stewardship into organisational form.",
+1169	        "points": [
+1170	          "The institution needs a viable system for AI governance, not just a policy document.",
+1171	          "Say that many campuses are rich in experimentation at the edge and thin in coordination, assurance, foresight, and mission-level steering.",
+1172	          "This is the plain-language version of the viable system diagnosis."
+1173	        ]
+1174	      }
+1175	    },
+1176	    {
+1177	      "type": "content",
+1178	      "section": "A different strategy",
+1179	      "heading": "Buy infrastructure like it will one day disappoint you",
+1180	      "body": "Good procurement assumes that every platform will eventually change price, terms, quality or strategic direction. The question is whether the university remains able to respond.",
+1181	      "points": [
+1182	        {
+1183	          "title": "Portability",
+1184	          "description": "Require usable export paths for content, prompts, logs, fine-tuning data and configurations."
+1185	        },
+1186	        {
+1187	          "title": "Open standards",
+1188	          "description": "Avoid proprietary formats that bury core teaching workflows inside one vendor's stack."
+1189	        },
+1190	        {
+1191	          "title": "Exit planning",
+1192	          "description": "Build fallback routes, review points and sunset clauses into every important AI contract."
+1193	        }
+1194	      ],
+1195	      "notes": {
+1196	        "transition": "Bring the procurement lesson home.",
+1197	        "points": [
+1198	          "Buy infrastructure on the assumption that price, quality, or direction will eventually change.",
+1199	          "That means portability, open standards, and exit planning are not pessimism; they are competence.",
+1200	          "This slide works well if delivered as hard-earned institutional realism."
+1201	        ]
+1202	      }
+1203	    },
+1204	    {
+1205	      "type": "content",
+1206	      "section": "A different strategy",
+1207	      "heading": "Treat educational data as a governed asset, not free raw material",
+1208	      "body": "Student work, support data and interaction traces are mission-governed resources. They should not drift into open-ended upstream model improvement by default.",
+1209	      "points": [
+1210	        {
+1211	          "title": "Purpose limitation",
+1212	          "description": "Separate service delivery from model training and from research uses."
+1213	        },
+1214	        {
+1215	          "title": "No dark training",
+1216	          "description": "Ban open-ended commercial model training on student and staff data without explicit sector governance."
+1217	        },
+1218	        {
+1219	          "title": "Oversight",
+1220	          "description": "High-impact data uses need scrutiny from legal, ethical, academic and student perspectives."
+1221	        }
+1222	      ],
+1223	      "notes": {
+1224	        "transition": "Now focus on data.",
+1225	        "points": [
+1226	          "Educational data is a governed asset, not free raw material.",
+1227	          "Separate operational use, evaluation use, and training/improvement use in your explanation.",
+1228	          "This is where you make clear that stewardship includes student rights and institutional legitimacy."
+1229	        ]
+1230	      }
+1231	    },
+1232	    {
+1233	      "type": "content",
+1234	      "section": "A different strategy",
+1235	      "heading": "Make evaluation a core institutional capability",
+1236	      "body": "Universities should not rely on product demos, generic benchmarks or marketing claims to decide what is acceptable in teaching and governance.",
+1237	      "points": [
+1238	        {
+1239	          "title": "Task-based testing",
+1240	          "description": "Build benchmark tasks for feedback, retrieval, advising, accessibility and disciplinary use cases."
+1241	        },
+1242	        {
+1243	          "title": "Independent scrutiny",
+1244	          "description": "Review hallucination risk, bias, privacy leakage, citation behaviour and fail-safe performance."
+1245	        },
+1246	        {
+1247	          "title": "Continuous review",
+1248	          "description": "Re-evaluate when underlying models, terms or integrations change upstream."
+1249	        }
+1250	      ],
+1251	      "notes": {
+1252	        "transition": "Then move to evaluation.",
+1253	        "points": [
+1254	          "Evaluation is the quiet centrepiece of stewardship.",
+1255	          "Say that universities cannot rely on demos, generic benchmarks, or marketing claims for high-stakes uses.",
+1256	          "Stress task-based testing, independent scrutiny, and continuous review."
+1257	        ]
+1258	      }
+1259	    },
+1260	    {
+1261	      "type": "content",
+1262	      "section": "A different strategy",
+1263	      "heading": "Prefer modular architecture and plural ecosystems",
+1264	      "body": "The goal is not to build everything locally. It is to avoid allowing one stack to become the only imaginable path.",
+1265	      "points": [
+1266	        {
+1267	          "title": "Modular design",
+1268	          "description": "Use abstraction layers, retrieval components and portable data structures wherever feasible."
+1269	        },
+1270	        {
+1271	          "title": "Plural model exposure",
+1272	          "description": "Ensure staff and students can compare multiple systems, including open or locally hosted options."
+1273	        },
+1274	        {
+1275	          "title": "Right-sized models",
+1276	          "description": "For many educational tasks, grounded and well-evaluated smaller systems may be better than the biggest generic model."
+1277	        }
+1278	      ],
+1279	      "notes": {
+1280	        "transition": "Broaden from buying rules to technical design.",
+1281	        "points": [
+1282	          "The goal is not to build everything locally; it is to avoid allowing one stack to become the only imaginable path.",
+1283	          "Use modularity, plural model exposure, and right-sized models as practical design principles.",
+1284	          "This is where the audience should hear that architecture choices can preserve agency."
+1285	        ]
+1286	      }
+1287	    },
+1288	    {
+1289	      "type": "data",
+1290	      "section": "A different strategy",
+1291	      "heading": "Stewardship is a compact but demanding agenda",
+1292	      "body": "Universities do not need one hundred principles. They need a small number of capabilities applied consistently.",
+1293	      "stats": [
+1294	        {
+1295	          "value": "5",
+1296	          "label": "core capabilities: procurement, data governance, evaluation, resilience and collaboration"
+1297	        },
+1298	        {
+1299	          "value": "3",
+1300	          "label": "default questions: what if prices rise, quality drops, or the provider disappears?"
+1301	        },
+1302	        {
+1303	          "value": "1",
+1304	          "label": "governing standard: does this strengthen educational purpose and public value?"
+1305	        }
+1306	      ],
+1307	      "notes": {
+1308	        "transition": "Compress the stewardship agenda into something memorable.",
+1309	        "points": [
+1310	          "Five capabilities, three default questions, one governing standard.",
+1311	          "Say that institutions do not need one hundred principles; they need a small set of capabilities used consistently.",
+1312	          "This slide should make the constructive section feel manageable."
+1313	        ]
+1314	      }
+1315	    },
+1316	    {
+1317	      "type": "content",
+1318	      "section": "A different strategy",
+1319	      "heading": "Sector collaboration and public alternatives matter",
+1320	      "body": "No single university has enough leverage to negotiate every clause, evaluate every model or build every critical service alone. Collaboration is a practical necessity.",
+1321	      "points": [
+1322	        {
+1323	          "title": "Shared procurement",
+1324	          "description": "Use sector bodies and consortia to negotiate stronger data terms, exit rights and auditability."
+1325	        },
+1326	        {
+1327	          "title": "Shared evaluation",
+1328	          "description": "Build common test suites, model cards and red-teaming practices for educational use cases."
+1329	        },
+1330	        {
+1331	          "title": "Public-interest infrastructure",
+1332	          "description": "Explore national, regional or mission-based alternatives where the market produces choke points."
+1333	        }
+1334	      ],
+1335	      "notes": {
+1336	        "transition": "Finish the section by scaling outward.",
+1337	        "points": [
+1338	          "Single universities are too small to negotiate, evaluate, and build everything alone.",
+1339	          "Sector collaboration and public alternatives are not idealism; they are a realistic response to asymmetric markets.",
+1340	          "This lets you sound practical without sounding institutionally isolated."
+1341	        ]
+1342	      }
+1343	    },
+1344	    {
+1345	      "type": "statement",
+1346	      "section": "A different strategy",
+1347	      "text": "The alternative to passive dependence is not heroic self-sufficiency. It is practical stewardship.",
+1348	      "highlight": "practical stewardship",
+1349	      "attribution": "",
+1350	      "notes": {
+1351	        "transition": "State the positive identity of the argument.",
+1352	        "points": [
+1353	          "The alternative to passive dependence is practical stewardship.",
+1354	          "This line matters because it keeps the keynote from sounding like a sovereignty fantasy.",
+1355	          "Pause slightly; this is the constructive counterpart to the earlier warnings."
+1356	        ]
+1357	      }
+1358	    },
+1359	    {
+1360	      "type": "section-divider",
+1361	      "section_number": 7,
+1362	      "title": "What the next decade looks like",
+1363	      "subtitle": "Two futures are still possible",
+1364	      "notes": {
+1365	        "transition": "Move from strategy to consequences.",
+1366	        "points": [
+1367	          "This final section asks what the next decade looks like under two different patterns of choice.",
+1368	          "Use the subtitle to frame the end as a genuine fork, not a foregone conclusion.",
+1369	          "The tone here should become slightly more civic and decision-oriented."
+1370	        ]
+1371	      }
+1372	    },
+1373	    {
+1374	      "type": "content",
+1375	      "section": "What the next decade looks like",
+1376	      "heading": "If universities play this moment well",
+1377	      "body": "The optimistic future is not one in which universities beat hyperscalers at their own game. It is one in which they use the boom to build durable, plural and publicly oriented capability.",
+1378	      "points": [
+1379	        {
+1380	          "title": "Cheaper infrastructure, better terms",
+1381	          "description": "Institutions inherit mature tools and compute without surrendering all bargaining power."
+1382	        },
+1383	        {
+1384	          "title": "Human-centred pedagogy",
+1385	          "description": "AI is used to deepen feedback, accessibility and high-value contact rather than thin them out."
+1386	        },
+1387	        {
+1388	          "title": "Stronger public capacity",
+1389	          "description": "Sector collaboration creates standards, evaluation routines and alternatives that keep the system contestable."
+1390	        }
+1391	      ],
+1392	      "notes": {
+1393	        "transition": "Paint the better future concretely.",
+1394	        "points": [
+1395	          "A good future is not universities beating hyperscalers at their own game.",
+1396	          "It is cheaper infrastructure on better terms, human-centred pedagogy, and stronger public capability.",
+1397	          "Keep the picture specific enough to feel plausible rather than utopian."
+1398	        ]
+1399	      }
+1400	    },
+1401	    {
+1402	      "type": "content",
+1403	      "section": "What the next decade looks like",
+1404	      "heading": "If universities get captured by the stack",
+1405	      "body": "The pessimistic future is not spectacular collapse. It is a quieter form of dependency in which institutions keep functioning while their freedom, pluralism and educational quality erode.",
+1406	      "points": [
+1407	        {
+1408	          "title": "Rent extraction",
+1409	          "description": "AI becomes a permanent premium layer across teaching, admin, assessment and research workflows."
+1410	        },
+1411	        {
+1412	          "title": "Thin provision",
+1413	          "description": "Lower-status students and institutions get automated, standardised provision while wealthier parts of the sector preserve human-rich models."
+1414	        },
+1415	        {
+1416	          "title": "Opaque governance",
+1417	          "description": "Research, pedagogy and student support are increasingly shaped by systems the university cannot fully audit or challenge."
+1418	        }
+1419	      ],
+1420	      "notes": {
+1421	        "transition": "Then contrast it with the quieter bad future.",
+1422	        "points": [
+1423	          "The captured future is not dramatic collapse; it is ongoing functioning under worsening dependency.",
+1424	          "Emphasise rent extraction, thinner provision, and opaque governance.",
+1425	          "The point is to show what slow loss of autonomy looks like in ordinary institutional life."
+1426	        ]
+1427	      }
+1428	    },
+1429	    {
+1430	      "type": "content",
+1431	      "section": "What the next decade looks like",
+1432	      "heading": "The next few years require three decisions from leaders",
+1433	      "body": "Every institution does not need the same answer, but all of them need to decide what they will refuse to outsource by default.",
+1434	      "points": [
+1435	        {
+1436	          "title": "What must we retain control over?",
+1437	          "description": "Define the teaching, assessment, data or support functions where exit, auditability and human oversight are non-negotiable."
+1438	        },
+1439	        {
+1440	          "title": "What should we build or evaluate together?",
+1441	          "description": "Identify the areas where sector collaboration creates more leverage than acting alone."
+1442	        },
+1443	        {
+1444	          "title": "What rights should students have?",
+1445	          "description": "Make explicit the rights to transparency, contestability, accessibility and non-AI pathways in core processes."
+1446	        }
+1447	      ],
+1448	      "notes": {
+1449	        "transition": "Convert the contrast into leadership choices.",
+1450	        "points": [
+1451	          "Every institution has to decide what it will refuse to outsource by default.",
+1452	          "Use the three questions as decision tests: what must we retain control over, what should we build or evaluate together, and what rights should students have?",
+1453	          "This sets up the closing agenda cleanly."
+1454	        ]
+1455	      }
+1456	    },
+1457	    {
+1458	      "type": "content",
+1459	      "section": "What the next decade looks like",
+1460	      "heading": "A Monday-morning agenda for institutions",
+1461	      "body": "The first moves are not glamorous. They are the foundations of a university that remains able to govern its own AI future.",
+1462	      "points": [
+1463	        {
+1464	          "title": "Map dependence",
+1465	          "description": "Identify where AI is already embedded in teaching, assessment, support, analytics and procurement."
+1466	        },
+1467	        {
+1468	          "title": "Tighten the basics",
+1469	          "description": "Create a cross-functional procurement checklist, clear data rules and one evaluation routine for a high-priority use case."
+1470	        },
+1471	        {
+1472	          "title": "Act collectively",
+1473	          "description": "Join or build a coalition for shared bargaining, evaluation or open alternatives before the defaults settle."
+1474	        }
+1475	      ],
+1476	      "notes": {
+1477	        "transition": "Make the end operational.",
+1478	        "points": [
+1479	          "The Monday-morning agenda shows that stewardship begins with unglamorous but doable steps.",
+1480	          "Map dependence, tighten the basics, and act collectively.",
+1481	          "This is where the talk leaves the audience with something they can do next week."
+1482	        ]
+1483	      }
+1484	    },
+1485	    {
+1486	      "type": "statement",
+1487	      "section": "What the next decade looks like",
+1488	      "text": "Universities are not only deciding whether to use AI. They are helping fix the defaults of higher education for years.",
+1489	      "highlight": "fix the defaults",
+1490	      "attribution": "",
+1491	      "notes": {
+1492	        "transition": "Lift back from the checklist to the stakes.",
+1493	        "points": [
+1494	          "The point is bigger than whether to deploy a particular tool.",
+1495	          "Universities are helping set the defaults that will structure higher education for years.",
+1496	          "This is the right slide to widen the frame before the final question."
+1497	        ]
+1498	      }
+1499	    },
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 09:53:30Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./content.json`
+
+```text
+1499	    },
+1500	    {
+1501	      "type": "statement",
+1502	      "section": "Closing question",
+1503	      "text": "Who will ultimately control the AI infrastructure higher education comes to depend on — and what kind of university will that make possible?",
+1504	      "highlight": "what kind of university",
+1505	      "attribution": "",
+1506	      "notes": {
+1507	        "transition": "End with the question rather than another answer.",
+1508	        "points": [
+1509	          "Let the closing question hang for a moment and hand neatly into discussion or panel.",
+1510	          "The point is to force the room to connect infrastructure control with the kind of university it wants to make possible.",
+1511	          "Do not rush the last line; it is the civic and institutional landing point."
+1512	        ]
+1513	      }
+1514	    }
+1515	  ]
+1516	}
+1517
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 09:54:02Z)**_
+
+Yes, I've got it. Here's my understanding:
+
+**Currently** each content-split-cards slide has evidence cards like:
+- **[coral dot] Teaching and assessment** — "Generative tools now sit inside drafting, feedback, marking support and redesign of assessment."
+
+**After the change**, the visible card becomes just:
+- **[coral dot] Teaching and assessment** (larger text, no description)
+
+And the description text gets **appended** to that slide's existing `notes.points` array — so for that example slide, the notes would gain three new entries like:
+- `"Teaching and assessment: Generative tools now sit inside drafting, feedback, marking support and redesign of assessment."`
+- `"Student support and admin: Copilots, triage systems and analytics are creeping into advising, helpdesks and routine services."`
+- `"Research and governance: Search, synthesis, coding, grant development and management reporting increasingly run through AI-mediated layers."`
+
+Two changes:
+1. **`layouts.js`** — remove `<p>${point.description}</p>` from `contentSplitCards`, bump `<h3>` size in CSS
+2. **`content.json`** — for all 37 content slides, append each point's `title: description` to `notes.points`, then remove `description` from each point
+
+I'll use a node script for the JSON transformation to avoid manual errors across 37 slides. Ready to go?
+
+---
+
+_**User (2026-04-03 09:56:23Z)**_
+
+go
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-03 09:56:45Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/layouts.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 09:56:45Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+<tool_use_error>File has not been read yet. Read it first before writing to it.</tool_use_error>
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 09:56:49Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./src/style.css`
+
+```text
+714	}
+715	
+716	.content-split-cards .evidence-card .card-text h3 {
+717	  font-family: var(--font-display);
+718	  font-weight: 600;
+719	  font-size: 0.95rem;
+720	  margin-bottom: 0.3rem;
+721	}
+722	
+723	.content-split-cards .evidence-card .card-text p {
+724	  font-size: var(--caption-size);
+725	  color: var(--color-text-secondary);
+726	  line-height: 1.5;
+727	}
+728
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 09:57:01Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 09:57:07Z)**_
+
+Now the JSON transformation — I'll use a node script to move descriptions into notes for all content slides.
+
+_**Agent (claude-opus-4-6 2026-04-03 09:57:12Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Migrate point descriptions to notes for all content slides
+
+```bash
+cd "/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator" && node -e "
+const fs = require('fs');
+const data = JSON.parse(fs.readFileSync('content.json', 'utf8'));
+
+data.slides.forEach(slide => {
+  if (slide.type === 'content' && slide.points && slide.points.length > 0) {
+    // Append each point's description to notes.points
+    slide.points.forEach(point => {
+      if (point.description) {
+        slide.notes.points.push(point.title + ': ' + point.description);
+        delete point.description;
+      }
+    });
+  }
+});
+
+fs.writeFileSync('content.json', JSON.stringify(data, null, 2) + '\n');
+console.log('Done');
+"
+```
+
+```text
+Done
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 09:57:22Z)**_
+
+Let me verify one slide to confirm it worked correctly.
+
+_**Agent (claude-opus-4-6 2026-04-03 09:57:22Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./content.json`
+
+```text
+136	      "type": "content",
+137	      "section": "From tool to substrate",
+138	      "heading": "AI is moving from visible tools to invisible systems",
+139	      "body": "The important shift is not simply more campus use. It is that AI is being stitched into teaching, assessment, student support, research workflows and institutional decision-making. When that happens, AI stops looking like a product choice and starts behaving like infrastructure.",
+140	      "points": [
+141	        {
+142	          "title": "Teaching and assessment"
+143	        },
+144	        {
+145	          "title": "Student support and admin"
+146	        },
+147	        {
+148	          "title": "Research and governance"
+149	        }
+150	      ],
+151	      "notes": {
+152	        "transition": "Start with the broad institutional picture before going to evidence.",
+153	        "points": [
+154	          "AI is no longer just a tool someone opens; it is becoming part of how teaching, assessment, support, research, and governance are carried out.",
+155	          "Stress the shift from optional use to embedded workflow.",
+156	          "Say that once many activities assume the system is there, AI stops behaving like a product choice and starts behaving like infrastructure.",
+157	          "Teaching and assessment: Generative tools now sit inside drafting, feedback, marking support and redesign of assessment.",
+158	          "Student support and admin: Copilots, triage systems and analytics are creeping into advising, helpdesks and routine services.",
+159	          "Research and governance: Search, synthesis, coding, grant development and management reporting increasingly run through AI-mediated layers."
+160	        ]
+161	      }
+162	    },
+163	    {
+164	      "type": "data",
+165	      "section": "From tool to substrate",
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-03 09:57:31Z)**_
+
+Done. All three changes are in:
+
+1. **`layouts.js`** — removed `<p>${point.description}</p>` from the card template
+2. **`style.css`** — bumped card title from `0.95rem` to `1.3rem`, removed bottom margin
+3. **`content.json`** — all 37 content slides now have title-only points, with descriptions appended to `notes.points` (prefixed with the title for context)
+
+It should be live-reloading in your browser now.
