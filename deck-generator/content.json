@@ -381,7 +381,7 @@
       "type": "content",
       "section": "The build-out",
       "heading": "The build-out can leave universities with real inheritances",
-      "body": "If institutions are strategic, the boom years can amount to a temporary subsidy from speculative capital into durable capability that HE later uses more cheaply and more wisely.",
+      "body": "If institutions are strategic, the boom years can amount to a temporary subsidy from speculative capital into durable capability that HE later uses more cheaply, more wisely and on terms it helps to shape.",
       "points": [
         {
           "title": "Cheaper access later"
@@ -390,18 +390,18 @@
           "title": "Better institutional tooling"
         },
         {
-          "title": "More credible alternatives"
+          "title": "More credible sector alternatives"
         }
       ],
       "notes": {
         "transition": "Keep the section from sounding fatalistic.",
         "points": [
           "Say that boom periods can leave useful inheritances if universities are deliberate.",
-          "Translate that inheritance into practical terms: cheaper access later, better institutional tooling, and more credible alternatives.",
+          "Translate that inheritance into practical terms: cheaper access later, better institutional tooling, and more credible sector alternatives.",
           "This is where you show you are not anti-development; you are anti-passivity.",
           "Cheaper access later: Competition, commoditisation and maturing open models can drive down cost and increase choice.",
           "Better institutional tooling: Standards for VLE integration, evaluation, monitoring and retrieval are improving on someone else's budget.",
-          "More credible alternatives: Mature open-weight models and sector hosting become more plausible once the ecosystem has been pushed forward."
+          "More credible sector alternatives: Mature open-weight models, repurposed hardware and sector hosting become more plausible once the ecosystem has been pushed forward."
         ]
       }
     },
@@ -409,7 +409,7 @@
       "type": "content",
       "section": "The build-out",
       "heading": "The boom is also accelerating learning inside universities",
-      "body": "The real gain is not just hardware. It is the organisational knowledge institutions can build while the ecosystem is moving quickly.",
+      "body": "The real gain is not just hardware. It is the organisational knowledge universities can build across computer science, education and social science while the ecosystem is moving quickly.",
       "points": [
         {
           "title": "Policy learning"
@@ -418,18 +418,18 @@
           "title": "Pedagogic learning"
         },
         {
-          "title": "Capability learning"
+          "title": "Interdisciplinary capability"
         }
       ],
       "notes": {
         "transition": "Shift from external capital to internal learning.",
         "points": [
           "The boom is not only changing the market; it is forcing institutions to learn fast.",
-          "Point to policy, pedagogy, and organisational capability as things universities can build during this period.",
+          "Point to policy, pedagogy, and interdisciplinary capability as things universities can build during this period.",
           "The implication is that institutions can waste the moment or use it to become better stewards.",
           "Policy learning: Assessment guidance, data rules, DPIAs and usage norms are being stress-tested in real time.",
           "Pedagogic learning: Universities are discovering which AI uses support learning and which merely simulate support.",
-          "Capability learning: Staff are developing literacy in prompting, workflow design, evaluation and critical comparison across tools."
+          "Interdisciplinary capability: Staff are developing literacy in prompting, workflow design, evaluation and critical comparison across tools, while technical and social-scientific expertise becomes easier to combine."
         ]
       },
       "lenses": [
@@ -479,6 +479,7 @@
         "points": [
           "The distinction is access versus control.",
           "Say that temporary access to powerful systems is not the same as governing the terms on which they become normal.",
+          "Flag that one practical route from access toward control is to turn post-boom tooling, hardware and expertise into shared public-interest capacity.",
           "Use this line to pivot into the next section: if not universities, who is setting the defaults?"
         ]
       },
@@ -1432,7 +1433,7 @@
       "type": "content",
       "section": "A different strategy",
       "heading": "Sector collaboration and public alternatives matter",
-      "body": "No single university has enough leverage to negotiate every clause, evaluate every model or build every critical service alone. Collaboration is a practical necessity.",
+      "body": "No single university has enough leverage to negotiate every clause, evaluate every model or build every critical service alone. Collaboration is a practical necessity, including where the sector decides to build some capacity for itself.",
       "points": [
         {
           "title": "Shared procurement"
@@ -1452,11 +1453,76 @@
           "This lets you sound practical without sounding institutionally isolated.",
           "Shared procurement: Use sector bodies and consortia to negotiate stronger data terms, exit rights and auditability.",
           "Shared evaluation: Build common test suites, model cards and red-teaming practices for educational use cases.",
-          "Public-interest infrastructure: Explore national, regional or mission-based alternatives where the market produces choke points."
+          "Public-interest infrastructure: Explore national, regional or mission-based alternatives where the market produces choke points, including shared hosting or model-building where that is strategically sensible."
         ]
       },
       "lenses": [
         "transparency",
+        "extraction"
+      ]
+    },
+    {
+      "type": "content",
+      "section": "A different strategy",
+      "heading": "Ownership means owning some of the stack",
+      "body": "Contracts matter, but universities do not really shape their AI future if every consequential layer remains external. Ownership in practice means deciding which parts of compute, models and oversight must stay institutionally or sector governed.",
+      "points": [
+        {
+          "title": "Compute where it matters"
+        },
+        {
+          "title": "Models for university tasks"
+        },
+        {
+          "title": "Evaluation under our control"
+        }
+      ],
+      "notes": {
+        "transition": "Make ownership concrete rather than abstract.",
+        "points": [
+          "Say that ownership is not only about procurement clauses; it is also about who controls key layers of the system.",
+          "The claim is not that every university should own the entire stack.",
+          "The claim is that some compute, some models and some evaluation capacity should be institutionally or sector governed where mission, resilience or contestability matter.",
+          "Compute where it matters: Retain local or shared hosting for high-value functions where continuity, privacy or bargaining power are strategically important.",
+          "Models for university tasks: Build, adapt or fine-tune models for bounded educational and administrative use cases rather than relying only on general-purpose systems.",
+          "Evaluation under our control: Keep benchmark design, red-teaming and monitoring in hands that are accountable to educational values."
+        ]
+      },
+      "lenses": [
+        "transparency",
+        "extraction"
+      ]
+    },
+    {
+      "type": "content",
+      "section": "A different strategy",
+      "heading": "The boom leaves ingredients for shared university infrastructure",
+      "body": "Post-boom hardware, mature open-weight models and the expertise already distributed across computer science, education and social science make right-sized public-interest systems more plausible than they looked a few years ago.",
+      "points": [
+        {
+          "title": "Repurposed post-boom hardware"
+        },
+        {
+          "title": "Shared smaller models"
+        },
+        {
+          "title": "Interdisciplinary design"
+        }
+      ],
+      "notes": {
+        "transition": "Then show why this is newly plausible.",
+        "points": [
+          "This is where you bring in the leftovers of the boom as opportunity rather than only market residue.",
+          "Say that the sector does not need to beat hyperscalers at frontier scale to build useful capacity of its own.",
+          "What is newly plausible is shared, right-sized infrastructure for university tasks, built by combining technical, pedagogic and social-scientific expertise.",
+          "Repurposed post-boom hardware: As hardware depreciates and supply loosens, some compute may become affordable for shared sector hosting or bounded institutional workloads.",
+          "Shared smaller models: Open-weight and smaller models are increasingly good enough for retrieval, classification, transcription, analysis and support tasks common in universities.",
+          "Interdisciplinary design: Computer science can build the systems, but education and social science are needed to define the tasks, evaluate the harms and shape the institutional fit."
+        ]
+      },
+      "lenses": [
+        "transparency",
+        "distortion",
         "extraction"
       ]
     },
@@ -1579,39 +1645,6 @@
           "What must we retain control over?: Define the teaching, assessment, data or support functions where exit, auditability and human oversight are non-negotiable.",
           "What should we build or evaluate together?: Identify the areas where sector collaboration creates more leverage than acting alone.",
           "What rights should students have?: Make explicit the rights to transparency, contestability, accessibility and non-AI pathways in core processes."
-        ]
-      },
-      "lenses": [
-        "transparency",
-        "distortion",
-        "extraction"
-      ]
-    },
-    {
-      "type": "content",
-      "section": "What the next decade looks like",
-      "heading": "A Monday-morning agenda for institutions",
-      "body": "The first moves are not glamorous. They are the foundations of a university that remains able to govern its own AI future.",
-      "points": [
-        {
-          "title": "Map dependence"
-        },
-        {
-          "title": "Tighten the basics"
-        },
-        {
-          "title": "Act collectively"
-        }
-      ],
-      "notes": {
-        "transition": "Make the end operational.",
-        "points": [
-          "The Monday-morning agenda shows that stewardship begins with unglamorous but doable steps.",
-          "Map dependence, tighten the basics, and act collectively.",
-          "This is where the talk leaves the audience with something they can do next week.",
-          "Map dependence: Identify where AI is already embedded in teaching, assessment, support, analytics and procurement.",
-          "Tighten the basics: Create a cross-functional procurement checklist, clear data rules and one evaluation routine for a high-priority use case.",
-          "Act collectively: Join or build a coalition for shared bargaining, evaluation or open alternatives before the defaults settle."
         ]
       },
       "lenses": [
