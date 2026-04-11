@@ -1,5 +1,5 @@
 import { chromium } from 'playwright';
-import { mkdir, readFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -25,6 +25,8 @@ const url = args.url || 'http://127.0.0.1:5173';
 const width = Number(args.width || 1600);
 const height = Math.round(width / (16 / 9));
 const quality = Number(args.quality || 88);
+const scale = Number(args.scale || 1);
+const renderer = args.renderer || 'screenshot';
 const outputDir = path.resolve(PROJECT_ROOT, args.out || `anki_build/slides_${stamp()}`);
 const chromePath = args.chrome || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
@@ -50,7 +52,7 @@ async function main() {
   }
   const page = await browser.newPage({
     viewport: { width, height },
-    deviceScaleFactor: 1,
+    deviceScaleFactor: scale,
   });
 
   await page.goto(url, { waitUntil: 'networkidle' });
@@ -63,7 +65,7 @@ async function main() {
 
   let captured = 0;
   while (captured < totalSlides) {
-    const slides = page.locator('.slide');
+    const slides = page.locator('.slide-wrapper .slide');
     const visibleCount = await slides.count();
 
     for (let i = 0; i < visibleCount && captured < totalSlides; i += 1) {
@@ -72,12 +74,29 @@ async function main() {
       const filename = `slide-${String(slideNumber).padStart(2, '0')}-${slide.type}.jpg`;
       const filepath = path.join(outputDir, filename);
 
-      await slides.nth(i).screenshot({
-        path: filepath,
-        type: 'jpeg',
-        quality,
-        animations: 'disabled',
-      });
+      if (renderer === 'html2canvas') {
+        const dataUrl = await slides.nth(i).evaluate(
+          async (el, { captureScale, captureQuality }) => {
+            const { default: html2canvas } = await import('/node_modules/.vite/deps/html2canvas.js');
+            const canvas = await html2canvas(el, {
+              scale: captureScale,
+              useCORS: true,
+              logging: false,
+              backgroundColor: null,
+            });
+            return canvas.toDataURL('image/jpeg', captureQuality / 100);
+          },
+          { captureScale: scale, captureQuality: quality },
+        );
+        await writeFile(filepath, Buffer.from(dataUrl.split(',')[1], 'base64'));
+      } else {
+        await slides.nth(i).screenshot({
+          path: filepath,
+          type: 'jpeg',
+          quality,
+          animations: 'disabled',
+        });
+      }
 
       console.log(`Exported ${filename}`);
       captured += 1;

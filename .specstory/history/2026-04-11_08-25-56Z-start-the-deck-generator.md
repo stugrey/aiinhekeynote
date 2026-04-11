@@ -2770,3 +2770,5202 @@ That should run this imported deck slide 1 to slide 44 on first study. The Anki 
 The caveat is that once a card has been studied, Anki’s normal spaced repetition scheduler takes over. Anki’s own docs say card “position” is only used relative to other new cards, unless a card is reset to new: https://docs.ankiweb.net/stats.html#card-info
 
 For repeated linear run-throughs, use a filtered/custom study deck and choose `Order added` or `Order due`; filtered deck order controls the review order. You can also disable rescheduling for preview-style run-throughs: https://docs.ankiweb.net/filtered-decks.html#order
+
+---
+
+_**User (2026-04-11 08:45:12Z)**_
+
+500: JsonError { info: "decoding decks: JsonError" }
+
+---
+
+_**Agent (gpt-5.4 2026-04-11 08:45:32Z)**_
+
+That import error means the `.apkg` structure opened, but Anki rejected the deck metadata JSON. I’ll rebuild it using Anki’s stricter expected schema instead of the minimal hand-built deck metadata.
+
+_**Agent (gpt-5.4 2026-04-11 08:45:32Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `find /Applications/Anki.app -maxdepth 4 -type f -name '*.py' | sed -n '1,80p'`</summary>
+```
+Command: /bin/zsh -lc "find /Applications/Anki.app -maxdepth 4 -type f -name '*.py' | sed -n '1,80p'"
+Chunk ID: b46b1d
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 14
+Output:
+/Applications/Anki.app/Contents/Resources/versions.py
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:45:32Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `find /Applications/Anki.app -maxdepth 6 -type d -name 'anki' -o -name 'aqt' | sed -n '1,80p'`</summary>
+```
+Command: /bin/zsh -lc "find /Applications/Anki.app -maxdepth 6 -type d -name 'anki' -o -name 'aqt' | sed -n '1,80p'"
+Chunk ID: 3ce8aa
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 0
+Output:
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:45:32Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `find /Applications/Anki.app -maxdepth 6 -type f -name 'collection*' | sed -n '1,80p'`</summary>
+```
+Command: /bin/zsh -lc "find /Applications/Anki.app -maxdepth 6 -type f -name 'collection*' | sed -n '1,80p'"
+Chunk ID: e79d85
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 0
+Output:
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:45:32Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `find /Applications/Anki.app -maxdepth 4 -type f | rg 'anki|pylib|rslib|backend' | sed -n '1,120p'`</summary>
+```
+Command: /bin/zsh -lc "find /Applications/Anki.app -maxdepth 4 -type f | rg 'anki|pylib|rslib|backend' | sed -n '1,120p'"
+Chunk ID: 23a462
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 0
+Output:
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:45:38Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `find /Applications/Anki.app/Contents -maxdepth 3 -type f | sed -n '1,160p'`</summary>
+```
+Command: /bin/zsh -lc "find /Applications/Anki.app/Contents -maxdepth 3 -type f | sed -n '1,160p'"
+Chunk ID: d832b0
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 129
+Output:
+/Applications/Anki.app/Contents/CodeResources
+/Applications/Anki.app/Contents/_CodeSignature/CodeResources
+/Applications/Anki.app/Contents/MacOS/launcher
+/Applications/Anki.app/Contents/MacOS/uv
+/Applications/Anki.app/Contents/MacOS/install_name_tool
+/Applications/Anki.app/Contents/Resources/pyproject.toml
+/Applications/Anki.app/Contents/Resources/Assets.car
+/Applications/Anki.app/Contents/Resources/.python-version
+/Applications/Anki.app/Contents/Resources/versions.py
+/Applications/Anki.app/Contents/Info.plist
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:45:38Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `find /Applications/Anki.app/Contents -maxdepth 3 -type d | sed -n '1,160p'`</summary>
+```
+Command: /bin/zsh -lc "find /Applications/Anki.app/Contents -maxdepth 3 -type d | sed -n '1,160p'"
+Chunk ID: 06a0a2
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 40
+Output:
+/Applications/Anki.app/Contents
+/Applications/Anki.app/Contents/_CodeSignature
+/Applications/Anki.app/Contents/MacOS
+/Applications/Anki.app/Contents/Resources
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:45:45Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `ls -la /Applications/Anki.app/Contents/Resources`</summary>
+```
+Command: /bin/zsh -lc 'ls -la /Applications/Anki.app/Contents/Resources'
+Chunk ID: 3ef8a6
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 93
+Output:
+total 232
+drwxr-xr-x@ 6 stugrey  admin     192 Sep  6  2025 .
+drwxr-xr-x@ 7 stugrey  admin     224 Sep  6  2025 ..
+-rw-r--r--@ 1 stugrey  admin       7 Sep  6  2025 .python-version
+-rw-r--r--@ 1 stugrey  admin  103576 Sep  6  2025 Assets.car
+-rw-r--r--@ 1 stugrey  admin     158 Sep  6  2025 pyproject.toml
+-rw-r--r--@ 1 stugrey  admin    1360 Sep  6  2025 versions.py
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:45:45Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `sed -n '1,220p' /Applications/Anki.app/Contents/Resources/pyproject.toml`</summary>
+```
+Command: /bin/zsh -lc "sed -n '1,220p' /Applications/Anki.app/Contents/Resources/pyproject.toml"
+Chunk ID: 3d963c
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 40
+Output:
+[project]
+name = "anki-launcher"
+version = "1.0.0"
+description = "UV-based launcher for Anki."
+requires-python = ">=3.9"
+dependencies = [
+  "anki-release",
+]
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:45:45Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `sed -n '1,220p' /Applications/Anki.app/Contents/Resources/versions.py`</summary>
+```
+Command: /bin/zsh -lc "sed -n '1,220p' /Applications/Anki.app/Contents/Resources/versions.py"
+Chunk ID: a83ba1
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 340
+Output:
+# Copyright: Ankitects Pty Ltd and contributors
+# License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
+
+import json
+import sys
+
+import pip_system_certs.wrapt_requests
+import requests
+
+pip_system_certs.wrapt_requests.inject_truststore()
+
+
+def main():
+    """Fetch and return all versions from PyPI, sorted by upload time."""
+    url = "https://pypi.org/pypi/aqt/json"
+
+    try:
+        response = requests.get(url, timeout=30)
+        response.raise_for_status()
+        data = response.json()
+        releases = data.get("releases", {})
+
+        # Create list of (version, upload_time) tuples
+        version_times = []
+        for version, files in releases.items():
+            if files:  # Only include versions that have files
+                # Use the upload time of the first file for each version
+                upload_time = files[0].get("upload_time_iso_8601")
+                if upload_time:
+                    version_times.append((version, upload_time))
+
+        # Sort by upload time
+        version_times.sort(key=lambda x: x[1])
+
+        # Extract just the version names
+        versions = [version for version, _ in version_times]
+        print(json.dumps(versions))
+    except Exception as e:
+        print(f"Error fetching versions: {e}", file=sys.stderr)
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:45:45Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `du -sh /Applications/Anki.app`</summary>
+```
+Command: /bin/zsh -lc 'du -sh /Applications/Anki.app'
+Chunk ID: 59328a
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 7
+Output:
+ 74M	/Applications/Anki.app
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:45:55Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `find "$HOME/Library/Application Support" -maxdepth 5 -type d -name 'anki' -o -name 'aqt' 2>/dev/null | sed -n '1,120p'`</summary>
+```
+Command: /bin/zsh -lc 'find "$HOME/Library/Application Support" -maxdepth 5 -type d -name '"'anki' -o -name 'aqt' 2>/dev/null | sed -n '1,120p'"
+Chunk ID: e250f1
+Wall time: 1.0023 seconds
+Process running with session ID 89609
+Original token count: 0
+Output:
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:45:55Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `find "$HOME/Library" -maxdepth 5 -type f -name 'anki' -o -name 'aqt' 2>/dev/null | sed -n '1,120p'`</summary>
+```
+Command: /bin/zsh -lc 'find "$HOME/Library" -maxdepth 5 -type f -name '"'anki' -o -name 'aqt' 2>/dev/null | sed -n '1,120p'"
+Chunk ID: e080ae
+Wall time: 1.0023 seconds
+Process running with session ID 71741
+Original token count: 0
+Output:
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:45:55Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `find "$HOME/.cache" "$HOME/Library/Caches" -maxdepth 6 -type d -name 'anki' -o -name 'aqt' 2>/dev/null | sed -n '1,160p'`</summary>
+```
+Command: /bin/zsh -lc 'find "$HOME/.cache" "$HOME/Library/Caches" -maxdepth 6 -type d -name '"'anki' -o -name 'aqt' 2>/dev/null | sed -n '1,160p'"
+Chunk ID: 856e95
+Wall time: 1.0023 seconds
+Process running with session ID 57122
+Original token count: 0
+Output:
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:45:55Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `find "$HOME/Library/Application Support/Anki2" -maxdepth 3 -type f 2>/dev/null | sed -n '1,120p'`</summary>
+```
+Command: /bin/zsh -lc 'find "$HOME/Library/Application Support/Anki2" -maxdepth 3 -type f 2>/dev/null | sed -n '"'1,120p'"
+Chunk ID: 2c8183
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 3623
+Output:
+/Users/stugrey/Library/Application Support/Anki2/addons21/129299120/LICENSE
+/Users/stugrey/Library/Application Support/Anki2/addons21/129299120/config.json
+/Users/stugrey/Library/Application Support/Anki2/addons21/129299120/__init__.py
+/Users/stugrey/Library/Application Support/Anki2/addons21/129299120/config.md
+/Users/stugrey/Library/Application Support/Anki2/addons21/129299120/manifest.json
+/Users/stugrey/Library/Application Support/Anki2/addons21/129299120/meta.json
+/Users/stugrey/Library/Application Support/Anki2/prefs21.db
+/Users/stugrey/Library/Application Support/Anki2/anki.log
+/Users/stugrey/Library/Application Support/Anki2/README.txt
+/Users/stugrey/Library/Application Support/Anki2/User 1/collection.media.db2
+/Users/stugrey/Library/Application Support/Anki2/User 1/deleted.txt
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/Matthew Gordon.png
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/Fagan, Nicholas (MEng Aero-Mechanical Engineering).jpg
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/Rumsby Sonny.png
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/Davies, Kathleen (MEng Aero-Mechanical Engineering).jpg
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/Baig, Mirza Muhammad Saad (BEng Hons Aero-Mechanical Engineering).jpg
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/Asif, Abdullah (MEng Aero-Mechanical Engineering).jpg
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/Sher, Omar (MEng Mechanical Engineering with Aeronautics).jpg
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/Schuh, Richard (BEng Hons Naval Architecture and Marine Engineering).jpg
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/Allardyce, James William (MEng Mechanical Engineering).jpg
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/Edmund Zhi Peng Cheng.png
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/Sanghera, Simrin (MEng Aero-Mechanical Engineering).jpg
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/Kyle, Aodhan 2080743 2200 Bachelor of Engineering HH37-2200 Mech Design Eng,BEng.png
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/Mahilall, Seshmira (BEng Hons Mechanical Engineering).jpg
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/McLaughlin, Matthew (BEng Hons Naval Architecture and Marine Engineering).jpg
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/Kamran, Hassan (BEng Hons Electrical and Mechanical Engineering).jpg
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/Stark, Jonathan (BEng Hons Product Design Engineering).jpg
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/Ross, Craig (MEng Mechanical Engineering with Aeronautics).jpg
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/Burns, Craig (MEng Mechanical Engineering with Aeronautics).jpg
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/Loreign Langat.png
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/Grainger, Cameron (MEng Product Design Engineering).jpg
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/Hipgrave, Melissa (MEng Mechanical Engineering).jpg
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/Marmion, Aidan (BEng Hons Electrical and Mechanical Engineering).jpg
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/MacDonald, Ben 2555712 2200 Bachelor of Engineering H300-2200 Mechanical Engineering,BEng.png
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/Jack, Kenneth (MEng Aero-Mechanical Engineering).jpg
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/Mitchell Ross.png
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/Tzotzolakis, Stefanos 2547582 2200 Bachelor of Engineering H300-2200 Mechanical Engineering,BEng.png
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/MacKay, Ciaran (MEng Aero-Mechanical Engineering).jpg
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/Khalili, Mohammad 2553703 2200 Bachelor of Engineering H300-2200 Mechanical Engineering,BEng.png
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/Drive Google.png
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/Boyle, Michael Austin James (MEng Mechanical Engineering).jpg
+/Users/stugrey/Library/Application Support/Anki2/User 1/media.trash/Nair, Rushil 2581392 2200 Bachelor of Engineering H300-2200 Mechanical Engineering,BEng.png
+/Users/stugrey/Library/Application Support/Anki2/User 1/medi
+... (truncated)
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:45:58Z)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="write_stdin"><details>
+<summary>Tool use: **write_stdin**</summary>
+```
+Command: /bin/zsh -lc 'find "$HOME/Library/Application Support" -maxdepth 5 -type d -name '"'anki' -o -name 'aqt' 2>/dev/null | sed -n '1,120p'"
+Chunk ID: cb26ba
+Wall time: 0.3823 seconds
+Process exited with code 0
+Original token count: 95
+Output:
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/aqt
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/anki
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/OAFRZV2e3S8wPss-jSOO0/aqt
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:46:02Z)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="write_stdin"><details>
+<summary>Tool use: **write_stdin**</summary>
+```
+Command: /bin/zsh -lc 'find "$HOME/Library" -maxdepth 5 -type f -name '"'anki' -o -name 'aqt' 2>/dev/null | sed -n '1,120p'"
+Chunk ID: 8e5509
+Wall time: 5.0022 seconds
+Process running with session ID 71741
+Original token count: 0
+Output:
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:46:09Z)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="write_stdin"><details>
+<summary>Tool use: **write_stdin**</summary>
+```
+Command: /bin/zsh -lc 'find "$HOME/.cache" "$HOME/Library/Caches" -maxdepth 6 -type d -name '"'anki' -o -name 'aqt' 2>/dev/null | sed -n '1,160p'"
+Chunk ID: d4cdf4
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 0
+Output:
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:46:16Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `find "$HOME/Library/Application Support/AnkiProgramFiles" -maxdepth 4 -type f -name '*.py' | sed -n '1,80p'`</summary>
+```
+Command: /bin/zsh -lc 'find "$HOME/Library/Application Support/AnkiProgramFiles" -maxdepth 4 -type f -name '"'*.py' | sed -n '1,80p'"
+Chunk ID: 0d6738
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 136
+Output:
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/G8E0ghvVklpW5j6bp1KeG/sockshandler.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/G8E0ghvVklpW5j6bp1KeG/socks.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/U3W90tGItfIIzFxaytLC5/decorator.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/jKE8nf0bkfTpdSpwliinJ/typing_extensions.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/.venv/bin/activate_this.py
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:46:16Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `find "$HOME/Library/Application Support/AnkiProgramFiles" -maxdepth 5 -type f -name '*.whl' | sed -n '1,120p'`</summary>
+```
+Command: /bin/zsh -lc 'find "$HOME/Library/Application Support/AnkiProgramFiles" -maxdepth 5 -type f -name '"'*.whl' | sed -n '1,120p'"
+Chunk ID: 073d86
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 0
+Output:
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:46:16Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `find "$HOME/Library/Application Support/AnkiProgramFiles" -maxdepth 4 -type d | sed -n '1,160p'`</summary>
+```
+Command: /bin/zsh -lc 'find "$HOME/Library/Application Support/AnkiProgramFiles" -maxdepth 4 -type d | sed -n '"'1,160p'"
+Chunk ID: 4c15d1
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 4132
+Output:
+/Users/stugrey/Library/Application Support/AnkiProgramFiles
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/interpreter-v4
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/interpreter-v4/c2c2931c8a99aae1
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/sdists-v9
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/simple-v16
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/simple-v16/pypi
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/orjson
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/anki-mac-helper
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/flask
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/markupsafe
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/pyqt6-qt6
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/attrs
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/pyqt6-webengine
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/decorator
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/jinja2
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/distro
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/soupsieve
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/markdown
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/referencing
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/colorama
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/aqt
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/flask-cors
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/jsonschema-specifications
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/waitress
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/send2trash
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/anki
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/idna
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/werkzeug
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/click
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/zipp
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/pywin32
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/wrapt
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/pysocks
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/requests
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/charset-normalizer
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/pip
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/anki-audio
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/certifi
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/jsonschema
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/pyqt6-sip
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/pip-system-certs
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/pyqt6-webengine-qt6
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/anki-release
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/urllib3
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/blinker
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/itsdangerous
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/beautifulsoup4
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/rpds-py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/typing-extensions
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/wheels-v5/pypi/protobuf
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/ca
+... (truncated)
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:46:23Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `"$HOME/Library/Application Support/AnkiProgramFiles/.venv/bin/python" -c "import anki, aqt, sys; print(anki); print(getattr(anki, '__version__', None)); print(sys.version)"`</summary>
+```
+Command: /bin/zsh -lc '"$HOME/Library/Application Support/AnkiProgramFiles/.venv/bin/python" -c "import anki, aqt, sys; print(anki); print(getattr(anki, '"'__version__', None)); print(sys.version)\""
+Chunk ID: 6137fe
+Wall time: 0.4905 seconds
+Process exited with code 0
+Original token count: 49
+Output:
+<module 'anki' (namespace) from ['/Users/stugrey/Library/Application Support/AnkiProgramFiles/.venv/lib/python3.13/site-packages/anki']>
+None
+3.13.5 (main, Jun 12 2025, 12:22:43) [Clang 20.1.4 ]
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:46:23Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `find "$HOME/Library/Application Support/AnkiProgramFiles/.venv" -maxdepth 3 -type f | sed -n '1,80p'`</summary>
+```
+Command: /bin/zsh -lc 'find "$HOME/Library/Application Support/AnkiProgramFiles/.venv" -maxdepth 3 -type f | sed -n '"'1,80p'"
+Chunk ID: ef6f58
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 519
+Output:
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/.venv/.lock
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/.venv/bin/flask
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/.venv/bin/activate.bat
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/.venv/bin/markdown_py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/.venv/bin/waitress-serve
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/.venv/bin/activate.ps1
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/.venv/bin/ankiw
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/.venv/bin/pip3.13
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/.venv/bin/pip3
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/.venv/bin/pyuic6
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/.venv/bin/activate.fish
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/.venv/bin/send2trash
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/.venv/bin/anki
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/.venv/bin/pylupdate6
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/.venv/bin/pydoc.bat
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/.venv/bin/activate_this.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/.venv/bin/pip
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/.venv/bin/jsonschema
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/.venv/bin/activate
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/.venv/bin/activate.nu
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/.venv/bin/normalizer
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/.venv/bin/deactivate.bat
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/.venv/bin/activate.csh
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/.venv/pyvenv.cfg
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/.venv/CACHEDIR.TAG
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/.venv/.gitignore
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:46:23Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `find "$HOME/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki" -maxdepth 2 -type f | sed -n '1,120p'`</summary>
+```
+Command: /bin/zsh -lc 'find "$HOME/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki" -maxdepth 2 -type f | sed -n '"'1,120p'"
+Chunk ID: f57fcd
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 3027
+Output:
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/sync.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/tags.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/lang.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/deck_config_pb2.pyi
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/sound.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/db.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/tags_pb2.pyi
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/ankihub_pb2.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/hooks.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/media.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/_fluent.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/config.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/httpclient.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/syncserver.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/sync_pb2.pyi
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/notetypes_pb2.pyi
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/models.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/_backend.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/foreign_data/__init__.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/foreign_data/mnemosyne.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/statsbg.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/_vendor/stringcase.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/hooks_gen.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/_rsbridge.pyi
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/image_occlusion_pb2.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/stdmodels.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/cards.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/scheduler/legacy.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/scheduler/__init__.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/scheduler/dummy.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/scheduler/v3.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/scheduler/base.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/ankiweb_pb2.pyi
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/decks_pb2.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/links_pb2.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/notes_pb2.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/scheduler_pb2.pyi
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/types.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/collection_pb2.py
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/notes.py
+/U
+... (truncated)
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:46:34Z)**_
+
+I found the local Anki 25.9.2 Python package in `AnkiProgramFiles`, so I can use Anki’s own code to validate or export a package instead of guessing the JSON shape.
+
+_**Agent (gpt-5.4 2026-04-11 08:46:34Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `sed -n '1,260p' "$HOME/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/exporting.py"`</summary>
+```
+Command: /bin/zsh -lc "sed -n '1,260p' \""'$HOME/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/exporting.py"'
+Chunk ID: 7bf88a
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 1916
+Output:
+# Copyright: Ankitects Pty Ltd and contributors
+# License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
+
+
+from __future__ import annotations
+
+import json
+import os
+import re
+import shutil
+import threading
+import time
+import unicodedata
+import zipfile
+from collections.abc import Sequence
+from io import BufferedWriter
+from typing import Any
+from zipfile import ZipFile
+
+from anki import hooks
+from anki.cards import CardId
+from anki.collection import Collection
+from anki.decks import DeckId
+from anki.utils import ids2str, namedtmp, split_fields, strip_html
+
+
+class Exporter:
+    includeHTML: bool | None = None
+    ext: str | None = None
+    includeTags: bool | None = None
+    includeSched: bool | None = None
+    includeMedia: bool | None = None
+
+    def __init__(
+        self,
+        col: Collection,
+        did: DeckId | None = None,
+        cids: list[CardId] | None = None,
+    ) -> None:
+        self.col = col.weakref()
+        self.did = did
+        self.cids = cids
+
+    @staticmethod
+    def key(col: Collection) -> str:
+        return ""
+
+    def doExport(self, path) -> None:
+        raise Exception("not implemented")
+
+    def exportInto(self, path: str) -> None:
+        self._escapeCount = 0
+        file = open(path, "wb")
+        self.doExport(file)
+        file.close()
+
+    def processText(self, text: str) -> str:
+        if self.includeHTML is False:
+            text = self.stripHTML(text)
+
+        text = self.escapeText(text)
+
+        return text
+
+    def escapeText(self, text: str) -> str:
+        "Escape newlines, tabs, CSS and quotechar."
+        # fixme: we should probably quote fields with newlines
+        # instead of converting them to spaces
+        text = text.replace("\n", " ")
+        text = text.replace("\r", "")
+        text = text.replace("\t", " " * 8)
+        text = re.sub("(?i)<style>.*?</style>", "", text)
+        text = re.sub(r"\[\[type:[^]]+\]\]", "", text)
+        if '"' in text or "'" in text:
+            text = '"' + text.replace('"', '""') + '"'
+        return text
+
+    def stripHTML(self, text: str) -> str:
+        # very basic conversion to text
+        s = text
+        s = re.sub(r"(?i)<(br ?/?|div|p)>", " ", s)
+        s = re.sub(r"\[sound:[^]]+\]", "", s)
+        s = strip_html(s)
+        s = re.sub(r"[ \n\t]+", " ", s)
+        s = s.strip()
+        return s
+
+    def cardIds(self) -> Any:
+        if self.cids is not None:
+            cids = self.cids
+        elif not self.did:
+            cids = self.col.db.list("select id from cards")
+        else:
+            cids = self.col.decks.cids(self.did, children=True)
+        self.count = len(cids)
+        return cids
+
+
+# Cards as TSV
+######################################################################
+
+
+class TextCardExporter(Exporter):
+    ext = ".txt"
+    includeHTML = True
+
+    def __init__(self, col) -> None:
+        Exporter.__init__(self, col)
+
+    @staticmethod
+    def key(col: Collection) -> str:
+        return col.tr.exporting_cards_in_plain_text()
+
+    def doExport(self, file) -> None:
+        ids = sorted(self.cardIds())
+        strids = ids2str(ids)
+
+        def esc(s):
+            # strip off the repeated question in answer if exists
+            s = re.sub("(?si)^.*<hr id=answer>\n*", "", s)
+            return self.processText(s)
+
+        out = ""
+        for cid in ids:
+            c = self.col.get_card(cid)
+            out += esc(c.question())
+            out += "\t" + esc(c.answer()) + "\n"
+        file.write(out.encode("utf-8"))
+
+
+# Notes as TSV
+######################################################################
+
+
+class TextNoteExporter(Exporter):
+    ext = ".txt"
+    includeTags = True
+    includeHTML = True
+
+    def __init__(self, col: Collection) -> None:
+        Exporter.__init__(self, col)
+        self.includeID = False
+
+    @staticmethod
+    def key(col: Collection) -> str:
+        return col.tr.exporting_notes_in_plain_text()
+
+    def doExport(self, file: BufferedWriter) -> None:
+        cardIds = self.cardIds()
+        data = []
+        for id, flds, tags in self.col.db.execute(
+            """
+select guid, flds, tags from notes
+where id in
+(select nid from cards
+where cards.id in %s)"""
+            % ids2str(cardIds)
+        ):
+            row = []
+            # note id
+            if self.includeID:
+                row.append(str(id))
+            # fields
+            row.extend([self.processText(f) for f in split_fields(flds)])
+            # tags
+            if self.includeTags:
+                row.append(tags.strip())
+            data.append("\t".join(row))
+        self.count = len(data)
+        out = "\n".join(data)
+        file.write(out.encode("utf-8"))
+
+
+# Anki decks
+################################################
+... (truncated)
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:46:34Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `sed -n '1,260p' "$HOME/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/importing/apkg.py"`</summary>
+```
+Command: /bin/zsh -lc "sed -n '1,260p' \""'$HOME/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/importing/apkg.py"'
+Chunk ID: ef00b7
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 559
+Output:
+# Copyright: Ankitects Pty Ltd and contributors
+# License: GNU AGPL, version 3 or later; http://www.gnu.org/licenses/agpl.html
+
+
+from __future__ import annotations
+
+import json
+import os
+import unicodedata
+import zipfile
+from typing import Any
+
+from anki.importing.anki2 import Anki2Importer, MediaMapInvalid
+from anki.utils import tmpfile
+
+
+class AnkiPackageImporter(Anki2Importer):
+    nameToNum: dict[str, str]
+    zip: zipfile.ZipFile | None
+
+    def run(self) -> None:  # type: ignore
+        # extract the deck from the zip file
+        self.zip = z = zipfile.ZipFile(self.file)
+        # v2 scheduler?
+        try:
+            z.getinfo("collection.anki21")
+            suffix = ".anki21"
+        except KeyError:
+            suffix = ".anki2"
+
+        col = z.read(f"collection{suffix}")
+        colpath = tmpfile(suffix=".anki2")
+        with open(colpath, "wb") as f:
+            f.write(col)
+        self.file = colpath
+        # we need the media dict in advance, and we'll need a map of fname ->
+        # number to use during the import
+        self.nameToNum = {}
+        dir = self.col.media.dir()
+        try:
+            media_dict = json.loads(z.read("media").decode("utf8"))
+        except Exception as exc:
+            raise MediaMapInvalid() from exc
+        for k, v in list(media_dict.items()):
+            path = os.path.abspath(os.path.join(dir, v))
+            if os.path.commonprefix([path, dir]) != dir:
+                raise Exception("Invalid file")
+
+            self.nameToNum[unicodedata.normalize("NFC", v)] = k
+        # run anki2 importer
+        Anki2Importer.run(self, importing_v2=suffix == ".anki21")
+        # import static media
+        for file, c in list(self.nameToNum.items()):
+            if not file.startswith("_") and not file.startswith("latex-"):
+                continue
+            path = os.path.join(self.col.media.dir(), file)
+            if not os.path.exists(path):
+                with open(path, "wb") as f:
+                    f.write(z.read(c))
+
+    def _srcMediaData(self, fname: str) -> Any:
+        if fname in self.nameToNum:
+            return self.zip.read(
+                self.nameToNum[fname]
+            )  # pytype: disable=attribute-error
+        return None
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:46:34Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `rg "class .*Package|AnkiPackage|Apkg|exportInto" "$HOME/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki" -n`</summary>
+```
+Command: /bin/zsh -lc 'rg "class .*Package|AnkiPackage|Apkg|exportInto" "$HOME/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki" -n'
+Chunk ID: f3da4d
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 4731
+Output:
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/importing/__init__.py:10:from anki.importing.apkg import AnkiPackageImporter
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/importing/__init__.py:22:            AnkiPackageImporter,
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/collection.py:45:ImportAnkiPackageRequest = import_export_pb2.ImportAnkiPackageRequest
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/collection.py:46:ImportAnkiPackageOptions = import_export_pb2.ImportAnkiPackageOptions
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/collection.py:47:ExportAnkiPackageOptions = import_export_pb2.ExportAnkiPackageOptions
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/collection.py:362:        self, request: ImportAnkiPackageRequest
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/collection.py:368:        self, *, out_path: str, options: ExportAnkiPackageOptions, limit: ExportLimit
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/importing/apkg.py:17:class AnkiPackageImporter(Anki2Importer):
+/Users/stugrey/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/import_export_pb2.py:31:DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x18\x61nki/import_export.proto\x12\x12\x61nki.import_export\x1a\x10\x61nki/cards.proto\x1a\x15\x61nki/collection.proto\x1a\x10\x61nki/notes.proto\x1a\x12\x61nki/generic.proto\"o\n\x1eImportCollectionPackageRequest\x12\x10\n\x08\x63ol_path\x18\x01 \x01(\t\x12\x13\n\x0b\x62\x61\x63kup_path\x18\x02 \x01(\t\x12\x14\n\x0cmedia_folder\x18\x03 \x01(\t\x12\x10\n\x08media_db\x18\x04 \x01(\t\"Y\n\x1e\x45xportCollectionPackageRequest\x12\x10\n\x08out_path\x18\x01 \x01(\t\x12\x15\n\rinclude_media\x18\x02 \x01(\x08\x12\x0e\n\x06legacy\x18\x03 \x01(\x08\"\x83\x02\n\x18ImportAnkiPackageOptions\x12\x17\n\x0fmerge_notetypes\x18\x01 \x01(\x08\x12J\n\x0cupdate_notes\x18\x02 \x01(\x0e\x32\x34.anki.import_export.ImportAnkiPackageUpdateCondition\x12N\n\x10update_notetypes\x18\x03 \x01(\x0e\x32\x34.anki.import_export.ImportAnkiPackageUpdateCondition\x12\x17\n\x0fwith_scheduling\x18\x04 \x01(\x08\x12\x19\n\x11with_deck_configs\x18\x05 \x01(\x08\"o\n\x18ImportAnkiPackageRequest\x12\x14\n\x0cpackage_path\x18\x01 \x01(\t\x12=\n\x07options\x18\x02 \x01(\x0b\x32,.anki.import_export.ImportAnkiPackageOptions\"\x84\x06\n\x0eImportResponse\x12+\n\x07\x63hanges\x18\x01 \x01(\x0b\x32\x1a.anki.collection.OpChanges\x12\x33\n\x03log\x18\x02 \x01(\x0b\x32&.anki.import_export.ImportResponse.Log\x1a\x36\n\x04Note\x12\x1e\n\x02id\x18\x01 \x01(\x0b\x32\x12.anki.notes.NoteId\x12\x0e\n\x06\x66ields\x18\x02 \x03(\t\x1a\xd7\x04\n\x03Log\x12\x34\n\x03new\x18\x01 \x03(\x0b\x32\'.anki.import_export.ImportResponse.Note\x12\x38\n\x07updated\x18\x02 \x03(\x0b\x32\'.anki.import_export.ImportResponse.Note\x12:\n\tduplicate\x18\x03 \x03(\x0b\x32\'.anki.import_export.ImportResponse.Note\x12<\n\x0b\x63onflicting\x18\x04 \x03(\x0b\x32\'.anki.import_export.ImportResponse.Note\x12\x42\n\x11\x66irst_field_match\x18\x05 \x03(\x0b\x32\'.anki.import_export.ImportResponse.Note\x12\x41\n\x10missing_notetype\x18\x06 \x03(\x0b\x32\'.anki.import_export.ImportResponse.Note\x12=\n\x0cmissing_deck\x18\x07 \x03(\x0b\x32\'.anki.import_export.ImportResponse.Note\x12\x42\n\x11\x65mpty_first_field\x18\x08 \x03(\x0b\x32\'.anki.import_export.ImportResponse.Note\x12G\n\x0f\x64upe_resolution\x18\t \x01(\x0e\x32..anki.import_export.CsvMetadata.DupeResolution\x12\x13\n\x0b\x66ound_notes\x18\n \x01(\r\"\x9b\x01\n\x18\x45xportAnkiPackageRequest\x12\x10\n\x08out_path\x18\x01 \x01(\t\x12=\n\x07options\x18\x02 \x01(\x0b\x32,.anki.import_export.ExportAnkiPackageOptions\x12.\n\x05limit\x18\x03 \x01(\x0b\x32\x1f.anki.import_export.ExportLimit\"r\n\x18\x45xportAnkiPackageOptions\x12\x17\n\x0fwith_scheduling\x18\x01 \x01(\x08\x12\x19\n\x11with_deck_configs\x18\x02 \x01(\x08\x12\x12\n\nwith_media\x18\x03 \x01(\x08\x12\x0e\n\x06legacy\x18\x04 \x01(\x08\"\xaf\x01\n\x0fPackageMetadata\x12<\n\x07version\x18\x01 \x01(\x0e\x32+.anki.import_export.PackageMetadata.Version\"^\n\x07Version\x12\x13\n\x0fVERSION_UNKNOWN\x10\x00\x12\x14\n\x10VERSION_LEGACY_1\x10\x01\x12\x14\n\x10VERSION_LEGACY_2\x10\x02\x12\x12\n\x0eVERSION_LATEST\x10\x03\"\xbf\x01\n\x0cMediaEntries\x12<\n\x07\x65ntries\x18\x01 \x03(\x0b\x32+.anki.import
+... (truncated)
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:46:37Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `sed -n '190,390p' "$HOME/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/exporting.py"`</summary>
+```
+Command: /bin/zsh -lc "sed -n '190,390p' \""'$HOME/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/exporting.py"'
+Chunk ID: 31d007
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 1818
+Output:
+
+    def deckIds(self) -> list[DeckId]:
+        if self.cids:
+            return self.col.decks.for_card_ids(self.cids)
+        elif self.did:
+            return self.src.decks.deck_and_child_ids(self.did)
+        else:
+            return []
+
+    def exportInto(self, path: str) -> None:
+        # create a new collection at the target
+        try:
+            os.unlink(path)
+        except OSError:
+            pass
+        self.dst = Collection(path)
+        self.src = self.col
+        # find cards
+        cids = self.cardIds()
+        # copy cards, noting used nids
+        nids = {}
+        data: list[Sequence] = []
+        for row in self.src.db.execute(
+            "select * from cards where id in " + ids2str(cids)
+        ):
+            # clear flags
+            row = list(row)
+            row[-2] = 0
+            nids[row[1]] = True
+            data.append(row)
+        self.dst.db.executemany(
+            "insert into cards values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", data
+        )
+        # notes
+        strnids = ids2str(list(nids.keys()))
+        notedata = []
+        for row in self.src.db.all("select * from notes where id in " + strnids):
+            # remove system tags if not exporting scheduling info
+            if not self.includeSched:
+                row = list(row)
+                row[5] = self.removeSystemTags(row[5])
+            notedata.append(row)
+        self.dst.db.executemany(
+            "insert into notes values (?,?,?,?,?,?,?,?,?,?,?)", notedata
+        )
+        # models used by the notes
+        mids = self.dst.db.list("select distinct mid from notes where id in " + strnids)
+        # card history and revlog
+        if self.includeSched:
+            data = self.src.db.all("select * from revlog where cid in " + ids2str(cids))
+            self.dst.db.executemany(
+                "insert into revlog values (?,?,?,?,?,?,?,?,?)", data
+            )
+        else:
+            # need to reset card state
+            self.dst.sched.reset_cards(cids)
+        # models - start with zero
+        self.dst.mod_schema(check=False)
+        self.dst.models.remove_all_notetypes()
+        for m in self.src.models.all():
+            if int(m["id"]) in mids:
+                self.dst.models.update(m)
+        # decks
+        dids = self.deckIds()
+        dconfs = {}
+        for d in self.src.decks.all():
+            if str(d["id"]) == "1":
+                continue
+            if dids and d["id"] not in dids:
+                continue
+            if not d["dyn"] and d["conf"] != 1:
+                if self.includeSched:
+                    dconfs[d["conf"]] = True
+            if not self.includeSched:
+                # scheduling not included, so reset deck settings to default
+                d = dict(d)
+                d["conf"] = 1
+                d["reviewLimit"] = d["newLimit"] = None
+                d["reviewLimitToday"] = d["newLimitToday"] = None
+            self.dst.decks.update(d)
+        # copy used deck confs
+        for dc in self.src.decks.all_config():
+            if dc["id"] in dconfs:
+                self.dst.decks.update_config(dc)
+        # find used media
+        media = {}
+        self.mediaDir = self.src.media.dir()
+        if self.includeMedia:
+            for row in notedata:
+                flds = row[6]
+                mid = row[2]
+                for file in self.src.media.files_in_str(mid, flds):
+                    # skip files in subdirs
+                    if file != os.path.basename(file):
+                        continue
+                    media[file] = True
+            if self.mediaDir:
+                for fname in os.listdir(self.mediaDir):
+                    path = os.path.join(self.mediaDir, fname)
+                    if os.path.isdir(path):
+                        continue
+                    if fname.startswith("_"):
+                        # Scan all models in mids for reference to fname
+                        for m in self.src.models.all():
+                            if int(m["id"]) in mids:
+                                if self._modelHasMedia(m, fname):
+                                    media[fname] = True
+                                    break
+        self.mediaFiles = list(media.keys())
+        self.dst.crt = self.src.crt
+        # todo: tags?
+        self.count = self.dst.card_count()
+        self.postExport()
+        self.dst.close(downgrade=True)
+
+    def postExport(self) -> None:
+        # overwrite to apply customizations to the deck before it's closed,
+        # such as update the deck description
+        pass
+
+    def removeSystemTags(self, tags: str) -> str:
+        return self.src.tags.rem_from_str("marked leech", tags)
+
+    def _modelHasMedia(self, model, fname) -> bool:
+        # First 
+... (truncated)
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:46:41Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `sed -n '390,480p' "$HOME/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/exporting.py"`</summary>
+```
+Command: /bin/zsh -lc "sed -n '390,480p' \""'$HOME/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/exporting.py"'
+Chunk ID: 7e9461
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 598
+Output:
+
+    # create a dummy collection to ensure older clients don't try to read
+    # data they don't understand
+    def _addDummyCollection(self, zip) -> None:
+        path = namedtmp("dummy.anki2")
+        c = Collection(path)
+        n = c.newNote()
+        n.fields[0] = "This file requires a newer version of Anki."
+        c.addNote(n)
+        c.close(downgrade=True)
+
+        zip.write(path, "collection.anki2")
+        os.unlink(path)
+
+
+# Collection package
+######################################################################
+
+
+class AnkiCollectionPackageExporter(AnkiPackageExporter):
+    ext = ".colpkg"
+    verbatim = True
+    includeSched = None
+    LEGACY = True
+
+    def __init__(self, col):
+        AnkiPackageExporter.__init__(self, col)
+
+    @staticmethod
+    def key(col: Collection) -> str:
+        return col.tr.exporting_anki_collection_package()
+
+    def exportInto(self, path: str) -> None:
+        """Export collection. Caller must re-open afterwards."""
+
+        def exporting_media() -> bool:
+            return any(
+                hook.__name__ == "exported_media"
+                for hook in hooks.legacy_export_progress._hooks
+            )
+
+        def progress() -> None:
+            while exporting_media():
+                progress = self.col._backend.latest_progress()
+                if progress.HasField("exporting"):
+                    hooks.legacy_export_progress(progress.exporting)
+                time.sleep(0.1)
+
+        threading.Thread(target=progress).start()
+        self.col.export_collection_package(path, self.includeMedia, self.LEGACY)
+
+
+class AnkiCollectionPackage21bExporter(AnkiCollectionPackageExporter):
+    LEGACY = False
+
+    @staticmethod
+    def key(_col: Collection) -> str:
+        return "Anki 2.1.50+ Collection Package"
+
+
+# Export modules
+##########################################################################
+
+
+def exporters(col: Collection) -> list[tuple[str, Any]]:
+    def id(obj) -> tuple[str, Exporter]:
+        if callable(obj.key):
+            key_str = obj.key(col)
+        else:
+            key_str = obj.key
+        return (f"{key_str} (*{obj.ext})", obj)
+
+    exps = [
+        id(AnkiCollectionPackageExporter),
+        id(AnkiCollectionPackage21bExporter),
+        id(AnkiPackageExporter),
+        id(TextNoteExporter),
+        id(TextCardExporter),
+    ]
+    hooks.exporters_list_created(exps)
+    return exps
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:46:48Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command**</summary>
+```bash
+"$HOME/Library/Application Support/AnkiProgramFiles/.venv/bin/python" - <<'PY'
+from anki.collection import Collection
+import tempfile, os, inspect
+path=tempfile.NamedTemporaryFile(delete=False).name
+os.unlink(path)
+col=Collection(path)
+print('collection created', path)
+print('decks methods', [m for m in dir(col.decks) if not m.startswith('_')][:80])
+print('models methods', [m for m in dir(col.models) if not m.startswith('_')][:120])
+print('note methods', [m for m in dir(col.new_note()) if not m.startswith('_')][:80])
+col.close(downgrade=True)
+os.unlink(path)
+PY
+```
+```
+Command: /bin/zsh -lc '"$HOME/Library/Application Support/AnkiProgramFiles/.venv/bin/python" - <<'"'PY'
+from anki.collection import Collection
+import tempfile, os, inspect
+path=tempfile.NamedTemporaryFile(delete=False).name
+os.unlink(path)
+col=Collection(path)
+print('collection created', path)
+print('decks methods', [m for m in dir(col.decks) if not m.startswith('_')][:80])
+print('models methods', [m for m in dir(col.models) if not m.startswith('_')][:120])
+print('note methods', [m for m in dir(col.new_note()) if not m.startswith('_')][:80])
+col.close(downgrade=True)
+os.unlink(path)
+PY"
+Chunk ID: 5f7a65
+Wall time: 0.0692 seconds
+Process exited with code 1
+Original token count: 558
+Output:
+collection created /var/folders/f7/d0qf3qnx70349ryd786r8rkc0000gn/T/tmpivzlshzy
+decks methods ['active', 'add_config', 'add_config_returning_id', 'add_deck', 'add_deck_legacy', 'add_normal_deck_with_name', 'all', 'all_config', 'all_ids', 'all_names', 'all_names_and_ids', 'basename', 'by_name', 'card_count', 'child_ids', 'children', 'cids', 'col', 'collapse', 'collapse_browser', 'config_dict_for_deck_id', 'count', 'current', 'deck_and_child_ids', 'deck_and_child_name_ids', 'deck_tree', 'decks', 'decks_using_config', 'find_deck_in_tree', 'flush', 'for_card_ids', 'get', 'get_all_legacy', 'get_config', 'get_current_id', 'get_deck_configs_for_update', 'get_legacy', 'have', 'id', 'id_for_name', 'immediate_parent', 'immediate_parent_path', 'is_filtered', 'key', 'name', 'name_if_exists', 'name_map', 'new_deck', 'new_deck_legacy', 'new_filtered', 'parents', 'parents_by_name', 'path', 'register_deprecated_aliases', 'register_deprecated_attributes', 'rem', 'remove', 'remove_config', 'rename', 'reparent', 'restore_to_default', 'save', 'select', 'selected', 'set_collapsed', 'set_config_id_for_deck_dict', 'set_current', 'set_deck', 'update', 'update_config', 'update_deck_configs', 'update_dict']
+models methods ['add', 'addField', 'addTemplate', 'add_dict', 'add_field', 'add_template', 'all', 'all_names', 'all_names_and_ids', 'all_use_counts', 'by_name', 'change', 'change_notetype_info', 'change_notetype_of_notes', 'cloze_fields', 'col', 'copy', 'current', 'ensure_name_unique', 'field_map', 'field_names', 'flush', 'get', 'get_single_notetype_of_notes', 'have', 'id_for_name', 'ids', 'models', 'moveField', 'move_template', 'new', 'new_field', 'new_template', 'nids', 'register_deprecated_aliases', 'register_deprecated_attributes', 'rem', 'remField', 'remTemplate', 'remove', 'remove_all_notetypes', 'remove_field', 'remove_template', 'renameField', 'rename_field', 'reposition_field', 'reposition_template', 'restore_notetype_to_stock', 'save', 'scmhash', 'set_current', 'set_sort_index', 'sort_idx', 'template_use_count', 'update', 'update_dict', 'use_count']
+Traceback (most recent call last):
+  File "<stdin>", line 9, in <module>
+TypeError: Collection.new_note() missing 1 required positional argument: 'notetype'
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:46:56Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command**</summary>
+```bash
+"$HOME/Library/Application Support/AnkiProgramFiles/.venv/bin/python" - <<'PY'
+from anki.collection import Collection
+import tempfile, os, inspect
+path=tempfile.NamedTemporaryFile(delete=False).name
+os.unlink(path)
+col=Collection(path)
+print('add_normal_deck_with_name sig', inspect.signature(col.decks.add_normal_deck_with_name))
+print('add_deck sig', inspect.signature(col.decks.add_deck))
+print('models.new sig', inspect.signature(col.models.new))
+print('models.new_field sig', inspect.signature(col.models.new_field))
+print('models.new_template sig', inspect.signature(col.models.new_template))
+print('models.add sig', inspect.signature(col.models.add))
+print('models.add_dict sig', inspect.signature(col.models.add_dict))
+print('new_note sig', inspect.signature(col.new_note))
+print('add_note sig', inspect.signature(col.add_note))
+print('media methods', [m for m in dir(col.media) if not m.startswith('_')][:120])
+print('media add_file sig', inspect.signature(col.media.add_file))
+col.close(downgrade=True)
+os.unlink(path)
+PY
+```
+```
+Command: /bin/zsh -lc '"$HOME/Library/Application Support/AnkiProgramFiles/.venv/bin/python" - <<'"'PY'
+from anki.collection import Collection
+import tempfile, os, inspect
+path=tempfile.NamedTemporaryFile(delete=False).name
+os.unlink(path)
+col=Collection(path)
+print('add_normal_deck_with_name sig', inspect.signature(col.decks.add_normal_deck_with_name))
+print('add_deck sig', inspect.signature(col.decks.add_deck))
+print('models.new sig', inspect.signature(col.models.new))
+print('models.new_field sig', inspect.signature(col.models.new_field))
+print('models.new_template sig', inspect.signature(col.models.new_template))
+print('models.add sig', inspect.signature(col.models.add))
+print('models.add_dict sig', inspect.signature(col.models.add_dict))
+print('new_note sig', inspect.signature(col.new_note))
+print('add_note sig', inspect.signature(col.add_note))
+print('media methods', [m for m in dir(col.media) if not m.startswith('_')][:120])
+print('media add_file sig', inspect.signature(col.media.add_file))
+col.close(downgrade=True)
+os.unlink(path)
+PY"
+Chunk ID: c34070
+Wall time: 0.0758 seconds
+Process exited with code 0
+Original token count: 249
+Output:
+add_normal_deck_with_name sig (name: 'str') -> 'OpChangesWithId'
+add_deck sig (deck: 'Deck') -> 'OpChangesWithId'
+models.new sig (name: 'str') -> 'NotetypeDict'
+models.new_field sig (name: 'str') -> 'FieldDict'
+models.new_template sig (name: 'str') -> 'TemplateDict'
+models.add sig (notetype: 'NotetypeDict') -> 'OpChangesWithId'
+models.add_dict sig (notetype: 'NotetypeDict') -> 'OpChangesWithId'
+new_note sig (notetype: 'NotetypeDict') -> 'Note'
+add_note sig (note: 'Note', deck_id: 'DeckId') -> 'OpChangesWithCount'
+media methods ['add_extension_based_on_mime', 'add_file', 'check', 'col', 'dir', 'empty_trash', 'escape_images', 'escape_media_filenames', 'extract_static_media_files', 'files_in_str', 'force_resync', 'have', 'html_media_regexps', 'regexps', 'register_deprecated_aliases', 'register_deprecated_attributes', 'render_all_latex', 'restore_trash', 'sound_regexps', 'strip', 'strip_av_tags', 'transform_names', 'trash_files', 'write_data']
+media add_file sig (path: 'str') -> 'str'
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:47:17Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command**</summary>
+```bash
+"$HOME/Library/Application Support/AnkiProgramFiles/.venv/bin/python" - <<'PY'
+from anki.collection import Collection
+import tempfile, os, json
+path=tempfile.NamedTemporaryFile(delete=False).name
+os.unlink(path)
+col=Collection(path)
+nt=col.models.new('X')
+print(json.dumps(nt, indent=2)[:2000])
+col.close(downgrade=True)
+os.unlink(path)
+PY
+```
+```
+Command: /bin/zsh -lc '"$HOME/Library/Application Support/AnkiProgramFiles/.venv/bin/python" - <<'"'PY'
+from anki.collection import Collection
+import tempfile, os, json
+path=tempfile.NamedTemporaryFile(delete=False).name
+os.unlink(path)
+col=Collection(path)
+nt=col.models.new('X')
+print(json.dumps(nt, indent=2)[:2000])
+col.close(downgrade=True)
+os.unlink(path)
+PY"
+Chunk ID: c843b1
+Wall time: 0.0864 seconds
+Process exited with code 0
+Original token count: 150
+Output:
+{
+  "id": 0,
+  "name": "X",
+  "type": 0,
+  "mod": 0,
+  "usn": 0,
+  "sortf": 0,
+  "did": null,
+  "tmpls": [],
+  "flds": [],
+  "css": ".card {\n    font-family: arial;\n    font-size: 20px;\n    line-height: 1.5;\n    text-align: center;\n    color: black;\n    background-color: white;\n}\n",
+  "latexPre": "\\documentclass[12pt]{article}\n\\special{papersize=3in,5in}\n\\usepackage[utf8]{inputenc}\n\\usepackage{amssymb,amsmath}\n\\pagestyle{empty}\n\\setlength{\\parindent}{0in}\n\\begin{document}\n",
+  "latexPost": "\\end{document}",
+  "latexsvg": false,
+  "req": [],
+  "originalStockKind": 1
+}
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:47:24Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command**</summary>
+```bash
+"$HOME/Library/Application Support/AnkiProgramFiles/.venv/bin/python" - <<'PY'
+from anki.collection import Collection
+import tempfile, os, json
+path=tempfile.NamedTemporaryFile(delete=False).name
+os.unlink(path)
+col=Collection(path)
+nt=col.models.new('X')
+for name in ['SortKey','SlideTitle','SlideImage','Notes']:
+    col.models.add_field(nt, col.models.new_field(name))
+t=col.models.new_template('Slide -> Notes')
+t['qfmt']='{{SlideImage}}'
+t['afmt']='{{Notes}}'
+col.models.add_template(nt,t)
+print('before add', json.dumps(nt, indent=2)[:2500])
+res=col.models.add(nt)
+print('res', res)
+print('after add id', nt['id'])
+print(json.dumps(col.models.by_name('X'), indent=2)[:2500])
+col.close(downgrade=True)
+os.unlink(path)
+PY
+```
+```
+Command: /bin/zsh -lc '"$HOME/Library/Application Support/AnkiProgramFiles/.venv/bin/python" - <<'"'PY'
+from anki.collection import Collection
+import tempfile, os, json
+path=tempfile.NamedTemporaryFile(delete=False).name
+os.unlink(path)
+col=Collection(path)
+nt=col.models.new('X')
+for name in ['SortKey','SlideTitle','SlideImage','Notes']:
+    col.models.add_field(nt, col.models.new_field(name))
+t=col.models.new_template('Slide -> Notes')
+t['qfmt']='{{SlideImage}}'
+t['afmt']='{{Notes}}'
+col.models.add_template(nt,t)
+print('before add', json.dumps(nt, indent=2)[:2500])
+res=col.models.add(nt)
+print('res', res)
+print('after add id', nt['id'])
+print(json.dumps(col.models.by_name('X'), indent=2)[:2500])
+col.close(downgrade=True)
+os.unlink(path)
+PY"
+Chunk ID: 6d7b2e
+Wall time: 0.0752 seconds
+Process exited with code 0
+Original token count: 1162
+Output:
+before add {
+  "id": 0,
+  "name": "X",
+  "type": 0,
+  "mod": 0,
+  "usn": 0,
+  "sortf": 0,
+  "did": null,
+  "tmpls": [
+    {
+      "name": "Slide -> Notes",
+      "ord": null,
+      "qfmt": "{{SlideImage}}",
+      "afmt": "{{Notes}}",
+      "bqfmt": "",
+      "bafmt": "",
+      "did": null,
+      "bfont": "",
+      "bsize": 0,
+      "id": 2419872184173267514
+    }
+  ],
+  "flds": [
+    {
+      "name": "SortKey",
+      "ord": null,
+      "sticky": false,
+      "rtl": false,
+      "font": "Arial",
+      "size": 20,
+      "description": "",
+      "plainText": false,
+      "collapsed": false,
+      "excludeFromSearch": false,
+      "id": 2410788504095181499,
+      "tag": null,
+      "preventDeletion": false
+    },
+    {
+      "name": "SlideTitle",
+      "ord": null,
+      "sticky": false,
+      "rtl": false,
+      "font": "Arial",
+      "size": 20,
+      "description": "",
+      "plainText": false,
+      "collapsed": false,
+      "excludeFromSearch": false,
+      "id": 1262924812605915801,
+      "tag": null,
+      "preventDeletion": false
+    },
+    {
+      "name": "SlideImage",
+      "ord": null,
+      "sticky": false,
+      "rtl": false,
+      "font": "Arial",
+      "size": 20,
+      "description": "",
+      "plainText": false,
+      "collapsed": false,
+      "excludeFromSearch": false,
+      "id": -1513237627134364022,
+      "tag": null,
+      "preventDeletion": false
+    },
+    {
+      "name": "Notes",
+      "ord": null,
+      "sticky": false,
+      "rtl": false,
+      "font": "Arial",
+      "size": 20,
+      "description": "",
+      "plainText": false,
+      "collapsed": false,
+      "excludeFromSearch": false,
+      "id": 1337158270222188293,
+      "tag": null,
+      "preventDeletion": false
+    }
+  ],
+  "css": ".card {\n    font-family: arial;\n    font-size: 20px;\n    line-height: 1.5;\n    text-align: center;\n    color: black;\n    background-color: white;\n}\n",
+  "latexPre": "\\documentclass[12pt]{article}\n\\special{papersize=3in,5in}\n\\usepackage[utf8]{inputenc}\n\\usepackage{amssymb,amsmath}\n\\pagestyle{empty}\n\\setlength{\\parindent}{0in}\n\\begin{document}\n",
+  "latexPost": "\\end{document}",
+  "latexsvg": false,
+  "req": [],
+  "originalStockKind": 1
+}
+res changes {
+  notetype: true
+  config: true
+  browser_table: true
+  browser_sidebar: true
+  note_text: true
+  mtime: true
+}
+id: 1775897244258
+
+after add id 1775897244258
+{
+  "id": 1775897244258,
+  "name": "X",
+  "type": 0,
+  "mod": 1775897244,
+  "usn": -1,
+  "sortf": 0,
+  "did": null,
+  "tmpls": [
+    {
+      "name": "Slide -> Notes",
+      "ord": 0,
+      "qfmt": "{{SlideImage}}",
+      "afmt": "{{Notes}}",
+      "bqfmt": "",
+      "bafmt": "",
+      "did": null,
+      "bfont": "",
+      "bsize": 0,
+      "id": 2419872184173267514
+    }
+  ],
+  "flds": [
+    {
+      "name": "SortKey",
+      "ord": 0,
+      "sticky": false,
+      "rtl": false,
+      "font": "Arial",
+      "size": 20,
+      "description": "",
+      "plainText": false,
+      "collapsed": false,
+      "excludeFromSearch": false,
+      "id": 2410788504095181499,
+      "tag": null,
+      "preventDeletion": false
+    },
+    {
+      "name": "SlideTitle",
+      "ord": 1,
+      "sticky": false,
+      "rtl": false,
+      "font": "Arial",
+      "size": 20,
+      "description": "",
+      "plainText": false,
+      "collapsed": false,
+      "excludeFromSearch": false,
+      "id": 1262924812605915801,
+      "tag": null,
+      "preventDeletion": false
+    },
+    {
+      "name": "SlideImage",
+      "ord": 2,
+      "sticky": false,
+      "rtl": false,
+      "font": "Arial",
+      "size": 20,
+      "description": "",
+      "plainText": false,
+      "collapsed": false,
+      "excludeFromSearch": false,
+      "id": -1513237627134364022,
+      "tag": null,
+      "preventDeletion": false
+    },
+    {
+      "name": "Notes",
+      "ord": 3,
+      "sticky": false,
+      "rtl": false,
+      "font": "Arial",
+      "size": 20,
+      "description": "",
+      "plainText": false,
+      "collapsed": false,
+      "excludeFromSearch": false,
+      "id": 1337158270222188293,
+      "tag": null,
+      "preventDeletion": false
+    }
+  ],
+  "css": ".card {\n    font-family: 
+... (truncated)
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:47:33Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command**</summary>
+```bash
+"$HOME/Library/Application Support/AnkiProgramFiles/.venv/bin/python" - <<'PY'
+from anki.collection import Collection
+import tempfile, os
+path=tempfile.NamedTemporaryFile(delete=False).name
+os.unlink(path)
+col=Collection(path)
+nt=col.models.new('X')
+col.models.add_field(nt, col.models.new_field('Front'))
+col.models.add_field(nt, col.models.new_field('Back'))
+t=col.models.new_template('Card 1')
+t['qfmt']='{{Front}}'; t['afmt']='{{Back}}'
+col.models.add_template(nt,t); col.models.add(nt)
+n=col.new_note(nt)
+print([m for m in dir(n) if not m.startswith('_')])
+n['Front']='A'
+n['Back']='B'
+print(n.fields)
+print(col.decks.add_normal_deck_with_name('D'))
+print('deck id', col.decks.id_for_name('D'))
+col.add_note(n, col.decks.id_for_name('D'))
+print('cards', col.card_count(), col.db.all('select id,nid,did,due,queue,type from cards'))
+col.close(downgrade=True)
+os.unlink(path)
+PY
+```
+```
+Command: /bin/zsh -lc '"$HOME/Library/Application Support/AnkiProgramFiles/.venv/bin/python" - <<'"'PY'
+from anki.collection import Collection
+import tempfile, os
+path=tempfile.NamedTemporaryFile(delete=False).name
+os.unlink(path)
+col=Collection(path)
+nt=col.models.new('X')
+col.models.add_field(nt, col.models.new_field('Front'))
+col.models.add_field(nt, col.models.new_field('Back'))
+t=col.models.new_template('Card 1')
+t['qfmt']='{{Front}}'; t['afmt']='{{Back}}'
+col.models.add_template(nt,t); col.models.add(nt)
+n=col.new_note(nt)
+print([m for m in dir(n) if not m.startswith('_')])
+n['Front']='A'
+n['Back']='B'
+print(n.fields)
+print(col.decks.add_normal_deck_with_name('D'))
+print('deck id', col.decks.id_for_name('D'))
+col.add_note(n, col.decks.id_for_name('D'))
+print('cards', col.card_count(), col.db.all('select id,nid,did,due,queue,type from cards'))
+col.close(downgrade=True)
+os.unlink(path)
+PY"
+Chunk ID: 91b83e
+Wall time: 0.0773 seconds
+Process exited with code 0
+Original token count: 158
+Output:
+['add_tag', 'card_ids', 'cards', 'cloze_numbers_in_fields', 'col', 'data', 'dupeOrEmpty', 'duplicate_or_empty', 'ephemeral_card', 'fields', 'fields_check', 'flags', 'flush', 'guid', 'has_tag', 'id', 'items', 'joined_fields', 'keys', 'load', 'mid', 'mod', 'note_type', 'register_deprecated_aliases', 'register_deprecated_attributes', 'remove_tag', 'set_tags_from_str', 'string_tags', 'tags', 'usn', 'values']
+['A', 'B']
+changes {
+  deck: true
+  browser_table: true
+  browser_sidebar: true
+  study_queues: true
+  mtime: true
+}
+id: 1775897253525
+
+deck id 1775897253525
+cards 1 [[1775897253526, 1775897253526, 1775897253525, 1, 0, 0]]
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:47:47Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command**</summary>
+```bash
+"$HOME/Library/Application Support/AnkiProgramFiles/.venv/bin/python" - <<'PY'
+from anki.collection import Collection
+from anki.exporting import AnkiPackageExporter
+from anki.import_export_pb2 import ImportAnkiPackageOptions, IMPORT_ANKI_PACKAGE_UPDATE_CONDITION_ALWAYS
+from pathlib import Path
+import tempfile, os, zipfile, json
+root=Path(tempfile.mkdtemp())
+colpath=str(root/'src.anki2')
+out=str(root/'x.apkg')
+col=Collection(colpath)
+nt=col.models.new('X')
+for f in ['Front','Back']:
+    col.models.add_field(nt, col.models.new_field(f))
+t=col.models.new_template('Card')
+t['qfmt']='{{Front}}'; t['afmt']='{{Front}}<hr id=answer>{{Back}}'
+col.models.add_template(nt,t); col.models.add(nt)
+did=col.decks.add_normal_deck_with_name('D').id
+n=col.new_note(nt); n['Front']='A'; n['Back']='B'; col.add_note(n,did)
+col.save()
+exp=AnkiPackageExporter(col); exp.did=did; exp.includeSched=True; exp.includeMedia=True; exp.exportInto(out)
+col.close(downgrade=True)
+print('out', out, os.path.getsize(out))
+z=zipfile.ZipFile(out); print(z.namelist(), json.loads(z.read('media')))
+# validate import into fresh collection
+col2=Collection(str(root/'dst.anki2'))
+# via backend maybe
+from anki.import_export_pb2 import ImportAnkiPackageRequest
+opts=ImportAnkiPackageOptions(with_scheduling=True, with_deck_configs=True, update_notes=IMPORT_ANKI_PACKAGE_UPDATE_CONDITION_ALWAYS, update_notetypes=IMPORT_ANKI_PACKAGE_UPDATE_CONDITION_ALWAYS)
+try:
+    res=col2.import_anki_package(ImportAnkiPackageRequest(package_path=out, options=opts))
+    print('imported backend', res.log.found_notes, len(res.log.new))
+except Exception as e:
+    print('backend import failed', type(e), e)
+from anki.importing.apkg import AnkiPackageImporter
+try:
+    imp=AnkiPackageImporter(col2, out)
+    imp.run()
+    print('legacy imported')
+except Exception as e:
+    print('legacy failed', type(e), e)
+print('count', col2.card_count(), col2.db.all('select due,queue,type from cards'))
+col2.close(downgrade=True)
+PY
+```
+```
+Command: /bin/zsh -lc '"$HOME/Library/Application Support/AnkiProgramFiles/.venv/bin/python" - <<'"'PY'
+from anki.collection import Collection
+from anki.exporting import AnkiPackageExporter
+from anki.import_export_pb2 import ImportAnkiPackageOptions, IMPORT_ANKI_PACKAGE_UPDATE_CONDITION_ALWAYS
+from pathlib import Path
+import tempfile, os, zipfile, json
+root=Path(tempfile.mkdtemp())
+colpath=str(root/'src.anki2')
+out=str(root/'x.apkg')
+col=Collection(colpath)
+nt=col.models.new('X')
+for f in ['Front','Back']:
+    col.models.add_field(nt, col.models.new_field(f))
+t=col.models.new_template('Card')
+t['qfmt']='{{Front}}'; t['afmt']='{{Front}}<hr id=answer>{{Back}}'
+col.models.add_template(nt,t); col.models.add(nt)
+did=col.decks.add_normal_deck_with_name('D').id
+n=col.new_note(nt); n['Front']='A'; n['Back']='B'; col.add_note(n,did)
+col.save()
+exp=AnkiPackageExporter(col); exp.did=did; exp.includeSched=True; exp.includeMedia=True; exp.exportInto(out)
+col.close(downgrade=True)
+print('out', out, os.path.getsize(out))
+z=zipfile.ZipFile(out); print(z.namelist(), json.loads(z.read('media')))
+# validate import into fresh collection
+col2=Collection(str(root/'dst.anki2'))
+# via backend maybe
+from anki.import_export_pb2 import ImportAnkiPackageRequest
+opts=ImportAnkiPackageOptions(with_scheduling=True, with_deck_configs=True, update_notes=IMPORT_ANKI_PACKAGE_UPDATE_CONDITION_ALWAYS, update_notetypes=IMPORT_ANKI_PACKAGE_UPDATE_CONDITION_ALWAYS)
+try:
+    res=col2.import_anki_package(ImportAnkiPackageRequest(package_path=out, options=opts))
+    print('imported backend', res.log.found_notes, len(res.log.new))
+except Exception as e:
+    print('backend import failed', type(e), e)
+from anki.importing.apkg import AnkiPackageImporter
+try:
+    imp=AnkiPackageImporter(col2, out)
+    imp.run()
+    print('legacy imported')
+except Exception as e:
+    print('legacy failed', type(e), e)
+print('count', col2.card_count(), col2.db.all('select due,queue,type from cards'))
+col2.close(downgrade=True)
+PY"
+Chunk ID: 2c0679
+Wall time: 0.1302 seconds
+Process exited with code 0
+Original token count: 76
+Output:
+<stdin>:18:save() is deprecated: saving is automatic
+out /var/folders/f7/d0qf3qnx70349ryd786r8rkc0000gn/T/tmph1bvzp0h/x.apkg 19117
+['collection.anki2', 'collection.anki21', 'media'] {}
+imported backend 0 0
+anki/importing/anki2.py:479:save() is deprecated: saving is automatic
+legacy imported
+count 0 []
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:47:59Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command**</summary>
+```bash
+"$HOME/Library/Application Support/AnkiProgramFiles/.venv/bin/python" - <<'PY'
+from anki.collection import Collection
+from anki.exporting import AnkiPackageExporter
+from pathlib import Path
+import tempfile, os, zipfile, sqlite3
+root=Path(tempfile.mkdtemp())
+colpath=str(root/'src.anki2'); out=str(root/'x.apkg')
+col=Collection(colpath)
+nt=col.models.new('X')
+for f in ['Front','Back']: col.models.add_field(nt, col.models.new_field(f))
+t=col.models.new_template('Card'); t['qfmt']='{{Front}}'; t['afmt']='{{Back}}'; col.models.add_template(nt,t); col.models.add(nt)
+did=col.decks.add_normal_deck_with_name('D').id
+print('did', did, 'decks', col.decks.all())
+n=col.new_note(nt); n['Front']='A'; n['Back']='B'; col.add_note(n,did)
+print('src cards', col.db.all('select id,did,due from cards'), 'cids deck', col.decks.cids(did, children=True))
+exp=AnkiPackageExporter(col); exp.did=did; exp.includeSched=True; exp.includeMedia=True; exp.exportInto(out)
+print('count after export obj', getattr(exp,'count',None), 'media', getattr(exp,'mediaFiles',None))
+z=zipfile.ZipFile(out); z.extract('collection.anki21', root)
+conn=sqlite3.connect(root/'collection.anki21'); print('export cards', conn.execute('select id,did,due,queue,type from cards').fetchall()); print('notes', conn.execute('select count(*) from notes').fetchone()); print('decksjson', conn.execute('select decks from col').fetchone()[0][:500])
+col.close(downgrade=True)
+PY
+```
+```
+Command: /bin/zsh -lc '"$HOME/Library/Application Support/AnkiProgramFiles/.venv/bin/python" - <<'"'PY'
+from anki.collection import Collection
+from anki.exporting import AnkiPackageExporter
+from pathlib import Path
+import tempfile, os, zipfile, sqlite3
+root=Path(tempfile.mkdtemp())
+colpath=str(root/'src.anki2'); out=str(root/'x.apkg')
+col=Collection(colpath)
+nt=col.models.new('X')
+for f in ['Front','Back']: col.models.add_field(nt, col.models.new_field(f))
+t=col.models.new_template('Card'); t['qfmt']='{{Front}}'; t['afmt']='{{Back}}'; col.models.add_template(nt,t); col.models.add(nt)
+did=col.decks.add_normal_deck_with_name('D').id
+print('did', did, 'decks', col.decks.all())
+n=col.new_note(nt); n['Front']='A'; n['Back']='B'; col.add_note(n,did)
+print('src cards', col.db.all('select id,did,due from cards'), 'cids deck', col.decks.cids(did, children=True))
+exp=AnkiPackageExporter(col); exp.did=did; exp.includeSched=True; exp.includeMedia=True; exp.exportInto(out)
+print('count after export obj', getattr(exp,'count',None), 'media', getattr(exp,'mediaFiles',None))
+z=zipfile.ZipFile(out); z.extract('collection.anki21', root)
+conn=sqlite3.connect(root/'collection.anki21'); print('export cards', conn.execute('select id,did,due,queue,type from cards').fetchall()); print('notes', conn.execute('select count(*) from notes').fetchone()); print('decksjson', conn.execute('select decks from col').fetchone()[0][:500])
+col.close(downgrade=True)
+PY"
+Chunk ID: a4571d
+Wall time: 0.1003 seconds
+Process exited with code 0
+Original token count: 349
+Output:
+did 1775897279828 decks [{'id': 1, 'mod': 0, 'name': 'Default', 'usn': 0, 'lrnToday': [0, 0], 'revToday': [0, 0], 'newToday': [0, 0], 'timeToday': [0, 0], 'collapsed': True, 'browserCollapsed': True, 'desc': '', 'dyn': 0, 'conf': 1, 'extendNew': 0, 'extendRev': 0, 'reviewLimit': None, 'newLimit': None, 'reviewLimitToday': None, 'newLimitToday': None, 'desiredRetention': None}, {'id': 1775897279828, 'mod': 1775897279, 'name': 'D', 'usn': -1, 'lrnToday': [0, 0], 'revToday': [0, 0], 'newToday': [0, 0], 'timeToday': [0, 0], 'collapsed': True, 'browserCollapsed': True, 'desc': '', 'dyn': 0, 'conf': 1, 'extendNew': 0, 'extendRev': 0, 'reviewLimit': None, 'newLimit': None, 'reviewLimitToday': None, 'newLimitToday': None, 'desiredRetention': None}]
+src cards [[1775897279829, 1775897279828, 1]] cids deck [1775897279829]
+count after export obj 0 media []
+export cards []
+notes (0,)
+decksjson {"1":{"id":1,"mod":0,"name":"Default","usn":0,"lrnToday":[0,0],"revToday":[0,0],"newToday":[0,0],"timeToday":[0,0],"collapsed":true,"browserCollapsed":true,"desc":"","dyn":0,"conf":1,"extendNew":0,"extendRev":0,"reviewLimit":null,"newLimit":null,"reviewLimitToday":null,"newLimitToday":null,"desiredRetention":null},"1775897279828":{"id":1775897279828,"mod":1775897279,"name":"D","usn":-1,"lrnToday":[0,0],"revToday":[0,0],"newToday":[0,0],"timeToday":[0,0],"collapsed":true,"browserCollapsed":true,"
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:48:12Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command**</summary>
+```bash
+"$HOME/Library/Application Support/AnkiProgramFiles/.venv/bin/python" - <<'PY'
+from anki.collection import Collection
+from anki.exporting import AnkiPackageExporter
+from pathlib import Path
+import tempfile, os
+root=Path(tempfile.mkdtemp())
+col=Collection(str(root/'src.anki2'))
+nt=col.models.new('X')
+for f in ['Front','Back']: col.models.add_field(nt, col.models.new_field(f))
+t=col.models.new_template('Card'); t['qfmt']='{{Front}}'; t['afmt']='{{Back}}'; col.models.add_template(nt,t); col.models.add(nt)
+did=col.decks.add_normal_deck_with_name('D').id
+n=col.new_note(nt); n['Front']='A'; n['Back']='B'; col.add_note(n,did)
+exp=AnkiPackageExporter(col); exp.did=did; exp.includeSched=True
+print('did', did, type(did), 'exp did', exp.did)
+print('cardIds before', exp.cardIds(), 'count', exp.count)
+print('weak col is col?', exp.col is col)
+print('all cids', col.db.list('select id from cards'), 'deck cids', col.decks.cids(did, children=True))
+col.close(downgrade=True)
+PY
+```
+```
+Command: /bin/zsh -lc '"$HOME/Library/Application Support/AnkiProgramFiles/.venv/bin/python" - <<'"'PY'
+from anki.collection import Collection
+from anki.exporting import AnkiPackageExporter
+from pathlib import Path
+import tempfile, os
+root=Path(tempfile.mkdtemp())
+col=Collection(str(root/'src.anki2'))
+nt=col.models.new('X')
+for f in ['Front','Back']: col.models.add_field(nt, col.models.new_field(f))
+t=col.models.new_template('Card'); t['qfmt']='{{Front}}'; t['afmt']='{{Back}}'; col.models.add_template(nt,t); col.models.add(nt)
+did=col.decks.add_normal_deck_with_name('D').id
+n=col.new_note(nt); n['Front']='A'; n['Back']='B'; col.add_note(n,did)
+exp=AnkiPackageExporter(col); exp.did=did; exp.includeSched=True
+print('did', did, type(did), 'exp did', exp.did)
+print('cardIds before', exp.cardIds(), 'count', exp.count)
+print('weak col is col?', exp.col is col)
+print('all cids', col.db.list('select id from cards'), 'deck cids', col.decks.cids(did, children=True))
+col.close(downgrade=True)
+PY"
+Chunk ID: 91c5c0
+Wall time: 0.1451 seconds
+Process exited with code 0
+Original token count: 42
+Output:
+did 1775897293144 <class 'int'> exp did 1775897293144
+cardIds before [1775897293145] count 1
+weak col is col? False
+all cids [1775897293145] deck cids [1775897293145]
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:48:25Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `rg "def weakref|class Collection" "$HOME/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/collection.py" -n && sed -n '80,140p' "$HOME/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/collection.py"`</summary>
+```
+Command: /bin/zsh -lc 'rg "def weakref|class Collection" "$HOME/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/collection.py" -n && sed -n '"'80,140p' \""'$HOME/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/collection.py"'
+Chunk ID: 95be1c
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 346
+Output:
+134:class Collection(DeprecatedNamesMixin):
+166:    def weakref(self) -> Collection:
+from anki.media import MediaManager, media_paths_from_col_path
+from anki.models import ModelManager, NotetypeDict, NotetypeId
+from anki.notes import Note, NoteId
+from anki.scheduler.dummy import DummyScheduler
+from anki.scheduler.v3 import Scheduler as V3Scheduler
+from anki.sync import SyncAuth, SyncOutput, SyncStatus
+from anki.tags import TagManager
+from anki.utils import (
+    from_json_bytes,
+    ids2str,
+    int_time,
+    split_fields,
+    strip_html_media,
+    to_json_bytes,
+)
+
+anki.latex.setup_hook()
+
+
+SearchJoiner = Literal["AND", "OR"]
+
+
+@dataclass
+class DeckIdLimit:
+    deck_id: DeckId
+
+
+@dataclass
+class NoteIdsLimit:
+    note_ids: Sequence[NoteId]
+
+
+@dataclass
+class CardIdsLimit:
+    card_ids: Sequence[CardId]
+
+
+ExportLimit = Union[DeckIdLimit, NoteIdsLimit, CardIdsLimit, None]
+
+
+@dataclass
+class ComputedMemoryState:
+    desired_retention: float
+    stability: float | None = None
+    difficulty: float | None = None
+    decay: float | None = None
+
+
+@dataclass
+class AddNoteRequest:
+    note: Note
+    deck_id: DeckId
+
+
+class Collection(DeprecatedNamesMixin):
+    sched: V3Scheduler | DummyScheduler
+
+    @staticmethod
+    def initialize_backend_logging() -> None:
+        """Enable terminal logging. Must be called only once."""
+        RustBackend.initialize_logging(None)
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:48:29Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `sed -n '150,180p' "$HOME/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/collection.py"`</summary>
+```
+Command: /bin/zsh -lc "sed -n '150,180p' \""'$HOME/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/collection.py"'
+Chunk ID: 272434
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 265
+Output:
+        self.server = server
+        self.path = os.path.abspath(path)
+        self.reopen()
+
+        self.tr = Translations(weakref.ref(self._backend))
+        self.media = MediaManager(self, server)
+        self.models = ModelManager(self)
+        self.decks = DeckManager(self)
+        self.tags = TagManager(self)
+        self.conf = ConfigManager(self)
+        self._load_scheduler()
+        self._startReps = 0
+
+    def name(self) -> Any:
+        return os.path.splitext(os.path.basename(self.path))[0]
+
+    def weakref(self) -> Collection:
+        "Shortcut to create a weak reference that doesn't break code completion."
+        return weakref.proxy(self)
+
+    @property
+    def backend(self) -> RustBackend:
+        traceback.print_stack(file=sys.stdout)
+        print()
+        print(
+            "Accessing the backend directly will break in the future. Please use the public methods on Collection instead."
+        )
+        return self._backend
+
+    # I18n/messages
+    ##########################################################################
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:48:42Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command**</summary>
+```bash
+"$HOME/Library/Application Support/AnkiProgramFiles/.venv/bin/python" - <<'PY'
+from anki.collection import Collection
+from anki.exporting import AnkiPackageExporter, AnkiExporter
+from pathlib import Path
+import tempfile, os, zipfile, sqlite3
+class DebugExporter(AnkiPackageExporter):
+    def cardIds(self):
+        ids=super().cardIds(); print('cardIds during', ids, 'did', self.did); return ids
+root=Path(tempfile.mkdtemp()); col=Collection(str(root/'src.anki2'))
+nt=col.models.new('X')
+for f in ['Front','Back']: col.models.add_field(nt, col.models.new_field(f))
+t=col.models.new_template('Card'); t['qfmt']='{{Front}}'; t['afmt']='{{Back}}'; col.models.add_template(nt,t); col.models.add(nt)
+did=col.decks.add_normal_deck_with_name('D').id
+n=col.new_note(nt); n['Front']='A'; n['Back']='B'; col.add_note(n,did)
+print('before all', col.db.all('select id,nid,did,due,queue,type from cards'))
+exp=DebugExporter(col); exp.did=did; exp.includeSched=True; exp.includeMedia=True; exp.exportInto(str(root/'x.apkg'))
+print('after count', getattr(exp,'count',None))
+col.close(downgrade=True)
+PY
+```
+```
+Command: /bin/zsh -lc '"$HOME/Library/Application Support/AnkiProgramFiles/.venv/bin/python" - <<'"'PY'
+from anki.collection import Collection
+from anki.exporting import AnkiPackageExporter, AnkiExporter
+from pathlib import Path
+import tempfile, os, zipfile, sqlite3
+class DebugExporter(AnkiPackageExporter):
+    def cardIds(self):
+        ids=super().cardIds(); print('cardIds during', ids, 'did', self.did); return ids
+root=Path(tempfile.mkdtemp()); col=Collection(str(root/'src.anki2'))
+nt=col.models.new('X')
+for f in ['Front','Back']: col.models.add_field(nt, col.models.new_field(f))
+t=col.models.new_template('Card'); t['qfmt']='{{Front}}'; t['afmt']='{{Back}}'; col.models.add_template(nt,t); col.models.add(nt)
+did=col.decks.add_normal_deck_with_name('D').id
+n=col.new_note(nt); n['Front']='A'; n['Back']='B'; col.add_note(n,did)
+print('before all', col.db.all('select id,nid,did,due,queue,type from cards'))
+exp=DebugExporter(col); exp.did=did; exp.includeSched=True; exp.includeMedia=True; exp.exportInto(str(root/'x.apkg'))
+print('after count', getattr(exp,'count',None))
+col.close(downgrade=True)
+PY"
+Chunk ID: e9c564
+Wall time: 0.1009 seconds
+Process exited with code 0
+Original token count: 33
+Output:
+before all [[1775897323092, 1775897323092, 1775897323091, 1, 0, 0]]
+cardIds during [1775897323092] did 1775897323091
+after count 0
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:48:51Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `sed -n '340,380p' "$HOME/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/collection.py"`</summary>
+```
+Command: /bin/zsh -lc "sed -n '340,380p' \""'$HOME/Library/Application Support/AnkiProgramFiles/cache/archive-v0/yO_b5wjwNrbJz_ee3ynyx/anki/collection.py"'
+Chunk ID: 5db7b0
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 391
+Output:
+        """
+        # ensure any pending transaction from legacy code/add-ons has been committed
+        created = self._backend.create_backup(
+            backup_folder=backup_folder,
+            force=force,
+            wait_for_completion=wait_for_completion,
+        )
+        return created
+
+    def await_backup_completion(self) -> None:
+        "Throws if backup creation failed."
+        self._backend.await_backup_completion()
+
+    def export_collection_package(
+        self, out_path: str, include_media: bool, legacy: bool
+    ) -> None:
+        self.close_for_full_sync()
+        self._backend.export_collection_package(
+            out_path=out_path, include_media=include_media, legacy=legacy
+        )
+
+    def import_anki_package(
+        self, request: ImportAnkiPackageRequest
+    ) -> ImportLogWithChanges:
+        log = self._backend.import_anki_package_raw(request.SerializeToString())
+        return ImportLogWithChanges.FromString(log)
+
+    def export_anki_package(
+        self, *, out_path: str, options: ExportAnkiPackageOptions, limit: ExportLimit
+    ) -> int:
+        return self._backend.export_anki_package(
+            out_path=out_path,
+            options=options,
+            limit=pb_export_limit(limit),
+        )
+
+    def get_csv_metadata(self, path: str, delimiter: Delimiter.V | None) -> CsvMetadata:
+        request = import_export_pb2.CsvMetadataRequest(path=path, delimiter=delimiter)
+        return self._backend.get_csv_metadata(request)
+
+    def import_csv(self, request: ImportCsvRequest) -> ImportLogWithChanges:
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:49:04Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command**</summary>
+```bash
+"$HOME/Library/Application Support/AnkiProgramFiles/.venv/bin/python" - <<'PY'
+from anki.collection import Collection, DeckIdLimit
+from anki.import_export_pb2 import ExportAnkiPackageOptions, ImportAnkiPackageOptions, ImportAnkiPackageRequest, IMPORT_ANKI_PACKAGE_UPDATE_CONDITION_ALWAYS
+from pathlib import Path
+import tempfile, os, zipfile, sqlite3, json
+root=Path(tempfile.mkdtemp()); out=str(root/'x.apkg')
+col=Collection(str(root/'src.anki2'))
+nt=col.models.new('X')
+for f in ['Front','Back']: col.models.add_field(nt, col.models.new_field(f))
+t=col.models.new_template('Card'); t['qfmt']='{{Front}}'; t['afmt']='{{Back}}'; col.models.add_template(nt,t); col.models.add(nt)
+did=col.decks.add_normal_deck_with_name('D').id
+n=col.new_note(nt); n['Front']='A'; n['Back']='B'; col.add_note(n,did)
+opts=ExportAnkiPackageOptions(with_scheduling=True, with_deck_configs=True, with_media=True, legacy=True)
+count=col.export_anki_package(out_path=out, options=opts, limit=DeckIdLimit(did))
+print('count', count, 'out', out, os.path.getsize(out))
+z=zipfile.ZipFile(out); print(z.namelist())
+for nm in ['collection.anki2','collection.anki21']:
+    if nm in z.namelist():
+        z.extract(nm, root); conn=sqlite3.connect(root/nm); print(nm, conn.execute('select count(*) from cards').fetchone(), conn.execute('select decks from col').fetchone()[0][:300])
+col.close(downgrade=True)
+col2=Collection(str(root/'dst.anki2'))
+opts2=ImportAnkiPackageOptions(with_scheduling=True, with_deck_configs=True, update_notes=IMPORT_ANKI_PACKAGE_UPDATE_CONDITION_ALWAYS, update_notetypes=IMPORT_ANKI_PACKAGE_UPDATE_CONDITION_ALWAYS)
+res=col2.import_anki_package(ImportAnkiPackageRequest(package_path=out, options=opts2))
+print('import log', res.log.found_notes, len(res.log.new), col2.card_count(), col2.db.all('select due,queue,type from cards'))
+col2.close(downgrade=True)
+PY
+```
+```
+Command: /bin/zsh -lc '"$HOME/Library/Application Support/AnkiProgramFiles/.venv/bin/python" - <<'"'PY'
+from anki.collection import Collection, DeckIdLimit
+from anki.import_export_pb2 import ExportAnkiPackageOptions, ImportAnkiPackageOptions, ImportAnkiPackageRequest, IMPORT_ANKI_PACKAGE_UPDATE_CONDITION_ALWAYS
+from pathlib import Path
+import tempfile, os, zipfile, sqlite3, json
+root=Path(tempfile.mkdtemp()); out=str(root/'x.apkg')
+col=Collection(str(root/'src.anki2'))
+nt=col.models.new('X')
+for f in ['Front','Back']: col.models.add_field(nt, col.models.new_field(f))
+t=col.models.new_template('Card'); t['qfmt']='{{Front}}'; t['afmt']='{{Back}}'; col.models.add_template(nt,t); col.models.add(nt)
+did=col.decks.add_normal_deck_with_name('D').id
+n=col.new_note(nt); n['Front']='A'; n['Back']='B'; col.add_note(n,did)
+opts=ExportAnkiPackageOptions(with_scheduling=True, with_deck_configs=True, with_media=True, legacy=True)
+count=col.export_anki_package(out_path=out, options=opts, limit=DeckIdLimit(did))
+print('count', count, 'out', out, os.path.getsize(out))
+z=zipfile.ZipFile(out); print(z.namelist())
+for nm in ['collection.anki2','collection.anki21']:
+    if nm in z.namelist():
+        z.extract(nm, root); conn=sqlite3.connect(root/nm); print(nm, conn.execute('select count(*) from cards').fetchone(), conn.execute('select decks from col').fetchone()[0][:300])
+col.close(downgrade=True)
+col2=Collection(str(root/'dst.anki2'))
+opts2=ImportAnkiPackageOptions(with_scheduling=True, with_deck_configs=True, update_notes=IMPORT_ANKI_PACKAGE_UPDATE_CONDITION_ALWAYS, update_notetypes=IMPORT_ANKI_PACKAGE_UPDATE_CONDITION_ALWAYS)
+res=col2.import_anki_package(ImportAnkiPackageRequest(package_path=out, options=opts2))
+print('import log', res.log.found_notes, len(res.log.new), col2.card_count(), col2.db.all('select due,queue,type from cards'))
+col2.close(downgrade=True)
+PY"
+Chunk ID: d67f14
+Wall time: 0.1383 seconds
+Process exited with code 0
+Original token count: 206
+Output:
+count 1 out /var/folders/f7/d0qf3qnx70349ryd786r8rkc0000gn/T/tmpmdi88a9q/x.apkg 59328
+['meta', 'collection.anki21', 'collection.anki2', 'media']
+collection.anki2 (1,) {"1":{"id":1,"mod":0,"name":"Default","usn":0,"lrnToday":[0,0],"revToday":[0,0],"newToday":[0,0],"timeToday":[0,0],"collapsed":true,"browserCollapsed":true,"desc":"","dyn":0,"conf":1,"extendNew":0,"extendRev":0,"reviewLimit":null,"newLimit":null,"reviewLimitToday":null,"newLimitToday":null,"desiredR
+collection.anki21 (1,) {"1775897344695":{"id":1775897344695,"mod":1775897344,"name":"D","usn":-1,"lrnToday":[0,0],"revToday":[0,0],"newToday":[0,0],"timeToday":[0,0],"collapsed":true,"browserCollapsed":true,"desc":"","dyn":0,"conf":1,"extendNew":0,"extendRev":0,"reviewLimit":null,"newLimit":null,"reviewLimitToday":null,"n
+import log 1 1 1 [[1, 0, 0]]
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:49:23Z)**_
+
+I found the root cause: my first package used old-style hand-written deck JSON, while your Anki is strict about the newer deck schema. I’m replacing the packager with one that creates and exports the deck through Anki’s own 25.9.2 library, then I’ll regenerate the `.apkg`.
+
+_**Agent (gpt-5.4 2026-04-11 08:49:58Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="apply_patch"><details>
+<summary>Tool use: **apply_patch**</summary>
+**Delete: `deck-generator/scripts/create-anki-deck.py`**
+
+**Add: `deck-generator/scripts/create-anki-deck.py`**
+
+```diff
++#!/usr/bin/env python3
++import argparse
++import html
++import json
++import os
++import re
++import shutil
++import subprocess
++import sys
++import tempfile
++from pathlib import Path
++
++
++def ensure_anki_runtime():
++    try:
++        import anki  # noqa: F401
++        return
++    except ImportError:
++        anki_python = (
++            Path.home()
++            / "Library/Application Support/AnkiProgramFiles/.venv/bin/python"
++        )
++        if anki_python.exists() and Path(sys.executable) != anki_python:
++            os.execv(str(anki_python), [str(anki_python), *sys.argv])
++
++        raise SystemExit(
++            "Could not import Anki's Python package. Open Anki once so its "
++            "runtime is installed, then rerun this script."
++        )
++
++
++def slide_title(slide):
++    return (
++        slide.get("title")
++        or slide.get("heading")
++        or slide.get("text")
++        or slide.get("section")
++        or "Untitled slide"
++    )
++
++
++def notes_html(slide):
++    notes = slide.get("notes") or {}
++    parts = []
++
++    transition = notes.get("transition")
++    if transition:
++        parts.append("<h3>Transition</h3>")
++        parts.append(f"<p>{html.escape(str(transition))}</p>")
++
++    points = notes.get("points") or []
++    if points:
++        parts.append("<h3>Speaker Notes</h3>")
++        parts.append("<ul>")
++        for point in points:
++            parts.append(f"<li>{html.escape(str(point))}</li>")
++        parts.append("</ul>")
++
++    if not parts:
++        parts.append("<p>No speaker notes for this slide.</p>")
++
++    return "\n".join(parts)
++
++
++def note_css():
++    return """
++.card {
++  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
++  font-size: 20px;
++  text-align: left;
++  color: #111;
++  background: #fff;
++}
++.meta {
++  color: #666;
++  font-size: 14px;
++  margin: 0 0 12px;
++}
++.slide {
++  text-align: center;
++}
++.slide img {
++  max-width: 100%;
++  height: auto;
++}
++h2 {
++  font-size: 24px;
++  margin: 0 0 18px;
++}
++h3 {
++  font-size: 18px;
++  margin: 20px 0 8px;
++}
++p {
++  line-height: 1.45;
++}
++li {
++  margin: 0 0 10px;
++  line-height: 1.35;
++}
++""".strip()
++
++
++def create_notetype(col):
++    notetype = col.models.new("Slide Image to Speaker Notes")
++
++    for field_name in ["SortKey", "SlideTitle", "SlideImage", "Notes"]:
++        col.models.add_field(notetype, col.models.new_field(field_name))
++
++    template = col.models.new_template("Slide -> Notes")
++    template["qfmt"] = """
++<div class="meta">{{SortKey}}</div>
++<div class="slide">{{SlideImage}}</div>
++""".strip()
++    template["afmt"] = """
++<div class="meta">{{SortKey}}</div>
++<h2>{{SlideTitle}}</h2>
++<div class="notes">{{Notes}}</div>
++""".strip()
++    col.models.add_template(notetype, template)
++    notetype["css"] = note_css()
++    col.models.add(notetype)
++    return notetype
++
++
++def validate_package(package_path, expected_cards):
++    from anki.collection import Collection
++    from anki.import_export_pb2 import (
++        IMPORT_ANKI_PACKAGE_UPDATE_CONDITION_ALWAYS,
++        ImportAnkiPackageOptions,
++        ImportAnkiPackageRequest,
++    )
++
++    with tempfile.TemporaryDirectory(prefix="anki-validate-") as tmpdir:
++        col = Collection(str(Path(tmpdir) / "validate.anki2"))
++        options = ImportAnkiPackageOptions(
++            merge_notetypes=True,
++            update_notes=IMPORT_ANKI_PACKAGE_UPDATE_CONDITION_ALWAYS,
++            update_notetypes=IMPORT_ANKI_PACKAGE_UPDATE_CONDITION_ALWAYS,
++            with_scheduling=True,
++            with_deck_configs=True,
++        )
++        col.import_anki_package(
++            ImportAnkiPackageRequest(package_path=str(package_path), options=options)
++        )
++        count = col.card_count()
++        dues = [row[0] for row in col.db.all("select due from cards order by due")]
++        col.close(downgrade=True)
++
++    if count != expected_cards:
++        raise SystemExit(f"Validation failed: expected {expected_cards} cards, got {count}")
++    if dues != list(range(1, expected_cards + 1)):
++        raise SystemExit("Validation failed: cards are not sequentially due.")
++
++
++def main():
++    ensure_anki_runtime()
++
++    from anki.collection import Collection, DeckIdLimit
++    from anki.import_export_pb2 import ExportAnkiPackageOptions
++
++    parser = argparse.ArgumentParser(
++        description="Create an Anki .apkg from slide images and content.json notes."
++    )
++    parser.add_argument("--slides-dir", required=True, help="Directory containing current slide JPG/PNG images.")
++    parser.add_argument("--content", default="content.json", help="Path to content.json.")
++    parser.add_argument("--out", default="anki_build/teesside_keynote_slide_notes.apkg", help="Output .apkg path.")
++    parser.add_argument("--deck-name", default="Teesside Keynote 2026::Slide Notes")
++    parser.add_argument("--skip-validation", action="store_true")
++    args = parser.parse_args()
++
++    project_root = Path(__file__).resolve().parents[1]
++    slides_dir = Path(args.slides_dir)
++    if not slides_dir.is_absolute():
++        slides_dir = project_root / slides_dir
++    content_path = Path(args.content)
++    if not content_path.is_absolute():
++        content_path = project_root / content_path
++    out_path = Path(args.out)
++    if not out_path.is_absolute():
++        out_path = project_root / out_path
++
++    content = json.loads(content_path.read_text(encoding="utf-8"))
++    slides = content["slides"]
++    image_files = sorted(
++        p for p in slides_dir.iterdir()
++        if re.match(r"slide-\d\d-.*\.(jpe?g|png)$", p.name, re.IGNORECASE)
++    )
++
++    if len(image_files) != len(slides):
++        raise SystemExit(f"Expected {len(slides)} slide images, found {len(image_files)} in {slides_dir}")
++
++    out_path.parent.mkdir(parents=True, exist_ok=True)
++    if out_path.exists():
++        out_path.unlink()
++
++    with tempfile.TemporaryDirectory(prefix="anki-build-") as tmpdir:
++        collection_path = Path(tmpdir) / "source.anki2"
++        col = Collection(str(collection_path))
++
++        deck_id = col.decks.add_normal_deck_with_name(args.deck_name).id
++        notetype = create_notetype(col)
++
++        for index, (slide, image_path) in enumerate(zip(slides, image_files), start=1):
++            title = slide_title(slide)
++            sort_key = f"{index:03d} - {title}"
++            media_name = col.media.add_file(str(image_path))
++
++            note = col.new_note(notetype)
++            note["SortKey"] = html.escape(sort_key)
++            note["SlideTitle"] = html.escape(title)
++            note["SlideImage"] = f'<img src="{html.escape(media_name)}">'
++            note["Notes"] = notes_html(slide)
++            note.set_tags_from_str("teesside keynote ai_infrastructure slide_notes")
++            col.add_note(note, deck_id)
++
++        export_options = ExportAnkiPackageOptions(
++            with_scheduling=True,
++            with_deck_configs=True,
++            with_media=True,
++            legacy=True,
++        )
++        exported_cards = col.export_anki_package(
++            out_path=str(out_path),
++            options=export_options,
++            limit=DeckIdLimit(deck_id),
++        )
++        col.close(downgrade=True)
++
++        if exported_cards != len(slides):
++            raise SystemExit(f"Expected to export {len(slides)} cards, exported {exported_cards}")
++
++    if not args.skip_validation:
++        validate_package(out_path, len(slides))
++
++    print(f"Created {out_path}")
++    print(f"Cards: {len(slides)}")
++
++
++if __name__ == "__main__":
++    main()
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:50:03Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `python3 scripts/create-anki-deck.py --slides-dir anki_build/slides_2026-04-11T08-34-38 --out anki_build/teesside_keynote_slide_notes.apkg`</summary>
+```
+Command: /bin/zsh -lc 'python3 scripts/create-anki-deck.py --slides-dir anki_build/slides_2026-04-11T08-34-38 --out anki_build/teesside_keynote_slide_notes.apkg'
+Chunk ID: 5eaaf1
+Wall time: 1.0012 seconds
+Process running with session ID 48204
+Original token count: 0
+Output:
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:50:06Z)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="write_stdin"><details>
+<summary>Tool use: **write_stdin**</summary>
+```
+Command: /bin/zsh -lc 'python3 scripts/create-anki-deck.py --slides-dir anki_build/slides_2026-04-11T08-34-38 --out anki_build/teesside_keynote_slide_notes.apkg'
+Chunk ID: c84e25
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 40
+Output:
+Created /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/anki_build/teesside_keynote_slide_notes.apkg
+Cards: 44
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:50:13Z)**_
+
+The `.apkg` has been rebuilt through Anki’s own exporter and passed an import validation into a fresh temporary Anki collection. I’m doing one quick package inspection so I can confirm the final file shape and size.
+
+_**Agent (gpt-5.4 2026-04-11 08:50:13Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `du -h anki_build/teesside_keynote_slide_notes.apkg`</summary>
+```
+Command: /bin/zsh -lc 'du -h anki_build/teesside_keynote_slide_notes.apkg'
+Chunk ID: 38fd85
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 13
+Output:
+5.4M	anki_build/teesside_keynote_slide_notes.apkg
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:50:13Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `python3 -c "import zipfile, json; z=zipfile.ZipFile('anki_build/teesside_keynote_slide_notes.apkg'); print(z.namelist()); print('media files', len(json.loads(z.read('media'))))"`</summary>
+```
+Command: /bin/zsh -lc "python3 -c \"import zipfile, json; z=zipfile.ZipFile('anki_build/teesside_keynote_slide_notes.apkg'); print(z.namelist()); print('media files', len(json.loads(z.read('media'))))\""
+Chunk ID: eddefd
+Wall time: 0.1216 seconds
+Process exited with code 0
+Original token count: 82
+Output:
+['meta', 'collection.anki21', 'collection.anki2', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', 'media']
+media files 44
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:50:13Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `git diff -- scripts/create-anki-deck.py scripts/export-anki-slides.js package.json`</summary>
+```
+Command: /bin/zsh -lc 'git diff -- scripts/create-anki-deck.py scripts/export-anki-slides.js package.json'
+Chunk ID: 1271be
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 3936
+Output:
+diff --git a/deck-generator/scripts/create-anki-deck.py b/deck-generator/scripts/create-anki-deck.py
+index 3d739fd..9eee69d 100644
+--- a/deck-generator/scripts/create-anki-deck.py
++++ b/deck-generator/scripts/create-anki-deck.py
+@@ -1,36 +1,32 @@
+ #!/usr/bin/env python3
+ import argparse
+-import hashlib
+ import html
+ import json
+ import os
+ import re
+-import sqlite3
+-import time
+-import zipfile
++import shutil
++import subprocess
++import sys
++import tempfile
+ from pathlib import Path
+ 
+ 
+-UNIT_SEPARATOR = "\x1f"
+-
+-
+-def checksum(text):
+-    return int(hashlib.sha1(text.encode("utf-8")).hexdigest()[:8], 16)
+-
+-
+-def stable_id(text, digits=13):
+-    value = int(hashlib.sha1(text.encode("utf-8")).hexdigest()[:digits], 16)
+-    return value
+-
++def ensure_anki_runtime():
++    try:
++        import anki  # noqa: F401
++        return
++    except ImportError:
++        anki_python = (
++            Path.home()
++            / "Library/Application Support/AnkiProgramFiles/.venv/bin/python"
++        )
++        if anki_python.exists() and Path(sys.executable) != anki_python:
++            os.execv(str(anki_python), [str(anki_python), *sys.argv])
+ 
+-def guid(text):
+-    alphabet = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-"
+-    value = int(hashlib.sha1(text.encode("utf-8")).hexdigest(), 16)
+-    chars = []
+-    for _ in range(12):
+-        chars.append(alphabet[value & 0x3F])
+-        value >>= 6
+-    return "".join(chars)
++        raise SystemExit(
++            "Could not import Anki's Python package. Open Anki once so its "
++            "runtime is installed, then rerun this script."
++        )
+ 
+ 
+ def slide_title(slide):
+@@ -66,165 +62,8 @@ def notes_html(slide):
+     return "\n".join(parts)
+ 
+ 
+-def create_schema(db):
+-    db.executescript(
+-        """
+-        create table col (
+-          id              integer primary key,
+-          crt             integer not null,
+-          mod             integer not null,
+-          scm             integer not null,
+-          ver             integer not null,
+-          dty             integer not null,
+-          usn             integer not null,
+-          ls              integer not null,
+-          conf            text not null,
+-          models          text not null,
+-          decks           text not null,
+-          dconf           text not null,
+-          tags            text not null
+-        );
+-
+-        create table notes (
+-          id              integer primary key,
+-          guid            text not null,
+-          mid             integer not null,
+-          mod             integer not null,
+-          usn             integer not null,
+-          tags            text not null,
+-          flds            text not null,
+-          sfld            text not null,
+-          csum            integer not null,
+-          flags           integer not null,
+-          data            text not null
+-        );
+-
+-        create table cards (
+-          id              integer primary key,
+-          nid             integer not null,
+-          did             integer not null,
+-          ord             integer not null,
+-          mod             integer not null,
+-          usn             integer not null,
+-          type            integer not null,
+-          queue           integer not null,
+-          due             integer not null,
+-          ivl             integer not null,
+-          factor          integer not null,
+-          reps            integer not null,
+-          lapses          integer not null,
+-          left            integer not null,
+-          odue            integer not null,
+-          odid            integer not null,
+-          flags           integer not null,
+-          data            text not null
+-        );
+-
+-        create table revlog (
+-          id              integer primary key,
+-          cid             integer not null,
+-          usn             integer not null,
+-          ease            integer not null,
+-          ivl             integer not null,
+-          lastIvl         integer not null,
+-          factor          integer not null,
+-          time            integer not null,
+-          type            integer not null
+-        );
+-
+-        create table graves (
+-          usn             integer not null,
+-          oid             integer not null,
+-          type            integer not null
+-        );
+-
+-        create index ix_notes_usn on notes (usn);
+-        create index ix_cards_usn on cards (usn);
+-        create index ix_revlog_usn on revlog (usn);
+-        create index ix_cards_nid on cards (nid);
+-        create index ix_cards_sched on cards (did, queue, due);
+-        create index ix_revlog_cid on revlog (cid);
+-        create index ix_notes_csum on notes (
+... (truncated)
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:50:17Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="apply_patch"><details>
+<summary>Tool use: **apply_patch**</summary>
+**Update: `deck-generator/scripts/create-anki-deck.py`**
+
+```diff
+@@
+ import json
+ import os
+ import re
+-import shutil
+-import subprocess
+ import sys
+ import tempfile
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:50:30Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `git status --short`</summary>
+```
+Command: /bin/zsh -lc 'git status --short'
+Chunk ID: 4c5e03
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 39
+Output:
+ M ../.specstory/history/2026-04-11_08-25-56Z-start-the-deck-generator.md
+ M anki_build/teesside_keynote_slide_notes.apkg
+ M scripts/create-anki-deck.py
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:50:30Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command**</summary>
+```bash
+"$HOME/Library/Application Support/AnkiProgramFiles/.venv/bin/python" - <<'PY'
+from anki.collection import Collection
+from anki.import_export_pb2 import ImportAnkiPackageOptions, ImportAnkiPackageRequest, IMPORT_ANKI_PACKAGE_UPDATE_CONDITION_ALWAYS
+from pathlib import Path
+import tempfile
+pkg = Path('anki_build/teesside_keynote_slide_notes.apkg').resolve()
+with tempfile.TemporaryDirectory(prefix='anki-final-check-') as tmp:
+    col = Collection(str(Path(tmp) / 'check.anki2'))
+    opts = ImportAnkiPackageOptions(merge_notetypes=True, update_notes=IMPORT_ANKI_PACKAGE_UPDATE_CONDITION_ALWAYS, update_notetypes=IMPORT_ANKI_PACKAGE_UPDATE_CONDITION_ALWAYS, with_scheduling=True, with_deck_configs=True)
+    col.import_anki_package(ImportAnkiPackageRequest(package_path=str(pkg), options=opts))
+    print('cards', col.card_count())
+    print('due_first_last', col.db.first('select min(due), max(due) from cards'))
+    print('decks', [d['name'] for d in col.decks.all()])
+    col.close(downgrade=True)
+PY
+```
+```
+Command: /bin/zsh -lc '"$HOME/Library/Application Support/AnkiProgramFiles/.venv/bin/python" - <<'"'PY'
+from anki.collection import Collection
+from anki.import_export_pb2 import ImportAnkiPackageOptions, ImportAnkiPackageRequest, IMPORT_ANKI_PACKAGE_UPDATE_CONDITION_ALWAYS
+from pathlib import Path
+import tempfile
+pkg = Path('anki_build/teesside_keynote_slide_notes.apkg').resolve()
+with tempfile.TemporaryDirectory(prefix='anki-final-check-') as tmp:
+    col = Collection(str(Path(tmp) / 'check.anki2'))
+    opts = ImportAnkiPackageOptions(merge_notetypes=True, update_notes=IMPORT_ANKI_PACKAGE_UPDATE_CONDITION_ALWAYS, update_notetypes=IMPORT_ANKI_PACKAGE_UPDATE_CONDITION_ALWAYS, with_scheduling=True, with_deck_configs=True)
+    col.import_anki_package(ImportAnkiPackageRequest(package_path=str(pkg), options=opts))
+    print('cards', col.card_count())
+    print('due_first_last', col.db.first('select min(due), max(due) from cards'))
+    print('decks', [d['name'] for d in col.decks.all()])
+    col.close(downgrade=True)
+PY"
+Chunk ID: d8a037
+Wall time: 0.1258 seconds
+Process exited with code 0
+Original token count: 29
+Output:
+cards 44
+due_first_last [1, 44]
+decks ['Teesside Keynote 2026::Slide Notes', 'Default', 'Teesside Keynote 2026']
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 08:50:39Z)**_
+
+Fixed. The original `.apkg` used hand-built deck metadata that current Anki rejects. I rebuilt it using Anki’s own 25.9.2 exporter and overwrote the same file:
+
+[teesside_keynote_slide_notes.apkg](/Users/stugrey/Documents/Student%20Voice%20ICD/Conferences:Webinars/Teesside%20Keynote/deck-generator/anki_build/teesside_keynote_slide_notes.apkg)
+
+I validated it by importing it into a fresh temporary Anki collection:
+
+```text
+cards: 44
+due range: 1-44
+deck: Teesside Keynote 2026::Slide Notes
+media files: 44
+```
+
+I also replaced the packager script so future builds use Anki’s own runtime instead of manually writing Anki JSON:
+
+[create-anki-deck.py](/Users/stugrey/Documents/Student%20Voice%20ICD/Conferences:Webinars/Teesside%20Keynote/deck-generator/scripts/create-anki-deck.py)
+
+Try importing the same `.apkg` path again. If Anki is still showing the same error, it is almost certainly opening the old cached/previous file rather than the overwritten one.
+
+---
+
+_**User (2026-04-11 08:55:21Z)**_
+
+Whta setting should i use to make the cards sequential?
+
+---
+
+_**Agent (gpt-5.4 2026-04-11 08:55:47Z)**_
+
+Use these deck options for the deck I made:
+
+1. Open `Teesside Keynote 2026::Slide Notes` deck options.
+2. Set `New cards/day` to `44` or higher.
+3. Under `New Cards`, set `Insertion Order` to `Sequential`.
+4. Under `Display Order`, set:
+   - `New Card Gather Order`: `Ascending position`
+   - `New Card Sort Order`: `Order gathered`
+   - `New/Review Order`: `Show before reviews`
+
+That should show slide 1 through slide 44 in order on the first run. The `.apkg` already has due positions `1-44`, so those settings are the main thing.
+
+Important caveat: this only controls cards while they are still `new`. After you study them, Anki’s scheduler takes over and future reviews will not stay in slide order. For repeated sequential rehearsal, use a filtered/custom study deck with order set to `Order due` or `Order added`, ideally with rescheduling off.
+
+Anki manual section: https://docs.ankiweb.net/deck-options.html#display-order
+
+---
+
+_**User (2026-04-11 08:57:19Z)**_
+
+Hiow di create a filtered/custom study deck?
+
+---
+
+_**Agent (gpt-5.4 2026-04-11 08:57:50Z)**_
+
+For your slide run-through, make a filtered deck like this.
+
+**On Anki Desktop**
+1. Go to `Tools` → `Create Filtered Deck`.
+2. Name it something like `Keynote sequential run-through`.
+3. In `Search`, paste:
+
+```text
+deck:"Teesside Keynote 2026::Slide Notes" tag:slide_notes
+```
+
+4. Set `Limit to`:
+
+```text
+44 cards
+```
+
+5. Set `Cards selected by` to either:
+   - `Order added` for slide 1 → 44
+   - `Order due` should also work, because I set the cards due `1-44`
+
+6. Turn off:
+
+```text
+Reschedule cards based on my answers
+```
+
+Use this if you want rehearsal/preview mode and do not want the run-through to alter Anki scheduling.
+
+7. Click `Build`.
+
+After that, study the filtered deck. When you want to run it again, open that filtered deck and click `Rebuild`.
+
+**On AnkiMobile**
+1. Open the slide notes deck.
+2. Tap the gear/cog in the study screen.
+3. Choose `Filter/Cram`.
+4. Use the same search:
+
+```text
+deck:"Teesside Keynote 2026::Slide Notes" tag:slide_notes
+```
+
+5. Limit `44`, order `Order added` or `Order due`, and turn rescheduling off if you just want rehearsal.
+
+The key setting is `Reschedule cards based on my answers`: off means “let me practise in sequence without changing the real deck.”
+
+---
+
+_**User (2026-04-11 10:49:52Z)**_
+
+Actually, i ahve a remarkable 2 move, can you create a pdf version for tat form foactor, with alternaitng pages of the slide and their assocaited notes for practice
+
+---
+
+_**Agent (gpt-5.4 2026-04-11 10:50:09Z)**_
+
+I’ll create a reMarkable-friendly PDF from the current 44-slide deck: slide page, notes page, slide page, notes page. I’ll use the PDF workflow so I can render-check the result before handing it over.
+
+_**Agent (gpt-5.4 2026-04-11 10:50:10Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `sed -n '1,220p' /Users/stugrey/.codex/skills/pdf/SKILL.md`</summary>
+```
+Command: /bin/zsh -lc "sed -n '1,220p' /Users/stugrey/.codex/skills/pdf/SKILL.md"
+Chunk ID: 0f351a
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 630
+Output:
+---
+name: "pdf"
+description: "Use when tasks involve reading, creating, or reviewing PDF files where rendering and layout matter; prefer visual checks by rendering pages (Poppler) and use Python tools such as `reportlab`, `pdfplumber`, and `pypdf` for generation and extraction."
+---
+
+
+# PDF Skill
+
+## When to use
+- Read or review PDF content where layout and visuals matter.
+- Create PDFs programmatically with reliable formatting.
+- Validate final rendering before delivery.
+
+## Workflow
+1. Prefer visual review: render PDF pages to PNGs and inspect them.
+   - Use `pdftoppm` if available.
+   - If unavailable, install Poppler or ask the user to review the output locally.
+2. Use `reportlab` to generate PDFs when creating new documents.
+3. Use `pdfplumber` (or `pypdf`) for text extraction and quick checks; do not rely on it for layout fidelity.
+4. After each meaningful update, re-render pages and verify alignment, spacing, and legibility.
+
+## Temp and output conventions
+- Use `tmp/pdfs/` for intermediate files; delete when done.
+- Write final artifacts under `output/pdf/` when working in this repo.
+- Keep filenames stable and descriptive.
+
+## Dependencies (install if missing)
+Prefer `uv` for dependency management.
+
+Python packages:
+```
+uv pip install reportlab pdfplumber pypdf
+```
+If `uv` is unavailable:
+```
+python3 -m pip install reportlab pdfplumber pypdf
+```
+System tools (for rendering):
+```
+# macOS (Homebrew)
+brew install poppler
+
+# Ubuntu/Debian
+sudo apt-get install -y poppler-utils
+```
+
+If installation isn't possible in this environment, tell the user which dependency is missing and how to install it locally.
+
+## Environment
+No required environment variables.
+
+## Rendering command
+```
+pdftoppm -png $INPUT_PDF $OUTPUT_PREFIX
+```
+
+## Quality expectations
+- Maintain polished visual design: consistent typography, spacing, margins, and section hierarchy.
+- Avoid rendering issues: clipped text, overlapping elements, broken tables, black squares, or unreadable glyphs.
+- Charts, tables, and images must be sharp, aligned, and clearly labeled.
+- Use ASCII hyphens only. Avoid U+2011 (non-breaking hyphen) and other Unicode dashes.
+- Citations and references must be human-readable; never leave tool tokens or placeholder strings.
+
+## Final checks
+- Do not deliver until the latest PNG inspection shows zero visual or formatting defects.
+- Confirm headers/footers, page numbering, and section transitions look polished.
+- Keep intermediate files organized or remove them after final approval.
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:50:46Z)**_
+
+Using the `pdf` skill here because page size and rendering fidelity matter. The wording could mean either reMarkable 2 or the newer Paper Pro Move, so I’m checking the current device dimensions and will bias the main output toward the Move’s 16:9 screen while keeping the build script flexible.
+
+_**Agent (gpt-5.4 2026-04-11 10:50:46Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `python3 -c "import reportlab; print(reportlab.Version)"`</summary>
+```
+Command: /bin/zsh -lc 'python3 -c "import reportlab; print(reportlab.Version)"'
+Chunk ID: 4914f9
+Wall time: 0.7548 seconds
+Process exited with code 1
+Original token count: 31
+Output:
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ModuleNotFoundError: No module named 'reportlab'
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:50:46Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `which pdftoppm`</summary>
+```
+Command: /bin/zsh -lc 'which pdftoppm'
+Chunk ID: 05a17b
+Wall time: 0.0000 seconds
+Process exited with code 1
+Original token count: 5
+Output:
+pdftoppm not found
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:50:46Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `find anki_build -maxdepth 2 -type f -name 'slide-*.jpg' | wc -l`</summary>
+```
+Command: /bin/zsh -lc "find anki_build -maxdepth 2 -type f -name 'slide-*.jpg' | wc -l"
+Chunk ID: 77dc4e
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 3
+Output:
+      44
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:50:46Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `python3 -c "import json; print(len(json.load(open('content.json'))['slides']))"`</summary>
+```
+Command: /bin/zsh -lc "python3 -c \"import json; print(len(json.load(open('content.json'))['slides']))\""
+Chunk ID: d018e4
+Wall time: 0.9887 seconds
+Process exited with code 0
+Original token count: 1
+Output:
+44
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:50:56Z)**_
+
+`reportlab` and `pdftoppm` are not installed here, so I’ll use available local libraries if possible before asking to install anything. I’m checking for Pillow and macOS PDF tooling next.
+
+_**Agent (gpt-5.4 2026-04-11 10:50:56Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `python3 -c "from PIL import Image, ImageDraw, ImageFont; print('Pillow available')"`</summary>
+```
+Command: /bin/zsh -lc "python3 -c \"from PIL import Image, ImageDraw, ImageFont; print('Pillow available')\""
+Chunk ID: e463e1
+Wall time: 1.0021 seconds
+Process running with session ID 22494
+Original token count: 0
+Output:
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:50:56Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `which sips`</summary>
+```
+Command: /bin/zsh -lc 'which sips'
+Chunk ID: 95a0c6
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 4
+Output:
+/usr/bin/sips
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:50:56Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `which qlmanage`</summary>
+```
+Command: /bin/zsh -lc 'which qlmanage'
+Chunk ID: 00bb3a
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 5
+Output:
+/usr/bin/qlmanage
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:50:56Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `python3 -c "import pypdf; print('pypdf available')"`</summary>
+```
+Command: /bin/zsh -lc "python3 -c \"import pypdf; print('pypdf available')\""
+Chunk ID: 26ca16
+Wall time: 0.0000 seconds
+Process exited with code 1
+Original token count: 30
+Output:
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ModuleNotFoundError: No module named 'pypdf'
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:50:59Z)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="write_stdin"><details>
+<summary>Tool use: **write_stdin**</summary>
+```
+Command: /bin/zsh -lc "python3 -c \"from PIL import Image, ImageDraw, ImageFont; print('Pillow available')\""
+Chunk ID: 488f37
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 5
+Output:
+Pillow available
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:51:26Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `rg "slide" -n src/style.css | sed -n '1,140p'`</summary>
+```
+Command: /bin/zsh -lc "rg \"slide\" -n src/style.css | sed -n '1,140p'"
+Chunk ID: fc36dd
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 373
+Output:
+2:   BASE STYLES — slide container + reset
+112:#controls .ctrl-range::-webkit-slider-thumb {
+249:.slide-wrapper {
+254:.slide-label {
+266:.slide-edit-panel {
+334:.slide-edit-btn {
+338:.slide-shape-select {
+351:.slide-shape-select:hover {
+355:.slide-export-btn {
+368:.slide-export-btn:hover {
+373:.slide-export-btn:disabled {
+379:.slide {
+389:.slide {
+393:.slide-inner {
+406:.slide-inner * {
+413:  right: var(--slide-padding);
+414:  bottom: var(--slide-padding);
+509:  right: var(--slide-padding);
+510:  bottom: var(--slide-padding);
+531:  padding: var(--slide-padding);
+593:  padding: var(--slide-padding);
+653:  padding: var(--slide-padding);
+714:  padding: var(--slide-padding);
+766:  padding: var(--slide-padding);
+877:  padding: var(--slide-padding);
+969:  padding: var(--slide-padding);
+1065:   Coloured blocks fill the slide, data IS layout
+1122:  padding: var(--slide-padding);
+1170:  padding: var(--slide-padding);
+1233:   Uses currentColor so stripes adapt to the slide's
+1245:.slide[data-pinstripes="vertical"] .texture-pinstripes {
+1255:.slide[data-pinstripes="horizontal"] .texture-pinstripes {
+1265:.slide[data-pinstripes="diagonal"] .texture-pinstripes {
+1303:/* WebGL droplet canvas — covers entire slide, ON TOP of content */
+1313:.slide-inner > *:not(.shape-overlay):not(.lens-marker-group) {
+1320:   PLAY MODE — fullscreen single-slide view
+1334:#play-overlay .play-slide-container {
+1340:#play-overlay #play-slide {
+1345:#play-overlay .play-slide-container .slide {
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:51:26Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `file anki_build/slides_2026-04-11T08-34-38/slide-01-cover.jpg`</summary>
+```
+Command: /bin/zsh -lc 'file anki_build/slides_2026-04-11T08-34-38/slide-01-cover.jpg'
+Chunk ID: 64696e
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 47
+Output:
+anki_build/slides_2026-04-11T08-34-38/slide-01-cover.jpg: JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 1200x675, components 3
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:51:26Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command**</summary>
+```bash
+python3 - <<'PY'
+from PIL import ImageFont
+paths=['/System/Library/Fonts/Supplemental/Arial.ttf','/System/Library/Fonts/Supplemental/Arial Bold.ttf','/System/Library/Fonts/Helvetica.ttc','/System/Library/Fonts/Supplemental/Helvetica.ttf']
+for p in paths:
+    try:
+        ImageFont.truetype(p, 24)
+        print('ok', p)
+    except Exception as e:
+        print('no', p, e)
+PY
+```
+```
+Command: /bin/zsh -lc "python3 - <<'PY'
+from PIL import ImageFont
+paths=['/System/Library/Fonts/Supplemental/Arial.ttf','/System/Library/Fonts/Supplemental/Arial Bold.ttf','/System/Library/Fonts/Helvetica.ttc','/System/Library/Fonts/Supplemental/Helvetica.ttf']
+for p in paths:
+    try:
+        ImageFont.truetype(p, 24)
+        print('ok', p)
+    except Exception as e:
+        print('no', p, e)
+PY"
+Chunk ID: 79ef5c
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 54
+Output:
+ok /System/Library/Fonts/Supplemental/Arial.ttf
+ok /System/Library/Fonts/Supplemental/Arial Bold.ttf
+ok /System/Library/Fonts/Helvetica.ttc
+no /System/Library/Fonts/Supplemental/Helvetica.ttf cannot open resource
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:51:29Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `sed -n '372,405p' src/style.css`</summary>
+```
+Command: /bin/zsh -lc "sed -n '372,405p' src/style.css"
+Chunk ID: 5d7f36
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 186
+Output:
+
+.slide-export-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* --- Slide container: 16:9 aspect ratio (overridable via --export-aspect) --- */
+.slide {
+  width: 100%;
+  aspect-ratio: var(--export-aspect, 16 / 9);
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.25rem;
+  /* Shadow for visibility against dark page bg */
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+.slide {
+  container-type: inline-size;
+}
+
+.slide-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  font-family: var(--font-body);
+  font-weight: var(--font-body-weight);
+  font-size: var(--body-size);
+  line-height: var(--body-line-height);
+  overflow: hidden;
+}
+
+/* Safety: all text containers can shrink in flex layouts */
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:51:32Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `sed -n '245,260p' src/style.css`</summary>
+```
+Command: /bin/zsh -lc "sed -n '245,260p' src/style.css"
+Chunk ID: 84c564
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 67
+Output:
+  margin: 0 auto;
+}
+
+/* --- Slide wrapper --- */
+.slide-wrapper {
+  width: 100%;
+  position: relative;
+}
+
+.slide-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #666;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:51:35Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `sed -n '1,80p' src/style.css`</summary>
+```
+Command: /bin/zsh -lc "sed -n '1,80p' src/style.css"
+Chunk ID: f6215d
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 353
+Output:
+/* ============================================
+   BASE STYLES — slide container + reset
+   ============================================ */
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #1a1a1a;
+  font-family: 'Inter', sans-serif;
+  padding: 2rem;
+}
+
+/* --- Controls panel --- */
+#controls {
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+  padding: 1.5rem 2rem;
+  background: #2a2a2a;
+  border-radius: 0.75rem;
+  color: #ccc;
+  font-size: 0.85rem;
+  font-family: 'DM Mono', monospace;
+  line-height: 1.6;
+  position: sticky;
+  top: 1rem;
+  z-index: 100;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+#controls .ctrl-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#controls .ctrl-body {
+  margin-top: 1rem;
+}
+
+#controls h2 {
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  margin: 0;
+}
+
+#controls .ctrl-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+#controls .ctrl-row--layouts {
+  padding-top: 0.75rem;
+  border-top: 1px solid #3a3a3a;
+}
+
+#controls .ctrl-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  flex: 1;
+  min-width: 160px;
+}
+
+#controls .ctrl-label {
+  color: #777;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+#controls .ctrl-select {
+  appearance: none;
+  background: #1a1a1a;
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:51:38Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `rg "#deck|deck" -n src/style.css | sed -n '1,60p'`</summary>
+```
+Command: /bin/zsh -lc "rg \"#deck|deck\" -n src/style.css | sed -n '1,60p'"
+Chunk ID: c34f9e
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 3
+Output:
+239:#deck {
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:51:40Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `sed -n '232,247p' src/style.css`</summary>
+```
+Command: /bin/zsh -lc "sed -n '232,247p' src/style.css"
+Chunk ID: a1dd46
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 62
+Output:
+.pg-info {
+  color: #777;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.8rem;
+}
+
+/* --- Deck container --- */
+#deck {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:52:12Z)**_
+
+The official specs list the Paper Pro Move at 1696 x 954, 16:9, while reMarkable 2 is 1872 x 1404, 4:3. I’m going to make the Move-optimized PDF first, and I’ll also generate a reMarkable 2 landscape version because your phrasing could point either way.
+
+_**Agent (gpt-5.4 2026-04-11 10:52:57Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="apply_patch"><details>
+<summary>Tool use: **apply_patch**</summary>
+**Add: `deck-generator/scripts/create-practice-pdf.py`**
+
+```diff
++#!/usr/bin/env python3
++import argparse
++import json
++import math
++import re
++from pathlib import Path
++
++from PIL import Image, ImageDraw, ImageFont
++
++
++PROFILES = {
++    "paper-pro-move": {
++        "size": (1696, 954),
++        "dpi": 264,
++        "suffix": "remarkable_paper_pro_move",
++        "label": "reMarkable Paper Pro Move",
++    },
++    "remarkable-2-landscape": {
++        "size": (1872, 1404),
++        "dpi": 226,
++        "suffix": "remarkable_2_landscape",
++        "label": "reMarkable 2 landscape",
++    },
++}
++
++FONT_REGULAR = "/System/Library/Fonts/Supplemental/Arial.ttf"
++FONT_BOLD = "/System/Library/Fonts/Supplemental/Arial Bold.ttf"
++
++
++def font(size, bold=False):
++    path = FONT_BOLD if bold else FONT_REGULAR
++    return ImageFont.truetype(path, size)
++
++
++def slide_title(slide):
++    return (
++        slide.get("title")
++        or slide.get("heading")
++        or slide.get("text")
++        or slide.get("section")
++        or "Untitled slide"
++    )
++
++
++def notes_for(slide):
++    notes = slide.get("notes") or {}
++    points = []
++    transition = notes.get("transition")
++    if transition:
++        points.append(("Transition", [str(transition)]))
++
++    note_points = [str(point) for point in notes.get("points") or []]
++    if note_points:
++        points.append(("Speaker notes", note_points))
++
++    if not points:
++        points.append(("Speaker notes", ["No speaker notes for this slide."]))
++
++    return points
++
++
++def wrap_text(draw, text, text_font, max_width):
++    words = text.split()
++    lines = []
++    line = ""
++
++    for word in words:
++        candidate = word if not line else f"{line} {word}"
++        if draw.textlength(candidate, font=text_font) <= max_width:
++            line = candidate
++            continue
++        if line:
++            lines.append(line)
++        line = word
++
++    if line:
++        lines.append(line)
++    return lines
++
++
++def text_height(draw, sections, width, body_font, heading_font, gap, line_gap):
++    total = 0
++    for heading, points in sections:
++        total += heading_font.size + gap
++        for point in points:
++            lines = wrap_text(draw, point, body_font, width)
++            total += max(1, len(lines)) * (body_font.size + line_gap)
++            total += gap
++        total += gap
++    return total
++
++
++def draw_wrapped(draw, xy, text, text_font, fill, width, line_gap, bullet=None):
++    x, y = xy
++    bullet_width = 0
++    if bullet:
++        bullet_width = int(text_font.size * 1.1)
++        draw.text((x, y), bullet, font=text_font, fill=fill)
++
++    for line in wrap_text(draw, text, text_font, width - bullet_width):
++        draw.text((x + bullet_width, y), line, font=text_font, fill=fill)
++        y += text_font.size + line_gap
++    return y
++
++
++def make_slide_page(image_path, page_size):
++    page_w, page_h = page_size
++    page = Image.new("RGB", page_size, "white")
++    slide = Image.open(image_path).convert("RGB")
++    slide = slide.resize(page_size, Image.Resampling.LANCZOS)
++    page.paste(slide, (0, 0))
++    return page
++
++
++def make_notes_page(slide, index, total, page_size, profile_label):
++    page_w, page_h = page_size
++    margin = int(page_w * 0.055)
++    page = Image.new("RGB", page_size, "#fbfbf8")
++    draw = ImageDraw.Draw(page)
++
++    title = slide_title(slide)
++    header_font = font(max(28, int(page_h * 0.043)), bold=True)
++    small_font = font(max(18, int(page_h * 0.022)))
++    heading_size = max(24, int(page_h * 0.034))
++    body_size = max(22, int(page_h * 0.031))
++
++    top = margin
++    draw.text((margin, top), f"Slide {index:02d} of {total}", font=small_font, fill="#666666")
++    draw.text(
++        (page_w - margin - int(page_w * 0.22), top),
++        profile_label,
++        font=small_font,
++        fill="#777777",
++    )
++
++    title_top = top + small_font.size + 22
++    title_lines = wrap_text(draw, title, header_font, page_w - (2 * margin))
++    for line in title_lines[:3]:
++        draw.text((margin, title_top), line, font=header_font, fill="#111111")
++        title_top += header_font.size + 8
++
++    rule_y = title_top + 18
++    draw.line((margin, rule_y, page_w - margin, rule_y), fill="#111111", width=3)
++
++    sections = notes_for(slide)
++    content_top = rule_y + 32
++    content_height = page_h - content_top - margin
++    content_width = page_w - (2 * margin)
++
++    for candidate_body_size in range(body_size, 17, -1):
++        body_font = font(candidate_body_size)
++        heading_font = font(max(20, int(candidate_body_size * 1.08)), bold=True)
++        line_gap = max(7, int(candidate_body_size * 0.32))
++        gap = max(10, int(candidate_body_size * 0.45))
++        if text_height(draw, sections, content_width, body_font, heading_font, gap, line_gap) <= content_height:
++            columns = 1
++            break
++    else:
++        columns = 2
++        body_font = font(max(17, int(body_size * 0.78)))
++        heading_font = font(max(19, int(body_size * 0.84)), bold=True)
++        line_gap = max(5, int(body_font.size * 0.26))
++        gap = max(8, int(body_font.size * 0.36))
++
++    if columns == 1:
++        y = content_top
++        for heading, points in sections:
++            draw.text((margin, y), heading.upper(), font=heading_font, fill="#111111")
++            y += heading_font.size + gap
++            for point in points:
++                y = draw_wrapped(
++                    draw,
++                    (margin, y),
++                    point,
++                    body_font,
++                    "#111111",
++                    content_width,
++                    line_gap,
++                    bullet="-",
++                )
++                y += gap
++            y += gap
++    else:
++        column_gap = int(page_w * 0.04)
++        column_width = (content_width - column_gap) // 2
++        items = []
++        for heading, points in sections:
++            items.append(("heading", heading))
++            for point in points:
++                items.append(("point", point))
++
++        column_targets = [[], []]
++        heights = [0, 0]
++        for kind, value in items:
++            estimated = heading_font.size + gap if kind == "heading" else (
++                len(wrap_text(draw, value, body_font, column_width - int(body_font.size * 1.1)))
++                * (body_font.size + line_gap)
++                + gap
++            )
++            target = 0 if heights[0] <= heights[1] else 1
++            column_targets[target].append((kind, value))
++            heights[target] += estimated
++
++        for col, entries in enumerate(column_targets):
++            x = margin + col * (column_width + column_gap)
++            y = content_top
++            for kind, value in entries:
++                if kind == "heading":
++                    draw.text((x, y), value.upper(), font=heading_font, fill="#111111")
++                    y += heading_font.size + gap
++                else:
++                    y = draw_wrapped(
++                        draw,
++                        (x, y),
++                        value,
++                        body_font,
++                        "#111111",
++                        column_width,
++                        line_gap,
++                        bullet="-",
++                    )
++                    y += gap
++
++    return page
++
++
++def build_pdf(content_path, slides_dir, out_path, profile):
++    profile_spec = PROFILES[profile]
++    page_size = profile_spec["size"]
++    content = json.loads(content_path.read_text(encoding="utf-8"))
++    slides = content["slides"]
++    image_files = sorted(
++        p for p in slides_dir.iterdir()
++        if re.match(r"slide-\d\d-.*\.(jpe?g|png)$", p.name, re.IGNORECASE)
++    )
++
++    if len(image_files) != len(slides):
++        raise SystemExit(f"Expected {len(slides)} slide images, found {len(image_files)} in {slides_dir}")
++
++    pages = []
++    for index, (slide, image_path) in enumerate(zip(slides, image_files), start=1):
++        pages.append(make_slide_page(image_path, page_size))
++        pages.append(make_notes_page(slide, index, len(slides), page_size, profile_spec["label"]))
++
++    out_path.parent.mkdir(parents=True, exist_ok=True)
++    pages[0].save(
++        out_path,
++        "PDF",
++        save_all=True,
++        append_images=pages[1:],
++        resolution=profile_spec["dpi"],
++    )
++    return len(pages)
++
++
++def main():
++    parser = argparse.ArgumentParser(description="Create slide/notes practice PDFs for reMarkable devices.")
++    parser.add_argument("--content", default="content.json")
++    parser.add_argument("--slides-dir", required=True)
++    parser.add_argument("--profile", choices=sorted(PROFILES), required=True)
++    parser.add_argument("--out", help="Output PDF path.")
++    args = parser.parse_args()
++
++    root = Path(__file__).resolve().parents[1]
++    content_path = Path(args.content)
++    if not content_path.is_absolute():
++        content_path = root / content_path
++    slides_dir = Path(args.slides_dir)
++    if not slides_dir.is_absolute():
++        slides_dir = root / slides_dir
++
++    profile = PROFILES[args.profile]
++    out_path = Path(args.out) if args.out else root / "output/pdf" / f"teesside_keynote_practice_{profile['suffix']}.pdf"
++    if not out_path.is_absolute():
++        out_path = root / out_path
++
++    page_count = build_pdf(content_path, slides_dir, out_path, args.profile)
++    print(f"Created {out_path}")
++    print(f"Pages: {page_count}")
++
++
++if __name__ == "__main__":
++    main()
+```
+</details></tool-use>
+
+---
+
+_**User (2026-04-11 10:52:58Z)**_
+
+Paper Pro Move is what i have
+
+---
+
+_**Agent (gpt-5.4 2026-04-11 10:53:05Z)**_
+
+Got it, Paper Pro Move. I’ll focus the output on its 1696 x 954, 16:9 screen and skip the reMarkable 2 version. I’m going to export a sharper fresh slide set first, then make the alternating slide/notes PDF.
+
+_**Agent (gpt-5.4 2026-04-11 10:53:08Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="apply_patch"><details>
+<summary>Tool use: **apply_patch**</summary>
+**Update: `deck-generator/scripts/export-anki-slides.js`**
+
+```diff
+@@
+ const width = Number(args.width || 1600);
+ const height = Math.round(width / (16 / 9));
+ const quality = Number(args.quality || 88);
++const scale = Number(args.scale || 1);
+ const outputDir = path.resolve(PROJECT_ROOT, args.out || `anki_build/slides_${stamp()}`);
+@@
+   const page = await browser.newPage({
+     viewport: { width, height },
+-    deviceScaleFactor: 1,
++    deviceScaleFactor: scale,
+   });
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:53:10Z)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="write_stdin"><details>
+<summary>Tool use: **write_stdin**</summary>
+```
+Command: /bin/zsh -lc '/Users/stugrey/.nvm/versions/node/v20.19.5/bin/node node_modules/vite/bin/vite.js --host 127.0.0.1'
+Chunk ID: e6abc0
+Wall time: 5.0023 seconds
+Process running with session ID 98420
+Original token count: 0
+Output:
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:53:20Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `/Users/stugrey/.nvm/versions/node/v20.19.5/bin/node scripts/export-anki-slides.js --url=http://127.0.0.1:5173 --width=1696 --quality=94 --scale=2 --out=anki_build/slides_paper_pro_move`</summary>
+```
+Command: /bin/zsh -lc '/Users/stugrey/.nvm/versions/node/v20.19.5/bin/node scripts/export-anki-slides.js --url=http://127.0.0.1:5173 --width=1696 --quality=94 --scale=2 --out=anki_build/slides_paper_pro_move'
+Chunk ID: a9639f
+Wall time: 1.0027 seconds
+Process running with session ID 61410
+Original token count: 0
+Output:
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:53:24Z)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="write_stdin"><details>
+<summary>Tool use: **write_stdin**</summary>
+```
+Command: /bin/zsh -lc '/Users/stugrey/.nvm/versions/node/v20.19.5/bin/node scripts/export-anki-slides.js --url=http://127.0.0.1:5173 --width=1696 --quality=94 --scale=2 --out=anki_build/slides_paper_pro_move'
+Chunk ID: 05578e
+Wall time: 5.0018 seconds
+Process running with session ID 61410
+Original token count: 0
+Output:
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:53:31Z)**_
+
+The high-resolution slide export is running with 2x device scale so the PDF can downsample cleanly to the Move screen.
+
+_**Agent (gpt-5.4 2026-04-11 10:53:31Z)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="write_stdin"><details>
+<summary>Tool use: **write_stdin**</summary>
+```
+Command: /bin/zsh -lc '/Users/stugrey/.nvm/versions/node/v20.19.5/bin/node scripts/export-anki-slides.js --url=http://127.0.0.1:5173 --width=1696 --quality=94 --scale=2 --out=anki_build/slides_paper_pro_move'
+Chunk ID: d6dcf0
+Wall time: 5.0008 seconds
+Process running with session ID 61410
+Original token count: 202
+Output:
+Exported slide-01-cover.jpg
+Exported slide-02-section-divider.jpg
+Exported slide-03-section-divider.jpg
+Exported slide-04-section-divider.jpg
+Exported slide-05-statement.jpg
+Exported slide-06-statement.jpg
+Exported slide-07-statement.jpg
+Exported slide-08-statement.jpg
+Exported slide-09-section-divider.jpg
+Exported slide-10-content.jpg
+Exported slide-11-data.jpg
+Exported slide-12-content.jpg
+Exported slide-13-section-divider.jpg
+Exported slide-14-content.jpg
+Exported slide-15-data.jpg
+Exported slide-16-content.jpg
+Exported slide-17-section-divider.jpg
+Exported slide-18-content.jpg
+Exported slide-19-content.jpg
+Exported slide-20-content.jpg
+Exported slide-21-statement.jpg
+Exported slide-22-section-divider.jpg
+Exported slide-23-content.jpg
+Exported slide-24-content.jpg
+Exported slide-25-content.jpg
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:53:38Z)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="write_stdin"><details>
+<summary>Tool use: **write_stdin**</summary>
+```
+Command: /bin/zsh -lc '/Users/stugrey/.nvm/versions/node/v20.19.5/bin/node scripts/export-anki-slides.js --url=http://127.0.0.1:5173 --width=1696 --quality=94 --scale=2 --out=anki_build/slides_paper_pro_move'
+Chunk ID: 196700
+Wall time: 4.3595 seconds
+Process exited with code 0
+Original token count: 190
+Output:
+Exported slide-26-content.jpg
+Exported slide-27-section-divider.jpg
+Exported slide-28-content.jpg
+Exported slide-29-content.jpg
+Exported slide-30-content.jpg
+Exported slide-31-section-divider.jpg
+Exported slide-32-content.jpg
+Exported slide-33-content.jpg
+Exported slide-34-content.jpg
+Exported slide-35-content.jpg
+Exported slide-36-content.jpg
+Exported slide-37-content.jpg
+Exported slide-38-statement.jpg
+Exported slide-39-section-divider.jpg
+Exported slide-40-content.jpg
+Exported slide-41-content.jpg
+Exported slide-42-content.jpg
+Exported slide-43-statement.jpg
+Exported slide-44-statement.jpg
+
+Exported 44 current slides to /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/anki_build/slides_paper_pro_move
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:53:45Z)**_
+
+The fresh Paper Pro Move slide images are exported. I’m building the alternating 88-page PDF now.
+
+_**Agent (gpt-5.4 2026-04-11 10:53:47Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `python3 scripts/create-practice-pdf.py --profile paper-pro-move --slides-dir anki_build/slides_paper_pro_move --out output/pdf/teesside_keynote_practice_paper_pro_move.pdf`</summary>
+```
+Command: /bin/zsh -lc 'python3 scripts/create-practice-pdf.py --profile paper-pro-move --slides-dir anki_build/slides_paper_pro_move --out output/pdf/teesside_keynote_practice_paper_pro_move.pdf'
+Chunk ID: 182c85
+Wall time: 1.0024 seconds
+Process running with session ID 84109
+Original token count: 0
+Output:
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:53:52Z)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="write_stdin"><details>
+<summary>Tool use: **write_stdin**</summary>
+```
+Command: /bin/zsh -lc 'python3 scripts/create-practice-pdf.py --profile paper-pro-move --slides-dir anki_build/slides_paper_pro_move --out output/pdf/teesside_keynote_practice_paper_pro_move.pdf'
+Chunk ID: 3bda8b
+Wall time: 5.0025 seconds
+Process running with session ID 84109
+Original token count: 0
+Output:
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:53:59Z)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="write_stdin"><details>
+<summary>Tool use: **write_stdin**</summary>
+```
+Command: /bin/zsh -lc 'python3 scripts/create-practice-pdf.py --profile paper-pro-move --slides-dir anki_build/slides_paper_pro_move --out output/pdf/teesside_keynote_practice_paper_pro_move.pdf'
+Chunk ID: 66080b
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 43
+Output:
+Created /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/output/pdf/teesside_keynote_practice_paper_pro_move.pdf
+Pages: 88
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:54:10Z)**_
+
+The PDF is built with 88 pages. I don’t have Poppler here, so I’m using macOS tooling plus direct page-image generation to inspect representative pages for clipping and readability.
+
+_**Agent (gpt-5.4 2026-04-11 10:54:10Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `du -h output/pdf/teesside_keynote_practice_paper_pro_move.pdf`</summary>
+```
+Command: /bin/zsh -lc 'du -h output/pdf/teesside_keynote_practice_paper_pro_move.pdf'
+Chunk ID: 08c429
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 16
+Output:
+ 11M	output/pdf/teesside_keynote_practice_paper_pro_move.pdf
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:54:10Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command**</summary>
+```bash
+python3 - <<'PY'
+from PIL import Image
+from pathlib import Path
+for p in ['anki_build/slides_paper_pro_move/slide-01-cover.jpg','anki_build/slides_paper_pro_move/slide-44-statement.jpg']:
+    im=Image.open(p)
+    print(p, im.size)
+PY
+```
+```
+Command: /bin/zsh -lc "python3 - <<'PY'
+from PIL import Image
+from pathlib import Path
+for p in ['anki_build/slides_paper_pro_move/slide-01-cover.jpg','anki_build/slides_paper_pro_move/slide-44-statement.jpg']:
+    im=Image.open(p)
+    print(p, im.size)
+PY"
+Chunk ID: 30fd73
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 34
+Output:
+anki_build/slides_paper_pro_move/slide-01-cover.jpg (2400, 1350)
+anki_build/slides_paper_pro_move/slide-44-statement.jpg (2400, 1352)
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:54:10Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `sips -g pixelWidth -g pixelHeight output/pdf/teesside_keynote_practice_paper_pro_move.pdf`</summary>
+```
+Command: /bin/zsh -lc 'sips -g pixelWidth -g pixelHeight output/pdf/teesside_keynote_practice_paper_pro_move.pdf'
+Chunk ID: a2f2e6
+Wall time: 0.0712 seconds
+Process exited with code 0
+Original token count: 50
+Output:
+/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/output/pdf/teesside_keynote_practice_paper_pro_move.pdf
+  pixelWidth: 462.545
+  pixelHeight: 260.182
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:54:10Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `qlmanage -t -s 1000 -o /tmp output/pdf/teesside_keynote_practice_paper_pro_move.pdf`</summary>
+```
+exec_command failed for `/bin/zsh -lc 'qlmanage -t -s 1000 -o /tmp output/pdf/teesside_keynote_practice_paper_pro_move.pdf'`: CreateProcess { message: "Codex(Sandbox(Denied { output: ExecToolCallOutput { exit_code: 255, stdout: StreamOutput { text: \"\", truncated_after_lines: None }, stderr: StreamOutput { text: \"sandbox initialization failed: invalid data type of path filter; expected pattern, got boolean\\n\", truncated_after_lines: None }, aggregated_output: StreamOutput { text: \"sandbox initialization failed: invalid data type of path filter; expected pattern, got boolean\\n\", truncated_after_lines: None }, duration: 0ns, timed_out: false }, network_policy_decision: None }))" }
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:54:23Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command**</summary>
+```bash
+python3 - <<'PY'
+import importlib.util, json, re
+from pathlib import Path
+
+root = Path.cwd()
+spec = importlib.util.spec_from_file_location('practice_pdf', root / 'scripts/create-practice-pdf.py')
+mod = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(mod)
+content = json.loads((root / 'content.json').read_text())
+slides_dir = root / 'anki_build/slides_paper_pro_move'
+images = sorted(p for p in slides_dir.iterdir() if re.match(r'slide-\d\d-.*\.jpg$', p.name))
+out = root / 'output/pdf/previews'
+out.mkdir(parents=True, exist_ok=True)
+page_size = mod.PROFILES['paper-pro-move']['size']
+for idx in [1, 2, 11, 44]:
+    slide = content['slides'][idx - 1]
+    if idx in [1, 44]:
+        mod.make_slide_page(images[idx - 1], page_size).save(out / f'preview_slide_{idx:02d}.png')
+    mod.make_notes_page(slide, idx, len(content['slides']), page_size, mod.PROFILES['paper-pro-move']['label']).save(out / f'preview_notes_{idx:02d}.png')
+print(out)
+PY
+```
+```
+Command: /bin/zsh -lc "python3 - <<'PY'
+import importlib.util, json, re
+from pathlib import Path
+
+root = Path.cwd()
+spec = importlib.util.spec_from_file_location('practice_pdf', root / 'scripts/create-practice-pdf.py')
+mod = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(mod)
+content = json.loads((root / 'content.json').read_text())
+slides_dir = root / 'anki_build/slides_paper_pro_move'
+images = sorted(p for p in slides_dir.iterdir() if re.match(r'slide-\\d\\d-.*\\.jpg"'$'"', p.name))
+out = root / 'output/pdf/previews'
+out.mkdir(parents=True, exist_ok=True)
+page_size = mod.PROFILES['paper-pro-move']['size']
+for idx in [1, 2, 11, 44]:
+    slide = content['slides'][idx - 1]
+    if idx in [1, 44]:
+        mod.make_slide_page(images[idx - 1], page_size).save(out / f'preview_slide_{idx:02d}.png')
+    mod.make_notes_page(slide, idx, len(content['slides']), page_size, mod.PROFILES['paper-pro-move']['label']).save(out / f'preview_notes_{idx:02d}.png')
+print(out)
+PY"
+Chunk ID: 6713bc
+Wall time: 1.0006 seconds
+Process running with session ID 19387
+Original token count: 0
+Output:
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:54:26Z)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="write_stdin"><details>
+<summary>Tool use: **write_stdin**</summary>
+```
+Command: /bin/zsh -lc "python3 - <<'PY'
+import importlib.util, json, re
+from pathlib import Path
+
+root = Path.cwd()
+spec = importlib.util.spec_from_file_location('practice_pdf', root / 'scripts/create-practice-pdf.py')
+mod = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(mod)
+content = json.loads((root / 'content.json').read_text())
+slides_dir = root / 'anki_build/slides_paper_pro_move'
+images = sorted(p for p in slides_dir.iterdir() if re.match(r'slide-\\d\\d-.*\\.jpg"'$'"', p.name))
+out = root / 'output/pdf/previews'
+out.mkdir(parents=True, exist_ok=True)
+page_size = mod.PROFILES['paper-pro-move']['size']
+for idx in [1, 2, 11, 44]:
+    slide = content['slides'][idx - 1]
+    if idx in [1, 44]:
+        mod.make_slide_page(images[idx - 1], page_size).save(out / f'preview_slide_{idx:02d}.png')
+    mod.make_notes_page(slide, idx, len(content['slides']), page_size, mod.PROFILES['paper-pro-move']['label']).save(out / f'preview_notes_{idx:02d}.png')
+print(out)
+PY"
+Chunk ID: 9ab92d
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 29
+Output:
+/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/output/pdf/previews
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:54:29Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="view_image"><details>
+<summary>Tool use: **view_image**</summary>
+/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/output/pdf/previews/preview_notes_11.png
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:54:34Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="view_image"><details>
+<summary>Tool use: **view_image**</summary>
+/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/output/pdf/previews/preview_notes_01.png
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:54:39Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="view_image"><details>
+<summary>Tool use: **view_image**</summary>
+/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/output/pdf/previews/preview_notes_44.png
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:54:42Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="view_image"><details>
+<summary>Tool use: **view_image**</summary>
+/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/output/pdf/previews/preview_notes_11.png
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:54:47Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="view_image"><details>
+<summary>Tool use: **view_image**</summary>
+/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/output/pdf/previews/preview_slide_01.png
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:55:07Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="view_image"><details>
+<summary>Tool use: **view_image**</summary>
+/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/anki_build/slides_paper_pro_move/slide-01-cover.jpg
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:55:19Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="view_image"><details>
+<summary>Tool use: **view_image**</summary>
+/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/anki_build/slides_paper_pro_move/slide-44-statement.jpg
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:55:29Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="view_image"><details>
+<summary>Tool use: **view_image**</summary>
+/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/export/16x9/slide-01-cover.png
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:55:53Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command**</summary>
+```bash
+/Users/stugrey/.nvm/versions/node/v20.19.5/bin/node - <<'JS'
+import { chromium } from 'playwright';
+const browser = await chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});
+const page = await browser.newPage({viewport:{width:1696,height:954}, deviceScaleFactor:2});
+await page.goto('http://127.0.0.1:5173', {waitUntil:'networkidle'});
+await page.evaluate(() => { sessionStorage.setItem('deckPage','0'); location.reload(); });
+await page.waitForLoadState('networkidle');
+await page.locator('.slide').first().waitFor();
+await page.waitForTimeout(1000);
+console.log(await page.$$eval('.slide', els => els.map(e => ({id:e.id, cls:e.className, rect:e.getBoundingClientRect().toJSON?.() || {x:e.getBoundingClientRect().x,y:e.getBoundingClientRect().y,w:e.getBoundingClientRect().width,h:e.getBoundingClientRect().height}, display:getComputedStyle(e).display, visibility:getComputedStyle(e).visibility}))));
+await browser.close();
+JS
+```
+```
+exec_command failed for `/bin/zsh -lc "/Users/stugrey/.nvm/versions/node/v20.19.5/bin/node - <<'JS'
+import { chromium } from 'playwright';
+const browser = await chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});
+const page = await browser.newPage({viewport:{width:1696,height:954}, deviceScaleFactor:2});
+await page.goto('http://127.0.0.1:5173', {waitUntil:'networkidle'});
+await page.evaluate(() => { sessionStorage.setItem('deckPage','0'); location.reload(); });
+await page.waitForLoadState('networkidle');
+await page.locator('.slide').first().waitFor();
+await page.waitForTimeout(1000);
+console.log(await page."'$$eval('"'.slide', els => els.map(e => ({id:e.id, cls:e.className, rect:e.getBoundingClientRect().toJSON?.() || {x:e.getBoundingClientRect().x,y:e.getBoundingClientRect().y,w:e.getBoundingClientRect().width,h:e.getBoundingClientRect().height}, display:getComputedStyle(e).display, visibility:getComputedStyle(e).visibility}))));
+await browser.close();
+JS"`: SandboxDenied { message: "node:internal/modules/run_main:123\n    triggerUncaughtException(\n    ^\n\nbrowserType.launch: Target page, context or browser has been closed\nBrowser logs:\n\n<launching> /Applications/Google Chrome.app/Contents/MacOS/Google Chrome --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --enable-automation --disable-infobars --disable-search-engine-choice-screen --disable-sync --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/var/folders/f7/d0qf3qnx70349ryd786r8rkc0000gn/T/playwright_chromiumdev_profile-rpw0GD --remote-debugging-pipe --no-startup-window\n<launched> pid=82044\n[pid=82044] <process did exit: exitCode=null, signal=SIGABRT>\n[pid=82044] starting temporary directories cleanup\nCall log:\n\u{1b}[2m  - <launching> /Applications/Google Chrome.app/Contents/MacOS/Google Chrome --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AvoidUnnecessaryBeforeUnloadCheckSync,BoundaryEventDispatchTracksNodeRemoval,DestroyProfileOnBrowserClose,DialMediaRouteProvider,GlobalMediaControls,HttpsUpgrades,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate,AutoDeElevate,RenderDocument,OptimizationHints --enable-features=CDPScreenshotNewSurface --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --edge-skip-compat-layer-relaunch --enable-automation --disable-infobars --disable-search-engine-choice-screen --disable-sync --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --user-data-dir=/var/folders/f7/d0qf3qnx70349ryd786r8rkc0000gn/T/playwright_chromiumdev_profile-rpw0GD --remote-debugging-pipe --no-startup-window\u{1b}[22m\n\u{1b}[2m  - <launched> pid=82044\u{1b}[22m\n\u{1b}[2m  - [pid=82044] <process did exit: exitCode=null, signal=SIGABRT>\u{1b}[22m\n\u{1b}[2m  - [pid=82044] starting temporary directories cleanup\u{1b}[22m\n\u{1b}[2m  - [pid=82044] <gracefully close start>\u{1b}[22m\n\u{1b}[2m  - [pid=82044] <kill>\u{1b
+... (truncated)
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:56:34Z)**_
+
+The first slide preview showed the browser screenshot artifact at the very top. I’m switching the slide capture to the inner slide surface, which avoids the page chrome/shadow edge, then I’ll regenerate the PDF from those cleaned captures.
+
+_**Agent (gpt-5.4 2026-04-11 10:56:36Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="apply_patch"><details>
+<summary>Tool use: **apply_patch**</summary>
+**Update: `deck-generator/scripts/export-anki-slides.js`**
+
+```diff
+@@
+-    const slides = page.locator('.slide');
++    const slides = page.locator('.slide-wrapper .slide-inner');
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:56:45Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `/Users/stugrey/.nvm/versions/node/v20.19.5/bin/node scripts/export-anki-slides.js --url=http://127.0.0.1:5173 --width=1696 --quality=94 --scale=2 --out=anki_build/slides_paper_pro_move_clean`</summary>
+```
+Command: /bin/zsh -lc '/Users/stugrey/.nvm/versions/node/v20.19.5/bin/node scripts/export-anki-slides.js --url=http://127.0.0.1:5173 --width=1696 --quality=94 --scale=2 --out=anki_build/slides_paper_pro_move_clean'
+Chunk ID: 0c6289
+Wall time: 1.0024 seconds
+Process running with session ID 57712
+Original token count: 0
+Output:
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:56:51Z)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="write_stdin"><details>
+<summary>Tool use: **write_stdin**</summary>
+```
+Command: /bin/zsh -lc '/Users/stugrey/.nvm/versions/node/v20.19.5/bin/node scripts/export-anki-slides.js --url=http://127.0.0.1:5173 --width=1696 --quality=94 --scale=2 --out=anki_build/slides_paper_pro_move_clean'
+Chunk ID: e0e3dd
+Wall time: 10.0024 seconds
+Process running with session ID 57712
+Original token count: 321
+Output:
+Exported slide-01-cover.jpg
+Exported slide-02-section-divider.jpg
+Exported slide-03-section-divider.jpg
+Exported slide-04-section-divider.jpg
+Exported slide-05-statement.jpg
+Exported slide-06-statement.jpg
+Exported slide-07-statement.jpg
+Exported slide-08-statement.jpg
+Exported slide-09-section-divider.jpg
+Exported slide-10-content.jpg
+Exported slide-11-data.jpg
+Exported slide-12-content.jpg
+Exported slide-13-section-divider.jpg
+Exported slide-14-content.jpg
+Exported slide-15-data.jpg
+Exported slide-16-content.jpg
+Exported slide-17-section-divider.jpg
+Exported slide-18-content.jpg
+Exported slide-19-content.jpg
+Exported slide-20-content.jpg
+Exported slide-21-statement.jpg
+Exported slide-22-section-divider.jpg
+Exported slide-23-content.jpg
+Exported slide-24-content.jpg
+Exported slide-25-content.jpg
+Exported slide-26-content.jpg
+Exported slide-27-section-divider.jpg
+Exported slide-28-content.jpg
+Exported slide-29-content.jpg
+Exported slide-30-content.jpg
+Exported slide-31-section-divider.jpg
+Exported slide-32-content.jpg
+Exported slide-33-content.jpg
+Exported slide-34-content.jpg
+Exported slide-35-content.jpg
+Exported slide-36-content.jpg
+Exported slide-37-content.jpg
+Exported slide-38-statement.jpg
+Exported slide-39-section-divider.jpg
+Exported slide-40-content.jpg
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:57:05Z)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="write_stdin"><details>
+<summary>Tool use: **write_stdin**</summary>
+```
+Command: /bin/zsh -lc '/Users/stugrey/.nvm/versions/node/v20.19.5/bin/node scripts/export-anki-slides.js --url=http://127.0.0.1:5173 --width=1696 --quality=94 --scale=2 --out=anki_build/slides_paper_pro_move_clean'
+Chunk ID: 485e10
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 73
+Output:
+Exported slide-41-content.jpg
+Exported slide-42-content.jpg
+Exported slide-43-statement.jpg
+Exported slide-44-statement.jpg
+
+Exported 44 current slides to /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/anki_build/slides_paper_pro_move_clean
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:57:13Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="view_image"><details>
+<summary>Tool use: **view_image**</summary>
+/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/anki_build/slides_paper_pro_move_clean/slide-01-cover.jpg
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:57:31Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command**</summary>
+```bash
+python3 - <<'PY'
+from PIL import Image, ImageStat
+from pathlib import Path
+for p in sorted(Path('anki_build/slides_paper_pro_move_clean').glob('slide-*.jpg'))[:12]:
+    im=Image.open(p).convert('RGB')
+    row=im.crop((0,0,im.width,60))
+    stat=ImageStat.Stat(row)
+    print(p.name, 'top_mean', tuple(round(x,1) for x in stat.mean), 'size', im.size)
+PY
+```
+```
+Command: /bin/zsh -lc "python3 - <<'PY'
+from PIL import Image, ImageStat
+from pathlib import Path
+for p in sorted(Path('anki_build/slides_paper_pro_move_clean').glob('slide-*.jpg'))[:12]:
+    im=Image.open(p).convert('RGB')
+    row=im.crop((0,0,im.width,60))
+    stat=ImageStat.Stat(row)
+    print(p.name, 'top_mean', tuple(round(x,1) for x in stat.mean), 'size', im.size)
+PY"
+Chunk ID: 03e1fc
+Wall time: 0.2672 seconds
+Process exited with code 0
+Original token count: 210
+Output:
+slide-01-cover.jpg top_mean (59.2, 45.2, 44.7) size (2400, 1350)
+slide-02-section-divider.jpg top_mean (41.7, 41.7, 41.7) size (2400, 1352)
+slide-03-section-divider.jpg top_mean (51.3, 53.8, 52.2) size (2400, 1352)
+slide-04-section-divider.jpg top_mean (41.7, 41.7, 41.7) size (2400, 1352)
+slide-05-statement.jpg top_mean (40.2, 41.1, 42.4) size (2400, 1352)
+slide-06-statement.jpg top_mean (47.3, 48.8, 49.0) size (2400, 1350)
+slide-07-statement.jpg top_mean (39.8, 40.9, 42.4) size (2400, 1352)
+slide-08-statement.jpg top_mean (41.4, 41.4, 41.4) size (2400, 1352)
+slide-09-section-divider.jpg top_mean (52.9, 55.8, 53.9) size (2400, 1352)
+slide-10-content.jpg top_mean (37.4, 41.5, 41.9) size (2400, 1352)
+slide-11-data.jpg top_mean (47.3, 48.8, 49.0) size (2400, 1350)
+slide-12-content.jpg top_mean (55.9, 56.2, 55.8) size (2400, 1352)
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:57:31Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command**</summary>
+```bash
+python3 - <<'PY'
+from PIL import Image, ImageStat
+from pathlib import Path
+for p in [Path('export/16x9/slide-01-cover.png'), Path('anki_build/slides_paper_pro_move_clean/slide-01-cover.jpg')]:
+    im=Image.open(p).convert('RGB')
+    row=im.crop((0,0,im.width,60))
+    print(p, ImageStat.Stat(row).mean)
+PY
+```
+```
+Command: /bin/zsh -lc "python3 - <<'PY'
+from PIL import Image, ImageStat
+from pathlib import Path
+for p in [Path('export/16x9/slide-01-cover.png'), Path('anki_build/slides_paper_pro_move_clean/slide-01-cover.jpg')]:
+    im=Image.open(p).convert('RGB')
+    row=im.crop((0,0,im.width,60))
+    print(p, ImageStat.Stat(row).mean)
+PY"
+Chunk ID: 3d5d39
+Wall time: 0.2825 seconds
+Process exited with code 0
+Original token count: 52
+Output:
+export/16x9/slide-01-cover.png [248.49429166666667, 95.47297222222223, 90.78425347222222]
+anki_build/slides_paper_pro_move_clean/slide-01-cover.jpg [59.23650694444444, 45.218604166666665, 44.74827777777778]
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:57:53Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `find node_modules/.vite -maxdepth 3 -type f -name '*html2canvas*' -print`</summary>
+```
+Command: /bin/zsh -lc "find node_modules/.vite -maxdepth 3 -type f -name '*html2canvas*' -print"
+Chunk ID: 3cebe0
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 21
+Output:
+node_modules/.vite/deps/html2canvas.js
+node_modules/.vite/deps/html2canvas.js.map
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:57:53Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `find node_modules/.vite -maxdepth 2 -type f | sed -n '1,80p'`</summary>
+```
+Command: /bin/zsh -lc "find node_modules/.vite -maxdepth 2 -type f | sed -n '1,80p'"
+Chunk ID: 8b854e
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 112
+Output:
+node_modules/.vite/deps/_metadata.json
+node_modules/.vite/deps/html2canvas.js
+node_modules/.vite/deps/three.js.map
+node_modules/.vite/deps/html2canvas.js.map
+node_modules/.vite/deps/chunk-NCBKGOGC.js
+node_modules/.vite/deps/chunk-NCBKGOGC.js.map
+node_modules/.vite/deps/three.js
+node_modules/.vite/deps/package.json
+node_modules/.vite/deps/three_addons_loaders_RGBELoader__js.js.map
+node_modules/.vite/deps/three_addons_loaders_RGBELoader__js.js
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:58:14Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="apply_patch"><details>
+<summary>Tool use: **apply_patch**</summary>
+**Update: `deck-generator/scripts/export-anki-slides.js`**
+
+```diff
+@@
+-import { mkdir, readFile } from 'node:fs/promises';
++import { mkdir, readFile, writeFile } from 'node:fs/promises';
+@@
+ const quality = Number(args.quality || 88);
+ const scale = Number(args.scale || 1);
++const renderer = args.renderer || 'screenshot';
+@@
+-    const slides = page.locator('.slide-wrapper .slide-inner');
++    const slides = page.locator('.slide-wrapper .slide');
+@@
+-      await slides.nth(i).screenshot({
+-        path: filepath,
+-        type: 'jpeg',
+-        quality,
+-        animations: 'disabled',
+-      });
++      if (renderer === 'html2canvas') {
++        const dataUrl = await slides.nth(i).evaluate(
++          async (el, { captureScale, captureQuality }) => {
++            const { default: html2canvas } = await import('/node_modules/.vite/deps/html2canvas.js');
++            const canvas = await html2canvas(el, {
++              scale: captureScale,
++              useCORS: true,
++              logging: false,
++              backgroundColor: null,
++            });
++            return canvas.toDataURL('image/jpeg', captureQuality / 100);
++          },
++          { captureScale: scale, captureQuality: quality },
++        );
++        await writeFile(filepath, Buffer.from(dataUrl.split(',')[1], 'base64'));
++      } else {
++        await slides.nth(i).screenshot({
++          path: filepath,
++          type: 'jpeg',
++          quality,
++          animations: 'disabled',
++        });
++      }
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:58:19Z)**_
+
+I found the capture artifact is specific to Playwright’s element screenshot path. The app’s own renderer uses `html2canvas`, so I’ve switched the export script to use that path for the Paper Pro Move images.
+
+_**Agent (gpt-5.4 2026-04-11 10:58:22Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `/Users/stugrey/.nvm/versions/node/v20.19.5/bin/node scripts/export-anki-slides.js --url=http://127.0.0.1:5173 --width=1696 --quality=94 --scale=2 --renderer=html2canvas --out=anki_build/slides_paper_pro_move_html2canvas`</summary>
+```
+Command: /bin/zsh -lc '/Users/stugrey/.nvm/versions/node/v20.19.5/bin/node scripts/export-anki-slides.js --url=http://127.0.0.1:5173 --width=1696 --quality=94 --scale=2 --renderer=html2canvas --out=anki_build/slides_paper_pro_move_html2canvas'
+Chunk ID: bce27a
+Wall time: 1.0025 seconds
+Process running with session ID 84001
+Original token count: 0
+Output:
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:58:30Z)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="write_stdin"><details>
+<summary>Tool use: **write_stdin**</summary>
+```
+Command: /bin/zsh -lc '/Users/stugrey/.nvm/versions/node/v20.19.5/bin/node scripts/export-anki-slides.js --url=http://127.0.0.1:5173 --width=1696 --quality=94 --scale=2 --renderer=html2canvas --out=anki_build/slides_paper_pro_move_html2canvas'
+Chunk ID: e0e22e
+Wall time: 10.0011 seconds
+Process running with session ID 84001
+Original token count: 281
+Output:
+Exported slide-01-cover.jpg
+Exported slide-02-section-divider.jpg
+Exported slide-03-section-divider.jpg
+Exported slide-04-section-divider.jpg
+Exported slide-05-statement.jpg
+Exported slide-06-statement.jpg
+Exported slide-07-statement.jpg
+Exported slide-08-statement.jpg
+Exported slide-09-section-divider.jpg
+Exported slide-10-content.jpg
+Exported slide-11-data.jpg
+Exported slide-12-content.jpg
+Exported slide-13-section-divider.jpg
+Exported slide-14-content.jpg
+Exported slide-15-data.jpg
+Exported slide-16-content.jpg
+Exported slide-17-section-divider.jpg
+Exported slide-18-content.jpg
+Exported slide-19-content.jpg
+Exported slide-20-content.jpg
+Exported slide-21-statement.jpg
+Exported slide-22-section-divider.jpg
+Exported slide-23-content.jpg
+Exported slide-24-content.jpg
+Exported slide-25-content.jpg
+Exported slide-26-content.jpg
+Exported slide-27-section-divider.jpg
+Exported slide-28-content.jpg
+Exported slide-29-content.jpg
+Exported slide-30-content.jpg
+Exported slide-31-section-divider.jpg
+Exported slide-32-content.jpg
+Exported slide-33-content.jpg
+Exported slide-34-content.jpg
+Exported slide-35-content.jpg
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:58:45Z)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="write_stdin"><details>
+<summary>Tool use: **write_stdin**</summary>
+```
+Command: /bin/zsh -lc '/Users/stugrey/.nvm/versions/node/v20.19.5/bin/node scripts/export-anki-slides.js --url=http://127.0.0.1:5173 --width=1696 --quality=94 --scale=2 --renderer=html2canvas --out=anki_build/slides_paper_pro_move_html2canvas'
+Chunk ID: ea5231
+Wall time: 10.0022 seconds
+Process running with session ID 84001
+Original token count: 71
+Output:
+Exported slide-36-content.jpg
+Exported slide-37-content.jpg
+Exported slide-38-statement.jpg
+Exported slide-39-section-divider.jpg
+Exported slide-40-content.jpg
+Exported slide-41-content.jpg
+Exported slide-42-content.jpg
+Exported slide-43-statement.jpg
+Exported slide-44-statement.jpg
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:59:00Z)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="write_stdin"><details>
+<summary>Tool use: **write_stdin**</summary>
+```
+Command: /bin/zsh -lc '/Users/stugrey/.nvm/versions/node/v20.19.5/bin/node scripts/export-anki-slides.js --url=http://127.0.0.1:5173 --width=1696 --quality=94 --scale=2 --renderer=html2canvas --out=anki_build/slides_paper_pro_move_html2canvas'
+Chunk ID: 9e4322
+Wall time: 5.0020 seconds
+Process running with session ID 84001
+Original token count: 0
+Output:
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:59:10Z)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="write_stdin"><details>
+<summary>Tool use: **write_stdin**</summary>
+```
+Command: /bin/zsh -lc '/Users/stugrey/.nvm/versions/node/v20.19.5/bin/node scripts/export-anki-slides.js --url=http://127.0.0.1:5173 --width=1696 --quality=94 --scale=2 --renderer=html2canvas --out=anki_build/slides_paper_pro_move_html2canvas'
+Chunk ID: 4e1710
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 43
+Output:
+
+Exported 44 current slides to /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/anki_build/slides_paper_pro_move_html2canvas
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:59:15Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="view_image"><details>
+<summary>Tool use: **view_image**</summary>
+/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/anki_build/slides_paper_pro_move_html2canvas/slide-01-cover.jpg
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:59:23Z)**_
+
+The cleaned capture is correct now: full slide, no top artifact. I’m rebuilding the final PDF from this clean set and replacing the earlier PDF.
+
+_**Agent (gpt-5.4 2026-04-11 10:59:25Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `python3 scripts/create-practice-pdf.py --profile paper-pro-move --slides-dir anki_build/slides_paper_pro_move_html2canvas --out output/pdf/teesside_keynote_practice_paper_pro_move.pdf`</summary>
+```
+Command: /bin/zsh -lc 'python3 scripts/create-practice-pdf.py --profile paper-pro-move --slides-dir anki_build/slides_paper_pro_move_html2canvas --out output/pdf/teesside_keynote_practice_paper_pro_move.pdf'
+Chunk ID: 82a5c7
+Wall time: 1.0023 seconds
+Process running with session ID 91003
+Original token count: 0
+Output:
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:59:31Z)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="write_stdin"><details>
+<summary>Tool use: **write_stdin**</summary>
+```
+Command: /bin/zsh -lc 'python3 scripts/create-practice-pdf.py --profile paper-pro-move --slides-dir anki_build/slides_paper_pro_move_html2canvas --out output/pdf/teesside_keynote_practice_paper_pro_move.pdf'
+Chunk ID: 1de6ea
+Wall time: 4.3562 seconds
+Process exited with code 0
+Original token count: 43
+Output:
+Created /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/output/pdf/teesside_keynote_practice_paper_pro_move.pdf
+Pages: 88
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:59:48Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command**</summary>
+```bash
+python3 - <<'PY'
+import importlib.util, json, re
+from pathlib import Path
+
+root = Path.cwd()
+spec = importlib.util.spec_from_file_location('practice_pdf', root / 'scripts/create-practice-pdf.py')
+mod = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(mod)
+content = json.loads((root / 'content.json').read_text())
+slides_dir = root / 'anki_build/slides_paper_pro_move_html2canvas'
+images = sorted(p for p in slides_dir.iterdir() if re.match(r'slide-\d\d-.*\.jpg$', p.name))
+out = root / 'output/pdf/previews'
+out.mkdir(parents=True, exist_ok=True)
+page_size = mod.PROFILES['paper-pro-move']['size']
+for idx in [1, 2, 11, 44]:
+    slide = content['slides'][idx - 1]
+    if idx in [1, 44]:
+        mod.make_slide_page(images[idx - 1], page_size).save(out / f'preview_slide_{idx:02d}.png')
+    mod.make_notes_page(slide, idx, len(content['slides']), page_size, mod.PROFILES['paper-pro-move']['label']).save(out / f'preview_notes_{idx:02d}.png')
+print('previews refreshed')
+PY
+```
+```
+Command: /bin/zsh -lc "python3 - <<'PY'
+import importlib.util, json, re
+from pathlib import Path
+
+root = Path.cwd()
+spec = importlib.util.spec_from_file_location('practice_pdf', root / 'scripts/create-practice-pdf.py')
+mod = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(mod)
+content = json.loads((root / 'content.json').read_text())
+slides_dir = root / 'anki_build/slides_paper_pro_move_html2canvas'
+images = sorted(p for p in slides_dir.iterdir() if re.match(r'slide-\\d\\d-.*\\.jpg"'$'"', p.name))
+out = root / 'output/pdf/previews'
+out.mkdir(parents=True, exist_ok=True)
+page_size = mod.PROFILES['paper-pro-move']['size']
+for idx in [1, 2, 11, 44]:
+    slide = content['slides'][idx - 1]
+    if idx in [1, 44]:
+        mod.make_slide_page(images[idx - 1], page_size).save(out / f'preview_slide_{idx:02d}.png')
+    mod.make_notes_page(slide, idx, len(content['slides']), page_size, mod.PROFILES['paper-pro-move']['label']).save(out / f'preview_notes_{idx:02d}.png')
+print('previews refreshed')
+PY"
+Chunk ID: 9f200e
+Wall time: 1.0018 seconds
+Process running with session ID 30279
+Original token count: 0
+Output:
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:59:54Z)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="write_stdin"><details>
+<summary>Tool use: **write_stdin**</summary>
+```
+Command: /bin/zsh -lc "python3 - <<'PY'
+import importlib.util, json, re
+from pathlib import Path
+
+root = Path.cwd()
+spec = importlib.util.spec_from_file_location('practice_pdf', root / 'scripts/create-practice-pdf.py')
+mod = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(mod)
+content = json.loads((root / 'content.json').read_text())
+slides_dir = root / 'anki_build/slides_paper_pro_move_html2canvas'
+images = sorted(p for p in slides_dir.iterdir() if re.match(r'slide-\\d\\d-.*\\.jpg"'$'"', p.name))
+out = root / 'output/pdf/previews'
+out.mkdir(parents=True, exist_ok=True)
+page_size = mod.PROFILES['paper-pro-move']['size']
+for idx in [1, 2, 11, 44]:
+    slide = content['slides'][idx - 1]
+    if idx in [1, 44]:
+        mod.make_slide_page(images[idx - 1], page_size).save(out / f'preview_slide_{idx:02d}.png')
+    mod.make_notes_page(slide, idx, len(content['slides']), page_size, mod.PROFILES['paper-pro-move']['label']).save(out / f'preview_notes_{idx:02d}.png')
+print('previews refreshed')
+PY"
+Chunk ID: fdba57
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 5
+Output:
+previews refreshed
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 10:59:59Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="view_image"><details>
+<summary>Tool use: **view_image**</summary>
+/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/output/pdf/previews/preview_slide_01.png
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 11:00:06Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="view_image"><details>
+<summary>Tool use: **view_image**</summary>
+/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/output/pdf/previews/preview_notes_01.png
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 11:00:13Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="view_image"><details>
+<summary>Tool use: **view_image**</summary>
+/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/output/pdf/previews/preview_notes_44.png
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 11:00:27Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `du -h output/pdf/teesside_keynote_practice_paper_pro_move.pdf`</summary>
+```
+Command: /bin/zsh -lc 'du -h output/pdf/teesside_keynote_practice_paper_pro_move.pdf'
+Chunk ID: 14e85e
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 16
+Output:
+ 11M	output/pdf/teesside_keynote_practice_paper_pro_move.pdf
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 11:00:27Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `sips -g pixelWidth -g pixelHeight output/pdf/teesside_keynote_practice_paper_pro_move.pdf`</summary>
+```
+Command: /bin/zsh -lc 'sips -g pixelWidth -g pixelHeight output/pdf/teesside_keynote_practice_paper_pro_move.pdf'
+Chunk ID: 0199e3
+Wall time: 0.0256 seconds
+Process exited with code 0
+Original token count: 50
+Output:
+/Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/output/pdf/teesside_keynote_practice_paper_pro_move.pdf
+  pixelWidth: 462.545
+  pixelHeight: 260.182
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 11:00:27Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command**</summary>
+```bash
+python3 - <<'PY'
+from pathlib import Path
+pdf = Path('output/pdf/teesside_keynote_practice_paper_pro_move.pdf').read_bytes()
+print('page_markers', pdf.count(b'/Type /Page'))
+PY
+```
+```
+Command: /bin/zsh -lc "python3 - <<'PY'
+from pathlib import Path
+pdf = Path('output/pdf/teesside_keynote_practice_paper_pro_move.pdf').read_bytes()
+print('page_markers', pdf.count(b'/Type /Page'))
+PY"
+Chunk ID: c9b7b2
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 4
+Output:
+page_markers 89
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 11:00:27Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `git status --short`</summary>
+```
+Command: /bin/zsh -lc 'git status --short'
+Chunk ID: 125035
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 96
+Output:
+ M ../.specstory/history/2026-04-11_08-25-56Z-start-the-deck-generator.md
+ M anki_build/teesside_keynote_slide_notes.apkg
+ M scripts/create-anki-deck.py
+ M scripts/export-anki-slides.js
+?? anki_build/slides_paper_pro_move/
+?? anki_build/slides_paper_pro_move_clean/
+?? anki_build/slides_paper_pro_move_html2canvas/
+?? output/
+?? scripts/__pycache__/
+?? scripts/create-practice-pdf.py
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 11:01:08Z)**_
+
+Done. I created the Paper Pro Move practice PDF here:
+
+[teesside_keynote_practice_paper_pro_move.pdf](/Users/stugrey/Documents/Student%20Voice%20ICD/Conferences:Webinars/Teesside%20Keynote/deck-generator/output/pdf/teesside_keynote_practice_paper_pro_move.pdf)
+
+It is optimized for the Paper Pro Move’s 16:9 display at `1696 x 954` / `264 ppi`, matching reMarkable’s official specs: https://remarkable.com/de-LI/products/remarkable-paper/pro-move/details/features
+
+Structure:
+
+```text
+Page 1: Slide 1 image
+Page 2: Slide 1 notes
+Page 3: Slide 2 image
+Page 4: Slide 2 notes
+...
+Page 87: Slide 44 image
+Page 88: Slide 44 notes
+```
+
+I also fixed the slide export path to use the app’s `html2canvas` renderer, which avoids the browser screenshot edge artifact, and added the repeatable PDF generator:
+
+[create-practice-pdf.py](/Users/stugrey/Documents/Student%20Voice%20ICD/Conferences:Webinars/Teesside%20Keynote/deck-generator/scripts/create-practice-pdf.py)
+
+Visual checks looked clean on representative slide and notes pages, including the opening slide and final notes page.
+
+---
+
+_**User (2026-04-11 11:05:04Z)**_
+
+great, uodate teh script to add a timestamp to the output pdf in the filename
+
+---
+
+_**Agent (gpt-5.4 2026-04-11 11:05:21Z)**_
+
+I’ll update the PDF generator so every generated PDF gets a timestamp in the filename, including when a custom `--out` path is supplied.
+
+_**Agent (gpt-5.4 2026-04-11 11:05:22Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `sed -n '1,280p' scripts/create-practice-pdf.py`</summary>
+```
+Command: /bin/zsh -lc "sed -n '1,280p' scripts/create-practice-pdf.py"
+Chunk ID: d55ab9
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 2292
+Output:
+#!/usr/bin/env python3
+import argparse
+import json
+import math
+import re
+from pathlib import Path
+
+from PIL import Image, ImageDraw, ImageFont
+
+
+PROFILES = {
+    "paper-pro-move": {
+        "size": (1696, 954),
+        "dpi": 264,
+        "suffix": "remarkable_paper_pro_move",
+        "label": "reMarkable Paper Pro Move",
+    },
+    "remarkable-2-landscape": {
+        "size": (1872, 1404),
+        "dpi": 226,
+        "suffix": "remarkable_2_landscape",
+        "label": "reMarkable 2 landscape",
+    },
+}
+
+FONT_REGULAR = "/System/Library/Fonts/Supplemental/Arial.ttf"
+FONT_BOLD = "/System/Library/Fonts/Supplemental/Arial Bold.ttf"
+
+
+def font(size, bold=False):
+    path = FONT_BOLD if bold else FONT_REGULAR
+    return ImageFont.truetype(path, size)
+
+
+def slide_title(slide):
+    return (
+        slide.get("title")
+        or slide.get("heading")
+        or slide.get("text")
+        or slide.get("section")
+        or "Untitled slide"
+    )
+
+
+def notes_for(slide):
+    notes = slide.get("notes") or {}
+    points = []
+    transition = notes.get("transition")
+    if transition:
+        points.append(("Transition", [str(transition)]))
+
+    note_points = [str(point) for point in notes.get("points") or []]
+    if note_points:
+        points.append(("Speaker notes", note_points))
+
+    if not points:
+        points.append(("Speaker notes", ["No speaker notes for this slide."]))
+
+    return points
+
+
+def wrap_text(draw, text, text_font, max_width):
+    words = text.split()
+    lines = []
+    line = ""
+
+    for word in words:
+        candidate = word if not line else f"{line} {word}"
+        if draw.textlength(candidate, font=text_font) <= max_width:
+            line = candidate
+            continue
+        if line:
+            lines.append(line)
+        line = word
+
+    if line:
+        lines.append(line)
+    return lines
+
+
+def text_height(draw, sections, width, body_font, heading_font, gap, line_gap):
+    total = 0
+    for heading, points in sections:
+        total += heading_font.size + gap
+        for point in points:
+            lines = wrap_text(draw, point, body_font, width)
+            total += max(1, len(lines)) * (body_font.size + line_gap)
+            total += gap
+        total += gap
+    return total
+
+
+def draw_wrapped(draw, xy, text, text_font, fill, width, line_gap, bullet=None):
+    x, y = xy
+    bullet_width = 0
+    if bullet:
+        bullet_width = int(text_font.size * 1.1)
+        draw.text((x, y), bullet, font=text_font, fill=fill)
+
+    for line in wrap_text(draw, text, text_font, width - bullet_width):
+        draw.text((x + bullet_width, y), line, font=text_font, fill=fill)
+        y += text_font.size + line_gap
+    return y
+
+
+def make_slide_page(image_path, page_size):
+    page_w, page_h = page_size
+    page = Image.new("RGB", page_size, "white")
+    slide = Image.open(image_path).convert("RGB")
+    slide = slide.resize(page_size, Image.Resampling.LANCZOS)
+    page.paste(slide, (0, 0))
+    return page
+
+
+def make_notes_page(slide, index, total, page_size, profile_label):
+    page_w, page_h = page_size
+    margin = int(page_w * 0.055)
+    page = Image.new("RGB", page_size, "#fbfbf8")
+    draw = ImageDraw.Draw(page)
+
+    title = slide_title(slide)
+    header_font = font(max(28, int(page_h * 0.043)), bold=True)
+    small_font = font(max(18, int(page_h * 0.022)))
+    heading_size = max(24, int(page_h * 0.034))
+    body_size = max(22, int(page_h * 0.031))
+
+    top = margin
+    draw.text((margin, top), f"Slide {index:02d} of {total}", font=small_font, fill="#666666")
+    draw.text(
+        (page_w - margin - int(page_w * 0.22), top),
+        profile_label,
+        font=small_font,
+        fill="#777777",
+    )
+
+    title_top = top + small_font.size + 22
+    title_lines = wrap_text(draw, title, header_font, page_w - (2 * margin))
+    for line in title_lines[:3]:
+        draw.text((margin, title_top), line, font=header_font, fill="#111111")
+        title_top += header_font.size + 8
+
+    rule_y = title_top + 18
+    draw.line((margin, rule_y, page_w - margin, rule_y), fill="#111111", width=3)
+
+    sections = notes_for(slide)
+    content_top = rule_y + 32
+    content_height = page_h - content_top - margin
+    content_width = page_w - (2 * margin)
+
+    for candidate_body_size in range(body_size, 17, -1):
+        body_font = font(candidate_body_size)
+        heading_font = font(max(20, int(candidate_body_size * 1.08)), bold=True)
+        line_gap = max(7, int(candidate_body_size * 0.32))
+        gap = max(10, int(candidate_body_size * 0.45))
+        if text_height(draw, sections, content_width, body_font, heading_font, gap, line_gap) <= content_height:
+            columns = 1
+            break
+    else:
+        columns = 2
+        body_font = font(max(17, int(body_size * 0.78)))
+        heading_font = font(max(19, int(body_size * 0.84)), bold=T
+... (truncated)
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 11:05:31Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `sed -n '280,340p' scripts/create-practice-pdf.py`</summary>
+```
+Command: /bin/zsh -lc "sed -n '280,340p' scripts/create-practice-pdf.py"
+Chunk ID: 6eec0e
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 10
+Output:
+
+
+if __name__ == "__main__":
+    main()
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 11:05:47Z)**_
+
+I’m making the timestamping happen at the output-path layer, so the PDF contents stay unchanged and only the filename behavior changes.
+
+_**Agent (gpt-5.4 2026-04-11 11:05:53Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="apply_patch"><details>
+<summary>Tool use: **apply_patch**</summary>
+**Update: `deck-generator/scripts/create-practice-pdf.py`**
+
+```diff
+@@
+ import argparse
+ import json
+ import math
+ import re
++from datetime import datetime
+ from pathlib import Path
+@@
+ def font(size, bold=False):
+     path = FONT_BOLD if bold else FONT_REGULAR
+     return ImageFont.truetype(path, size)
+ 
+ 
++def timestamp():
++    return datetime.now().strftime("%Y-%m-%dT%H-%M-%S")
++
++
++def timestamped_pdf_path(path):
++    if path.suffix:
++        return path.with_name(f"{path.stem}_{timestamp()}{path.suffix}")
++    return path.with_name(f"{path.name}_{timestamp()}.pdf")
++
++
+ def slide_title(slide):
+@@
+-    out_path = Path(args.out) if args.out else root / "output/pdf" / f"teesside_keynote_practice_{profile['suffix']}.pdf"
++    out_path = Path(args.out) if args.out else root / "output/pdf" / f"teesside_keynote_practice_{profile['suffix']}.pdf"
+     if not out_path.is_absolute():
+         out_path = root / out_path
++    out_path = timestamped_pdf_path(out_path)
+ 
+     page_count = build_pdf(content_path, slides_dir, out_path, args.profile)
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 11:06:06Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `python3 -m py_compile scripts/create-practice-pdf.py`</summary>
+```
+Command: /bin/zsh -lc 'python3 -m py_compile scripts/create-practice-pdf.py'
+Chunk ID: 2f09a1
+Wall time: 0.8168 seconds
+Process exited with code 0
+Original token count: 0
+Output:
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 11:06:06Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command**</summary>
+```bash
+python3 - <<'PY'
+import importlib.util
+from pathlib import Path
+spec = importlib.util.spec_from_file_location('practice_pdf', 'scripts/create-practice-pdf.py')
+mod = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(mod)
+print(mod.timestamped_pdf_path(Path('output/pdf/example.pdf')))
+PY
+```
+```
+Command: /bin/zsh -lc "python3 - <<'PY'
+import importlib.util
+from pathlib import Path
+spec = importlib.util.spec_from_file_location('practice_pdf', 'scripts/create-practice-pdf.py')
+mod = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(mod)
+print(mod.timestamped_pdf_path(Path('output/pdf/example.pdf')))
+PY"
+Chunk ID: 5b41de
+Wall time: 1.0021 seconds
+Process running with session ID 1274
+Original token count: 0
+Output:
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 11:06:06Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `git diff -- scripts/create-practice-pdf.py`</summary>
+```
+Command: /bin/zsh -lc 'git diff -- scripts/create-practice-pdf.py'
+Chunk ID: 6f3c90
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 0
+Output:
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 11:06:15Z)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="write_stdin"><details>
+<summary>Tool use: **write_stdin**</summary>
+```
+Command: /bin/zsh -lc "python3 - <<'PY'
+import importlib.util
+from pathlib import Path
+spec = importlib.util.spec_from_file_location('practice_pdf', 'scripts/create-practice-pdf.py')
+mod = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(mod)
+print(mod.timestamped_pdf_path(Path('output/pdf/example.pdf')))
+PY"
+Chunk ID: 513f90
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 11
+Output:
+output/pdf/example_2026-04-11T12-06-08.pdf
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 11:06:25Z)**_
+
+The timestamp helper compiled and produced filenames like `example_2026-04-11T12-06-08.pdf`. I’m running the generator once now so there is also a timestamped Paper Pro Move PDF on disk.
+
+_**Agent (gpt-5.4 2026-04-11 11:06:27Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `python3 scripts/create-practice-pdf.py --profile paper-pro-move --slides-dir anki_build/slides_paper_pro_move_html2canvas`</summary>
+```
+Command: /bin/zsh -lc 'python3 scripts/create-practice-pdf.py --profile paper-pro-move --slides-dir anki_build/slides_paper_pro_move_html2canvas'
+Chunk ID: 11b27f
+Wall time: 1.0017 seconds
+Process running with session ID 16941
+Original token count: 0
+Output:
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 11:06:36Z)**_
+
+<tool-use data-tool-type="unknown" data-tool-name="write_stdin"><details>
+<summary>Tool use: **write_stdin**</summary>
+```
+Command: /bin/zsh -lc 'python3 scripts/create-practice-pdf.py --profile paper-pro-move --slides-dir anki_build/slides_paper_pro_move_html2canvas'
+Chunk ID: d74879
+Wall time: 2.3124 seconds
+Process exited with code 0
+Original token count: 51
+Output:
+Created /Users/stugrey/Documents/Student Voice ICD/Conferences:Webinars/Teesside Keynote/deck-generator/output/pdf/teesside_keynote_practice_remarkable_paper_pro_move_2026-04-11T12-06-27.pdf
+Pages: 88
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 11:06:48Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `du -h output/pdf/teesside_keynote_practice_remarkable_paper_pro_move_2026-04-11T12-06-27.pdf`</summary>
+```
+Command: /bin/zsh -lc 'du -h output/pdf/teesside_keynote_practice_remarkable_paper_pro_move_2026-04-11T12-06-27.pdf'
+Chunk ID: 20a8e1
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 23
+Output:
+ 11M	output/pdf/teesside_keynote_practice_remarkable_paper_pro_move_2026-04-11T12-06-27.pdf
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 11:06:48Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="exec_command"><details>
+<summary>Tool use: **exec_command** `git status --short scripts/create-practice-pdf.py output/pdf`</summary>
+```
+Command: /bin/zsh -lc 'git status --short scripts/create-practice-pdf.py output/pdf'
+Chunk ID: d41a18
+Wall time: 0.0000 seconds
+Process exited with code 0
+Original token count: 13
+Output:
+?? output/pdf/
+?? scripts/create-practice-pdf.py
+```
+</details></tool-use>
+
+_**Agent (gpt-5.4 2026-04-11 11:06:59Z)**_
+
+Updated [create-practice-pdf.py](/Users/stugrey/Documents/Student%20Voice%20ICD/Conferences:Webinars/Teesside%20Keynote/deck-generator/scripts/create-practice-pdf.py) so generated PDFs now get a timestamp appended to the filename.
+
+I also regenerated the Paper Pro Move PDF with the new naming:
+
+[teesside_keynote_practice_remarkable_paper_pro_move_2026-04-11T12-06-27.pdf](/Users/stugrey/Documents/Student%20Voice%20ICD/Conferences:Webinars/Teesside%20Keynote/deck-generator/output/pdf/teesside_keynote_practice_remarkable_paper_pro_move_2026-04-11T12-06-27.pdf)
+
+Verified the script compiles and the new PDF is 88 pages, same alternating slide/notes structure.
