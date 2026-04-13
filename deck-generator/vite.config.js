@@ -3,6 +3,31 @@ import fs from 'fs';
 import path from 'path';
 import sharp from 'sharp';
 
+// Load OPENAI_API_KEY from the same .env the transcription script uses,
+// so /api/transcribe-voiceover can call Whisper without the secret ever
+// being hard-coded or committed. Override with env var OPENAI_ENV_PATH.
+const OPENAI_ENV_PATH = process.env.OPENAI_ENV_PATH
+  || '/Users/stugrey/Documents/Student Voice ICD/configs/student-voice-eleventy/.env';
+
+function loadEnvFile(envPath) {
+  if (!fs.existsSync(envPath)) return;
+  const src = fs.readFileSync(envPath, 'utf8');
+  for (const raw of src.split('\n')) {
+    const line = raw.trim();
+    if (!line || line.startsWith('#')) continue;
+    const m = line.match(/^(?:export\s+)?([A-Z_][A-Z0-9_]*)\s*=\s*(.*)$/i);
+    if (!m) continue;
+    let [, key, val] = m;
+    val = val.trim();
+    if ((val.startsWith('"') && val.endsWith('"')) ||
+        (val.startsWith("'") && val.endsWith("'"))) {
+      val = val.slice(1, -1);
+    }
+    if (!(key in process.env)) process.env[key] = val;
+  }
+}
+loadEnvFile(OPENAI_ENV_PATH);
+
 /** Helper: backup a file with a timestamp, then write new data */
 function backupAndWrite(filePath, data, ts) {
   const ext = path.extname(filePath);
@@ -184,6 +209,61 @@ function savePlugin() {
           res.setHeader('Content-Type', 'application/json');
           res.end(JSON.stringify({ ok: true, file: `voiceovers/${slideId}.${ext}`, bytes: buf.length }));
         } catch (e) { res.statusCode = 400; res.end(JSON.stringify({ error: e.message })); }
+      });
+
+      // Transcribe a per-slide voiceover audio file via OpenAI Whisper.
+      // Returns { ok, transcript, words } — the client merges these into
+      // slide.voiceover and persists them on the next /api/save.
+      server.middlewares.use('/api/transcribe-voiceover', async (req, res) => {
+        if (req.method !== 'POST') { res.statusCode = 405; res.end('Method not allowed'); return; }
+        let body = ''; for await (const chunk of req) body += chunk;
+        try {
+          const { slideId, file, mime } = JSON.parse(body);
+          if (!/^[a-z0-9]{4,32}$/i.test(slideId || '')) throw new Error('invalid slideId');
+          if (typeof file !== 'string' || !file) throw new Error('missing file');
+
+          const voiceoversDir = path.resolve('voiceovers');
+          const resolved = path.resolve(file);
+          if (!resolved.startsWith(voiceoversDir + path.sep)) throw new Error('path escapes voiceovers dir');
+          if (!fs.existsSync(resolved)) throw new Error('audio file not found');
+
+          const apiKey = process.env.OPENAI_API_KEY;
+          if (!apiKey) throw new Error('OPENAI_API_KEY not set');
+
+          const buf = fs.readFileSync(resolved);
+          const fd = new FormData();
+          fd.append('file', new Blob([buf], { type: mime || 'audio/webm' }), path.basename(resolved));
+          fd.append('model', 'whisper-1');
+          fd.append('response_format', 'verbose_json');
+          fd.append('timestamp_granularities[]', 'word');
+
+          const whisperRes = await fetch('https://api.openai.com/v1/audio/transcriptions', {
+            method: 'POST',
+            headers: { 'Authorization': `Bearer ${apiKey}` },
+            body: fd,
+          });
+          if (!whisperRes.ok) {
+            const text = await whisperRes.text();
+            throw new Error(`whisper ${whisperRes.status}: ${text.slice(0, 200)}`);
+          }
+          const result = await whisperRes.json();
+
+          const transcript = (result.text || '').trim();
+          const words = Array.isArray(result.words)
+            ? result.words.map(w => ({
+                word: w.word,
+                start: Number(w.start.toFixed(3)),
+                end: Number(w.end.toFixed(3)),
+              }))
+            : [];
+
+          res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify({ ok: true, transcript, words }));
+        } catch (e) {
+          res.statusCode = 400;
+          res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify({ ok: false, error: e.message }));
+        }
       });
 
       // Delete a per-slide voiceover audio file

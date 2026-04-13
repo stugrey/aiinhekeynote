@@ -424,6 +424,11 @@ body {
   text-align: center;
 }
 
+.voiceover-row.is-transcribing .voiceover-duration {
+  color: #5DD4E0;
+  animation: voiceover-pulse 1.2s ease-in-out infinite;
+}
+
 /* Top-bar voiceover summary chip */
 .ctrl-summary {
   display: inline-flex;

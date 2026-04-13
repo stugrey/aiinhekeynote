@@ -771,6 +771,7 @@ async function stopRecording() {
   }
 
   controls?.setBusy(true);
+  let savedFile = null;
   try {
     const res = await fetch('/api/save-voiceover', {
       method: 'POST',
@@ -789,6 +790,7 @@ async function stopRecording() {
         updated: new Date().toISOString(),
       };
       markDirty();
+      savedFile = data.file;
     }
   } catch (e) {
     console.error('Voiceover save failed:', e);
@@ -797,6 +799,40 @@ async function stopRecording() {
     controls?.setBusy(false);
     controls?.refresh();
     updateVoiceoverSummary();
+  }
+
+  // Kick off transcription in the background. Non-blocking: playback is
+  // already usable; the transcript and words just arrive a few seconds later.
+  if (savedFile) {
+    transcribeVoiceoverInBackground(slideIndex, slideId, savedFile, mime, controls);
+  }
+}
+
+async function transcribeVoiceoverInBackground(slideIndex, slideId, file, mime, controls) {
+  controls?.setTranscribing?.(true);
+  try {
+    const res = await fetch('/api/transcribe-voiceover', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ slideId, file, mime }),
+    });
+    const data = await res.json();
+    if (!data.ok) throw new Error(data.error || 'transcribe failed');
+
+    const slide = currentContent.slides[slideIndex];
+    // Guard against a re-record that already replaced the voiceover we were
+    // transcribing — only merge if the file on the slide is still ours.
+    if (slide?.voiceover?.file === file) {
+      slide.voiceover.transcript = data.transcript || '';
+      slide.voiceover.words = Array.isArray(data.words) ? data.words : [];
+      slide.voiceover.transcribed_at = new Date().toISOString();
+      markDirty();
+    }
+  } catch (e) {
+    console.warn('Auto-transcribe failed (voiceover still saved):', e);
+  } finally {
+    controls?.setTranscribing?.(false);
+    controls?.refresh?.();
   }
 }
 
@@ -913,18 +949,27 @@ function buildVoiceoverControls(slideIndex, { variant = 'label' } = {}) {
     setDurationText(text) {
       durationEl.textContent = text;
     },
+    setTranscribing(isTranscribing) {
+      wrapper.classList.toggle('is-transcribing', isTranscribing);
+      durationEl.dataset.transcribing = isTranscribing ? '1' : '';
+    },
     refresh() {
       const slide = currentContent.slides[slideIndex];
       const vo = slide?.voiceover;
       const isRecording = !!recordingState && recordingState.slideIndex === slideIndex;
+      const isTranscribing = wrapper.classList.contains('is-transcribing');
       recordBtn.classList.toggle('is-recording', isRecording);
       recordBtn.textContent = isRecording ? '■ Stop' : '● Rec';
       const hasTake = !!vo?.file;
       playBtn.disabled = !hasTake || isRecording;
       deleteBtn.disabled = !hasTake || isRecording;
-      durationEl.textContent = isRecording
-        ? durationEl.textContent || '0:00'
-        : (hasTake ? formatDuration(vo.duration) : '—');
+      if (isRecording) {
+        durationEl.textContent = durationEl.textContent || '0:00';
+      } else if (isTranscribing) {
+        durationEl.textContent = `${formatDuration(vo?.duration)} ⋯`;
+      } else {
+        durationEl.textContent = hasTake ? formatDuration(vo.duration) : '—';
+      }
     },
   };
 
