@@ -18,9 +18,9 @@
       "id": "ritlz567",
       "voiceover": {
         "file": "voiceovers/ritlz567.webm",
-        "duration": 2.58,
+        "duration": 34.14,
         "mime": "audio/webm;codecs=opus",
-        "updated": "2026-04-13T08:10:42.627Z"
+        "updated": "2026-04-13T17:54:02.549Z"
       }
     },
     {
@@ -34,7 +34,13 @@
           "So, what's my angle?"
         ]
       },
-      "id": "8btwwycb"
+      "id": "8btwwycb",
+      "voiceover": {
+        "file": "voiceovers/8btwwycb.webm",
+        "duration": 12.18,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T17:54:52.197Z"
+      }
     },
     {
       "type": "section-divider",
@@ -48,7 +54,13 @@
           "The point is that I understand AI systems as systems with architecture, coordination, and failure modes."
         ]
       },
-      "id": "dxm011jg"
+      "id": "dxm011jg",
+      "voiceover": {
+        "file": "voiceovers/dxm011jg.webm",
+        "duration": 32.82,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T17:55:28.083Z"
+      }
     },
     {
       "type": "section-divider",
@@ -63,7 +75,13 @@
           "Say explicitly that the talk comes from looking at both the technology and the institutional consequences."
         ]
       },
-      "id": "030zw8g3"
+      "id": "030zw8g3",
+      "voiceover": {
+        "file": "voiceovers/030zw8g3.webm",
+        "duration": 29.28,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T17:55:59.987Z"
+      }
     },
     {
       "type": "statement",
@@ -78,7 +96,13 @@
           "Use it to frame provenance, auditability, model dependencies, data use, and institutional legibility."
         ]
       },
-      "id": "wr0eqkbc"
+      "id": "wr0eqkbc",
+      "voiceover": {
+        "file": "voiceovers/wr0eqkbc.webm",
+        "duration": 48.48,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T17:56:52.943Z"
+      }
     },
     {
       "type": "statement",
@@ -93,7 +117,13 @@
           "This will later connect to assessment design, pedagogy, workflow simplification, and institutional incentives."
         ]
       },
-      "id": "6jl2x61h"
+      "id": "6jl2x61h",
+      "voiceover": {
+        "file": "voiceovers/6jl2x61h.webm",
+        "duration": 62.34,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T17:58:04.375Z"
+      }
     },
     {
       "type": "statement",
@@ -108,7 +138,13 @@
           "Later this will connect to data use, vendor leverage, upstream value capture, and platform power."
         ]
       },
-      "id": "im7qq82a"
+      "id": "im7qq82a",
+      "voiceover": {
+        "file": "voiceovers/im7qq82a.webm",
+        "duration": 28.68,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T17:59:00.784Z"
+      }
     },
     {
       "type": "statement",
@@ -129,7 +165,13 @@
         "distortion",
         "extraction"
       ],
-      "id": "xjak0m6a"
+      "id": "xjak0m6a",
+      "voiceover": {
+        "file": "voiceovers/xjak0m6a.webm",
+        "duration": 37.74,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T17:59:47.871Z"
+      }
     },
     {
       "type": "section-divider",
@@ -144,7 +186,13 @@
           "The job here is to make 'infrastructure' feel concrete."
         ]
       },
-      "id": "cc5s8812"
+      "id": "cc5s8812",
+      "voiceover": {
+        "file": "voiceovers/cc5s8812.webm",
+        "duration": 21.18,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:01:12.403Z"
+      }
     },
     {
       "type": "content",
@@ -176,7 +224,13 @@
       "lenses": [
         "transparency"
       ],
-      "id": "ffof1p5y"
+      "id": "ffof1p5y",
+      "voiceover": {
+        "file": "voiceovers/ffof1p5y.webm",
+        "duration": 90.36,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:03:15.112Z"
+      }
     },
     {
       "type": "data",
@@ -208,7 +262,13 @@
       "lenses": [
         "transparency"
       ],
-      "id": "pwut9ace"
+      "id": "pwut9ace",
+      "voiceover": {
+        "file": "voiceovers/pwut9ace.webm",
+        "duration": 44.16,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:04:20.746Z"
+      }
     },
     {
       "type": "content",
@@ -240,7 +300,13 @@
       "lenses": [
         "transparency"
       ],
-      "id": "fs8zgj39"
+      "id": "fs8zgj39",
+      "voiceover": {
+        "file": "voiceovers/fs8zgj39.webm",
+        "duration": 75.96,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:05:43.209Z"
+      }
     },
     {
       "type": "section-divider",
@@ -255,7 +321,13 @@
           "This is the bridge from institutional dependence to the infrastructure being built upstream."
         ]
       },
-      "id": "ivz05d7c"
+      "id": "ivz05d7c",
+      "voiceover": {
+        "file": "voiceovers/ivz05d7c.webm",
+        "duration": 36.12,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:06:26.869Z"
+      }
     },
     {
       "type": "content",
@@ -284,7 +356,13 @@
           "Institutional learning: Universities are also learning fast about policy, pedagogy and workflow design while the ecosystem is moving."
         ]
       },
-      "id": "8svyxotb"
+      "id": "8svyxotb",
+      "voiceover": {
+        "file": "voiceovers/8svyxotb.webm",
+        "duration": 115.02,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:08:28.228Z"
+      }
     },
     {
       "type": "data",
@@ -313,7 +391,13 @@
           "This helps explain why universities are mostly downstream actors unless they collaborate strategically."
         ]
       },
-      "id": "yx2lcivr"
+      "id": "yx2lcivr",
+      "voiceover": {
+        "file": "voiceovers/yx2lcivr.webm",
+        "duration": 58.32,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:09:31.904Z"
+      }
     },
     {
       "type": "content",
@@ -345,7 +429,13 @@
       "lenses": [
         "extraction"
       ],
-      "id": "u4yuctmd"
+      "id": "u4yuctmd",
+      "voiceover": {
+        "file": "voiceovers/u4yuctmd.webm",
+        "duration": 71.88,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:10:56.792Z"
+      }
     },
     {
       "type": "section-divider",
@@ -360,7 +450,13 @@
           "We are moving from 'how much is being built?' to 'whose assumptions shape what gets built?'"
         ]
       },
-      "id": "oqzr5jos"
+      "id": "oqzr5jos",
+      "voiceover": {
+        "file": "voiceovers/oqzr5jos.webm",
+        "duration": 15.24,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:11:18.885Z"
+      }
     },
     {
       "type": "content",
@@ -392,7 +488,13 @@
       "lenses": [
         "extraction"
       ],
-      "id": "xxq4u63y"
+      "id": "xxq4u63y",
+      "voiceover": {
+        "file": "voiceovers/xxq4u63y.webm",
+        "duration": 49.08,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:12:21.997Z"
+      }
     },
     {
       "type": "content",
@@ -424,7 +526,13 @@
       "lenses": [
         "distortion"
       ],
-      "id": "dk7d8vro"
+      "id": "dk7d8vro",
+      "voiceover": {
+        "file": "voiceovers/dk7d8vro.webm",
+        "duration": 70.56,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:13:36.261Z"
+      }
     },
     {
       "type": "content",
@@ -457,7 +565,13 @@
         "distortion",
         "extraction"
       ],
-      "id": "ogeiczgo"
+      "id": "ogeiczgo",
+      "voiceover": {
+        "file": "voiceovers/ogeiczgo.webm",
+        "duration": 40.32,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:14:27.801Z"
+      }
     },
     {
       "type": "statement",
@@ -477,7 +591,13 @@
         "distortion",
         "extraction"
       ],
-      "id": "ws8q3q7s"
+      "id": "ws8q3q7s",
+      "voiceover": {
+        "file": "voiceovers/ws8q3q7s.webm",
+        "duration": 23.34,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:15:02.630Z"
+      }
     },
     {
       "type": "section-divider",
@@ -492,7 +612,13 @@
           "This is where the three opening lenses start paying off most clearly."
         ]
       },
-      "id": "h2lgxed2"
+      "id": "h2lgxed2",
+      "voiceover": {
+        "file": "voiceovers/h2lgxed2.webm",
+        "duration": 9.6,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:19:34.978Z"
+      }
     },
     {
       "type": "content",
@@ -524,7 +650,13 @@
       "lenses": [
         "distortion"
       ],
-      "id": "tonq1pqj"
+      "id": "tonq1pqj",
+      "voiceover": {
+        "file": "voiceovers/tonq1pqj.webm",
+        "duration": 66.06,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:20:45.683Z"
+      }
     },
     {
       "type": "content",
@@ -556,7 +688,13 @@
       "lenses": [
         "distortion"
       ],
-      "id": "kl876060"
+      "id": "kl876060",
+      "voiceover": {
+        "file": "voiceovers/kl876060.webm",
+        "duration": 32.04,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:21:38.414Z"
+      }
     },
     {
       "type": "content",
@@ -588,7 +726,13 @@
       "lenses": [
         "distortion"
       ],
-      "id": "lkp7e7q3"
+      "id": "lkp7e7q3",
+      "voiceover": {
+        "file": "voiceovers/lkp7e7q3.webm",
+        "duration": 66.48,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:22:57.409Z"
+      }
     },
     {
       "type": "content",
@@ -621,7 +765,13 @@
         "transparency",
         "extraction"
       ],
-      "id": "xt0d6hjn"
+      "id": "xt0d6hjn",
+      "voiceover": {
+        "file": "voiceovers/xt0d6hjn.webm",
+        "duration": 99.42,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:25:02.461Z"
+      }
     },
     {
       "type": "section-divider",
@@ -636,7 +786,13 @@
           "The audience should recognise a lifecycle, not a conspiracy."
         ]
       },
-      "id": "ujtfbzhp"
+      "id": "ujtfbzhp",
+      "voiceover": {
+        "file": "voiceovers/ujtfbzhp.webm",
+        "duration": 17.04,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:25:24.808Z"
+      }
     },
     {
       "type": "content",
@@ -669,7 +825,13 @@
         "distortion",
         "extraction"
       ],
-      "id": "ho9zk167"
+      "id": "ho9zk167",
+      "voiceover": {
+        "file": "voiceovers/ho9zk167.webm",
+        "duration": 50.82,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:26:17.869Z"
+      }
     },
     {
       "type": "content",
@@ -702,7 +864,13 @@
         "transparency",
         "distortion"
       ],
-      "id": "9b4oqqw8"
+      "id": "9b4oqqw8",
+      "voiceover": {
+        "file": "voiceovers/9b4oqqw8.webm",
+        "duration": 36.36,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:27:00.618Z"
+      }
     },
     {
       "type": "content",
@@ -731,7 +899,13 @@
       "lenses": [
         "transparency"
       ],
-      "id": "gecyb3ge"
+      "id": "gecyb3ge",
+      "voiceover": {
+        "file": "voiceovers/gecyb3ge.webm",
+        "duration": 60.12,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:28:06.874Z"
+      }
     },
     {
       "type": "section-divider",
@@ -746,7 +920,13 @@
           "The answer remains neither refusal nor surrender; it is now being named more fully."
         ]
       },
-      "id": "z4m973tm"
+      "id": "z4m973tm",
+      "voiceover": {
+        "file": "voiceovers/z4m973tm.webm",
+        "duration": 15.48,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:29:48.600Z"
+      }
     },
     {
       "type": "content",
@@ -776,7 +956,13 @@
           "Refuse some things: Reject deployments that undermine educational purpose even if they look efficient on paper."
         ]
       },
-      "id": "b2s7kc02"
+      "id": "b2s7kc02",
+      "voiceover": {
+        "file": "voiceovers/b2s7kc02.webm",
+        "duration": 78.78,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:31:10.186Z"
+      }
     },
     {
       "type": "content",
@@ -808,7 +994,13 @@
       "lenses": [
         "distortion"
       ],
-      "id": "4khcug5l"
+      "id": "4khcug5l",
+      "voiceover": {
+        "file": "voiceovers/4khcug5l.webm",
+        "duration": 67.26,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:32:21.178Z"
+      }
     },
     {
       "type": "statement",
@@ -830,7 +1022,13 @@
       "lenses": [
         "transparency"
       ],
-      "id": "yxc0p6q1"
+      "id": "yxc0p6q1",
+      "voiceover": {
+        "file": "voiceovers/yxc0p6q1.webm",
+        "duration": 40.2,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:33:08.418Z"
+      }
     },
     {
       "type": "content",
@@ -863,7 +1061,13 @@
         "transparency",
         "extraction"
       ],
-      "id": "sgjm0lnz"
+      "id": "sgjm0lnz",
+      "voiceover": {
+        "file": "voiceovers/sgjm0lnz.webm",
+        "duration": 63.06,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:34:17.997Z"
+      }
     },
     {
       "type": "content",
@@ -896,7 +1100,13 @@
         "transparency",
         "extraction"
       ],
-      "id": "ux8ziv1z"
+      "id": "ux8ziv1z",
+      "voiceover": {
+        "file": "voiceovers/ux8ziv1z.webm",
+        "duration": 50.28,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:35:23.831Z"
+      }
     },
     {
       "type": "content",
@@ -929,7 +1139,13 @@
         "distortion",
         "extraction"
       ],
-      "id": "dw3hcdtx"
+      "id": "dw3hcdtx",
+      "voiceover": {
+        "file": "voiceovers/dw3hcdtx.webm",
+        "duration": 11.88,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:35:43.595Z"
+      }
     },
     {
       "type": "statement",
@@ -950,7 +1166,13 @@
         "distortion",
         "extraction"
       ],
-      "id": "luik9h53"
+      "id": "luik9h53",
+      "voiceover": {
+        "file": "voiceovers/luik9h53.webm",
+        "duration": 38.7,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:37:39.778Z"
+      }
     },
     {
       "type": "section-divider",
@@ -965,7 +1187,13 @@
           "The tone here should become slightly more civic and decision-oriented."
         ]
       },
-      "id": "8fwh0zps"
+      "id": "8fwh0zps",
+      "voiceover": {
+        "file": "voiceovers/8fwh0zps.webm",
+        "duration": 8.94,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:38:20.669Z"
+      }
     },
     {
       "type": "content",
@@ -994,7 +1222,13 @@
           "Stronger public capacity: Sector collaboration creates standards, evaluation routines and alternatives that keep the system contestable."
         ]
       },
-      "id": "2wlvzyw9"
+      "id": "2wlvzyw9",
+      "voiceover": {
+        "file": "voiceovers/2wlvzyw9.webm",
+        "duration": 60.3,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:39:23.826Z"
+      }
     },
     {
       "type": "content",
@@ -1027,7 +1261,13 @@
         "distortion",
         "extraction"
       ],
-      "id": "p3nwrkxy"
+      "id": "p3nwrkxy",
+      "voiceover": {
+        "file": "voiceovers/p3nwrkxy.webm",
+        "duration": 39.72,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:40:13.124Z"
+      }
     },
     {
       "type": "content",
@@ -1061,7 +1301,13 @@
         "distortion",
         "extraction"
       ],
-      "id": "4d5d7k12"
+      "id": "4d5d7k12",
+      "voiceover": {
+        "file": "voiceovers/4d5d7k12.webm",
+        "duration": 88.32,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:41:46.662Z"
+      }
     },
     {
       "type": "statement",
@@ -1082,7 +1328,13 @@
         "distortion",
         "extraction"
       ],
-      "id": "5qubwozg"
+      "id": "5qubwozg",
+      "voiceover": {
+        "file": "voiceovers/5qubwozg.webm",
+        "duration": 22.62,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:42:15.423Z"
+      }
     },
     {
       "type": "statement",
@@ -1103,7 +1355,13 @@
         "distortion",
         "extraction"
       ],
-      "id": "t3j2ripk"
+      "id": "t3j2ripk",
+      "voiceover": {
+        "file": "voiceovers/t3j2ripk.webm",
+        "duration": 24.3,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T18:42:42.259Z"
+      }
     }
   ]
 }
