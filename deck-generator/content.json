@@ -2,7 +2,7 @@
   "slides": [
     {
       "type": "cover",
-      "title": "Who Will Control the AI Infrastructure of Higher Education?",
+      "title": "Who Will Control the\nAI Infrastructure\nof Higher Education?",
       "subtitle": "From useful tools to structural dependence, and how universities can still shape their future",
       "author": "Dr Stuart Grey",
       "badge": "Future Facing Learning and AI in Higher Education 2026",
@@ -10,10 +10,17 @@
       "notes": {
         "transition": "Open with the question, not with housekeeping.",
         "points": [
-          "Frame the keynote as a shift from 'how should we use AI?' to 'who controls the infrastructure we are starting to rely on?'",
-          "Say this is a governance talk for a room already thinking about pedagogy, assessment, and practice.",
-          "Flag that the talk is neither anti-AI nor anti-industry; it is about stewardship."
+          "Frame the keynote as a shift from 'how should we use AI?' to 'who controls the AI we use?'",
+          "You will hear talks about pedagogy, assessment, and practice.",
+          "This talk is neither anti-AI nor anti-industry; it is about governance."
         ]
+      },
+      "id": "ritlz567",
+      "voiceover": {
+        "file": "voiceovers/ritlz567.webm",
+        "duration": 2.58,
+        "mime": "audio/webm;codecs=opus",
+        "updated": "2026-04-13T08:10:42.627Z"
       }
     },
     {
@@ -24,11 +31,10 @@
       "notes": {
         "transition": "Move from the big question to why I am the person making this argument.",
         "points": [
-          "Keep this very brief: this is not biography for its own sake.",
-          "Use it to establish that the perspective comes from both technical AI work and practical HE institutional work.",
-          "Set up the next two slides as the two halves of that perspective."
+          "So, what's my angle?"
         ]
-      }
+      },
+      "id": "8btwwycb"
     },
     {
       "type": "section-divider",
@@ -39,10 +45,10 @@
         "transition": "Take the first half of that perspective: technical grounding.",
         "points": [
           "Use this to show I have a machine learning / AI research background, not just a policy interest.",
-          "The point is that I understand AI systems as systems with architecture, coordination, and failure modes.",
-          "Do not dwell on the thesis details; translate it into credibility for seeing the stack."
+          "The point is that I understand AI systems as systems with architecture, coordination, and failure modes."
         ]
-      }
+      },
+      "id": "dxm011jg"
     },
     {
       "type": "section-divider",
@@ -56,7 +62,8 @@
           "This means I see what AI and data practices look like inside real institutional workflows, not only in theory.",
           "Say explicitly that the talk comes from looking at both the technology and the institutional consequences."
         ]
-      }
+      },
+      "id": "030zw8g3"
     },
     {
       "type": "statement",
@@ -68,10 +75,10 @@
         "transition": "Now give the room the first of three lenses for reading the rest of the talk.",
         "points": [
           "Transparency asks: what can institutions actually see, inspect, explain, and contest?",
-          "Use it to frame provenance, auditability, model dependencies, data use, and institutional legibility.",
-          "Deliver it as a clean beat, not a full explanation yet."
+          "Use it to frame provenance, auditability, model dependencies, data use, and institutional legibility."
         ]
-      }
+      },
+      "id": "wr0eqkbc"
     },
     {
       "type": "statement",
@@ -83,10 +90,10 @@
         "transition": "Add the second lens by shifting from visibility to shape.",
         "points": [
           "Distortion asks what gets bent when systems reward what is easy to capture, measure, or automate.",
-          "This will later connect to assessment design, pedagogy, workflow simplification, and institutional incentives.",
-          "Keep the rhythm deliberate so the triad lands."
+          "This will later connect to assessment design, pedagogy, workflow simplification, and institutional incentives."
         ]
-      }
+      },
+      "id": "6jl2x61h"
     },
     {
       "type": "statement",
@@ -98,22 +105,22 @@
         "transition": "Complete the triad with the political-economy lens.",
         "points": [
           "Extraction asks who captures value when educational activity becomes data, workflow, or dependency.",
-          "Later this will connect to data use, vendor leverage, rent streams, and platform power.",
-          "Make clear that these are not three separate topics; they are three ways of seeing the same infrastructure."
+          "Later this will connect to data use, vendor leverage, upstream value capture, and platform power."
         ]
-      }
+      },
+      "id": "im7qq82a"
     },
     {
       "type": "statement",
       "section": "",
-      "text": "The AI argument in higher education is no longer mainly about whether the tools are impressive. It is about who sets the terms of dependence.",
-      "highlight": "terms of dependence",
+      "text": "The AI argument in higher education is no longer mainly about whether the tools are impressive. It is about who sets the terms on which we use AI.",
+      "highlight": "terms on which we use AI",
       "attribution": "",
       "notes": {
         "transition": "Now make the frame explicit and turn the lenses into the keynote thesis.",
         "points": [
           "Say that the argument is no longer mainly about whether the tools are impressive.",
-          "Say the deeper question is who sets the terms of dependence as AI becomes normal infrastructure.",
+          "Say the deeper question is who sets the terms on which we use AI as AI becomes normal infrastructure.",
           "Use this as the bridge from the opening frame into the body of the talk."
         ]
       },
@@ -121,7 +128,8 @@
         "transparency",
         "distortion",
         "extraction"
-      ]
+      ],
+      "id": "xjak0m6a"
     },
     {
       "type": "section-divider",
@@ -135,7 +143,8 @@
           "Use the subtitle to tell the audience we are now moving from framing to diagnosis.",
           "The job here is to make 'infrastructure' feel concrete."
         ]
-      }
+      },
+      "id": "cc5s8812"
     },
     {
       "type": "content",
@@ -166,7 +175,8 @@
       },
       "lenses": [
         "transparency"
-      ]
+      ],
+      "id": "ffof1p5y"
     },
     {
       "type": "data",
@@ -197,7 +207,8 @@
       },
       "lenses": [
         "transparency"
-      ]
+      ],
+      "id": "pwut9ace"
     },
     {
       "type": "content",
@@ -220,12 +231,16 @@
         "points": [
           "If governance is lagging behind use, the answer cannot be a thin guidance document.",
           "The institution needs coordination, assurance, foresight and mission-level steering across the whole system.",
-          "Use this as the first practical move so the talk does not leave action until the end."
+          "Use this as the first practical move so the talk does not leave action until the end.",
+          "Coordinate the edge: Join up local experimentation so teaching, support, procurement and data decisions are not scattered.",
+          "Build assurance: Test tools, document risk and create routes for review and contestation before high-stakes use.",
+          "Steer by mission: Make senior governance articulate what kind of university the AI stack is supposed to serve."
         ]
       },
       "lenses": [
         "transparency"
-      ]
+      ],
+      "id": "fs8zgj39"
     },
     {
       "type": "section-divider",
@@ -239,7 +254,8 @@
           "Signal that the next slides are not dismissing AI as hype; they are asking what durable capacity the boom is creating, and for whom.",
           "This is the bridge from institutional dependence to the infrastructure being built upstream."
         ]
-      }
+      },
+      "id": "ivz05d7c"
     },
     {
       "type": "content",
@@ -267,7 +283,8 @@
           "Open models and hardware: Maturing open models and post-boom hardware markets can make sector alternatives more plausible over time.",
           "Institutional learning: Universities are also learning fast about policy, pedagogy and workflow design while the ecosystem is moving."
         ]
-      }
+      },
+      "id": "8svyxotb"
     },
     {
       "type": "data",
@@ -295,7 +312,8 @@
           "The point is not memorising exact numbers; it is seeing how far beyond single-university scale this market operates.",
           "This helps explain why universities are mostly downstream actors unless they collaborate strategically."
         ]
-      }
+      },
+      "id": "yx2lcivr"
     },
     {
       "type": "content",
@@ -326,7 +344,8 @@
       },
       "lenses": [
         "extraction"
-      ]
+      ],
+      "id": "u4yuctmd"
     },
     {
       "type": "section-divider",
@@ -340,7 +359,8 @@
           "Use the subtitle to signal that the issue is not only lock-in but agenda-setting and mission drift.",
           "We are moving from 'how much is being built?' to 'whose assumptions shape what gets built?'"
         ]
-      }
+      },
+      "id": "oqzr5jos"
     },
     {
       "type": "content",
@@ -371,7 +391,8 @@
       },
       "lenses": [
         "extraction"
-      ]
+      ],
+      "id": "xxq4u63y"
     },
     {
       "type": "content",
@@ -402,7 +423,8 @@
       },
       "lenses": [
         "distortion"
-      ]
+      ],
+      "id": "dk7d8vro"
     },
     {
       "type": "content",
@@ -434,7 +456,8 @@
       "lenses": [
         "distortion",
         "extraction"
-      ]
+      ],
+      "id": "ogeiczgo"
     },
     {
       "type": "statement",
@@ -453,7 +476,8 @@
       "lenses": [
         "distortion",
         "extraction"
-      ]
+      ],
+      "id": "ws8q3q7s"
     },
     {
       "type": "section-divider",
@@ -467,7 +491,8 @@
           "Signal that the next slides are about educational consequences, not just market structure.",
           "This is where the three opening lenses start paying off most clearly."
         ]
-      }
+      },
+      "id": "h2lgxed2"
     },
     {
       "type": "content",
@@ -498,7 +523,8 @@
       },
       "lenses": [
         "distortion"
-      ]
+      ],
+      "id": "tonq1pqj"
     },
     {
       "type": "content",
@@ -529,7 +555,8 @@
       },
       "lenses": [
         "distortion"
-      ]
+      ],
+      "id": "kl876060"
     },
     {
       "type": "content",
@@ -544,7 +571,7 @@
           "title": "Surface metrics"
         },
         {
-          "title": "Partner visibility"
+          "title": "Platform visibility"
         }
       ],
       "notes": {
@@ -555,17 +582,18 @@
           "This is a subtle but central claim: metrics and affordances become curricular pressure.",
           "Standardisation pressure: Assessments and activities may drift toward formats that are easy to auto-score, summarise or monitor.",
           "Surface metrics: Completion, engagement and usage are privileged because they are measurable, even when they are weak proxies for learning.",
-          "Partner visibility: Platforms and publishers can become the default route through which content, prompts and resources are surfaced."
+          "Platform visibility: Platforms and publishers can become the default route through which content, prompts and resources are surfaced."
         ]
       },
       "lenses": [
         "distortion"
-      ]
+      ],
+      "id": "lkp7e7q3"
     },
     {
       "type": "content",
       "section": "What dependence does",
-      "heading": "Educational data can become a rent stream unless it is governed",
+      "heading": "Educational data can be captured unless it is governed",
       "body": "Universities sit on rich corpora of writing, interaction and workflow data. Once AI layers are integrated, those traces become commercially valuable far beyond their immediate educational use unless institutions treat them as governed assets.",
       "points": [
         {
@@ -581,18 +609,19 @@
       "notes": {
         "transition": "Now bring in extraction.",
         "points": [
-          "Educational data does not only support services; it can become a rent stream.",
+          "Educational data does not only support services; it can be pulled into upstream value capture.",
           "Explain behavioural exhaust, model improvement, upstream value capture and governance in plain institutional terms.",
           "The room should hear that data governance is about political economy, not only compliance.",
           "Behavioural exhaust: Prompts, drafts, clicks, revisions and case interactions all become telemetry.",
-          "Upstream capture: Value created from public educational activity can be turned into private rent streams and model advantage elsewhere.",
+          "Upstream capture: Value created from public educational activity can be captured upstream and turned into model advantage elsewhere.",
           "Governed asset: Separate operational delivery, evaluation and model-improvement uses rather than letting them blur together."
         ]
       },
       "lenses": [
         "transparency",
         "extraction"
-      ]
+      ],
+      "id": "xt0d6hjn"
     },
     {
       "type": "section-divider",
@@ -606,7 +635,8 @@
           "Say that platforms rarely begin with a visible squeeze; they usually begin with generosity.",
           "The audience should recognise a lifecycle, not a conspiracy."
         ]
-      }
+      },
+      "id": "ujtfbzhp"
     },
     {
       "type": "content",
@@ -638,7 +668,8 @@
       "lenses": [
         "distortion",
         "extraction"
-      ]
+      ],
+      "id": "ho9zk167"
     },
     {
       "type": "content",
@@ -653,7 +684,7 @@
           "title": "Investment compounds"
         },
         {
-          "title": "Architecture governs"
+          "title": "Options narrow"
         }
       ],
       "notes": {
@@ -664,13 +695,14 @@
           "Say plainly that procurement becomes governance because procurement shapes architecture.",
           "Standards harden: File formats, APIs, assessment rules and reporting practices settle around early winners.",
           "Investment compounds: Training, integrations and custom workflows make the original choice seem ever more rational.",
-          "Architecture governs: Code, market structure and institutional norms together shape what later choices still feel realistic."
+          "Options narrow: Code, market structure and institutional norms together shape what later choices still feel realistic."
         ]
       },
       "lenses": [
         "transparency",
         "distortion"
-      ]
+      ],
+      "id": "9b4oqqw8"
     },
     {
       "type": "content",
@@ -698,7 +730,8 @@
       },
       "lenses": [
         "transparency"
-      ]
+      ],
+      "id": "gecyb3ge"
     },
     {
       "type": "section-divider",
@@ -712,7 +745,8 @@
           "This section consolidates those scattered implications into an explicit stewardship posture.",
           "The answer remains neither refusal nor surrender; it is now being named more fully."
         ]
-      }
+      },
+      "id": "z4m973tm"
     },
     {
       "type": "content",
@@ -738,9 +772,11 @@
           "The important point is doing that from deliberate governance rather than drift.",
           "Buy some things: Use commercial infrastructure where it is genuinely useful and where the terms are governable.",
           "Build or host selectively: Keep local or sector-controlled options for high-value or high-risk uses where continuity, privacy or contestability matter most.",
+          "The point is not to recreate frontier labs; it is to hold enough capability to negotiate, evaluate and keep critical educational functions under institutional control.",
           "Refuse some things: Reject deployments that undermine educational purpose even if they look efficient on paper."
         ]
-      }
+      },
+      "id": "b2s7kc02"
     },
     {
       "type": "content",
@@ -755,40 +791,31 @@
           "title": "Inclusion and accessibility"
         },
         {
-          "title": "Mission guardrail"
+          "title": "Educational purpose"
         }
       ],
       "notes": {
         "transition": "Start the constructive section from purpose.",
         "points": [
           "Strategy has to begin with what the university is trying to protect and improve, not with tool adoption targets.",
-          "Use human contact, inclusion, and mission as guardrails.",
+          "Use human contact, inclusion, and educational purpose as guardrails.",
           "This keeps the policy agenda tied to educational purpose rather than IT modernisation alone.",
           "Human contact: Use AI to create more time for mentoring, feedback, discussion and care.",
           "Inclusion and accessibility: Prioritise translation, captioning, alternative formats and scaffolded support.",
-          "Mission guardrail: Explicitly reject headcount reduction or content automation in place of teaching as primary aims."
+          "Educational purpose: Explicitly reject headcount reduction or content automation in place of teaching as primary aims."
         ]
       },
       "lenses": [
         "distortion"
-      ]
+      ],
+      "id": "4khcug5l"
     },
     {
-      "type": "content",
+      "type": "statement",
       "section": "A different strategy",
-      "heading": "Make evaluation a core institutional capability",
-      "body": "Universities should not rely on product demos, generic benchmarks or marketing claims to decide what is acceptable in teaching and governance.",
-      "points": [
-        {
-          "title": "Task-based testing"
-        },
-        {
-          "title": "Independent scrutiny"
-        },
-        {
-          "title": "Continuous review"
-        }
-      ],
+      "text": "Make evaluation a core institutional capability",
+      "highlight": "evaluation",
+      "attribution": "",
       "notes": {
         "transition": "Then move to evaluation.",
         "points": [
@@ -802,7 +829,8 @@
       },
       "lenses": [
         "transparency"
-      ]
+      ],
+      "id": "yxc0p6q1"
     },
     {
       "type": "content",
@@ -834,7 +862,8 @@
       "lenses": [
         "transparency",
         "extraction"
-      ]
+      ],
+      "id": "sgjm0lnz"
     },
     {
       "type": "content",
@@ -866,40 +895,41 @@
       "lenses": [
         "transparency",
         "extraction"
-      ]
+      ],
+      "id": "ux8ziv1z"
     },
     {
       "type": "content",
       "section": "A different strategy",
-      "heading": "The boom leaves ingredients for shared university infrastructure",
-      "body": "Post-boom hardware, mature open-weight models and the expertise already distributed across computer science, education and social science make right-sized public-interest systems more plausible than they looked a few years ago.",
+      "heading": "The boom creates a window for shared sector capacity",
+      "body": "As hardware markets soften and open-weight models mature, the opportunity is to build common services around university-specific tasks rather than repeat the frontier race at smaller scale.",
       "points": [
         {
-          "title": "Repurposed post-boom hardware"
+          "title": "Shared compute pools"
         },
         {
-          "title": "Shared smaller models"
+          "title": "University-specific services"
         },
         {
-          "title": "Interdisciplinary design"
+          "title": "Common assurance"
         }
       ],
       "notes": {
         "transition": "Then show why this is newly plausible.",
         "points": [
-          "This is where you bring in the leftovers of the boom as opportunity rather than only market residue.",
-          "Say that the sector does not need to beat hyperscalers at frontier scale to build useful capacity of its own.",
-          "What is newly plausible is shared, right-sized infrastructure for university tasks, built by combining technical, pedagogic and social-scientific expertise.",
-          "Repurposed post-boom hardware: As hardware depreciates and supply loosens, some compute may become affordable for shared sector hosting or bounded institutional workloads.",
-          "Shared smaller models: Open-weight and smaller models are increasingly good enough for retrieval, classification, transcription, analysis and support tasks common in universities.",
-          "Interdisciplinary design: Computer science can build the systems, but education and social science are needed to define the tasks, evaluate the harms and shape the institutional fit."
+          "Make this the practical follow-on from ownership: shared capacity is how the sector avoids every institution solving the same problems alone.",
+          "Stress the modesty of the claim: not frontier-model rivalry, but reliable shared services for bounded university tasks.",
+          "Shared compute pools: As hardware depreciates and supply loosens, some compute may become affordable for shared sector hosting or bounded institutional workloads.",
+          "University-specific services: Open-weight and smaller models are increasingly good enough for retrieval, classification, transcription, analysis and support tasks common in universities.",
+          "Common assurance: Education and social science are needed alongside computer science to define tasks, evaluate harms and shape institutional fit."
         ]
       },
       "lenses": [
         "transparency",
         "distortion",
         "extraction"
-      ]
+      ],
+      "id": "dw3hcdtx"
     },
     {
       "type": "statement",
@@ -919,7 +949,8 @@
         "transparency",
         "distortion",
         "extraction"
-      ]
+      ],
+      "id": "luik9h53"
     },
     {
       "type": "section-divider",
@@ -933,7 +964,8 @@
           "Use the subtitle to frame the end as a genuine fork, not a foregone conclusion.",
           "The tone here should become slightly more civic and decision-oriented."
         ]
-      }
+      },
+      "id": "8fwh0zps"
     },
     {
       "type": "content",
@@ -961,12 +993,13 @@
           "Human-centred pedagogy: AI is used to deepen feedback, accessibility and high-value contact rather than thin them out.",
           "Stronger public capacity: Sector collaboration creates standards, evaluation routines and alternatives that keep the system contestable."
         ]
-      }
+      },
+      "id": "2wlvzyw9"
     },
     {
       "type": "content",
       "section": "What the next decade looks like",
-      "heading": "If universities get captured by the stack",
+      "heading": "If universities drift into platform dependency",
       "body": "The pessimistic future is not spectacular collapse. It is a quieter form of dependency in which institutions keep functioning while their freedom, pluralism and educational quality erode.",
       "points": [
         {
@@ -982,7 +1015,7 @@
       "notes": {
         "transition": "Then contrast it with the quieter bad future.",
         "points": [
-          "The captured future is not dramatic collapse; it is ongoing functioning under worsening dependency.",
+          "The dependency future is not dramatic collapse; it is ongoing functioning under worsening external control.",
           "Emphasise rent extraction, thinner provision, and opaque governance.",
           "The point is to show what slow loss of autonomy looks like in ordinary institutional life.",
           "Rent extraction: AI becomes a permanent premium layer across teaching, admin, assessment and research workflows.",
@@ -993,7 +1026,8 @@
       "lenses": [
         "distortion",
         "extraction"
-      ]
+      ],
+      "id": "p3nwrkxy"
     },
     {
       "type": "content",
@@ -1026,7 +1060,8 @@
         "transparency",
         "distortion",
         "extraction"
-      ]
+      ],
+      "id": "4d5d7k12"
     },
     {
       "type": "statement",
@@ -1046,19 +1081,20 @@
         "transparency",
         "distortion",
         "extraction"
-      ]
+      ],
+      "id": "5qubwozg"
     },
     {
       "type": "statement",
       "section": "Closing question",
-      "text": "Who will ultimately control the AI infrastructure higher education comes to depend on — and what kind of university will that make possible?",
-      "highlight": "what kind of university",
+      "text": "If AI becomes part of higher education's infrastructure, who should control it, and what kind of university should it serve?",
+      "highlight": "who should control it",
       "attribution": "",
       "notes": {
         "transition": "End with the question rather than another answer.",
         "points": [
           "Let the closing question hang for a moment and hand neatly into discussion or panel.",
-          "The point is to force the room to connect infrastructure control with the kind of university it wants to make possible.",
+          "The point is to force the room to connect infrastructure control with the kind of university it wants AI to serve.",
           "Do not rush the last line; it is the civic and institutional landing point."
         ]
       },
@@ -1066,7 +1102,8 @@
         "transparency",
         "distortion",
         "extraction"
-      ]
+      ],
+      "id": "t3j2ripk"
     }
   ]
 }

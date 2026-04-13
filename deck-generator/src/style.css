@@ -375,6 +375,69 @@ body {
   cursor: default;
 }
 
+/* --- Per-slide voiceover recorder strip --- */
+.voiceover-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-right: 0.5rem;
+}
+
+.voiceover-btn {
+  appearance: none;
+  background: transparent;
+  border: 1px solid #444;
+  border-radius: 0.3rem;
+  color: #666;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  padding: 0.25rem 0.6rem;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.voiceover-btn:hover:not(:disabled) {
+  color: #5DD4E0;
+  border-color: #5DD4E0;
+}
+
+.voiceover-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.voiceover-btn.is-recording {
+  color: #ff5454;
+  border-color: #ff5454;
+  animation: voiceover-pulse 1s ease-in-out infinite;
+}
+
+@keyframes voiceover-pulse {
+  50% { opacity: 0.45; }
+}
+
+.voiceover-duration {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: #888;
+  min-width: 2.4rem;
+  text-align: center;
+}
+
+/* Top-bar voiceover summary chip */
+.ctrl-summary {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: #aaa;
+  padding: 0 0.7rem;
+  border: 1px solid #333;
+  border-radius: 0.3rem;
+  background: #1a1a1a;
+  white-space: nowrap;
+}
+
 /* --- Slide container: 16:9 aspect ratio (overridable via --export-aspect) --- */
 .slide {
   width: 100%;
@@ -540,12 +603,14 @@ body {
   text-transform: var(--heading-transform);
   margin-top: auto;  /* push title to vertical centre */
   word-break: break-word;
+  white-space: pre-line;
 }
 
 .cover-bold-full .cover-subtitle {
   font-family: var(--font-body);
   font-size: clamp(1rem, 2.2cqi, var(--heading-size-md));
   font-weight: 400;
+  line-height: 1.25;
   margin-top: 0.8em;
   opacity: 0.85;
 }
@@ -628,6 +693,7 @@ body {
   max-width: 85%;
   margin-top: auto;  /* push title to bottom */
   word-break: break-word;
+  white-space: pre-line;
 }
 
 .cover-dark-minimal .cover-subtitle {
@@ -823,7 +889,7 @@ body {
   border-radius: var(--card-border-radius);
   padding: 1.4rem 1.6rem;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 1rem;
 }
 
@@ -837,10 +903,18 @@ body {
   justify-content: center;
 }
 
+.content-split-cards .evidence-card .card-text {
+  flex: 1;
+  min-height: 2.5rem;
+  display: flex;
+  align-items: center;
+}
+
 .content-split-cards .evidence-card .card-text h3 {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 1.3rem;
+  line-height: 1.1;
   margin-bottom: 0;
 }
 
@@ -1368,4 +1442,32 @@ body {
   font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.3);
   pointer-events: none;
+}
+
+#play-overlay .play-voiceover {
+  position: fixed;
+  bottom: 1.2rem;
+  left: 1.5rem;
+  display: flex;
+  align-items: center;
+  pointer-events: auto;
+}
+
+#play-overlay .play-voiceover .voiceover-row {
+  margin-right: 0;
+}
+
+#play-overlay .play-voiceover .voiceover-btn {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(0, 0, 0, 0.4);
+}
+
+#play-overlay .play-voiceover .voiceover-btn:hover:not(:disabled) {
+  color: #5DD4E0;
+  border-color: #5DD4E0;
+}
+
+#play-overlay .play-voiceover .voiceover-duration {
+  color: rgba(255, 255, 255, 0.55);
 }

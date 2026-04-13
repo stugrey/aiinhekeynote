@@ -149,6 +149,69 @@ function savePlugin() {
           res.end(JSON.stringify({ ok: true, backups }));
         } catch (e) { res.statusCode = 400; res.end(JSON.stringify({ error: e.message })); }
       });
+
+      // Save a per-slide voiceover audio file
+      server.middlewares.use('/api/save-voiceover', async (req, res) => {
+        if (req.method !== 'POST') { res.statusCode = 405; res.end('Method not allowed'); return; }
+        let body = ''; for await (const chunk of req) body += chunk;
+        try {
+          const { slideId, dataUrl, ext } = JSON.parse(body);
+          if (!/^[a-z0-9]{4,32}$/i.test(slideId || '')) throw new Error('invalid slideId');
+          if (!/^(webm|mp4|m4a|ogg)$/.test(ext || '')) throw new Error('invalid ext');
+          if (typeof dataUrl !== 'string' || !dataUrl.startsWith('data:')) throw new Error('invalid dataUrl');
+
+          const voiceoversDir = path.resolve('voiceovers');
+          if (!fs.existsSync(voiceoversDir)) fs.mkdirSync(voiceoversDir, { recursive: true });
+
+          // Remove any prior take with a different extension for this slideId
+          for (const e of ['webm', 'mp4', 'm4a', 'ogg']) {
+            if (e === ext) continue;
+            const stale = path.join(voiceoversDir, `${slideId}.${e}`);
+            if (fs.existsSync(stale)) fs.unlinkSync(stale);
+          }
+
+          // Strip the entire data-URL header. Must use [^,]+ (not [^;]+;base64,)
+          // because MIME types with parameters (e.g. audio/webm;codecs=opus)
+          // contain semicolons before the base64, marker.
+          const commaIdx = dataUrl.indexOf(',');
+          if (commaIdx < 0) throw new Error('malformed dataUrl');
+          const base64 = dataUrl.slice(commaIdx + 1);
+          const buf = Buffer.from(base64, 'base64');
+          if (buf.length === 0) throw new Error('empty audio buffer');
+          const filePath = path.join(voiceoversDir, `${slideId}.${ext}`);
+          fs.writeFileSync(filePath, buf);
+
+          res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify({ ok: true, file: `voiceovers/${slideId}.${ext}`, bytes: buf.length }));
+        } catch (e) { res.statusCode = 400; res.end(JSON.stringify({ error: e.message })); }
+      });
+
+      // Delete a per-slide voiceover audio file
+      server.middlewares.use('/api/delete-voiceover', async (req, res) => {
+        if (req.method !== 'POST') { res.statusCode = 405; res.end('Method not allowed'); return; }
+        let body = ''; for await (const chunk of req) body += chunk;
+        try {
+          const { slideId, file } = JSON.parse(body);
+          if (!/^[a-z0-9]{4,32}$/i.test(slideId || '')) throw new Error('invalid slideId');
+          const voiceoversDir = path.resolve('voiceovers');
+
+          // If a specific file was supplied, validate it lives inside voiceoversDir
+          if (file) {
+            const resolved = path.resolve(file);
+            if (!resolved.startsWith(voiceoversDir + path.sep)) throw new Error('path escapes voiceovers dir');
+            if (fs.existsSync(resolved)) fs.unlinkSync(resolved);
+          } else {
+            // Otherwise nuke any take for this slideId
+            for (const e of ['webm', 'mp4', 'm4a', 'ogg']) {
+              const f = path.join(voiceoversDir, `${slideId}.${e}`);
+              if (fs.existsSync(f)) fs.unlinkSync(f);
+            }
+          }
+
+          res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify({ ok: true }));
+        } catch (e) { res.statusCode = 400; res.end(JSON.stringify({ error: e.message })); }
+      });
     },
   };
 }

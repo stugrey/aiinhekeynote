@@ -141,6 +141,13 @@ async function init() {
   // Initialise per-slide shapes map if not present
   if (!config.slideShapes) config.slideShapes = {};
 
+  // One-time migration: assign a stable id to every slide that lacks one
+  const existingIds = new Set();
+  let migrated = 0;
+  for (const slide of content.slides) {
+    if (ensureSlideId(slide, existingIds)) migrated++;
+  }
+
   currentConfig = config;
   currentContent = content;
 
@@ -150,6 +157,10 @@ async function init() {
 
   renderControls();
   renderDeck();
+  updateVoiceoverSummary();
+
+  // Surface the migration so the user saves the new ids
+  if (migrated > 0) markDirty();
 }
 
 /** Build a <select> dropdown */
@@ -179,6 +190,7 @@ function renderControls() {
     <div class="ctrl-header">
       <h2>Deck Generator</h2>
       <div class="ctrl-header-actions">
+        <span id="voiceover-summary" class="ctrl-summary">Voiceover: 0:00 · 0/0</span>
         <button id="btn-play" class="ctrl-btn ctrl-btn--export">Play</button>
         <button id="btn-save" class="ctrl-btn ctrl-btn--save" disabled>Save</button>
         <button id="btn-export-all" class="ctrl-btn ctrl-btn--export">Export All</button>
@@ -299,6 +311,8 @@ function renderControls() {
     btn.disabled = false;
     btn.textContent = 'Save';
   }
+
+  updateVoiceoverSummary();
 }
 
 /** Build pagination HTML and wire up listeners */
@@ -553,6 +567,379 @@ function ensureSlideNotes(slide) {
   if (typeof slide.notes.transition !== 'string') slide.notes.transition = '';
   if (!Array.isArray(slide.notes.points)) slide.notes.points = [];
   return slide.notes;
+}
+
+/** Generate a stable 8-char base36 slide id, avoiding collisions with `existing` */
+function generateSlideId(existing) {
+  for (let i = 0; i < 50; i++) {
+    const id = Math.random().toString(36).slice(2, 10).padEnd(8, '0');
+    if (!/^[a-z0-9]{8}$/.test(id)) continue;
+    if (!existing || !existing.has(id)) return id;
+  }
+  // Fallback: time-based
+  return (Date.now().toString(36) + Math.random().toString(36).slice(2, 6)).slice(0, 8);
+}
+
+/** Assign a stable id if missing. Returns true if a new id was added. */
+function ensureSlideId(slide, existingIds) {
+  if (typeof slide.id === 'string' && /^[a-z0-9]{4,32}$/i.test(slide.id)) {
+    existingIds.add(slide.id);
+    return false;
+  }
+  const id = generateSlideId(existingIds);
+  slide.id = id;
+  existingIds.add(id);
+  return true;
+}
+
+/** Format a number of seconds as `m:ss`. Returns '—' for missing/invalid. */
+function formatDuration(seconds) {
+  if (!Number.isFinite(seconds) || seconds < 0) return '—';
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 60);
+  return `${m}:${String(s).padStart(2, '0')}`;
+}
+
+// ─── VOICEOVER RECORDING ─────────────────────────────
+// Browser-native MediaRecorder. One recorder at a time, shared mic stream
+// released between takes. Audio is keyed by stable slide id so reorders and
+// duplicates are safe.
+
+let recordingState = null;
+// { slideIndex, slideId, recorder, chunks, startedAt, timerHandle, mime, ext, controls }
+let micStream = null;
+let activeAudio = null;
+
+const VOICEOVER_MIME_PREFERENCES = [
+  { mime: 'audio/webm;codecs=opus', ext: 'webm' },
+  { mime: 'audio/webm',             ext: 'webm' },
+  { mime: 'audio/ogg;codecs=opus',  ext: 'ogg'  },
+  { mime: 'audio/mp4;codecs=mp4a.40.2', ext: 'mp4' },
+  { mime: 'audio/mp4',              ext: 'mp4' },
+];
+
+function pickRecorderMime() {
+  if (typeof MediaRecorder === 'undefined') return null;
+  for (const opt of VOICEOVER_MIME_PREFERENCES) {
+    try {
+      if (MediaRecorder.isTypeSupported(opt.mime)) return opt;
+    } catch (_) { /* keep trying */ }
+  }
+  return null;
+}
+
+function blobToDataUrl(blob) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = () => reject(reader.error);
+    reader.readAsDataURL(blob);
+  });
+}
+
+async function decodeBlobDuration(blob) {
+  try {
+    const Ctx = window.AudioContext || window.webkitAudioContext;
+    if (!Ctx) return null;
+    const ctx = new Ctx();
+    try {
+      const buf = await blob.arrayBuffer();
+      const decoded = await ctx.decodeAudioData(buf.slice(0));
+      return decoded.duration;
+    } finally {
+      try { await ctx.close(); } catch (_) { /* ignore */ }
+    }
+  } catch (_) {
+    return null;
+  }
+}
+
+function releaseMicStream() {
+  if (micStream) {
+    micStream.getTracks().forEach(t => t.stop());
+    micStream = null;
+  }
+}
+
+function stopActiveAudio() {
+  if (activeAudio) {
+    try { activeAudio.pause(); } catch (_) { /* ignore */ }
+    activeAudio = null;
+  }
+}
+
+async function startRecording(slideIndex, controls) {
+  if (recordingState) {
+    await stopRecording();
+  }
+  stopActiveAudio();
+
+  const slide = currentContent.slides[slideIndex];
+  if (!slide) return;
+  const slideId = slide.id;
+  if (!slideId) {
+    console.warn('Slide has no id; cannot record voiceover');
+    return;
+  }
+
+  const pick = pickRecorderMime();
+  if (!pick) {
+    alert('This browser does not support audio recording.');
+    return;
+  }
+
+  try {
+    if (!micStream) {
+      micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    }
+  } catch (e) {
+    console.error('Microphone permission denied:', e);
+    alert('Microphone access was denied. Enable mic permission in your browser to record voiceovers.');
+    releaseMicStream();
+    return;
+  }
+
+  let recorder;
+  try {
+    recorder = new MediaRecorder(micStream, { mimeType: pick.mime });
+  } catch (e) {
+    console.error('MediaRecorder construction failed:', e);
+    releaseMicStream();
+    return;
+  }
+
+  const chunks = [];
+  recorder.addEventListener('dataavailable', e => {
+    if (e.data && e.data.size > 0) chunks.push(e.data);
+  });
+
+  const startedAt = performance.now();
+  recordingState = {
+    slideIndex, slideId, recorder, chunks, startedAt,
+    mime: pick.mime, ext: pick.ext, controls,
+    timerHandle: 0,
+  };
+
+  controls?.setRecording(true);
+  const tick = () => {
+    if (!recordingState || recordingState.recorder !== recorder) return;
+    const elapsed = (performance.now() - startedAt) / 1000;
+    controls?.setDurationText(formatDuration(elapsed));
+    recordingState.timerHandle = requestAnimationFrame(tick);
+  };
+  recordingState.timerHandle = requestAnimationFrame(tick);
+
+  recorder.start();
+}
+
+async function stopRecording() {
+  const state = recordingState;
+  if (!state) return;
+
+  const { recorder, chunks, slideIndex, slideId, mime, ext, controls, timerHandle } = state;
+  cancelAnimationFrame(timerHandle);
+
+  // Wait for the recorder to finish flushing
+  await new Promise(resolve => {
+    if (recorder.state === 'inactive') { resolve(); return; }
+    recorder.addEventListener('stop', () => resolve(), { once: true });
+    try { recorder.stop(); } catch (_) { resolve(); }
+  });
+
+  recordingState = null;
+  releaseMicStream();
+  controls?.setRecording(false);
+
+  if (!chunks.length) {
+    controls?.refresh();
+    return;
+  }
+
+  const blob = new Blob(chunks, { type: mime });
+  let duration = await decodeBlobDuration(blob);
+  if (duration == null) {
+    duration = (performance.now() - state.startedAt) / 1000;
+  }
+
+  let dataUrl;
+  try {
+    dataUrl = await blobToDataUrl(blob);
+  } catch (e) {
+    console.error('Failed to encode recording:', e);
+    controls?.refresh();
+    return;
+  }
+
+  controls?.setBusy(true);
+  try {
+    const res = await fetch('/api/save-voiceover', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ slideId, dataUrl, ext }),
+    });
+    const data = await res.json();
+    if (!data.ok) throw new Error(data.error || 'save failed');
+
+    const slide = currentContent.slides[slideIndex];
+    if (slide && slide.id === slideId) {
+      slide.voiceover = {
+        file: data.file,
+        duration: Number(duration.toFixed(2)),
+        mime,
+        updated: new Date().toISOString(),
+      };
+      markDirty();
+    }
+  } catch (e) {
+    console.error('Voiceover save failed:', e);
+    alert('Could not save voiceover. See console for details.');
+  } finally {
+    controls?.setBusy(false);
+    controls?.refresh();
+    updateVoiceoverSummary();
+  }
+}
+
+function playVoiceover(slideIndex, controls) {
+  const slide = currentContent?.slides[slideIndex];
+  const vo = slide?.voiceover;
+  if (!vo?.file) return;
+  stopActiveAudio();
+  const audio = new Audio(`/${vo.file}?t=${encodeURIComponent(vo.updated || '')}`);
+  activeAudio = audio;
+  audio.addEventListener('ended', () => {
+    if (activeAudio === audio) activeAudio = null;
+    controls?.refresh();
+  });
+  audio.addEventListener('error', () => {
+    const err = audio.error;
+    console.error('Voiceover element error', err && { code: err.code, message: err.message }, 'src:', audio.src);
+    if (activeAudio === audio) activeAudio = null;
+    controls?.refresh();
+  });
+  audio.play().catch(e => {
+    console.error('Voiceover playback failed:', e, 'src:', audio.src);
+    if (activeAudio === audio) activeAudio = null;
+    controls?.refresh();
+  });
+}
+
+async function deleteVoiceover(slideIndex, controls) {
+  const slide = currentContent?.slides[slideIndex];
+  const vo = slide?.voiceover;
+  if (!vo?.file) return;
+  if (!window.confirm('Delete this voiceover?')) return;
+
+  stopActiveAudio();
+  controls?.setBusy(true);
+  try {
+    const res = await fetch('/api/delete-voiceover', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ slideId: slide.id, file: vo.file }),
+    });
+    const data = await res.json();
+    if (!data.ok) throw new Error(data.error || 'delete failed');
+    delete slide.voiceover;
+    markDirty();
+  } catch (e) {
+    console.error('Voiceover delete failed:', e);
+    alert('Could not delete voiceover. See console for details.');
+  } finally {
+    controls?.setBusy(false);
+    controls?.refresh();
+    updateVoiceoverSummary();
+  }
+}
+
+/** Update the top-bar summary chip with total runtime and recorded count */
+function updateVoiceoverSummary() {
+  const el = document.getElementById('voiceover-summary');
+  if (!el || !currentContent) return;
+  const slides = currentContent.slides || [];
+  const total = slides.length;
+  let count = 0;
+  let seconds = 0;
+  for (const s of slides) {
+    if (s?.voiceover?.file) {
+      count++;
+      seconds += Number(s.voiceover.duration) || 0;
+    }
+  }
+  el.textContent = `Voiceover: ${formatDuration(seconds)} · ${count}/${total}`;
+}
+
+/** Build the per-slide voiceover control strip (Record / Play / Duration / Delete) */
+function buildVoiceoverControls(slideIndex, { variant = 'label' } = {}) {
+  const wrapper = document.createElement('span');
+  wrapper.className = `voiceover-row voiceover-row--${variant}`;
+
+  const recordBtn = document.createElement('button');
+  recordBtn.className = 'voiceover-btn voiceover-btn--record';
+  recordBtn.type = 'button';
+  recordBtn.title = 'Record voiceover';
+  recordBtn.textContent = '● Rec';
+
+  const playBtn = document.createElement('button');
+  playBtn.className = 'voiceover-btn voiceover-btn--play';
+  playBtn.type = 'button';
+  playBtn.title = 'Play voiceover';
+  playBtn.textContent = '▶';
+
+  const durationEl = document.createElement('span');
+  durationEl.className = 'voiceover-duration';
+
+  const deleteBtn = document.createElement('button');
+  deleteBtn.className = 'voiceover-btn voiceover-btn--delete';
+  deleteBtn.type = 'button';
+  deleteBtn.title = 'Delete voiceover';
+  deleteBtn.textContent = '✕';
+
+  wrapper.appendChild(recordBtn);
+  wrapper.appendChild(playBtn);
+  wrapper.appendChild(durationEl);
+  wrapper.appendChild(deleteBtn);
+
+  const controls = {
+    setRecording(isRecording) {
+      recordBtn.classList.toggle('is-recording', isRecording);
+      recordBtn.textContent = isRecording ? '■ Stop' : '● Rec';
+    },
+    setBusy(isBusy) {
+      recordBtn.disabled = isBusy;
+      playBtn.disabled = isBusy || !currentContent.slides[slideIndex]?.voiceover?.file;
+      deleteBtn.disabled = isBusy || !currentContent.slides[slideIndex]?.voiceover?.file;
+    },
+    setDurationText(text) {
+      durationEl.textContent = text;
+    },
+    refresh() {
+      const slide = currentContent.slides[slideIndex];
+      const vo = slide?.voiceover;
+      const isRecording = !!recordingState && recordingState.slideIndex === slideIndex;
+      recordBtn.classList.toggle('is-recording', isRecording);
+      recordBtn.textContent = isRecording ? '■ Stop' : '● Rec';
+      const hasTake = !!vo?.file;
+      playBtn.disabled = !hasTake || isRecording;
+      deleteBtn.disabled = !hasTake || isRecording;
+      durationEl.textContent = isRecording
+        ? durationEl.textContent || '0:00'
+        : (hasTake ? formatDuration(vo.duration) : '—');
+    },
+  };
+
+  recordBtn.addEventListener('click', async () => {
+    if (recordingState && recordingState.slideIndex === slideIndex) {
+      await stopRecording();
+    } else {
+      await startRecording(slideIndex, controls);
+    }
+  });
+  playBtn.addEventListener('click', () => playVoiceover(slideIndex, controls));
+  deleteBtn.addEventListener('click', () => deleteVoiceover(slideIndex, controls));
+
+  controls.refresh();
+  return { element: wrapper, controls };
 }
 
 /** Build the collapsible edit panel for a slide */
@@ -915,6 +1302,10 @@ function renderDeck() {
     dupeBtn.textContent = 'Duplicate';
     dupeBtn.addEventListener('click', () => {
       const clone = JSON.parse(JSON.stringify(slide));
+      // Fresh stable id and no audio — clones start as blank takes
+      const existingIds = new Set(currentContent.slides.map(s => s.id).filter(Boolean));
+      clone.id = generateSlideId(existingIds);
+      delete clone.voiceover;
       currentContent.slides.splice(i + 1, 0, clone);
       // Shift per-slide shape overrides after the insertion point
       const shapes = currentConfig.slideShapes;
@@ -926,6 +1317,7 @@ function renderDeck() {
       if (shapes[i] !== undefined) shapes[i + 1] = shapes[i];
       markDirty();
       renderDeck();
+      updateVoiceoverSummary();
     });
 
     const exportBtn = document.createElement('button');
@@ -937,6 +1329,8 @@ function renderDeck() {
     labelRow.appendChild(shapeSelect);
     labelRow.appendChild(editBtn);
     labelRow.appendChild(dupeBtn);
+    const voiceover = buildVoiceoverControls(i, { variant: 'label' });
+    labelRow.appendChild(voiceover.element);
     labelRow.appendChild(exportBtn);
     wrapper.appendChild(labelRow);
 
@@ -1040,6 +1434,7 @@ function enterPlayMode() {
     <div class="play-label" id="play-label"></div>
     <div class="play-slide-container">
       <div class="play-slide" id="play-slide"></div>
+      <div class="play-voiceover" id="play-voiceover"></div>
     </div>
     <div class="play-counter" id="play-counter"></div>
   `;
@@ -1051,6 +1446,9 @@ function enterPlayMode() {
 function exitPlayMode() {
   if (!playMode) return;
   playMode = false;
+  // Stop any in-flight recording or playback before tearing down the overlay
+  if (recordingState) stopRecording();
+  stopActiveAudio();
   if (playOverlay) {
     // Clean up any WebGL contexts in the play slide
     playOverlay.remove();
@@ -1111,6 +1509,14 @@ function renderPlaySlide() {
 
   const counter = playOverlay.querySelector('#play-counter');
   counter.textContent = `${page} / ${currentContent.slides.length}`;
+
+  // Voiceover controls (mirrors the label-row strip)
+  const voSlot = playOverlay.querySelector('#play-voiceover');
+  if (voSlot) {
+    voSlot.innerHTML = '';
+    const vo = buildVoiceoverControls(playSlideIndex, { variant: 'play' });
+    voSlot.appendChild(vo.element);
+  }
 
   // Apply same post-render fixes as renderDeck
   fixStatBlockContrast();

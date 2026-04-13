@@ -1,0 +1,4 @@
+deck-generator/voiceovers/*.webm filter=lfs diff=lfs merge=lfs -text
+deck-generator/voiceovers/*.ogg filter=lfs diff=lfs merge=lfs -text
+deck-generator/voiceovers/*.mp4 filter=lfs diff=lfs merge=lfs -text
+deck-generator/voiceovers/*.m4a filter=lfs diff=lfs merge=lfs -text

@@ -36,6 +36,16 @@ async function waitForSlides(page) {
   await page.waitForTimeout(1200);
 }
 
+async function enableCaptureMode(page) {
+  await page.addStyleTag({
+    content: `
+      #controls {
+        display: none !important;
+      }
+    `,
+  });
+}
+
 async function main() {
   const contentPath = path.join(PROJECT_ROOT, 'content.json');
   const content = JSON.parse(await readFile(contentPath, 'utf8'));
@@ -62,6 +72,7 @@ async function main() {
   });
   await page.waitForLoadState('networkidle');
   await waitForSlides(page);
+  await enableCaptureMode(page);
 
   let captured = 0;
   while (captured < totalSlides) {
