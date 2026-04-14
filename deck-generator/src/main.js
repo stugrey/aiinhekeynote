@@ -783,6 +783,20 @@ async function stopRecording() {
 
     const slide = currentContent.slides[slideIndex];
     if (slide && slide.id === slideId) {
+      // Archive the previous take's transcript before it gets wiped. We
+      // intentionally drop the old audio file reference — the mp3/webm is
+      // about to be overwritten on disk — but keep the text so past
+      // wordings stay recoverable from content.json.
+      const prev = slide.voiceover;
+      if (prev?.transcript) {
+        if (!Array.isArray(slide.voiceover_history)) slide.voiceover_history = [];
+        slide.voiceover_history.push({
+          transcript: prev.transcript,
+          transcribed_at: prev.transcribed_at,
+          duration: prev.duration,
+          replaced_at: new Date().toISOString(),
+        });
+      }
       slide.voiceover = {
         file: data.file,
         duration: Number(duration.toFixed(2)),

@@ -28232,1173 +28232,619 @@
       "id": "luik9h53",
       "voiceover": {
         "file": "voiceovers/luik9h53.webm",
-        "duration": 68.22,
+        "duration": 38.7,
         "mime": "audio/webm;codecs=opus",
-        "updated": "2026-04-14T18:16:15.617Z",
-        "transcript": "So, what I'm not saying here is that we have to do everything ourselves. It's a common failure mode across universities to want to do everything ourselves, do everything in-house, where there should be real benefit to outsourcing some things, right? So, if you need a tool to summarize an email, I'm not sure why you would, but perhaps some people want that, give that to one of these models, absolutely fine. But when we're looking at key functions as mapped to our principles as an institution, right, education being one of them, research being the other one, we have to be really careful what we're doing. So, we don't want to be entirely self-sufficient and sort of cutting off our nose to spite our face. We also don't want to be passively dependent on these Silicon Valley companies. Instead, we want to be practical stewards of our data, of our models, and decide what we want to build, what we're looking to buy, and what we're looking to refuse, because again, that third option is there, and we have to do that on a case-by-case basis. There should be some of each, right? And currently, we're vacillating between buying everything, refusing everything, and also not building anything, when I think there's a far healthier mix in there aligned with our principles as an institution.",
+        "updated": "2026-04-13T18:37:39.778Z",
+        "transcript": "But what I'm not saying is here, is that we should build everything ourself. This is, again, a common trap in higher education, is that, okay, we'll build our own thing, and it'll be really tight and just kept up. No. The alternative to sort of becoming entirely passive independent on these big companies is not doing everything ourselves. It's practical stewardship, using the hardware that will be available, using the open source tools that will be available, working together to build something where it's not being supplied by these vendors. Again, if you want to summarize an email, there's simple models for that, but there's more complex things around research, administration, especially education, right? We want to be in control.",
+        "transcribed_at": "2026-04-13T18:56:51.278Z",
         "words": [
           {
-            "word": "So",
-            "start": 0.5,
-            "end": 0.98
+            "word": "But",
+            "start": 0,
+            "end": 0.36
           },
           {
             "word": "what",
-            "start": 0.98,
-            "end": 1.18
+            "start": 0.36,
+            "end": 0.56
           },
           {
             "word": "I'm",
-            "start": 1.18,
-            "end": 1.34
+            "start": 0.56,
+            "end": 0.76
           },
           {
             "word": "not",
-            "start": 1.34,
-            "end": 1.66
+            "start": 0.76,
+            "end": 0.98
           },
           {
             "word": "saying",
-            "start": 1.66,
-            "end": 1.9
-          },
-          {
-            "word": "here",
-            "start": 1.9,
-            "end": 2.22
+            "start": 0.98,
+            "end": 1.16
           },
           {
             "word": "is",
-            "start": 2.22,
-            "end": 2.72
+            "start": 1.16,
+            "end": 1.38
+          },
+          {
+            "word": "here",
+            "start": 1.38,
+            "end": 1.74
+          },
+          {
+            "word": "is",
+            "start": 1.86,
+            "end": 1.96
           },
           {
             "word": "that",
-            "start": 2.72,
-            "end": 3.02
+            "start": 1.96,
+            "end": 2.04
           },
           {
             "word": "we",
-            "start": 3.02,
-            "end": 3.36
-          },
-          {
-            "word": "have",
-            "start": 3.36,
-            "end": 4.24
-          },
-          {
-            "word": "to",
-            "start": 4.24,
-            "end": 4.4
-          },
-          {
-            "word": "do",
-            "start": 4.4,
-            "end": 4.54
-          },
-          {
-            "word": "everything",
-            "start": 4.54,
-            "end": 4.78
-          },
-          {
-            "word": "ourselves",
-            "start": 4.78,
-            "end": 5.24
-          },
-          {
-            "word": "It's",
-            "start": 5.42,
-            "end": 5.46
-          },
-          {
-            "word": "a",
-            "start": 5.46,
-            "end": 5.76
-          },
-          {
-            "word": "common",
-            "start": 5.76,
-            "end": 5.9
-          },
-          {
-            "word": "failure",
-            "start": 5.9,
-            "end": 6.22
-          },
-          {
-            "word": "mode",
-            "start": 6.22,
-            "end": 6.5
-          },
-          {
-            "word": "across",
-            "start": 6.5,
-            "end": 6.84
-          },
-          {
-            "word": "universities",
-            "start": 6.84,
-            "end": 7.4
-          },
-          {
-            "word": "to",
-            "start": 7.4,
-            "end": 7.84
-          },
-          {
-            "word": "want",
-            "start": 7.84,
-            "end": 7.98
-          },
-          {
-            "word": "to",
-            "start": 7.98,
-            "end": 8
-          },
-          {
-            "word": "do",
-            "start": 8,
-            "end": 8.14
-          },
-          {
-            "word": "everything",
-            "start": 8.14,
-            "end": 8.4
-          },
-          {
-            "word": "ourselves",
-            "start": 8.4,
-            "end": 8.7
-          },
-          {
-            "word": "do",
-            "start": 8.92,
-            "end": 9.08
-          },
-          {
-            "word": "everything",
-            "start": 9.08,
-            "end": 9.2
-          },
-          {
-            "word": "in",
-            "start": 9.2,
-            "end": 9.56
-          },
-          {
-            "word": "house",
-            "start": 9.56,
-            "end": 9.64
-          },
-          {
-            "word": "where",
-            "start": 9.82,
-            "end": 10.12
-          },
-          {
-            "word": "there",
-            "start": 10.12,
-            "end": 10.26
+            "start": 2.04,
+            "end": 2.04
           },
           {
             "word": "should",
-            "start": 10.26,
-            "end": 10.4
+            "start": 2.04,
+            "end": 2.2
           },
           {
-            "word": "be",
-            "start": 10.4,
-            "end": 10.58
+            "word": "build",
+            "start": 2.2,
+            "end": 2.42
           },
           {
-            "word": "real",
-            "start": 10.58,
-            "end": 11.34
+            "word": "everything",
+            "start": 2.42,
+            "end": 2.76
           },
           {
-            "word": "benefit",
-            "start": 11.34,
-            "end": 12.22
+            "word": "ourself",
+            "start": 2.76,
+            "end": 3.14
           },
           {
-            "word": "to",
-            "start": 12.22,
-            "end": 12.58
+            "word": "This",
+            "start": 3.36,
+            "end": 3.4
           },
           {
-            "word": "outsourcing",
-            "start": 12.58,
-            "end": 12.88
+            "word": "is",
+            "start": 3.4,
+            "end": 3.56
           },
           {
-            "word": "some",
-            "start": 12.88,
-            "end": 13.32
-          },
-          {
-            "word": "things",
-            "start": 13.32,
-            "end": 13.58
-          },
-          {
-            "word": "right",
-            "start": 13.68,
-            "end": 14.4
-          },
-          {
-            "word": "So",
-            "start": 14.4,
-            "end": 14.84
-          },
-          {
-            "word": "if",
-            "start": 14.84,
-            "end": 14.92
-          },
-          {
-            "word": "you",
-            "start": 14.92,
-            "end": 15.02
-          },
-          {
-            "word": "need",
-            "start": 15.02,
-            "end": 15.1
+            "word": "again",
+            "start": 4.18,
+            "end": 4.22
           },
           {
             "word": "a",
-            "start": 15.1,
-            "end": 15.52
+            "start": 4.3,
+            "end": 4.48
           },
           {
-            "word": "tool",
-            "start": 15.52,
-            "end": 15.52
+            "word": "common",
+            "start": 4.48,
+            "end": 4.7
           },
           {
-            "word": "to",
-            "start": 15.52,
-            "end": 16.24
+            "word": "trap",
+            "start": 4.7,
+            "end": 4.92
           },
           {
-            "word": "summarize",
-            "start": 16.24,
-            "end": 16.24
+            "word": "in",
+            "start": 4.92,
+            "end": 5.1
           },
           {
-            "word": "an",
-            "start": 16.24,
-            "end": 16.64
+            "word": "higher",
+            "start": 5.1,
+            "end": 5.22
           },
           {
-            "word": "email",
-            "start": 16.64,
-            "end": 16.64
+            "word": "education",
+            "start": 5.22,
+            "end": 5.6
           },
           {
-            "word": "I'm",
-            "start": 16.82,
-            "end": 16.98
-          },
-          {
-            "word": "not",
-            "start": 16.98,
-            "end": 17.02
-          },
-          {
-            "word": "sure",
-            "start": 17.02,
-            "end": 17.12
-          },
-          {
-            "word": "why",
-            "start": 17.12,
-            "end": 17.24
-          },
-          {
-            "word": "you",
-            "start": 17.24,
-            "end": 17.36
-          },
-          {
-            "word": "would",
-            "start": 17.36,
-            "end": 17.5
-          },
-          {
-            "word": "but",
-            "start": 17.58,
-            "end": 17.64
-          },
-          {
-            "word": "perhaps",
-            "start": 17.64,
-            "end": 17.9
-          },
-          {
-            "word": "some",
-            "start": 17.9,
-            "end": 18.1
-          },
-          {
-            "word": "people",
-            "start": 18.1,
-            "end": 18.24
-          },
-          {
-            "word": "want",
-            "start": 18.24,
-            "end": 18.44
+            "word": "is",
+            "start": 6.06,
+            "end": 6.18
           },
           {
             "word": "that",
-            "start": 18.44,
-            "end": 19.02
+            "start": 6.18,
+            "end": 6.32
           },
           {
-            "word": "give",
-            "start": 19.84,
-            "end": 20.14
+            "word": "okay",
+            "start": 6.44,
+            "end": 6.44
           },
           {
-            "word": "that",
-            "start": 20.14,
-            "end": 20.32
+            "word": "we'll",
+            "start": 6.44,
+            "end": 6.6
+          },
+          {
+            "word": "build",
+            "start": 6.6,
+            "end": 6.76
+          },
+          {
+            "word": "our",
+            "start": 6.76,
+            "end": 6.96
+          },
+          {
+            "word": "own",
+            "start": 6.96,
+            "end": 7.1
+          },
+          {
+            "word": "thing",
+            "start": 7.1,
+            "end": 7.34
+          },
+          {
+            "word": "and",
+            "start": 7.4,
+            "end": 7.64
+          },
+          {
+            "word": "it'll",
+            "start": 7.64,
+            "end": 7.68
+          },
+          {
+            "word": "be",
+            "start": 7.68,
+            "end": 7.82
+          },
+          {
+            "word": "really",
+            "start": 7.82,
+            "end": 8.1
+          },
+          {
+            "word": "tight",
+            "start": 8.1,
+            "end": 8.42
+          },
+          {
+            "word": "and",
+            "start": 8.42,
+            "end": 8.6
+          },
+          {
+            "word": "just",
+            "start": 8.6,
+            "end": 8.74
+          },
+          {
+            "word": "kept",
+            "start": 8.74,
+            "end": 8.86
+          },
+          {
+            "word": "up",
+            "start": 8.86,
+            "end": 9
+          },
+          {
+            "word": "No",
+            "start": 9.38,
+            "end": 9.6
+          },
+          {
+            "word": "The",
+            "start": 10.4,
+            "end": 10.88
+          },
+          {
+            "word": "alternative",
+            "start": 10.88,
+            "end": 11.22
           },
           {
             "word": "to",
-            "start": 20.32,
-            "end": 20.48
+            "start": 11.22,
+            "end": 11.72
           },
           {
-            "word": "one",
-            "start": 20.48,
-            "end": 20.56
+            "word": "sort",
+            "start": 11.72,
+            "end": 11.98
           },
           {
             "word": "of",
-            "start": 20.56,
-            "end": 20.64
+            "start": 11.98,
+            "end": 12.16
+          },
+          {
+            "word": "becoming",
+            "start": 12.16,
+            "end": 12.5
+          },
+          {
+            "word": "entirely",
+            "start": 12.5,
+            "end": 12.9
+          },
+          {
+            "word": "passive",
+            "start": 12.9,
+            "end": 13.3
+          },
+          {
+            "word": "independent",
+            "start": 13.3,
+            "end": 13.84
+          },
+          {
+            "word": "on",
+            "start": 13.84,
+            "end": 14.08
           },
           {
             "word": "these",
-            "start": 20.64,
-            "end": 20.8
+            "start": 14.08,
+            "end": 14.22
           },
           {
-            "word": "models",
-            "start": 20.8,
-            "end": 21.06
+            "word": "big",
+            "start": 14.22,
+            "end": 14.5
           },
           {
-            "word": "absolutely",
-            "start": 21.14,
-            "end": 21.48
+            "word": "companies",
+            "start": 14.5,
+            "end": 14.74
           },
           {
-            "word": "fine",
-            "start": 21.48,
-            "end": 21.82
+            "word": "is",
+            "start": 15.08,
+            "end": 15.56
           },
           {
-            "word": "But",
-            "start": 21.98,
-            "end": 22.46
+            "word": "not",
+            "start": 15.56,
+            "end": 15.78
           },
           {
-            "word": "when",
-            "start": 22.46,
-            "end": 22.62
+            "word": "doing",
+            "start": 15.78,
+            "end": 16.18
           },
           {
-            "word": "we're",
-            "start": 22.62,
-            "end": 22.82
+            "word": "everything",
+            "start": 16.18,
+            "end": 16.46
           },
           {
-            "word": "looking",
-            "start": 22.82,
+            "word": "ourselves",
+            "start": 16.46,
+            "end": 16.96
+          },
+          {
+            "word": "It's",
+            "start": 17.28,
+            "end": 17.44
+          },
+          {
+            "word": "practical",
+            "start": 17.44,
+            "end": 17.84
+          },
+          {
+            "word": "stewardship",
+            "start": 17.84,
+            "end": 18.28
+          },
+          {
+            "word": "using",
+            "start": 18.6,
+            "end": 18.94
+          },
+          {
+            "word": "the",
+            "start": 18.94,
+            "end": 19.4
+          },
+          {
+            "word": "hardware",
+            "start": 19.4,
+            "end": 19.52
+          },
+          {
+            "word": "that",
+            "start": 19.52,
+            "end": 19.98
+          },
+          {
+            "word": "will",
+            "start": 19.98,
+            "end": 20.08
+          },
+          {
+            "word": "be",
+            "start": 20.08,
+            "end": 20.28
+          },
+          {
+            "word": "available",
+            "start": 20.28,
+            "end": 20.56
+          },
+          {
+            "word": "using",
+            "start": 20.82,
+            "end": 21.04
+          },
+          {
+            "word": "the",
+            "start": 21.04,
+            "end": 21.16
+          },
+          {
+            "word": "open",
+            "start": 21.16,
+            "end": 21.42
+          },
+          {
+            "word": "source",
+            "start": 21.42,
+            "end": 21.56
+          },
+          {
+            "word": "tools",
+            "start": 21.56,
+            "end": 21.8
+          },
+          {
+            "word": "that",
+            "start": 21.8,
+            "end": 21.96
+          },
+          {
+            "word": "will",
+            "start": 21.96,
+            "end": 22.06
+          },
+          {
+            "word": "be",
+            "start": 22.06,
+            "end": 22.48
+          },
+          {
+            "word": "available",
+            "start": 22.48,
+            "end": 22.48
+          },
+          {
+            "word": "working",
+            "start": 23.02,
             "end": 23.1
           },
           {
-            "word": "at",
+            "word": "together",
             "start": 23.1,
             "end": 23.56
           },
           {
-            "word": "key",
+            "word": "to",
             "start": 23.56,
-            "end": 23.9
-          },
-          {
-            "word": "functions",
-            "start": 23.9,
-            "end": 24.46
-          },
-          {
-            "word": "as",
-            "start": 24.46,
-            "end": 25.4
-          },
-          {
-            "word": "mapped",
-            "start": 25.4,
-            "end": 25.6
-          },
-          {
-            "word": "to",
-            "start": 25.6,
-            "end": 25.78
-          },
-          {
-            "word": "our",
-            "start": 25.78,
-            "end": 26.08
-          },
-          {
-            "word": "principles",
-            "start": 26.08,
-            "end": 26.36
-          },
-          {
-            "word": "as",
-            "start": 26.36,
-            "end": 26.6
-          },
-          {
-            "word": "an",
-            "start": 26.6,
-            "end": 27.16
-          },
-          {
-            "word": "institution",
-            "start": 27.16,
-            "end": 27.16
-          },
-          {
-            "word": "right",
-            "start": 27.16,
-            "end": 27.84
-          },
-          {
-            "word": "education",
-            "start": 28.7,
-            "end": 29.4
-          },
-          {
-            "word": "being",
-            "start": 29.4,
-            "end": 29.74
-          },
-          {
-            "word": "one",
-            "start": 29.74,
-            "end": 29.76
-          },
-          {
-            "word": "of",
-            "start": 29.76,
-            "end": 29.9
-          },
-          {
-            "word": "them",
-            "start": 29.9,
-            "end": 29.9
-          },
-          {
-            "word": "research",
-            "start": 29.94,
-            "end": 30.32
-          },
-          {
-            "word": "being",
-            "start": 30.32,
-            "end": 30.54
-          },
-          {
-            "word": "the",
-            "start": 30.54,
-            "end": 30.7
-          },
-          {
-            "word": "other",
-            "start": 30.7,
-            "end": 30.8
-          },
-          {
-            "word": "one",
-            "start": 30.8,
-            "end": 31.14
-          },
-          {
-            "word": "we",
-            "start": 31.2,
-            "end": 31.9
-          },
-          {
-            "word": "have",
-            "start": 31.9,
-            "end": 31.96
-          },
-          {
-            "word": "to",
-            "start": 31.96,
-            "end": 32.12
-          },
-          {
-            "word": "be",
-            "start": 32.12,
-            "end": 32.12
-          },
-          {
-            "word": "really",
-            "start": 32.12,
-            "end": 32.4
-          },
-          {
-            "word": "careful",
-            "start": 32.4,
-            "end": 32.62
-          },
-          {
-            "word": "what",
-            "start": 32.62,
-            "end": 32.82
-          },
-          {
-            "word": "we're",
-            "start": 32.82,
-            "end": 33.1
-          },
-          {
-            "word": "doing",
-            "start": 33.1,
-            "end": 33.1
-          },
-          {
-            "word": "So",
-            "start": 33.34,
-            "end": 33.64
-          },
-          {
-            "word": "we",
-            "start": 33.64,
-            "end": 33.74
-          },
-          {
-            "word": "don't",
-            "start": 33.74,
-            "end": 33.9
-          },
-          {
-            "word": "want",
-            "start": 33.9,
-            "end": 34.16
-          },
-          {
-            "word": "to",
-            "start": 34.16,
-            "end": 34.34
-          },
-          {
-            "word": "be",
-            "start": 34.34,
-            "end": 34.92
-          },
-          {
-            "word": "entirely",
-            "start": 34.92,
-            "end": 35.22
-          },
-          {
-            "word": "self",
-            "start": 35.22,
-            "end": 35.58
-          },
-          {
-            "word": "sufficient",
-            "start": 35.58,
-            "end": 35.72
-          },
-          {
-            "word": "and",
-            "start": 35.72,
-            "end": 36.14
-          },
-          {
-            "word": "sort",
-            "start": 36.14,
-            "end": 36.38
-          },
-          {
-            "word": "of",
-            "start": 36.38,
-            "end": 36.66
-          },
-          {
-            "word": "cutting",
-            "start": 36.66,
-            "end": 36.86
-          },
-          {
-            "word": "off",
-            "start": 36.86,
-            "end": 36.96
-          },
-          {
-            "word": "our",
-            "start": 36.96,
-            "end": 37.24
-          },
-          {
-            "word": "nose",
-            "start": 37.24,
-            "end": 37.28
-          },
-          {
-            "word": "to",
-            "start": 37.28,
-            "end": 37.5
-          },
-          {
-            "word": "spite",
-            "start": 37.5,
-            "end": 37.56
-          },
-          {
-            "word": "our",
-            "start": 37.56,
-            "end": 37.76
-          },
-          {
-            "word": "face",
-            "start": 37.76,
-            "end": 37.98
-          },
-          {
-            "word": "We",
-            "start": 38.22,
-            "end": 38.4
-          },
-          {
-            "word": "also",
-            "start": 38.4,
-            "end": 38.5
-          },
-          {
-            "word": "don't",
-            "start": 38.5,
-            "end": 38.62
-          },
-          {
-            "word": "want",
-            "start": 38.62,
-            "end": 38.78
-          },
-          {
-            "word": "to",
-            "start": 38.78,
-            "end": 38.78
-          },
-          {
-            "word": "be",
-            "start": 38.78,
-            "end": 38.92
-          },
-          {
-            "word": "passively",
-            "start": 38.92,
-            "end": 39.3
-          },
-          {
-            "word": "dependent",
-            "start": 39.3,
-            "end": 39.76
-          },
-          {
-            "word": "on",
-            "start": 39.76,
-            "end": 40.12
-          },
-          {
-            "word": "these",
-            "start": 40.12,
-            "end": 40.36
-          },
-          {
-            "word": "Silicon",
-            "start": 40.36,
-            "end": 40.68
-          },
-          {
-            "word": "Valley",
-            "start": 40.68,
-            "end": 40.82
-          },
-          {
-            "word": "companies",
-            "start": 40.82,
-            "end": 41.28
-          },
-          {
-            "word": "Instead",
-            "start": 41.82,
-            "end": 41.98
-          },
-          {
-            "word": "we",
-            "start": 42,
-            "end": 42.1
-          },
-          {
-            "word": "want",
-            "start": 42.1,
-            "end": 42.14
-          },
-          {
-            "word": "to",
-            "start": 42.14,
-            "end": 42.22
-          },
-          {
-            "word": "be",
-            "start": 42.22,
-            "end": 42.46
-          },
-          {
-            "word": "practical",
-            "start": 42.46,
-            "end": 42.86
-          },
-          {
-            "word": "stewards",
-            "start": 42.86,
-            "end": 43.4
-          },
-          {
-            "word": "of",
-            "start": 43.4,
-            "end": 43.86
-          },
-          {
-            "word": "our",
-            "start": 43.86,
-            "end": 44.08
-          },
-          {
-            "word": "data",
-            "start": 44.08,
-            "end": 44.36
-          },
-          {
-            "word": "of",
-            "start": 44.52,
-            "end": 44.6
-          },
-          {
-            "word": "our",
-            "start": 44.6,
-            "end": 45.06
-          },
-          {
-            "word": "models",
-            "start": 45.06,
-            "end": 45.06
-          },
-          {
-            "word": "and",
-            "start": 45.06,
-            "end": 45.26
-          },
-          {
-            "word": "decide",
-            "start": 45.26,
-            "end": 45.5
-          },
-          {
-            "word": "what",
-            "start": 45.5,
-            "end": 45.76
-          },
-          {
-            "word": "we",
-            "start": 45.76,
-            "end": 45.98
-          },
-          {
-            "word": "want",
-            "start": 45.98,
-            "end": 46.26
-          },
-          {
-            "word": "to",
-            "start": 46.26,
-            "end": 46.82
+            "end": 24.3
           },
           {
             "word": "build",
-            "start": 46.82,
-            "end": 46.82
+            "start": 24.3,
+            "end": 24.54
           },
           {
-            "word": "what",
-            "start": 47.3,
-            "end": 47.4
+            "word": "something",
+            "start": 24.54,
+            "end": 24.92
           },
           {
-            "word": "we're",
-            "start": 47.4,
-            "end": 47.54
+            "word": "where",
+            "start": 24.92,
+            "end": 25.36
           },
           {
-            "word": "looking",
-            "start": 47.54,
-            "end": 47.74
-          },
-          {
-            "word": "to",
-            "start": 47.74,
-            "end": 48.32
-          },
-          {
-            "word": "buy",
-            "start": 48.32,
-            "end": 48.38
-          },
-          {
-            "word": "and",
-            "start": 48.42,
-            "end": 48.76
-          },
-          {
-            "word": "what",
-            "start": 48.76,
-            "end": 48.84
-          },
-          {
-            "word": "we're",
-            "start": 48.84,
-            "end": 48.98
-          },
-          {
-            "word": "looking",
-            "start": 48.98,
-            "end": 49.08
-          },
-          {
-            "word": "to",
-            "start": 49.08,
-            "end": 49.38
-          },
-          {
-            "word": "refuse",
-            "start": 49.38,
-            "end": 49.66
-          },
-          {
-            "word": "because",
-            "start": 49.74,
-            "end": 49.88
-          },
-          {
-            "word": "again",
-            "start": 49.88,
-            "end": 50.08
-          },
-          {
-            "word": "that",
-            "start": 50.1,
-            "end": 50.26
-          },
-          {
-            "word": "third",
-            "start": 50.26,
-            "end": 50.48
-          },
-          {
-            "word": "option",
-            "start": 50.48,
-            "end": 50.68
-          },
-          {
-            "word": "is",
-            "start": 50.68,
-            "end": 50.88
-          },
-          {
-            "word": "there",
-            "start": 50.88,
-            "end": 51.18
-          },
-          {
-            "word": "and",
-            "start": 51.18,
-            "end": 51.56
-          },
-          {
-            "word": "we",
-            "start": 51.56,
-            "end": 51.72
-          },
-          {
-            "word": "have",
-            "start": 51.72,
-            "end": 51.92
-          },
-          {
-            "word": "to",
-            "start": 51.92,
-            "end": 52.04
-          },
-          {
-            "word": "do",
-            "start": 52.04,
-            "end": 52.16
-          },
-          {
-            "word": "that",
-            "start": 52.16,
-            "end": 52.26
-          },
-          {
-            "word": "on",
-            "start": 52.26,
-            "end": 52.44
-          },
-          {
-            "word": "a",
-            "start": 52.44,
-            "end": 52.5
-          },
-          {
-            "word": "case",
-            "start": 52.5,
-            "end": 52.68
-          },
-          {
-            "word": "by",
-            "start": 52.68,
-            "end": 52.84
-          },
-          {
-            "word": "case",
-            "start": 52.84,
-            "end": 53.08
-          },
-          {
-            "word": "basis",
-            "start": 53.08,
-            "end": 53.5
-          },
-          {
-            "word": "There",
-            "start": 53.56,
-            "end": 53.92
-          },
-          {
-            "word": "should",
-            "start": 53.92,
-            "end": 54.02
-          },
-          {
-            "word": "be",
-            "start": 54.02,
-            "end": 54.2
-          },
-          {
-            "word": "some",
-            "start": 54.2,
-            "end": 54.36
-          },
-          {
-            "word": "of",
-            "start": 54.36,
-            "end": 54.62
-          },
-          {
-            "word": "each",
-            "start": 54.62,
-            "end": 54.74
-          },
-          {
-            "word": "right",
-            "start": 55.06,
-            "end": 55.54
-          },
-          {
-            "word": "And",
-            "start": 55.54,
-            "end": 55.9
-          },
-          {
-            "word": "currently",
-            "start": 55.9,
-            "end": 56.32
-          },
-          {
-            "word": "we're",
-            "start": 56.82,
-            "end": 57.64
-          },
-          {
-            "word": "vacillating",
-            "start": 57.64,
-            "end": 58.1
-          },
-          {
-            "word": "between",
-            "start": 58.1,
-            "end": 58.8
-          },
-          {
-            "word": "buying",
-            "start": 58.8,
-            "end": 60.14
-          },
-          {
-            "word": "everything",
-            "start": 60.14,
-            "end": 60.68
-          },
-          {
-            "word": "refusing",
-            "start": 61.34,
-            "end": 61.34
-          },
-          {
-            "word": "everything",
-            "start": 61.34,
-            "end": 61.84
-          },
-          {
-            "word": "and",
-            "start": 62,
-            "end": 62.44
-          },
-          {
-            "word": "also",
-            "start": 62.44,
-            "end": 62.74
+            "word": "it's",
+            "start": 25.36,
+            "end": 25.56
           },
           {
             "word": "not",
-            "start": 62.74,
-            "end": 62.92
+            "start": 25.56,
+            "end": 25.82
           },
           {
-            "word": "building",
-            "start": 62.92,
-            "end": 63.22
+            "word": "being",
+            "start": 25.82,
+            "end": 26.06
           },
           {
-            "word": "anything",
-            "start": 63.22,
-            "end": 63.52
+            "word": "supplied",
+            "start": 26.06,
+            "end": 26.32
           },
           {
-            "word": "when",
-            "start": 63.62,
-            "end": 63.72
+            "word": "by",
+            "start": 26.32,
+            "end": 26.56
           },
           {
-            "word": "I",
-            "start": 63.72,
-            "end": 63.88
+            "word": "these",
+            "start": 26.56,
+            "end": 27.02
           },
           {
-            "word": "think",
-            "start": 63.88,
-            "end": 63.94
+            "word": "vendors",
+            "start": 27.02,
+            "end": 27.02
           },
           {
-            "word": "there's",
-            "start": 63.94,
-            "end": 64.1
+            "word": "Again",
+            "start": 27.54,
+            "end": 27.88
           },
           {
-            "word": "a",
-            "start": 64.1,
-            "end": 64.2
+            "word": "if",
+            "start": 28.08,
+            "end": 28.32
           },
           {
-            "word": "far",
-            "start": 64.2,
-            "end": 64.54
+            "word": "you",
+            "start": 28.32,
+            "end": 28.44
           },
           {
-            "word": "healthier",
-            "start": 64.54,
-            "end": 64.82
+            "word": "want",
+            "start": 28.44,
+            "end": 28.52
           },
           {
-            "word": "mix",
-            "start": 64.82,
-            "end": 65.08
+            "word": "to",
+            "start": 28.52,
+            "end": 28.92
           },
           {
-            "word": "in",
-            "start": 65.08,
-            "end": 65.24
-          },
-          {
-            "word": "there",
-            "start": 65.24,
-            "end": 65.64
-          },
-          {
-            "word": "aligned",
-            "start": 65.64,
-            "end": 66.12
-          },
-          {
-            "word": "with",
-            "start": 66.12,
-            "end": 66.28
-          },
-          {
-            "word": "our",
-            "start": 66.28,
-            "end": 66.54
-          },
-          {
-            "word": "principles",
-            "start": 66.54,
-            "end": 66.88
-          },
-          {
-            "word": "as",
-            "start": 66.88,
-            "end": 67.18
+            "word": "summarize",
+            "start": 28.92,
+            "end": 28.92
           },
           {
             "word": "an",
-            "start": 67.18,
-            "end": 67.68
+            "start": 28.92,
+            "end": 29.16
           },
           {
-            "word": "institution",
-            "start": 67.68,
-            "end": 67.68
+            "word": "email",
+            "start": 29.16,
+            "end": 29.4
+          },
+          {
+            "word": "there's",
+            "start": 29.78,
+            "end": 29.96
+          },
+          {
+            "word": "simple",
+            "start": 29.96,
+            "end": 30.14
+          },
+          {
+            "word": "models",
+            "start": 30.14,
+            "end": 30.42
+          },
+          {
+            "word": "for",
+            "start": 30.42,
+            "end": 30.66
+          },
+          {
+            "word": "that",
+            "start": 30.66,
+            "end": 30.86
+          },
+          {
+            "word": "but",
+            "start": 30.94,
+            "end": 31.04
+          },
+          {
+            "word": "there's",
+            "start": 31.04,
+            "end": 31.18
+          },
+          {
+            "word": "more",
+            "start": 31.18,
+            "end": 31.62
+          },
+          {
+            "word": "complex",
+            "start": 31.62,
+            "end": 31.92
+          },
+          {
+            "word": "things",
+            "start": 31.92,
+            "end": 32.26
+          },
+          {
+            "word": "around",
+            "start": 32.26,
+            "end": 32.6
+          },
+          {
+            "word": "research",
+            "start": 32.6,
+            "end": 33.22
+          },
+          {
+            "word": "administration",
+            "start": 33.96,
+            "end": 33.96
+          },
+          {
+            "word": "especially",
+            "start": 34.18,
+            "end": 34.48
+          },
+          {
+            "word": "education",
+            "start": 34.48,
+            "end": 35.14
+          },
+          {
+            "word": "right",
+            "start": 35.14,
+            "end": 35.98
+          },
+          {
+            "word": "We",
+            "start": 35.98,
+            "end": 36.08
+          },
+          {
+            "word": "want",
+            "start": 36.08,
+            "end": 36.28
+          },
+          {
+            "word": "to",
+            "start": 36.28,
+            "end": 36.42
+          },
+          {
+            "word": "be",
+            "start": 36.42,
+            "end": 36.58
+          },
+          {
+            "word": "in",
+            "start": 36.58,
+            "end": 36.98
+          },
+          {
+            "word": "control",
+            "start": 36.98,
+            "end": 37.14
           }
-        ],
-        "transcribed_at": "2026-04-14T18:16:20.412Z"
-      },
-      "voiceover_history": [
-        {
-          "transcript": "But what I'm not saying is here, is that we should build everything ourself. This is, again, a common trap in higher education, is that, okay, we'll build our own thing, and it'll be really tight and just kept up. No. The alternative to sort of becoming entirely passive independent on these big companies is not doing everything ourselves. It's practical stewardship, using the hardware that will be available, using the open source tools that will be available, working together to build something where it's not being supplied by these vendors. Again, if you want to summarize an email, there's simple models for that, but there's more complex things around research, administration, especially education, right? We want to be in control.",
-          "transcribed_at": "2026-04-13T18:56:51.278Z",
-          "duration": 38.7,
-          "replaced_at": "2026-04-14T18:15:04.058Z"
-        },
-        {
-          "transcript": "But to be clear, what I'm not saying here is we do everything ourselves, because again, that's a real trap the universities fall into is not invented here syndrome, we build our own tools that is held together by bits of string, and really fragile. So we're not being heroic is self sufficient here. And we're also not being pathfully dependent on a Silicon Valley tech company. We have to be practical stewards of our approach of our data of our, of our students of our institutions. Yeah, cool.",
-          "transcribed_at": "2026-04-14T18:15:06.713Z",
-          "duration": 29.1,
-          "replaced_at": "2026-04-14T18:16:15.617Z"
-        }
-      ]
+        ]
+      }
     },
     {
       "type": "section-divider",
@@ -29416,397 +28862,159 @@
       "id": "8fwh0zps",
       "voiceover": {
         "file": "voiceovers/8fwh0zps.webm",
-        "duration": 21.84,
+        "duration": 8.94,
         "mime": "audio/webm;codecs=opus",
-        "updated": "2026-04-14T18:16:45.738Z",
-        "transcript": "So to wrap this up, what might the next decade look like? Now, I'm not going to talk technically and things like that, although I'll happily pontificate over a beer later on if anyone wants to discuss where these models are going. But it's, I want to give you some options of, okay, what's a positive scenario and what's a potential negative scenario? What might this look like, right? Try and give you an idea.",
+        "updated": "2026-04-13T18:38:20.669Z",
+        "transcript": "So in this last section, I'd like to give you some scenarios of what a good outcome might look like and what a less good outcome might look like.",
+        "transcribed_at": "2026-04-13T18:56:52.098Z",
         "words": [
           {
             "word": "So",
-            "start": 0.5,
-            "end": 0.94
+            "start": 0,
+            "end": 0.3
           },
           {
-            "word": "to",
-            "start": 0.94,
-            "end": 1.26
-          },
-          {
-            "word": "wrap",
-            "start": 1.26,
-            "end": 1.42
+            "word": "in",
+            "start": 0.3,
+            "end": 0.46
           },
           {
             "word": "this",
-            "start": 1.42,
-            "end": 1.62
+            "start": 0.46,
+            "end": 0.6
           },
           {
-            "word": "up",
-            "start": 1.62,
-            "end": 2.02
+            "word": "last",
+            "start": 0.6,
+            "end": 0.9
           },
           {
-            "word": "what",
-            "start": 2.6,
-            "end": 2.72
+            "word": "section",
+            "start": 0.9,
+            "end": 1.22
           },
           {
-            "word": "might",
-            "start": 2.72,
-            "end": 2.98
-          },
-          {
-            "word": "the",
-            "start": 2.98,
-            "end": 3.2
-          },
-          {
-            "word": "next",
-            "start": 3.2,
-            "end": 3.4
-          },
-          {
-            "word": "decade",
-            "start": 3.4,
-            "end": 3.76
-          },
-          {
-            "word": "look",
-            "start": 3.76,
-            "end": 4.02
+            "word": "I'd",
+            "start": 1.58,
+            "end": 1.66
           },
           {
             "word": "like",
-            "start": 4.02,
-            "end": 4.26
-          },
-          {
-            "word": "Now",
-            "start": 4.4,
-            "end": 4.7
-          },
-          {
-            "word": "I'm",
-            "start": 4.7,
-            "end": 4.92
-          },
-          {
-            "word": "not",
-            "start": 4.92,
-            "end": 5.06
-          },
-          {
-            "word": "going",
-            "start": 5.06,
-            "end": 5.14
+            "start": 1.66,
+            "end": 1.78
           },
           {
             "word": "to",
-            "start": 5.14,
-            "end": 5.18
-          },
-          {
-            "word": "talk",
-            "start": 5.18,
-            "end": 5.46
-          },
-          {
-            "word": "technically",
-            "start": 5.46,
-            "end": 5.78
-          },
-          {
-            "word": "and",
-            "start": 5.78,
-            "end": 6.04
-          },
-          {
-            "word": "things",
-            "start": 6.04,
-            "end": 6.12
-          },
-          {
-            "word": "like",
-            "start": 6.12,
-            "end": 6.32
-          },
-          {
-            "word": "that",
-            "start": 6.32,
-            "end": 6.46
-          },
-          {
-            "word": "although",
-            "start": 6.5,
-            "end": 6.62
-          },
-          {
-            "word": "I'll",
-            "start": 6.62,
-            "end": 6.82
-          },
-          {
-            "word": "happily",
-            "start": 6.82,
-            "end": 7.16
-          },
-          {
-            "word": "pontificate",
-            "start": 7.16,
-            "end": 7.94
-          },
-          {
-            "word": "over",
-            "start": 7.94,
-            "end": 8.18
-          },
-          {
-            "word": "a",
-            "start": 8.18,
-            "end": 8.4
-          },
-          {
-            "word": "beer",
-            "start": 8.4,
-            "end": 8.46
-          },
-          {
-            "word": "later",
-            "start": 8.46,
-            "end": 8.68
-          },
-          {
-            "word": "on",
-            "start": 8.68,
-            "end": 8.82
-          },
-          {
-            "word": "if",
-            "start": 8.82,
-            "end": 8.9
-          },
-          {
-            "word": "anyone",
-            "start": 8.9,
-            "end": 9.06
-          },
-          {
-            "word": "wants",
-            "start": 9.06,
-            "end": 9.38
-          },
-          {
-            "word": "to",
-            "start": 9.38,
-            "end": 9.48
-          },
-          {
-            "word": "discuss",
-            "start": 9.48,
-            "end": 9.88
-          },
-          {
-            "word": "where",
-            "start": 9.88,
-            "end": 10.08
-          },
-          {
-            "word": "these",
-            "start": 10.08,
-            "end": 10.46
-          },
-          {
-            "word": "models",
-            "start": 10.46,
-            "end": 10.46
-          },
-          {
-            "word": "are",
-            "start": 10.46,
-            "end": 10.62
-          },
-          {
-            "word": "going",
-            "start": 10.62,
-            "end": 11.36
-          },
-          {
-            "word": "But",
-            "start": 12.94,
-            "end": 13.38
-          },
-          {
-            "word": "it's",
-            "start": 13.38,
-            "end": 13.82
-          },
-          {
-            "word": "I",
-            "start": 14.82,
-            "end": 15.06
-          },
-          {
-            "word": "want",
-            "start": 15.06,
-            "end": 15.06
-          },
-          {
-            "word": "to",
-            "start": 15.06,
-            "end": 15.1
+            "start": 1.78,
+            "end": 1.86
           },
           {
             "word": "give",
-            "start": 15.1,
-            "end": 15.18
+            "start": 1.86,
+            "end": 1.9
           },
           {
             "word": "you",
-            "start": 15.18,
-            "end": 15.24
+            "start": 1.9,
+            "end": 2
           },
           {
             "word": "some",
-            "start": 15.24,
-            "end": 15.42
+            "start": 2,
+            "end": 2.18
           },
           {
-            "word": "options",
-            "start": 15.42,
-            "end": 15.8
+            "word": "scenarios",
+            "start": 2.18,
+            "end": 2.6
           },
           {
             "word": "of",
-            "start": 15.8,
-            "end": 16.34
+            "start": 2.6,
+            "end": 3.02
           },
           {
-            "word": "okay",
-            "start": 16.62,
-            "end": 16.62
-          },
-          {
-            "word": "what's",
-            "start": 16.62,
-            "end": 16.9
+            "word": "what",
+            "start": 3.02,
+            "end": 3.54
           },
           {
             "word": "a",
-            "start": 16.9,
-            "end": 16.9
+            "start": 3.54,
+            "end": 3.84
           },
           {
-            "word": "positive",
-            "start": 16.9,
-            "end": 17.12
+            "word": "good",
+            "start": 3.84,
+            "end": 4.38
           },
           {
-            "word": "scenario",
-            "start": 17.12,
-            "end": 17.46
-          },
-          {
-            "word": "and",
-            "start": 17.46,
-            "end": 17.68
-          },
-          {
-            "word": "what's",
-            "start": 17.68,
-            "end": 17.84
-          },
-          {
-            "word": "a",
-            "start": 17.84,
-            "end": 17.92
-          },
-          {
-            "word": "potential",
-            "start": 17.92,
-            "end": 18.08
-          },
-          {
-            "word": "negative",
-            "start": 18.08,
-            "end": 18.42
-          },
-          {
-            "word": "scenario",
-            "start": 18.42,
-            "end": 18.56
-          },
-          {
-            "word": "What",
-            "start": 18.64,
-            "end": 18.84
+            "word": "outcome",
+            "start": 4.38,
+            "end": 4.98
           },
           {
             "word": "might",
-            "start": 18.84,
-            "end": 19.08
-          },
-          {
-            "word": "this",
-            "start": 19.08,
-            "end": 19.34
+            "start": 4.98,
+            "end": 5.22
           },
           {
             "word": "look",
-            "start": 19.34,
-            "end": 19.54
+            "start": 5.22,
+            "end": 5.38
           },
           {
             "word": "like",
-            "start": 19.54,
-            "end": 19.9
-          },
-          {
-            "word": "right",
-            "start": 19.9,
-            "end": 20.18
-          },
-          {
-            "word": "Try",
-            "start": 20.76,
-            "end": 21.1
+            "start": 5.38,
+            "end": 5.6
           },
           {
             "word": "and",
-            "start": 21.1,
-            "end": 21.18
+            "start": 5.6,
+            "end": 6.04
           },
           {
-            "word": "give",
-            "start": 21.18,
-            "end": 21.26
+            "word": "what",
+            "start": 6.04,
+            "end": 6.22
           },
           {
-            "word": "you",
-            "start": 21.26,
-            "end": 21.32
+            "word": "a",
+            "start": 6.22,
+            "end": 6.78
           },
           {
-            "word": "an",
-            "start": 21.32,
-            "end": 21.66
+            "word": "less",
+            "start": 6.78,
+            "end": 7.02
           },
           {
-            "word": "idea",
-            "start": 21.66,
-            "end": 21.66
+            "word": "good",
+            "start": 7.02,
+            "end": 7.26
+          },
+          {
+            "word": "outcome",
+            "start": 7.26,
+            "end": 7.48
+          },
+          {
+            "word": "might",
+            "start": 7.48,
+            "end": 7.76
+          },
+          {
+            "word": "look",
+            "start": 7.76,
+            "end": 7.98
+          },
+          {
+            "word": "like",
+            "start": 7.98,
+            "end": 8.2
           }
-        ],
-        "transcribed_at": "2026-04-14T18:16:47.288Z"
-      },
-      "voiceover_history": [
-        {
-          "transcript": "So in this last section, I'd like to give you some scenarios of what a good outcome might look like and what a less good outcome might look like.",
-          "transcribed_at": "2026-04-13T18:56:52.098Z",
-          "duration": 8.94,
-          "replaced_at": "2026-04-14T18:16:45.738Z"
-        }
-      ]
+        ]
+      }
     },
     {
       "type": "content",
@@ -29838,817 +29046,809 @@
       "id": "2wlvzyw9",
       "voiceover": {
         "file": "voiceovers/2wlvzyw9.webm",
-        "duration": 53.46,
+        "duration": 60.3,
         "mime": "audio/webm;codecs=opus",
-        "updated": "2026-04-14T18:17:41.819Z",
-        "transcript": "So, if we play this moment well, right, post-bubble, right, there'll be cheap infrastructure, right, that we can utilize to build our own models, to do our own thing. That becomes a real option. It's possible now. It becomes more and more possible as we go on. We can build these systems aligned with students, a human-centered pedagogy, as in teaching and learning needs very specific models. We can build them. We can decide what then. We have the expertise in universities. We have all the data we need. We can build a really robust evaluation so we know if it's actually working or not. Again, academic rigor, right? We bring that to the table. And what this could lead to is we could be an example of, okay, a set of public bodies that work together to build their own AI tools. And this could be a real example, right, across the public sector and beyond.",
+        "updated": "2026-04-13T18:39:23.826Z",
+        "transcript": "What makes a good outcome look like? So, post-boom, we have cheaper infrastructure, better terms, more flexibility, right? We have the ability to have all these models help with human-centered pedagogy, right? Rather than shoving things down people's throats on these consumer models, instead, we design models based on educational research and best practices to help people learn, right? We also have the opportunity, as universities, because we have all of these strengths, we have everything in place. Like I say, we'll have access to the post-boom hardware, we'll have access to open-source models. We've got all the expertise, of course, computer science, social science, admin, transformation, right? We've got this huge amount of data, this evaluation data set we can use. That's everything you need to create a literally world-class model. We could show the way for public sector bodies, groups, right, using these tools for our own principles, for our own direction.",
+        "transcribed_at": "2026-04-13T18:56:55.889Z",
         "words": [
           {
-            "word": "So",
+            "word": "What",
             "start": 0,
-            "end": 0.56
+            "end": 0.14
           },
           {
-            "word": "if",
-            "start": 0.56,
-            "end": 0.86
+            "word": "makes",
+            "start": 0.14,
+            "end": 0.42
           },
           {
-            "word": "we",
-            "start": 0.86,
-            "end": 1.08
+            "word": "a",
+            "start": 0.42,
+            "end": 0.7
           },
           {
-            "word": "play",
-            "start": 1.08,
-            "end": 1.22
+            "word": "good",
+            "start": 0.7,
+            "end": 1.06
           },
           {
-            "word": "this",
-            "start": 1.22,
-            "end": 1.42
+            "word": "outcome",
+            "start": 1.06,
+            "end": 1.32
           },
           {
-            "word": "moment",
-            "start": 1.42,
-            "end": 1.7
+            "word": "look",
+            "start": 1.32,
+            "end": 1.6
           },
           {
-            "word": "well",
-            "start": 1.7,
-            "end": 2.16
+            "word": "like",
+            "start": 1.6,
+            "end": 1.78
           },
           {
-            "word": "right",
-            "start": 3.42,
-            "end": 3.42
+            "word": "So",
+            "start": 2.86,
+            "end": 2.88
           },
           {
             "word": "post",
-            "start": 3.62,
-            "end": 3.96
+            "start": 3.2,
+            "end": 3.54
           },
           {
-            "word": "bubble",
-            "start": 3.96,
-            "end": 4.24
+            "word": "boom",
+            "start": 3.54,
+            "end": 3.74
           },
           {
-            "word": "right",
-            "start": 4.56,
-            "end": 5.04
+            "word": "we",
+            "start": 4.14,
+            "end": 4.28
           },
           {
-            "word": "there'll",
-            "start": 5.04,
-            "end": 5.14
+            "word": "have",
+            "start": 4.28,
+            "end": 4.42
           },
           {
-            "word": "be",
-            "start": 5.14,
-            "end": 5.28
-          },
-          {
-            "word": "cheap",
-            "start": 5.28,
-            "end": 5.52
+            "word": "cheaper",
+            "start": 4.42,
+            "end": 4.7
           },
           {
             "word": "infrastructure",
-            "start": 5.52,
-            "end": 5.98
+            "start": 4.7,
+            "end": 5.18
+          },
+          {
+            "word": "better",
+            "start": 5.78,
+            "end": 5.96
+          },
+          {
+            "word": "terms",
+            "start": 5.96,
+            "end": 6.3
+          },
+          {
+            "word": "more",
+            "start": 6.52,
+            "end": 6.68
+          },
+          {
+            "word": "flexibility",
+            "start": 6.68,
+            "end": 7.16
           },
           {
             "word": "right",
-            "start": 6.36,
-            "end": 6.62
-          },
-          {
-            "word": "that",
-            "start": 6.62,
-            "end": 6.76
-          },
-          {
-            "word": "we",
-            "start": 6.76,
-            "end": 6.94
-          },
-          {
-            "word": "can",
-            "start": 6.94,
-            "end": 7.18
-          },
-          {
-            "word": "utilize",
-            "start": 7.18,
-            "end": 7.52
-          },
-          {
-            "word": "to",
-            "start": 7.52,
-            "end": 8.26
-          },
-          {
-            "word": "build",
-            "start": 8.26,
-            "end": 9.1
-          },
-          {
-            "word": "our",
-            "start": 9.1,
-            "end": 9.32
-          },
-          {
-            "word": "own",
-            "start": 9.32,
-            "end": 9.72
-          },
-          {
-            "word": "models",
-            "start": 9.72,
-            "end": 9.72
-          },
-          {
-            "word": "to",
-            "start": 9.96,
-            "end": 10.16
-          },
-          {
-            "word": "do",
-            "start": 10.16,
-            "end": 10.28
-          },
-          {
-            "word": "our",
-            "start": 10.28,
-            "end": 10.46
-          },
-          {
-            "word": "own",
-            "start": 10.46,
-            "end": 10.7
-          },
-          {
-            "word": "thing",
-            "start": 10.7,
-            "end": 10.8
-          },
-          {
-            "word": "That",
-            "start": 10.86,
-            "end": 11
-          },
-          {
-            "word": "becomes",
-            "start": 11,
-            "end": 11.46
-          },
-          {
-            "word": "a",
-            "start": 11.46,
-            "end": 11.8
-          },
-          {
-            "word": "real",
-            "start": 11.8,
-            "end": 12.36
-          },
-          {
-            "word": "option",
-            "start": 12.36,
-            "end": 12.72
-          },
-          {
-            "word": "It's",
-            "start": 13.12,
-            "end": 13.32
-          },
-          {
-            "word": "possible",
-            "start": 13.32,
-            "end": 13.6
-          },
-          {
-            "word": "now",
-            "start": 13.6,
-            "end": 13.96
-          },
-          {
-            "word": "It",
-            "start": 14.18,
-            "end": 14.28
-          },
-          {
-            "word": "becomes",
-            "start": 14.28,
-            "end": 14.48
-          },
-          {
-            "word": "more",
-            "start": 14.48,
-            "end": 14.92
-          },
-          {
-            "word": "and",
-            "start": 14.92,
-            "end": 15.3
-          },
-          {
-            "word": "more",
-            "start": 15.3,
-            "end": 15.3
-          },
-          {
-            "word": "possible",
-            "start": 15.3,
-            "end": 15.54
-          },
-          {
-            "word": "as",
-            "start": 15.54,
-            "end": 15.72
-          },
-          {
-            "word": "we",
-            "start": 15.72,
-            "end": 15.82
-          },
-          {
-            "word": "go",
-            "start": 15.82,
-            "end": 15.96
-          },
-          {
-            "word": "on",
-            "start": 15.96,
-            "end": 16.28
+            "start": 7.36,
+            "end": 8.56
           },
           {
             "word": "We",
-            "start": 16.96,
-            "end": 17.44
-          },
-          {
-            "word": "can",
-            "start": 17.44,
-            "end": 17.92
-          },
-          {
-            "word": "build",
-            "start": 17.92,
-            "end": 18.12
-          },
-          {
-            "word": "these",
-            "start": 18.12,
-            "end": 18.52
-          },
-          {
-            "word": "systems",
-            "start": 18.52,
-            "end": 18.96
-          },
-          {
-            "word": "aligned",
-            "start": 18.96,
-            "end": 19.88
-          },
-          {
-            "word": "with",
-            "start": 19.88,
-            "end": 20.12
-          },
-          {
-            "word": "students",
-            "start": 20.12,
-            "end": 20.6
-          },
-          {
-            "word": "a",
-            "start": 20.84,
-            "end": 21.08
-          },
-          {
-            "word": "human",
-            "start": 21.08,
-            "end": 21.22
-          },
-          {
-            "word": "centered",
-            "start": 21.22,
-            "end": 21.54
-          },
-          {
-            "word": "pedagogy",
-            "start": 21.54,
-            "end": 21.94
-          },
-          {
-            "word": "as",
-            "start": 21.98,
-            "end": 22.16
-          },
-          {
-            "word": "in",
-            "start": 22.16,
-            "end": 22.4
-          },
-          {
-            "word": "teaching",
-            "start": 22.4,
-            "end": 22.54
-          },
-          {
-            "word": "and",
-            "start": 22.54,
-            "end": 23
-          },
-          {
-            "word": "learning",
-            "start": 23,
-            "end": 23
-          },
-          {
-            "word": "needs",
-            "start": 23,
-            "end": 23.24
-          },
-          {
-            "word": "very",
-            "start": 23.24,
-            "end": 23.64
-          },
-          {
-            "word": "specific",
-            "start": 23.64,
-            "end": 24.04
-          },
-          {
-            "word": "models",
-            "start": 24.04,
-            "end": 24.38
-          },
-          {
-            "word": "We",
-            "start": 24.8,
-            "end": 24.94
-          },
-          {
-            "word": "can",
-            "start": 24.94,
-            "end": 25.14
-          },
-          {
-            "word": "build",
-            "start": 25.14,
-            "end": 25.34
-          },
-          {
-            "word": "them",
-            "start": 25.34,
-            "end": 25.58
-          },
-          {
-            "word": "We",
-            "start": 26.02,
-            "end": 26.14
-          },
-          {
-            "word": "can",
-            "start": 26.14,
-            "end": 26.32
-          },
-          {
-            "word": "decide",
-            "start": 26.32,
-            "end": 26.58
-          },
-          {
-            "word": "what",
-            "start": 26.58,
-            "end": 26.7
-          },
-          {
-            "word": "then",
-            "start": 26.7,
-            "end": 26.84
-          },
-          {
-            "word": "We",
-            "start": 26.92,
-            "end": 26.92
+            "start": 8.56,
+            "end": 8.62
           },
           {
             "word": "have",
-            "start": 26.92,
-            "end": 27.06
+            "start": 8.62,
+            "end": 9.14
           },
           {
             "word": "the",
-            "start": 27.06,
-            "end": 27.8
+            "start": 9.14,
+            "end": 9.82
           },
           {
-            "word": "expertise",
-            "start": 27.8,
-            "end": 27.8
+            "word": "ability",
+            "start": 9.82,
+            "end": 9.82
           },
           {
-            "word": "in",
-            "start": 27.8,
-            "end": 28.4
-          },
-          {
-            "word": "universities",
-            "start": 28.4,
-            "end": 28.82
-          },
-          {
-            "word": "We",
-            "start": 29.24,
-            "end": 29.48
+            "word": "to",
+            "start": 9.82,
+            "end": 10.32
           },
           {
             "word": "have",
-            "start": 29.48,
-            "end": 29.78
+            "start": 10.32,
+            "end": 10.76
           },
           {
             "word": "all",
-            "start": 29.78,
-            "end": 29.96
+            "start": 10.76,
+            "end": 11.06
           },
           {
-            "word": "the",
-            "start": 29.96,
-            "end": 30.08
+            "word": "these",
+            "start": 11.06,
+            "end": 11.28
           },
           {
-            "word": "data",
-            "start": 30.08,
-            "end": 30.36
+            "word": "models",
+            "start": 11.28,
+            "end": 11.58
           },
           {
-            "word": "we",
-            "start": 30.36,
-            "end": 30.6
+            "word": "help",
+            "start": 11.58,
+            "end": 11.96
           },
           {
-            "word": "need",
-            "start": 30.6,
-            "end": 30.82
+            "word": "with",
+            "start": 11.96,
+            "end": 12.22
           },
           {
-            "word": "We",
-            "start": 31.26,
-            "end": 31.26
+            "word": "human",
+            "start": 12.22,
+            "end": 12.58
           },
           {
-            "word": "can",
-            "start": 31.26,
-            "end": 31.64
+            "word": "centered",
+            "start": 12.58,
+            "end": 12.9
           },
           {
-            "word": "build",
-            "start": 31.64,
-            "end": 31.86
-          },
-          {
-            "word": "a",
-            "start": 31.86,
-            "end": 31.96
-          },
-          {
-            "word": "really",
-            "start": 31.96,
-            "end": 32.2
-          },
-          {
-            "word": "robust",
-            "start": 32.2,
-            "end": 32.48
-          },
-          {
-            "word": "evaluation",
-            "start": 32.48,
-            "end": 32.98
-          },
-          {
-            "word": "so",
-            "start": 32.98,
-            "end": 33.2
-          },
-          {
-            "word": "we",
-            "start": 33.2,
-            "end": 33.38
-          },
-          {
-            "word": "know",
-            "start": 33.38,
-            "end": 33.38
-          },
-          {
-            "word": "if",
-            "start": 33.38,
-            "end": 33.5
-          },
-          {
-            "word": "it's",
-            "start": 33.5,
-            "end": 33.54
-          },
-          {
-            "word": "actually",
-            "start": 33.54,
-            "end": 33.76
-          },
-          {
-            "word": "working",
-            "start": 33.76,
-            "end": 34.14
-          },
-          {
-            "word": "or",
-            "start": 34.14,
-            "end": 34.3
-          },
-          {
-            "word": "not",
-            "start": 34.3,
-            "end": 34.44
-          },
-          {
-            "word": "Again",
-            "start": 35.06,
-            "end": 35.54
-          },
-          {
-            "word": "academic",
-            "start": 35.54,
-            "end": 36.02
-          },
-          {
-            "word": "rigor",
-            "start": 36.02,
-            "end": 36.34
+            "word": "pedagogy",
+            "start": 12.9,
+            "end": 13.38
           },
           {
             "word": "right",
-            "start": 36.56,
-            "end": 37.02
+            "start": 13.96,
+            "end": 14.38
           },
           {
-            "word": "We",
-            "start": 37.02,
-            "end": 37.06
+            "word": "Rather",
+            "start": 14.44,
+            "end": 14.68
           },
           {
-            "word": "bring",
-            "start": 37.06,
-            "end": 37.3
+            "word": "than",
+            "start": 14.68,
+            "end": 15.02
           },
           {
-            "word": "that",
-            "start": 37.3,
-            "end": 37.6
+            "word": "shoving",
+            "start": 15.02,
+            "end": 15.02
           },
           {
-            "word": "to",
-            "start": 37.6,
-            "end": 37.72
+            "word": "things",
+            "start": 15.02,
+            "end": 15.28
           },
           {
-            "word": "the",
-            "start": 37.72,
-            "end": 38.14
+            "word": "down",
+            "start": 15.28,
+            "end": 15.48
           },
           {
-            "word": "table",
-            "start": 38.14,
-            "end": 38.14
+            "word": "people's",
+            "start": 15.48,
+            "end": 16.08
           },
           {
-            "word": "And",
-            "start": 38.84,
-            "end": 39.32
+            "word": "throats",
+            "start": 16.08,
+            "end": 16.08
           },
           {
-            "word": "what",
-            "start": 39.32,
-            "end": 39.8
+            "word": "on",
+            "start": 16.08,
+            "end": 16.32
           },
           {
-            "word": "this",
-            "start": 39.8,
-            "end": 39.96
+            "word": "these",
+            "start": 16.32,
+            "end": 16.48
           },
           {
-            "word": "could",
-            "start": 39.96,
-            "end": 40.14
+            "word": "consumer",
+            "start": 16.48,
+            "end": 16.8
           },
           {
-            "word": "lead",
-            "start": 40.14,
-            "end": 40.36
+            "word": "models",
+            "start": 16.8,
+            "end": 17.12
           },
           {
-            "word": "to",
-            "start": 40.36,
-            "end": 40.62
-          },
-          {
-            "word": "is",
-            "start": 40.62,
-            "end": 40.8
+            "word": "instead",
+            "start": 17.64,
+            "end": 17.92
           },
           {
             "word": "we",
-            "start": 40.8,
-            "end": 41.08
+            "start": 18.1,
+            "end": 18.38
           },
           {
-            "word": "could",
-            "start": 41.08,
-            "end": 41.26
+            "word": "design",
+            "start": 18.38,
+            "end": 18.78
           },
           {
-            "word": "be",
-            "start": 41.26,
-            "end": 41.42
+            "word": "models",
+            "start": 18.78,
+            "end": 19.34
           },
           {
-            "word": "an",
-            "start": 41.42,
-            "end": 41.96
+            "word": "based",
+            "start": 19.34,
+            "end": 19.76
           },
           {
-            "word": "example",
-            "start": 41.96,
-            "end": 41.96
+            "word": "on",
+            "start": 19.76,
+            "end": 20.2
           },
           {
-            "word": "of",
-            "start": 41.96,
-            "end": 42.3
+            "word": "educational",
+            "start": 20.2,
+            "end": 20.62
           },
           {
-            "word": "okay",
-            "start": 42.9,
-            "end": 42.9
-          },
-          {
-            "word": "a",
-            "start": 42.9,
-            "end": 43.14
-          },
-          {
-            "word": "set",
-            "start": 43.14,
-            "end": 43.34
-          },
-          {
-            "word": "of",
-            "start": 43.34,
-            "end": 43.68
-          },
-          {
-            "word": "public",
-            "start": 43.68,
-            "end": 43.88
-          },
-          {
-            "word": "bodies",
-            "start": 43.88,
-            "end": 44.24
-          },
-          {
-            "word": "that",
-            "start": 45.4,
-            "end": 45.88
-          },
-          {
-            "word": "work",
-            "start": 45.88,
-            "end": 46.36
-          },
-          {
-            "word": "together",
-            "start": 46.36,
-            "end": 46.72
-          },
-          {
-            "word": "to",
-            "start": 46.72,
-            "end": 47.46
-          },
-          {
-            "word": "build",
-            "start": 47.46,
-            "end": 47.7
-          },
-          {
-            "word": "their",
-            "start": 47.7,
-            "end": 47.92
-          },
-          {
-            "word": "own",
-            "start": 47.92,
-            "end": 48.22
-          },
-          {
-            "word": "AI",
-            "start": 48.22,
-            "end": 48.5
-          },
-          {
-            "word": "tools",
-            "start": 48.5,
-            "end": 48.76
-          },
-          {
-            "word": "And",
-            "start": 48.84,
-            "end": 48.98
-          },
-          {
-            "word": "this",
-            "start": 48.98,
-            "end": 49.04
-          },
-          {
-            "word": "could",
-            "start": 49.04,
-            "end": 49.14
-          },
-          {
-            "word": "be",
-            "start": 49.14,
-            "end": 49.22
-          },
-          {
-            "word": "a",
-            "start": 49.22,
-            "end": 49.38
-          },
-          {
-            "word": "real",
-            "start": 49.38,
-            "end": 49.62
-          },
-          {
-            "word": "example",
-            "start": 49.62,
-            "end": 50.06
-          },
-          {
-            "word": "right",
-            "start": 50.22,
-            "end": 50.68
-          },
-          {
-            "word": "across",
-            "start": 50.68,
-            "end": 50.8
-          },
-          {
-            "word": "the",
-            "start": 50.8,
-            "end": 51.02
-          },
-          {
-            "word": "public",
-            "start": 51.02,
-            "end": 51.2
-          },
-          {
-            "word": "sector",
-            "start": 51.2,
-            "end": 51.5
+            "word": "research",
+            "start": 20.62,
+            "end": 21.06
           },
           {
             "word": "and",
-            "start": 51.5,
-            "end": 52.04
+            "start": 21.06,
+            "end": 21.34
           },
           {
-            "word": "beyond",
-            "start": 52.04,
-            "end": 52.28
+            "word": "best",
+            "start": 21.34,
+            "end": 21.48
+          },
+          {
+            "word": "practices",
+            "start": 21.48,
+            "end": 21.86
+          },
+          {
+            "word": "to",
+            "start": 21.86,
+            "end": 22.56
+          },
+          {
+            "word": "help",
+            "start": 22.56,
+            "end": 22.84
+          },
+          {
+            "word": "people",
+            "start": 22.84,
+            "end": 23.34
+          },
+          {
+            "word": "learn",
+            "start": 23.34,
+            "end": 23.78
+          },
+          {
+            "word": "right",
+            "start": 23.82,
+            "end": 24.5
+          },
+          {
+            "word": "We",
+            "start": 24.5,
+            "end": 25.06
+          },
+          {
+            "word": "also",
+            "start": 25.06,
+            "end": 25.5
+          },
+          {
+            "word": "have",
+            "start": 25.5,
+            "end": 25.68
+          },
+          {
+            "word": "the",
+            "start": 25.68,
+            "end": 25.9
+          },
+          {
+            "word": "opportunity",
+            "start": 25.9,
+            "end": 26.18
+          },
+          {
+            "word": "as",
+            "start": 26.36,
+            "end": 26.6
+          },
+          {
+            "word": "universities",
+            "start": 26.6,
+            "end": 27.04
+          },
+          {
+            "word": "because",
+            "start": 27.18,
+            "end": 27.56
+          },
+          {
+            "word": "we",
+            "start": 27.56,
+            "end": 27.74
+          },
+          {
+            "word": "have",
+            "start": 27.74,
+            "end": 27.98
+          },
+          {
+            "word": "all",
+            "start": 27.98,
+            "end": 28.36
+          },
+          {
+            "word": "of",
+            "start": 28.36,
+            "end": 28.46
+          },
+          {
+            "word": "these",
+            "start": 28.46,
+            "end": 28.62
+          },
+          {
+            "word": "strengths",
+            "start": 28.62,
+            "end": 28.86
+          },
+          {
+            "word": "we",
+            "start": 28.86,
+            "end": 29
+          },
+          {
+            "word": "have",
+            "start": 29,
+            "end": 29.18
+          },
+          {
+            "word": "everything",
+            "start": 29.18,
+            "end": 29.62
+          },
+          {
+            "word": "in",
+            "start": 29.62,
+            "end": 29.94
+          },
+          {
+            "word": "place",
+            "start": 29.94,
+            "end": 30.12
+          },
+          {
+            "word": "Like",
+            "start": 30.28,
+            "end": 30.38
+          },
+          {
+            "word": "I",
+            "start": 30.38,
+            "end": 30.58
+          },
+          {
+            "word": "say",
+            "start": 30.58,
+            "end": 30.8
+          },
+          {
+            "word": "we'll",
+            "start": 31.2,
+            "end": 31.42
+          },
+          {
+            "word": "have",
+            "start": 31.42,
+            "end": 31.7
+          },
+          {
+            "word": "access",
+            "start": 31.7,
+            "end": 31.92
+          },
+          {
+            "word": "to",
+            "start": 31.92,
+            "end": 32.16
+          },
+          {
+            "word": "the",
+            "start": 32.16,
+            "end": 32.24
+          },
+          {
+            "word": "post",
+            "start": 32.24,
+            "end": 32.56
+          },
+          {
+            "word": "boom",
+            "start": 32.56,
+            "end": 32.66
+          },
+          {
+            "word": "hardware",
+            "start": 32.66,
+            "end": 33.04
+          },
+          {
+            "word": "we'll",
+            "start": 33.36,
+            "end": 33.42
+          },
+          {
+            "word": "have",
+            "start": 33.42,
+            "end": 33.62
+          },
+          {
+            "word": "access",
+            "start": 33.62,
+            "end": 33.62
+          },
+          {
+            "word": "to",
+            "start": 33.62,
+            "end": 33.82
+          },
+          {
+            "word": "open",
+            "start": 33.82,
+            "end": 34.02
+          },
+          {
+            "word": "source",
+            "start": 34.02,
+            "end": 34.24
+          },
+          {
+            "word": "models",
+            "start": 34.24,
+            "end": 34.56
+          },
+          {
+            "word": "We've",
+            "start": 34.98,
+            "end": 35.14
+          },
+          {
+            "word": "got",
+            "start": 35.14,
+            "end": 35.28
+          },
+          {
+            "word": "all",
+            "start": 35.28,
+            "end": 35.42
+          },
+          {
+            "word": "the",
+            "start": 35.42,
+            "end": 35.68
+          },
+          {
+            "word": "expertise",
+            "start": 35.68,
+            "end": 36.06
+          },
+          {
+            "word": "of",
+            "start": 36.22,
+            "end": 36.44
+          },
+          {
+            "word": "course",
+            "start": 36.44,
+            "end": 36.44
+          },
+          {
+            "word": "computer",
+            "start": 36.44,
+            "end": 36.7
+          },
+          {
+            "word": "science",
+            "start": 36.7,
+            "end": 37.06
+          },
+          {
+            "word": "social",
+            "start": 37.4,
+            "end": 37.46
+          },
+          {
+            "word": "science",
+            "start": 37.46,
+            "end": 37.84
+          },
+          {
+            "word": "admin",
+            "start": 38.08,
+            "end": 38.32
+          },
+          {
+            "word": "transformation",
+            "start": 38.96,
+            "end": 38.96
+          },
+          {
+            "word": "right",
+            "start": 39.82,
+            "end": 40.34
+          },
+          {
+            "word": "We've",
+            "start": 40.36,
+            "end": 40.88
+          },
+          {
+            "word": "got",
+            "start": 40.88,
+            "end": 41.2
+          },
+          {
+            "word": "this",
+            "start": 41.2,
+            "end": 42.02
+          },
+          {
+            "word": "huge",
+            "start": 42.02,
+            "end": 42.5
+          },
+          {
+            "word": "amount",
+            "start": 42.5,
+            "end": 42.96
+          },
+          {
+            "word": "of",
+            "start": 42.96,
+            "end": 43.38
+          },
+          {
+            "word": "data",
+            "start": 43.38,
+            "end": 43.38
+          },
+          {
+            "word": "this",
+            "start": 43.78,
+            "end": 44
+          },
+          {
+            "word": "evaluation",
+            "start": 44,
+            "end": 44.44
+          },
+          {
+            "word": "data",
+            "start": 44.44,
+            "end": 44.76
+          },
+          {
+            "word": "set",
+            "start": 44.76,
+            "end": 44.9
+          },
+          {
+            "word": "we",
+            "start": 44.9,
+            "end": 45.02
+          },
+          {
+            "word": "can",
+            "start": 45.02,
+            "end": 45.18
+          },
+          {
+            "word": "use",
+            "start": 45.18,
+            "end": 45.32
+          },
+          {
+            "word": "That's",
+            "start": 45.4,
+            "end": 45.66
+          },
+          {
+            "word": "everything",
+            "start": 45.66,
+            "end": 45.88
+          },
+          {
+            "word": "you",
+            "start": 45.88,
+            "end": 46.06
+          },
+          {
+            "word": "need",
+            "start": 46.06,
+            "end": 46.16
+          },
+          {
+            "word": "to",
+            "start": 46.16,
+            "end": 46.32
+          },
+          {
+            "word": "create",
+            "start": 46.32,
+            "end": 46.54
+          },
+          {
+            "word": "a",
+            "start": 46.54,
+            "end": 46.74
+          },
+          {
+            "word": "literally",
+            "start": 46.74,
+            "end": 46.92
+          },
+          {
+            "word": "world",
+            "start": 46.92,
+            "end": 47.48
+          },
+          {
+            "word": "class",
+            "start": 47.48,
+            "end": 47.72
+          },
+          {
+            "word": "model",
+            "start": 47.72,
+            "end": 47.96
+          },
+          {
+            "word": "We",
+            "start": 48.3,
+            "end": 48.66
+          },
+          {
+            "word": "could",
+            "start": 48.66,
+            "end": 48.98
+          },
+          {
+            "word": "show",
+            "start": 48.98,
+            "end": 49.24
+          },
+          {
+            "word": "the",
+            "start": 49.24,
+            "end": 49.4
+          },
+          {
+            "word": "way",
+            "start": 49.4,
+            "end": 50.04
+          },
+          {
+            "word": "for",
+            "start": 50.04,
+            "end": 50.64
+          },
+          {
+            "word": "public",
+            "start": 50.64,
+            "end": 50.98
+          },
+          {
+            "word": "sector",
+            "start": 50.98,
+            "end": 51.3
+          },
+          {
+            "word": "bodies",
+            "start": 51.3,
+            "end": 51.86
+          },
+          {
+            "word": "groups",
+            "start": 52.6,
+            "end": 52.6
+          },
+          {
+            "word": "right",
+            "start": 53.18,
+            "end": 53.7
+          },
+          {
+            "word": "using",
+            "start": 53.7,
+            "end": 53.7
+          },
+          {
+            "word": "these",
+            "start": 53.7,
+            "end": 54.04
+          },
+          {
+            "word": "tools",
+            "start": 54.04,
+            "end": 54.3
+          },
+          {
+            "word": "for",
+            "start": 54.3,
+            "end": 55.08
+          },
+          {
+            "word": "our",
+            "start": 55.08,
+            "end": 57.48
+          },
+          {
+            "word": "own",
+            "start": 57.48,
+            "end": 58.06
+          },
+          {
+            "word": "principles",
+            "start": 58.06,
+            "end": 58.42
+          },
+          {
+            "word": "for",
+            "start": 58.42,
+            "end": 58.6
+          },
+          {
+            "word": "our",
+            "start": 58.6,
+            "end": 58.8
+          },
+          {
+            "word": "own",
+            "start": 58.8,
+            "end": 58.92
+          },
+          {
+            "word": "direction",
+            "start": 58.92,
+            "end": 59.24
           }
-        ],
-        "transcribed_at": "2026-04-14T18:17:45.160Z"
-      },
-      "voiceover_history": [
-        {
-          "transcript": "What makes a good outcome look like? So, post-boom, we have cheaper infrastructure, better terms, more flexibility, right? We have the ability to have all these models help with human-centered pedagogy, right? Rather than shoving things down people's throats on these consumer models, instead, we design models based on educational research and best practices to help people learn, right? We also have the opportunity, as universities, because we have all of these strengths, we have everything in place. Like I say, we'll have access to the post-boom hardware, we'll have access to open-source models. We've got all the expertise, of course, computer science, social science, admin, transformation, right? We've got this huge amount of data, this evaluation data set we can use. That's everything you need to create a literally world-class model. We could show the way for public sector bodies, groups, right, using these tools for our own principles, for our own direction.",
-          "transcribed_at": "2026-04-13T18:56:55.889Z",
-          "duration": 60.3,
-          "replaced_at": "2026-04-14T18:17:41.819Z"
-        }
-      ]
+        ]
+      }
     },
     {
       "type": "content",
@@ -30684,757 +29884,484 @@
       "id": "p3nwrkxy",
       "voiceover": {
         "file": "voiceovers/p3nwrkxy.webm",
-        "duration": 43.56,
+        "duration": 39.72,
         "mime": "audio/webm;codecs=opus",
-        "updated": "2026-04-14T18:18:29.300Z",
-        "transcript": "On the other side, if we drift into platform dependency, if we don't give our procurement teams the right steer, and they strike a really great deal from their point of view with one of these providers, because we haven't given them the information they need, then we'll be stuck in an extractive process where we'll be paying through the nose for less and less, because again, that's how these companies work. They've got to pay back that investment. The provision will be limited. Again, we'll be limited in what we can do, because again, we'll be using consumer models or enterprise type models to do these things. There'll be no governance. There'll be no transparency around what these models are doing, what they're designed to do, what they are optimized to do. We would have that if we did our own thing in those key cases.",
+        "updated": "2026-04-13T18:40:13.124Z",
+        "transcript": "But what else could happen? If we just buy into these consumer or enterprise contracts, these models designed for businesses or consumers are not designed for our use cases in universities, then we get locked in. We are basically paying rent to use these things. We're giving away all of our data. The options get less and less, and we have none of that transparency, none of that visibility into what is being created, what is being delivered, how these models are changing over time. Basically, a very bad situation, and that's equally possible.",
+        "transcribed_at": "2026-04-13T18:56:58.815Z",
         "words": [
           {
-            "word": "On",
+            "word": "But",
             "start": 0,
-            "end": 0.58
+            "end": 0.92
           },
           {
-            "word": "the",
-            "start": 0.58,
-            "end": 0.72
+            "word": "what",
+            "start": 0.92,
+            "end": 1.3
           },
           {
-            "word": "other",
-            "start": 0.72,
-            "end": 0.96
+            "word": "else",
+            "start": 1.3,
+            "end": 1.52
           },
           {
-            "word": "side",
-            "start": 0.96,
-            "end": 1.32
+            "word": "could",
+            "start": 1.52,
+            "end": 1.78
           },
           {
-            "word": "if",
-            "start": 2.18,
-            "end": 2.24
+            "word": "happen",
+            "start": 1.78,
+            "end": 2.06
+          },
+          {
+            "word": "If",
+            "start": 2.52,
+            "end": 3.12
           },
           {
             "word": "we",
-            "start": 2.24,
-            "end": 2.6
+            "start": 3.12,
+            "end": 3.26
           },
           {
-            "word": "drift",
-            "start": 2.6,
-            "end": 2.82
+            "word": "just",
+            "start": 3.26,
+            "end": 3.58
+          },
+          {
+            "word": "buy",
+            "start": 3.58,
+            "end": 3.74
           },
           {
             "word": "into",
-            "start": 2.82,
-            "end": 3.1
-          },
-          {
-            "word": "platform",
-            "start": 3.1,
-            "end": 3.52
-          },
-          {
-            "word": "dependency",
-            "start": 3.52,
-            "end": 3.98
-          },
-          {
-            "word": "if",
-            "start": 4.6,
-            "end": 4.62
-          },
-          {
-            "word": "we",
-            "start": 4.62,
-            "end": 4.86
-          },
-          {
-            "word": "don't",
-            "start": 4.86,
-            "end": 5.14
-          },
-          {
-            "word": "give",
-            "start": 5.14,
-            "end": 5.4
-          },
-          {
-            "word": "our",
-            "start": 5.4,
-            "end": 5.64
-          },
-          {
-            "word": "procurement",
-            "start": 5.64,
-            "end": 5.92
-          },
-          {
-            "word": "teams",
-            "start": 5.92,
-            "end": 6.24
-          },
-          {
-            "word": "the",
-            "start": 6.24,
-            "end": 6.44
-          },
-          {
-            "word": "right",
-            "start": 6.44,
-            "end": 6.62
-          },
-          {
-            "word": "steer",
-            "start": 6.62,
-            "end": 6.78
-          },
-          {
-            "word": "and",
-            "start": 7.1,
-            "end": 7.16
-          },
-          {
-            "word": "they",
-            "start": 7.16,
-            "end": 7.36
-          },
-          {
-            "word": "strike",
-            "start": 7.36,
-            "end": 7.54
-          },
-          {
-            "word": "a",
-            "start": 7.54,
-            "end": 7.74
-          },
-          {
-            "word": "really",
-            "start": 7.74,
-            "end": 8.06
-          },
-          {
-            "word": "great",
-            "start": 8.06,
-            "end": 8.22
-          },
-          {
-            "word": "deal",
-            "start": 8.22,
-            "end": 8.46
-          },
-          {
-            "word": "from",
-            "start": 8.46,
-            "end": 8.66
-          },
-          {
-            "word": "their",
-            "start": 8.66,
-            "end": 8.9
-          },
-          {
-            "word": "point",
-            "start": 8.9,
-            "end": 9.04
-          },
-          {
-            "word": "of",
-            "start": 9.04,
-            "end": 9.3
-          },
-          {
-            "word": "view",
-            "start": 9.3,
-            "end": 9.4
-          },
-          {
-            "word": "with",
-            "start": 9.4,
-            "end": 9.8
-          },
-          {
-            "word": "one",
-            "start": 9.8,
-            "end": 9.92
-          },
-          {
-            "word": "of",
-            "start": 9.92,
-            "end": 10.1
+            "start": 3.74,
+            "end": 3.96
           },
           {
             "word": "these",
-            "start": 10.1,
-            "end": 10.12
-          },
-          {
-            "word": "providers",
-            "start": 10.12,
-            "end": 10.42
-          },
-          {
-            "word": "because",
-            "start": 10.48,
-            "end": 10.64
-          },
-          {
-            "word": "we",
-            "start": 10.64,
-            "end": 10.86
-          },
-          {
-            "word": "haven't",
-            "start": 10.86,
-            "end": 11.24
-          },
-          {
-            "word": "given",
-            "start": 11.24,
-            "end": 11.44
-          },
-          {
-            "word": "them",
-            "start": 11.44,
-            "end": 11.78
-          },
-          {
-            "word": "the",
-            "start": 11.78,
-            "end": 12.34
-          },
-          {
-            "word": "information",
-            "start": 12.34,
-            "end": 12.78
-          },
-          {
-            "word": "they",
-            "start": 12.78,
-            "end": 13.08
-          },
-          {
-            "word": "need",
-            "start": 13.08,
-            "end": 13.32
-          },
-          {
-            "word": "then",
-            "start": 13.68,
-            "end": 13.98
-          },
-          {
-            "word": "we'll",
-            "start": 13.98,
-            "end": 14.5
-          },
-          {
-            "word": "be",
-            "start": 14.5,
-            "end": 14.96
-          },
-          {
-            "word": "stuck",
-            "start": 14.96,
-            "end": 14.96
-          },
-          {
-            "word": "in",
-            "start": 14.96,
-            "end": 15.54
-          },
-          {
-            "word": "an",
-            "start": 15.54,
-            "end": 15.86
-          },
-          {
-            "word": "extractive",
-            "start": 15.86,
-            "end": 16.4
-          },
-          {
-            "word": "process",
-            "start": 16.4,
-            "end": 16.88
-          },
-          {
-            "word": "where",
-            "start": 16.88,
-            "end": 17.4
-          },
-          {
-            "word": "we'll",
-            "start": 17.4,
-            "end": 17.54
-          },
-          {
-            "word": "be",
-            "start": 17.54,
-            "end": 18.08
-          },
-          {
-            "word": "paying",
-            "start": 18.08,
-            "end": 18.08
-          },
-          {
-            "word": "through",
-            "start": 18.08,
-            "end": 18.32
-          },
-          {
-            "word": "the",
-            "start": 18.32,
-            "end": 18.8
-          },
-          {
-            "word": "nose",
-            "start": 18.8,
-            "end": 18.8
-          },
-          {
-            "word": "for",
-            "start": 18.8,
-            "end": 19.34
-          },
-          {
-            "word": "less",
-            "start": 19.34,
-            "end": 19.54
-          },
-          {
-            "word": "and",
-            "start": 19.54,
-            "end": 19.76
-          },
-          {
-            "word": "less",
-            "start": 19.76,
-            "end": 19.94
-          },
-          {
-            "word": "because",
-            "start": 20.1,
-            "end": 20.24
-          },
-          {
-            "word": "again",
-            "start": 20.24,
-            "end": 20.44
-          },
-          {
-            "word": "that's",
-            "start": 20.44,
-            "end": 20.6
-          },
-          {
-            "word": "how",
-            "start": 20.6,
-            "end": 20.72
-          },
-          {
-            "word": "these",
-            "start": 20.72,
-            "end": 21.16
-          },
-          {
-            "word": "companies",
-            "start": 21.16,
-            "end": 21.16
-          },
-          {
-            "word": "work",
-            "start": 21.16,
-            "end": 21.42
-          },
-          {
-            "word": "They've",
-            "start": 21.44,
-            "end": 21.6
-          },
-          {
-            "word": "got",
-            "start": 21.6,
-            "end": 21.62
-          },
-          {
-            "word": "to",
-            "start": 21.62,
-            "end": 21.88
-          },
-          {
-            "word": "pay",
-            "start": 21.88,
-            "end": 21.96
-          },
-          {
-            "word": "back",
-            "start": 21.96,
-            "end": 22.2
-          },
-          {
-            "word": "that",
-            "start": 22.2,
-            "end": 22.8
-          },
-          {
-            "word": "investment",
-            "start": 22.8,
-            "end": 22.8
-          },
-          {
-            "word": "The",
-            "start": 23.12,
-            "end": 23.6
-          },
-          {
-            "word": "provision",
-            "start": 23.6,
-            "end": 23.96
-          },
-          {
-            "word": "will",
-            "start": 23.96,
-            "end": 24.26
-          },
-          {
-            "word": "be",
-            "start": 24.26,
-            "end": 24.9
-          },
-          {
-            "word": "limited",
-            "start": 24.9,
-            "end": 24.9
-          },
-          {
-            "word": "Again",
-            "start": 24.96,
-            "end": 25.28
-          },
-          {
-            "word": "we'll",
-            "start": 25.28,
-            "end": 25.46
-          },
-          {
-            "word": "be",
-            "start": 25.46,
-            "end": 25.72
-          },
-          {
-            "word": "limited",
-            "start": 25.72,
-            "end": 25.88
-          },
-          {
-            "word": "in",
-            "start": 25.88,
-            "end": 26.08
-          },
-          {
-            "word": "what",
-            "start": 26.08,
-            "end": 26.22
-          },
-          {
-            "word": "we",
-            "start": 26.22,
-            "end": 26.38
-          },
-          {
-            "word": "can",
-            "start": 26.38,
-            "end": 26.58
-          },
-          {
-            "word": "do",
-            "start": 26.58,
-            "end": 26.84
-          },
-          {
-            "word": "because",
-            "start": 27.22,
-            "end": 27.48
-          },
-          {
-            "word": "again",
-            "start": 27.48,
-            "end": 27.7
-          },
-          {
-            "word": "we'll",
-            "start": 27.7,
-            "end": 27.8
-          },
-          {
-            "word": "be",
-            "start": 27.8,
-            "end": 28.04
-          },
-          {
-            "word": "using",
-            "start": 28.04,
-            "end": 28.08
+            "start": 3.96,
+            "end": 4.2
           },
           {
             "word": "consumer",
-            "start": 28.08,
-            "end": 28.48
-          },
-          {
-            "word": "models",
-            "start": 28.48,
-            "end": 28.8
+            "start": 4.2,
+            "end": 4.68
           },
           {
             "word": "or",
-            "start": 28.8,
-            "end": 29.22
+            "start": 4.68,
+            "end": 5.78
           },
           {
             "word": "enterprise",
-            "start": 29.22,
-            "end": 29.82
+            "start": 5.78,
+            "end": 5.78
           },
           {
-            "word": "type",
-            "start": 29.82,
-            "end": 30.1
-          },
-          {
-            "word": "models",
-            "start": 30.1,
-            "end": 30.28
-          },
-          {
-            "word": "to",
-            "start": 30.28,
-            "end": 30.5
-          },
-          {
-            "word": "do",
-            "start": 30.5,
-            "end": 30.64
+            "word": "contracts",
+            "start": 6.48,
+            "end": 7.08
           },
           {
             "word": "these",
-            "start": 30.64,
-            "end": 30.86
-          },
-          {
-            "word": "things",
-            "start": 30.86,
-            "end": 31.12
-          },
-          {
-            "word": "There'll",
-            "start": 32.08,
-            "end": 32.26
-          },
-          {
-            "word": "be",
-            "start": 32.26,
-            "end": 32.38
-          },
-          {
-            "word": "no",
-            "start": 32.38,
-            "end": 32.6
-          },
-          {
-            "word": "governance",
-            "start": 32.6,
-            "end": 32.96
-          },
-          {
-            "word": "There'll",
-            "start": 33.24,
-            "end": 33.34
-          },
-          {
-            "word": "be",
-            "start": 33.34,
-            "end": 33.42
-          },
-          {
-            "word": "no",
-            "start": 33.42,
-            "end": 33.76
-          },
-          {
-            "word": "transparency",
-            "start": 33.76,
-            "end": 34.32
-          },
-          {
-            "word": "around",
-            "start": 34.32,
-            "end": 35.56
-          },
-          {
-            "word": "what",
-            "start": 35.56,
-            "end": 35.78
-          },
-          {
-            "word": "these",
-            "start": 35.78,
-            "end": 36.02
+            "start": 7.08,
+            "end": 7.68
           },
           {
             "word": "models",
-            "start": 36.02,
-            "end": 36.02
-          },
-          {
-            "word": "are",
-            "start": 36.02,
-            "end": 36.18
-          },
-          {
-            "word": "doing",
-            "start": 36.18,
-            "end": 36.38
-          },
-          {
-            "word": "what",
-            "start": 36.56,
-            "end": 36.58
-          },
-          {
-            "word": "they're",
-            "start": 36.58,
-            "end": 36.94
+            "start": 7.68,
+            "end": 7.9
           },
           {
             "word": "designed",
-            "start": 36.94,
-            "end": 36.94
+            "start": 7.9,
+            "end": 8.34
           },
           {
-            "word": "to",
-            "start": 36.94,
-            "end": 37.2
+            "word": "for",
+            "start": 8.34,
+            "end": 9.1
           },
           {
-            "word": "do",
-            "start": 37.2,
-            "end": 37.3
+            "word": "businesses",
+            "start": 9.1,
+            "end": 9.1
           },
           {
-            "word": "what",
-            "start": 37.54,
-            "end": 37.54
+            "word": "or",
+            "start": 9.1,
+            "end": 9.52
           },
           {
-            "word": "they",
-            "start": 37.54,
-            "end": 37.78
+            "word": "consumers",
+            "start": 9.52,
+            "end": 9.82
           },
           {
             "word": "are",
-            "start": 37.78,
+            "start": 9.82,
+            "end": 10.1
+          },
+          {
+            "word": "not",
+            "start": 10.1,
+            "end": 10.6
+          },
+          {
+            "word": "designed",
+            "start": 10.6,
+            "end": 11.04
+          },
+          {
+            "word": "for",
+            "start": 11.04,
+            "end": 11.54
+          },
+          {
+            "word": "our",
+            "start": 11.54,
+            "end": 12.3
+          },
+          {
+            "word": "use",
+            "start": 12.3,
+            "end": 12.56
+          },
+          {
+            "word": "cases",
+            "start": 12.56,
+            "end": 12.72
+          },
+          {
+            "word": "in",
+            "start": 12.72,
+            "end": 13.06
+          },
+          {
+            "word": "universities",
+            "start": 13.06,
+            "end": 13.42
+          },
+          {
+            "word": "then",
+            "start": 13.66,
+            "end": 14.16
+          },
+          {
+            "word": "we",
+            "start": 14.16,
+            "end": 14.32
+          },
+          {
+            "word": "get",
+            "start": 14.32,
+            "end": 14.48
+          },
+          {
+            "word": "locked",
+            "start": 14.48,
+            "end": 14.72
+          },
+          {
+            "word": "in",
+            "start": 14.72,
+            "end": 15.48
+          },
+          {
+            "word": "We",
+            "start": 16.06,
+            "end": 16.2
+          },
+          {
+            "word": "are",
+            "start": 16.2,
+            "end": 16.34
+          },
+          {
+            "word": "basically",
+            "start": 16.34,
+            "end": 16.66
+          },
+          {
+            "word": "paying",
+            "start": 16.66,
+            "end": 17.24
+          },
+          {
+            "word": "rent",
+            "start": 17.24,
+            "end": 17.66
+          },
+          {
+            "word": "to",
+            "start": 17.66,
+            "end": 18.12
+          },
+          {
+            "word": "use",
+            "start": 18.12,
+            "end": 18.36
+          },
+          {
+            "word": "these",
+            "start": 18.36,
+            "end": 18.64
+          },
+          {
+            "word": "things",
+            "start": 18.64,
+            "end": 18.78
+          },
+          {
+            "word": "We're",
+            "start": 19,
+            "end": 19.04
+          },
+          {
+            "word": "giving",
+            "start": 19.04,
+            "end": 19.2
+          },
+          {
+            "word": "away",
+            "start": 19.2,
+            "end": 19.46
+          },
+          {
+            "word": "all",
+            "start": 19.46,
+            "end": 19.78
+          },
+          {
+            "word": "of",
+            "start": 19.78,
+            "end": 19.9
+          },
+          {
+            "word": "our",
+            "start": 19.9,
+            "end": 20.08
+          },
+          {
+            "word": "data",
+            "start": 20.08,
+            "end": 20.3
+          },
+          {
+            "word": "The",
+            "start": 20.8,
+            "end": 21.26
+          },
+          {
+            "word": "options",
+            "start": 21.26,
+            "end": 21.54
+          },
+          {
+            "word": "get",
+            "start": 21.54,
+            "end": 21.84
+          },
+          {
+            "word": "less",
+            "start": 21.84,
+            "end": 22.04
+          },
+          {
+            "word": "and",
+            "start": 22.04,
+            "end": 22.54
+          },
+          {
+            "word": "less",
+            "start": 22.54,
+            "end": 22.54
+          },
+          {
+            "word": "and",
+            "start": 22.62,
+            "end": 22.88
+          },
+          {
+            "word": "we",
+            "start": 22.88,
+            "end": 23
+          },
+          {
+            "word": "have",
+            "start": 23,
+            "end": 23.24
+          },
+          {
+            "word": "none",
+            "start": 23.24,
+            "end": 23.58
+          },
+          {
+            "word": "of",
+            "start": 23.58,
+            "end": 23.7
+          },
+          {
+            "word": "that",
+            "start": 23.7,
+            "end": 24.1
+          },
+          {
+            "word": "transparency",
+            "start": 24.1,
+            "end": 24.58
+          },
+          {
+            "word": "none",
+            "start": 25.72,
+            "end": 26.06
+          },
+          {
+            "word": "of",
+            "start": 26.06,
+            "end": 26.18
+          },
+          {
+            "word": "that",
+            "start": 26.18,
+            "end": 26.4
+          },
+          {
+            "word": "visibility",
+            "start": 26.4,
+            "end": 26.88
+          },
+          {
+            "word": "into",
+            "start": 26.88,
+            "end": 27.58
+          },
+          {
+            "word": "what",
+            "start": 27.58,
+            "end": 28.48
+          },
+          {
+            "word": "is",
+            "start": 28.48,
+            "end": 28.66
+          },
+          {
+            "word": "being",
+            "start": 28.66,
+            "end": 29.14
+          },
+          {
+            "word": "created",
+            "start": 29.14,
+            "end": 30.18
+          },
+          {
+            "word": "what",
+            "start": 32.96,
+            "end": 33
+          },
+          {
+            "word": "is",
+            "start": 33,
+            "end": 33.16
+          },
+          {
+            "word": "being",
+            "start": 33.16,
+            "end": 33.4
+          },
+          {
+            "word": "delivered",
+            "start": 33.4,
+            "end": 33.68
+          },
+          {
+            "word": "how",
+            "start": 33.9,
+            "end": 33.92
+          },
+          {
+            "word": "these",
+            "start": 33.92,
+            "end": 34.1
+          },
+          {
+            "word": "models",
+            "start": 34.1,
+            "end": 34.22
+          },
+          {
+            "word": "are",
+            "start": 34.22,
+            "end": 34.36
+          },
+          {
+            "word": "changing",
+            "start": 34.36,
+            "end": 34.58
+          },
+          {
+            "word": "over",
+            "start": 34.58,
+            "end": 34.9
+          },
+          {
+            "word": "time",
+            "start": 34.9,
+            "end": 35.16
+          },
+          {
+            "word": "Basically",
+            "start": 35.78,
+            "end": 36.14
+          },
+          {
+            "word": "a",
+            "start": 36.3,
+            "end": 36.56
+          },
+          {
+            "word": "very",
+            "start": 36.56,
+            "end": 36.84
+          },
+          {
+            "word": "bad",
+            "start": 36.84,
+            "end": 37.22
+          },
+          {
+            "word": "situation",
+            "start": 37.22,
+            "end": 37.76
+          },
+          {
+            "word": "and",
+            "start": 37.96,
             "end": 38.2
           },
           {
-            "word": "optimized",
+            "word": "that's",
             "start": 38.2,
             "end": 38.42
           },
           {
-            "word": "to",
+            "word": "equally",
             "start": 38.42,
-            "end": 38.82
+            "end": 38.66
           },
           {
-            "word": "do",
-            "start": 38.82,
-            "end": 39.12
-          },
-          {
-            "word": "We",
-            "start": 39.36,
-            "end": 39.82
-          },
-          {
-            "word": "would",
-            "start": 39.82,
-            "end": 40.1
-          },
-          {
-            "word": "have",
-            "start": 40.1,
-            "end": 40.32
-          },
-          {
-            "word": "that",
-            "start": 40.32,
-            "end": 40.54
-          },
-          {
-            "word": "if",
-            "start": 40.54,
-            "end": 40.66
-          },
-          {
-            "word": "we",
-            "start": 40.66,
-            "end": 40.76
-          },
-          {
-            "word": "did",
-            "start": 40.76,
-            "end": 40.86
-          },
-          {
-            "word": "our",
-            "start": 40.86,
-            "end": 41.04
-          },
-          {
-            "word": "own",
-            "start": 41.04,
-            "end": 41.28
-          },
-          {
-            "word": "thing",
-            "start": 41.28,
-            "end": 41.46
-          },
-          {
-            "word": "in",
-            "start": 41.46,
-            "end": 41.84
-          },
-          {
-            "word": "those",
-            "start": 41.84,
-            "end": 42.26
-          },
-          {
-            "word": "key",
-            "start": 42.26,
-            "end": 42.54
-          },
-          {
-            "word": "cases",
-            "start": 42.54,
-            "end": 42.9
+            "word": "possible",
+            "start": 38.66,
+            "end": 39.1
           }
-        ],
-        "transcribed_at": "2026-04-14T18:18:32.805Z"
-      },
-      "voiceover_history": [
-        {
-          "transcript": "But what else could happen? If we just buy into these consumer or enterprise contracts, these models designed for businesses or consumers are not designed for our use cases in universities, then we get locked in. We are basically paying rent to use these things. We're giving away all of our data. The options get less and less, and we have none of that transparency, none of that visibility into what is being created, what is being delivered, how these models are changing over time. Basically, a very bad situation, and that's equally possible.",
-          "transcribed_at": "2026-04-13T18:56:58.815Z",
-          "duration": 39.72,
-          "replaced_at": "2026-04-14T18:18:29.300Z"
-        }
-      ]
+        ]
+      }
     },
     {
       "type": "content",
@@ -31471,857 +30398,1334 @@
       "id": "4d5d7k12",
       "voiceover": {
         "file": "voiceovers/4d5d7k12.webm",
-        "duration": 50.88,
+        "duration": 88.32,
         "mime": "audio/webm;codecs=opus",
-        "updated": "2026-04-14T18:19:34.430Z",
-        "transcript": "So, the next few years require three key decisions from leaders in universities, and I'd say everyone in this room is a leader in the university. I'm not just talking about the higher-ups. We can all make decisions and we can all push for the right decisions to be made, and those decisions are what must we absolutely keep control over, right? What can't we be giving away? What should we build together, right? What is feasible? What could we start with? Right? Some real interesting questions there. And when we're building these things, what rights do students have? A key aspect that I've not had time to touch on today is that if we build these models ourselves, we can bake in student rights, right? Visibility, transparency in what's happening, right? Auditability, right? Because we have all that evaluation data. So, we can build these models, right, to do what we want to do, but we have to decide how to do it up front.",
+        "updated": "2026-04-13T18:41:46.662Z",
+        "transcript": "So fundamentally, the next few years require three big decisions. Is that what do we want to retain control over? What aspects of AI are we wanting to control? Because I believe there are aspects we should be controlling. Again, we buy some things, but we build and control some things too. Also, of course, for the refusedics, also refuse some things. There's no problem about saying, this thing is done old school. No problem at all. It's when you say, I'm not using any AI or any computers at all in my life, you become slightly extreme, and you're really cutting off your nose to spite your face. So what should we build or evaluate together? And importantly, what rights should students have? What rights should the people involved in this process? They don't want to be taught by an AI bot. If they did, they could go in and do that. It comes down to being lecture recordings. It's like, you could just be taught by on YouTube. Yeah, you could. You could absolutely get a world-class education watching YouTube. You could learn as an aerospace engineer, a PhD. You could get an M.Eng. aerospace just by watching YouTube and just taking some exams. But people don't want to do that. That's not how most people learn. If you can learn that way, if you're an autodidact, go for it. That's not how students want to learn. So how do students want to learn? What rights should they have around their data, what models they're exposed to? That's really important.",
+        "transcribed_at": "2026-04-13T18:57:03.204Z",
         "words": [
           {
             "word": "So",
             "start": 0,
-            "end": 0.38
+            "end": 0.36
+          },
+          {
+            "word": "fundamentally",
+            "start": 0.36,
+            "end": 0.9
           },
           {
             "word": "the",
-            "start": 0.5,
-            "end": 0.56
+            "start": 1.04,
+            "end": 1.26
           },
           {
             "word": "next",
-            "start": 0.56,
-            "end": 0.92
+            "start": 1.26,
+            "end": 1.6
           },
           {
             "word": "few",
-            "start": 0.92,
-            "end": 1.46
+            "start": 1.6,
+            "end": 1.94
           },
           {
             "word": "years",
-            "start": 1.46,
-            "end": 1.74
+            "start": 1.94,
+            "end": 2.36
           },
           {
             "word": "require",
-            "start": 1.74,
-            "end": 2.18
+            "start": 2.9,
+            "end": 3.42
           },
           {
             "word": "three",
-            "start": 2.18,
-            "end": 2.72
+            "start": 3.42,
+            "end": 3.94
           },
           {
-            "word": "key",
-            "start": 2.72,
-            "end": 3.16
+            "word": "big",
+            "start": 3.94,
+            "end": 4.26
           },
           {
             "word": "decisions",
-            "start": 3.16,
-            "end": 3.56
-          },
-          {
-            "word": "from",
-            "start": 3.56,
+            "start": 4.26,
             "end": 4.52
           },
           {
-            "word": "leaders",
-            "start": 4.52,
-            "end": 4.78
+            "word": "Is",
+            "start": 5.1,
+            "end": 5.28
           },
           {
-            "word": "in",
-            "start": 4.78,
-            "end": 5.04
+            "word": "that",
+            "start": 5.28,
+            "end": 5.58
           },
           {
-            "word": "universities",
-            "start": 5.04,
-            "end": 5.4
-          },
-          {
-            "word": "and",
-            "start": 5.62,
+            "word": "what",
+            "start": 5.58,
             "end": 5.7
           },
           {
-            "word": "I'd",
+            "word": "do",
             "start": 5.7,
-            "end": 6.1
-          },
-          {
-            "word": "say",
-            "start": 6.1,
-            "end": 6.3
-          },
-          {
-            "word": "everyone",
-            "start": 6.3,
-            "end": 6.54
-          },
-          {
-            "word": "in",
-            "start": 6.54,
-            "end": 6.76
-          },
-          {
-            "word": "this",
-            "start": 6.76,
-            "end": 6.92
-          },
-          {
-            "word": "room",
-            "start": 6.92,
-            "end": 7.98
-          },
-          {
-            "word": "is",
-            "start": 7.98,
-            "end": 8.5
-          },
-          {
-            "word": "a",
-            "start": 8.5,
-            "end": 8.9
-          },
-          {
-            "word": "leader",
-            "start": 8.9,
-            "end": 8.9
-          },
-          {
-            "word": "in",
-            "start": 8.9,
-            "end": 9.32
-          },
-          {
-            "word": "the",
-            "start": 9.32,
-            "end": 9.32
-          },
-          {
-            "word": "university",
-            "start": 9.32,
-            "end": 9.32
-          },
-          {
-            "word": "I'm",
-            "start": 9.46,
-            "end": 9.5
-          },
-          {
-            "word": "not",
-            "start": 9.5,
-            "end": 9.62
-          },
-          {
-            "word": "just",
-            "start": 9.62,
-            "end": 9.9
-          },
-          {
-            "word": "talking",
-            "start": 9.9,
-            "end": 9.94
-          },
-          {
-            "word": "about",
-            "start": 9.94,
-            "end": 10.1
-          },
-          {
-            "word": "the",
-            "start": 10.1,
-            "end": 10.2
-          },
-          {
-            "word": "higher",
-            "start": 10.2,
-            "end": 10.48
-          },
-          {
-            "word": "ups",
-            "start": 10.48,
-            "end": 10.54
-          },
-          {
-            "word": "We",
-            "start": 10.96,
-            "end": 10.96
-          },
-          {
-            "word": "can",
-            "start": 10.96,
-            "end": 11.24
-          },
-          {
-            "word": "all",
-            "start": 11.24,
-            "end": 11.54
-          },
-          {
-            "word": "make",
-            "start": 11.54,
-            "end": 11.7
-          },
-          {
-            "word": "decisions",
-            "start": 11.7,
-            "end": 12.02
-          },
-          {
-            "word": "and",
-            "start": 12.02,
-            "end": 12.28
+            "end": 5.96
           },
           {
             "word": "we",
-            "start": 12.28,
-            "end": 12.36
-          },
-          {
-            "word": "can",
-            "start": 12.36,
-            "end": 12.46
-          },
-          {
-            "word": "all",
-            "start": 12.46,
-            "end": 12.68
-          },
-          {
-            "word": "push",
-            "start": 12.68,
-            "end": 12.8
-          },
-          {
-            "word": "for",
-            "start": 12.8,
-            "end": 12.98
-          },
-          {
-            "word": "the",
-            "start": 12.98,
-            "end": 13.02
-          },
-          {
-            "word": "right",
-            "start": 13.02,
-            "end": 13.16
-          },
-          {
-            "word": "decisions",
-            "start": 13.16,
-            "end": 13.32
-          },
-          {
-            "word": "to",
-            "start": 13.32,
-            "end": 13.46
-          },
-          {
-            "word": "be",
-            "start": 13.46,
-            "end": 13.78
-          },
-          {
-            "word": "made",
-            "start": 13.78,
-            "end": 13.78
-          },
-          {
-            "word": "and",
-            "start": 13.84,
-            "end": 14.24
-          },
-          {
-            "word": "those",
-            "start": 14.24,
-            "end": 14.38
-          },
-          {
-            "word": "decisions",
-            "start": 14.38,
-            "end": 14.7
-          },
-          {
-            "word": "are",
-            "start": 14.7,
-            "end": 15.16
-          },
-          {
-            "word": "what",
-            "start": 15.16,
-            "end": 15.78
-          },
-          {
-            "word": "must",
-            "start": 15.78,
-            "end": 16.18
-          },
-          {
-            "word": "we",
-            "start": 16.18,
-            "end": 16.46
-          },
-          {
-            "word": "absolutely",
-            "start": 16.46,
-            "end": 16.84
-          },
-          {
-            "word": "keep",
-            "start": 16.84,
-            "end": 17.14
-          },
-          {
-            "word": "control",
-            "start": 17.14,
-            "end": 17.5
-          },
-          {
-            "word": "over",
-            "start": 17.5,
-            "end": 17.78
-          },
-          {
-            "word": "right",
-            "start": 17.78,
-            "end": 18.3
-          },
-          {
-            "word": "What",
-            "start": 18.3,
-            "end": 18.36
-          },
-          {
-            "word": "can't",
-            "start": 18.36,
-            "end": 18.6
-          },
-          {
-            "word": "we",
-            "start": 18.6,
-            "end": 18.72
-          },
-          {
-            "word": "be",
-            "start": 18.72,
-            "end": 18.94
-          },
-          {
-            "word": "giving",
-            "start": 18.94,
-            "end": 19
-          },
-          {
-            "word": "away",
-            "start": 19,
-            "end": 19.28
-          },
-          {
-            "word": "What",
-            "start": 19.8,
-            "end": 20.06
-          },
-          {
-            "word": "should",
-            "start": 20.06,
-            "end": 20.22
-          },
-          {
-            "word": "we",
-            "start": 20.22,
-            "end": 20.38
-          },
-          {
-            "word": "build",
-            "start": 20.38,
-            "end": 20.6
-          },
-          {
-            "word": "together",
-            "start": 20.6,
-            "end": 21.02
-          },
-          {
-            "word": "right",
-            "start": 21.5,
-            "end": 22.08
-          },
-          {
-            "word": "What",
-            "start": 22.08,
-            "end": 22.2
-          },
-          {
-            "word": "is",
-            "start": 22.2,
-            "end": 22.4
-          },
-          {
-            "word": "feasible",
-            "start": 22.4,
-            "end": 22.82
-          },
-          {
-            "word": "What",
-            "start": 23.28,
-            "end": 23.38
-          },
-          {
-            "word": "could",
-            "start": 23.38,
-            "end": 23.5
-          },
-          {
-            "word": "we",
-            "start": 23.5,
-            "end": 23.72
-          },
-          {
-            "word": "start",
-            "start": 23.72,
-            "end": 23.96
-          },
-          {
-            "word": "with",
-            "start": 23.96,
-            "end": 24.3
-          },
-          {
-            "word": "Right",
-            "start": 24.4,
-            "end": 24.62
-          },
-          {
-            "word": "Some",
-            "start": 24.62,
-            "end": 24.76
-          },
-          {
-            "word": "real",
-            "start": 24.76,
-            "end": 25.1
-          },
-          {
-            "word": "interesting",
-            "start": 25.1,
-            "end": 25.38
-          },
-          {
-            "word": "questions",
-            "start": 25.38,
-            "end": 25.74
-          },
-          {
-            "word": "there",
-            "start": 25.74,
-            "end": 26.24
-          },
-          {
-            "word": "And",
-            "start": 26.58,
-            "end": 26.82
-          },
-          {
-            "word": "when",
-            "start": 26.82,
-            "end": 28.06
-          },
-          {
-            "word": "we're",
-            "start": 28.06,
-            "end": 28.5
-          },
-          {
-            "word": "building",
-            "start": 28.5,
-            "end": 28.5
-          },
-          {
-            "word": "these",
-            "start": 28.5,
-            "end": 28.84
-          },
-          {
-            "word": "things",
-            "start": 28.84,
-            "end": 29.2
-          },
-          {
-            "word": "what",
-            "start": 29.64,
-            "end": 29.8
-          },
-          {
-            "word": "rights",
-            "start": 29.8,
-            "end": 30.12
-          },
-          {
-            "word": "do",
-            "start": 30.12,
-            "end": 30.38
-          },
-          {
-            "word": "students",
-            "start": 30.38,
-            "end": 30.58
-          },
-          {
-            "word": "have",
-            "start": 30.58,
-            "end": 30.88
-          },
-          {
-            "word": "A",
-            "start": 31,
-            "end": 31.2
-          },
-          {
-            "word": "key",
-            "start": 31.2,
-            "end": 31.58
-          },
-          {
-            "word": "aspect",
-            "start": 31.58,
-            "end": 31.92
-          },
-          {
-            "word": "that",
-            "start": 31.92,
-            "end": 32.06
-          },
-          {
-            "word": "I've",
-            "start": 32.06,
-            "end": 32.14
-          },
-          {
-            "word": "not",
-            "start": 32.14,
-            "end": 32.24
-          },
-          {
-            "word": "had",
-            "start": 32.24,
-            "end": 32.44
-          },
-          {
-            "word": "time",
-            "start": 32.44,
-            "end": 32.62
-          },
-          {
-            "word": "to",
-            "start": 32.62,
-            "end": 32.86
-          },
-          {
-            "word": "touch",
-            "start": 32.86,
-            "end": 32.86
-          },
-          {
-            "word": "on",
-            "start": 32.86,
-            "end": 33.1
-          },
-          {
-            "word": "today",
-            "start": 33.1,
-            "end": 33.34
-          },
-          {
-            "word": "is",
-            "start": 33.34,
-            "end": 33.86
-          },
-          {
-            "word": "that",
-            "start": 33.86,
-            "end": 34.06
-          },
-          {
-            "word": "if",
-            "start": 34.06,
-            "end": 34.18
-          },
-          {
-            "word": "we",
-            "start": 34.18,
-            "end": 34.38
-          },
-          {
-            "word": "build",
-            "start": 34.38,
-            "end": 34.56
-          },
-          {
-            "word": "these",
-            "start": 34.56,
-            "end": 34.78
-          },
-          {
-            "word": "models",
-            "start": 34.78,
-            "end": 34.96
-          },
-          {
-            "word": "ourselves",
-            "start": 34.96,
-            "end": 35.38
-          },
-          {
-            "word": "we",
-            "start": 35.38,
-            "end": 35.58
-          },
-          {
-            "word": "can",
-            "start": 35.58,
-            "end": 35.9
-          },
-          {
-            "word": "bake",
-            "start": 35.9,
-            "end": 36.18
-          },
-          {
-            "word": "in",
-            "start": 36.18,
-            "end": 36.72
-          },
-          {
-            "word": "student",
-            "start": 36.72,
-            "end": 37.06
-          },
-          {
-            "word": "rights",
-            "start": 37.06,
-            "end": 37.44
-          },
-          {
-            "word": "right",
-            "start": 38.14,
-            "end": 38.42
-          },
-          {
-            "word": "Visibility",
-            "start": 38.18,
-            "end": 38.66
-          },
-          {
-            "word": "transparency",
-            "start": 39.54,
-            "end": 39.54
-          },
-          {
-            "word": "in",
-            "start": 39.54,
-            "end": 40.06
-          },
-          {
-            "word": "what's",
-            "start": 40.06,
-            "end": 40.48
-          },
-          {
-            "word": "happening",
-            "start": 40.48,
-            "end": 40.72
-          },
-          {
-            "word": "right",
-            "start": 41.06,
-            "end": 41.56
-          },
-          {
-            "word": "Auditability",
-            "start": 41.58,
-            "end": 42.06
-          },
-          {
-            "word": "right",
-            "start": 42.26,
-            "end": 42.66
-          },
-          {
-            "word": "Because",
-            "start": 42.66,
-            "end": 42.8
-          },
-          {
-            "word": "we",
-            "start": 42.8,
-            "end": 42.9
-          },
-          {
-            "word": "have",
-            "start": 42.9,
-            "end": 42.92
-          },
-          {
-            "word": "all",
-            "start": 42.92,
-            "end": 43.12
-          },
-          {
-            "word": "that",
-            "start": 43.12,
-            "end": 43.12
-          },
-          {
-            "word": "evaluation",
-            "start": 43.12,
-            "end": 43.6
-          },
-          {
-            "word": "data",
-            "start": 43.6,
-            "end": 43.92
-          },
-          {
-            "word": "So",
-            "start": 44.02,
-            "end": 44.26
-          },
-          {
-            "word": "we",
-            "start": 44.32,
-            "end": 44.96
-          },
-          {
-            "word": "can",
-            "start": 44.96,
-            "end": 45.22
-          },
-          {
-            "word": "build",
-            "start": 45.22,
-            "end": 45.46
-          },
-          {
-            "word": "these",
-            "start": 45.46,
-            "end": 45.76
-          },
-          {
-            "word": "models",
-            "start": 45.76,
-            "end": 46.04
-          },
-          {
-            "word": "right",
-            "start": 46.18,
-            "end": 46.56
-          },
-          {
-            "word": "to",
-            "start": 47.14,
-            "end": 47.4
-          },
-          {
-            "word": "do",
-            "start": 47.4,
-            "end": 47.52
-          },
-          {
-            "word": "what",
-            "start": 47.52,
-            "end": 47.7
-          },
-          {
-            "word": "we",
-            "start": 47.7,
-            "end": 47.7
+            "start": 5.96,
+            "end": 6.06
           },
           {
             "word": "want",
-            "start": 47.7,
-            "end": 47.84
+            "start": 6.06,
+            "end": 6.26
           },
           {
             "word": "to",
-            "start": 47.84,
-            "end": 47.96
+            "start": 6.26,
+            "end": 6.72
           },
           {
-            "word": "do",
-            "start": 47.96,
-            "end": 48.08
+            "word": "retain",
+            "start": 6.72,
+            "end": 6.72
           },
           {
-            "word": "but",
-            "start": 48.08,
-            "end": 48.2
+            "word": "control",
+            "start": 6.72,
+            "end": 7.1
+          },
+          {
+            "word": "over",
+            "start": 7.1,
+            "end": 7.44
+          },
+          {
+            "word": "What",
+            "start": 9,
+            "end": 9.52
+          },
+          {
+            "word": "aspects",
+            "start": 9.52,
+            "end": 10.02
+          },
+          {
+            "word": "of",
+            "start": 10.02,
+            "end": 10.36
+          },
+          {
+            "word": "AI",
+            "start": 10.36,
+            "end": 10.7
+          },
+          {
+            "word": "are",
+            "start": 10.7,
+            "end": 11.2
           },
           {
             "word": "we",
-            "start": 48.2,
-            "end": 48.34
+            "start": 11.2,
+            "end": 11.44
+          },
+          {
+            "word": "wanting",
+            "start": 11.44,
+            "end": 11.68
+          },
+          {
+            "word": "to",
+            "start": 11.68,
+            "end": 12.12
+          },
+          {
+            "word": "control",
+            "start": 12.12,
+            "end": 12.12
+          },
+          {
+            "word": "Because",
+            "start": 12.46,
+            "end": 12.66
+          },
+          {
+            "word": "I",
+            "start": 12.66,
+            "end": 13.14
+          },
+          {
+            "word": "believe",
+            "start": 13.14,
+            "end": 13.4
+          },
+          {
+            "word": "there",
+            "start": 13.4,
+            "end": 13.7
+          },
+          {
+            "word": "are",
+            "start": 13.7,
+            "end": 13.82
+          },
+          {
+            "word": "aspects",
+            "start": 13.82,
+            "end": 14.04
+          },
+          {
+            "word": "we",
+            "start": 14.04,
+            "end": 14.2
+          },
+          {
+            "word": "should",
+            "start": 14.2,
+            "end": 14.3
+          },
+          {
+            "word": "be",
+            "start": 14.3,
+            "end": 14.5
+          },
+          {
+            "word": "controlling",
+            "start": 14.5,
+            "end": 14.76
+          },
+          {
+            "word": "Again",
+            "start": 15.5,
+            "end": 15.8
+          },
+          {
+            "word": "we",
+            "start": 15.8,
+            "end": 16.04
+          },
+          {
+            "word": "buy",
+            "start": 16.04,
+            "end": 16.2
+          },
+          {
+            "word": "some",
+            "start": 16.2,
+            "end": 16.5
+          },
+          {
+            "word": "things",
+            "start": 16.5,
+            "end": 16.68
+          },
+          {
+            "word": "but",
+            "start": 16.92,
+            "end": 17.04
+          },
+          {
+            "word": "we",
+            "start": 17.04,
+            "end": 17.2
+          },
+          {
+            "word": "build",
+            "start": 17.2,
+            "end": 17.56
+          },
+          {
+            "word": "and",
+            "start": 17.56,
+            "end": 18
+          },
+          {
+            "word": "control",
+            "start": 18,
+            "end": 18
+          },
+          {
+            "word": "some",
+            "start": 18,
+            "end": 18.4
+          },
+          {
+            "word": "things",
+            "start": 18.4,
+            "end": 18.46
+          },
+          {
+            "word": "too",
+            "start": 18.46,
+            "end": 18.88
+          },
+          {
+            "word": "Also",
+            "start": 19.46,
+            "end": 19.78
+          },
+          {
+            "word": "of",
+            "start": 19.98,
+            "end": 20.46
+          },
+          {
+            "word": "course",
+            "start": 20.46,
+            "end": 20.46
+          },
+          {
+            "word": "for",
+            "start": 20.58,
+            "end": 20.72
+          },
+          {
+            "word": "the",
+            "start": 20.72,
+            "end": 20.78
+          },
+          {
+            "word": "refusedics",
+            "start": 20.78,
+            "end": 21.2
+          },
+          {
+            "word": "also",
+            "start": 21.34,
+            "end": 21.58
+          },
+          {
+            "word": "refuse",
+            "start": 21.58,
+            "end": 22
+          },
+          {
+            "word": "some",
+            "start": 22,
+            "end": 22.26
+          },
+          {
+            "word": "things",
+            "start": 22.26,
+            "end": 22.42
+          },
+          {
+            "word": "There's",
+            "start": 22.58,
+            "end": 23.02
+          },
+          {
+            "word": "no",
+            "start": 23.02,
+            "end": 23.36
+          },
+          {
+            "word": "problem",
+            "start": 23.36,
+            "end": 23.64
+          },
+          {
+            "word": "about",
+            "start": 23.64,
+            "end": 23.96
+          },
+          {
+            "word": "saying",
+            "start": 23.96,
+            "end": 24.18
+          },
+          {
+            "word": "this",
+            "start": 24.38,
+            "end": 24.38
+          },
+          {
+            "word": "thing",
+            "start": 24.38,
+            "end": 24.58
+          },
+          {
+            "word": "is",
+            "start": 24.58,
+            "end": 24.7
+          },
+          {
+            "word": "done",
+            "start": 24.7,
+            "end": 24.94
+          },
+          {
+            "word": "old",
+            "start": 24.94,
+            "end": 25.2
+          },
+          {
+            "word": "school",
+            "start": 25.2,
+            "end": 25.5
+          },
+          {
+            "word": "No",
+            "start": 25.84,
+            "end": 26.36
+          },
+          {
+            "word": "problem",
+            "start": 26.36,
+            "end": 26.56
+          },
+          {
+            "word": "at",
+            "start": 26.56,
+            "end": 26.78
+          },
+          {
+            "word": "all",
+            "start": 26.78,
+            "end": 26.92
+          },
+          {
+            "word": "It's",
+            "start": 27.02,
+            "end": 27.32
+          },
+          {
+            "word": "when",
+            "start": 27.32,
+            "end": 27.46
+          },
+          {
+            "word": "you",
+            "start": 27.46,
+            "end": 27.58
+          },
+          {
+            "word": "say",
+            "start": 27.58,
+            "end": 27.86
+          },
+          {
+            "word": "I'm",
+            "start": 27.86,
+            "end": 28.22
+          },
+          {
+            "word": "not",
+            "start": 28.22,
+            "end": 28.36
+          },
+          {
+            "word": "using",
+            "start": 28.36,
+            "end": 28.58
+          },
+          {
+            "word": "any",
+            "start": 28.58,
+            "end": 28.9
+          },
+          {
+            "word": "AI",
+            "start": 28.9,
+            "end": 29.24
+          },
+          {
+            "word": "or",
+            "start": 29.24,
+            "end": 29.44
+          },
+          {
+            "word": "any",
+            "start": 29.44,
+            "end": 29.62
+          },
+          {
+            "word": "computers",
+            "start": 29.62,
+            "end": 29.88
+          },
+          {
+            "word": "at",
+            "start": 29.88,
+            "end": 30
+          },
+          {
+            "word": "all",
+            "start": 30,
+            "end": 30.24
+          },
+          {
+            "word": "in",
+            "start": 30.24,
+            "end": 30.34
+          },
+          {
+            "word": "my",
+            "start": 30.34,
+            "end": 30.52
+          },
+          {
+            "word": "life",
+            "start": 30.52,
+            "end": 30.74
+          },
+          {
+            "word": "you",
+            "start": 31.06,
+            "end": 31.52
+          },
+          {
+            "word": "become",
+            "start": 31.52,
+            "end": 31.52
+          },
+          {
+            "word": "slightly",
+            "start": 31.52,
+            "end": 32.24
+          },
+          {
+            "word": "extreme",
+            "start": 32.24,
+            "end": 32.66
+          },
+          {
+            "word": "and",
+            "start": 33.08,
+            "end": 33.34
+          },
+          {
+            "word": "you're",
+            "start": 33.34,
+            "end": 33.54
+          },
+          {
+            "word": "really",
+            "start": 33.54,
+            "end": 33.74
+          },
+          {
+            "word": "cutting",
+            "start": 33.74,
+            "end": 33.9
+          },
+          {
+            "word": "off",
+            "start": 33.9,
+            "end": 34.04
+          },
+          {
+            "word": "your",
+            "start": 34.04,
+            "end": 34.28
+          },
+          {
+            "word": "nose",
+            "start": 34.28,
+            "end": 34.32
+          },
+          {
+            "word": "to",
+            "start": 34.32,
+            "end": 34.56
+          },
+          {
+            "word": "spite",
+            "start": 34.56,
+            "end": 34.58
+          },
+          {
+            "word": "your",
+            "start": 34.58,
+            "end": 34.94
+          },
+          {
+            "word": "face",
+            "start": 34.94,
+            "end": 35.02
+          },
+          {
+            "word": "So",
+            "start": 36.06,
+            "end": 36.5
+          },
+          {
+            "word": "what",
+            "start": 36.5,
+            "end": 36.8
+          },
+          {
+            "word": "should",
+            "start": 36.8,
+            "end": 36.9
+          },
+          {
+            "word": "we",
+            "start": 36.9,
+            "end": 37.06
+          },
+          {
+            "word": "build",
+            "start": 37.06,
+            "end": 37.2
+          },
+          {
+            "word": "or",
+            "start": 37.2,
+            "end": 37.4
+          },
+          {
+            "word": "evaluate",
+            "start": 37.4,
+            "end": 37.62
+          },
+          {
+            "word": "together",
+            "start": 37.62,
+            "end": 38.02
+          },
+          {
+            "word": "And",
+            "start": 39.02,
+            "end": 39.46
+          },
+          {
+            "word": "importantly",
+            "start": 39.46,
+            "end": 39.9
+          },
+          {
+            "word": "what",
+            "start": 40.64,
+            "end": 40.8
+          },
+          {
+            "word": "rights",
+            "start": 40.8,
+            "end": 41.1
+          },
+          {
+            "word": "should",
+            "start": 41.1,
+            "end": 41.52
+          },
+          {
+            "word": "students",
+            "start": 41.52,
+            "end": 41.92
           },
           {
             "word": "have",
-            "start": 48.34,
-            "end": 48.46
+            "start": 41.92,
+            "end": 42.36
+          },
+          {
+            "word": "What",
+            "start": 42.94,
+            "end": 43.24
+          },
+          {
+            "word": "rights",
+            "start": 43.24,
+            "end": 43.7
+          },
+          {
+            "word": "should",
+            "start": 43.7,
+            "end": 44.2
+          },
+          {
+            "word": "the",
+            "start": 44.2,
+            "end": 45.66
+          },
+          {
+            "word": "people",
+            "start": 45.66,
+            "end": 45.96
+          },
+          {
+            "word": "involved",
+            "start": 45.96,
+            "end": 46.3
+          },
+          {
+            "word": "in",
+            "start": 46.3,
+            "end": 46.46
+          },
+          {
+            "word": "this",
+            "start": 46.46,
+            "end": 46.56
+          },
+          {
+            "word": "process",
+            "start": 46.56,
+            "end": 46.84
+          },
+          {
+            "word": "They",
+            "start": 46.88,
+            "end": 47.08
+          },
+          {
+            "word": "don't",
+            "start": 47.08,
+            "end": 47.38
+          },
+          {
+            "word": "want",
+            "start": 47.38,
+            "end": 47.52
           },
           {
             "word": "to",
-            "start": 48.46,
-            "end": 48.62
+            "start": 47.52,
+            "end": 47.6
           },
           {
-            "word": "decide",
-            "start": 48.62,
-            "end": 48.86
+            "word": "be",
+            "start": 47.6,
+            "end": 48
           },
           {
-            "word": "how",
-            "start": 48.86,
-            "end": 49.08
+            "word": "taught",
+            "start": 48,
+            "end": 48.02
           },
           {
-            "word": "to",
-            "start": 49.08,
-            "end": 49.22
+            "word": "by",
+            "start": 48.02,
+            "end": 48.32
           },
           {
-            "word": "do",
-            "start": 49.22,
+            "word": "an",
+            "start": 48.32,
+            "end": 48.64
+          },
+          {
+            "word": "AI",
+            "start": 48.64,
+            "end": 48.76
+          },
+          {
+            "word": "bot",
+            "start": 48.76,
+            "end": 49.02
+          },
+          {
+            "word": "If",
+            "start": 49.06,
+            "end": 49.2
+          },
+          {
+            "word": "they",
+            "start": 49.2,
             "end": 49.34
           },
           {
-            "word": "it",
+            "word": "did",
             "start": 49.34,
+            "end": 49.54
+          },
+          {
+            "word": "they",
+            "start": 49.6,
+            "end": 49.68
+          },
+          {
+            "word": "could",
+            "start": 49.68,
             "end": 49.82
           },
           {
-            "word": "up",
+            "word": "go",
             "start": 49.82,
-            "end": 50.08
+            "end": 50
           },
           {
-            "word": "front",
-            "start": 50.08,
-            "end": 50.14
+            "word": "in",
+            "start": 50,
+            "end": 50.1
+          },
+          {
+            "word": "and",
+            "start": 50.1,
+            "end": 50.2
+          },
+          {
+            "word": "do",
+            "start": 50.2,
+            "end": 50.32
+          },
+          {
+            "word": "that",
+            "start": 50.32,
+            "end": 50.68
+          },
+          {
+            "word": "It",
+            "start": 50.8,
+            "end": 51.12
+          },
+          {
+            "word": "comes",
+            "start": 51.12,
+            "end": 51.28
+          },
+          {
+            "word": "down",
+            "start": 51.28,
+            "end": 51.56
+          },
+          {
+            "word": "to",
+            "start": 51.56,
+            "end": 51.72
+          },
+          {
+            "word": "being",
+            "start": 51.72,
+            "end": 52.2
+          },
+          {
+            "word": "lecture",
+            "start": 52.2,
+            "end": 53.42
+          },
+          {
+            "word": "recordings",
+            "start": 53.42,
+            "end": 53.88
+          },
+          {
+            "word": "It's",
+            "start": 54.52,
+            "end": 54.96
+          },
+          {
+            "word": "like",
+            "start": 54.96,
+            "end": 55.14
+          },
+          {
+            "word": "you",
+            "start": 55.14,
+            "end": 55.38
+          },
+          {
+            "word": "could",
+            "start": 55.38,
+            "end": 55.48
+          },
+          {
+            "word": "just",
+            "start": 55.48,
+            "end": 55.62
+          },
+          {
+            "word": "be",
+            "start": 55.62,
+            "end": 55.82
+          },
+          {
+            "word": "taught",
+            "start": 55.82,
+            "end": 55.84
+          },
+          {
+            "word": "by",
+            "start": 55.84,
+            "end": 55.98
+          },
+          {
+            "word": "on",
+            "start": 55.98,
+            "end": 56.2
+          },
+          {
+            "word": "YouTube",
+            "start": 56.2,
+            "end": 56.5
+          },
+          {
+            "word": "Yeah",
+            "start": 56.6,
+            "end": 56.82
+          },
+          {
+            "word": "you",
+            "start": 56.82,
+            "end": 56.94
+          },
+          {
+            "word": "could",
+            "start": 56.94,
+            "end": 57.18
+          },
+          {
+            "word": "You",
+            "start": 57.26,
+            "end": 57.44
+          },
+          {
+            "word": "could",
+            "start": 57.44,
+            "end": 57.8
+          },
+          {
+            "word": "absolutely",
+            "start": 57.8,
+            "end": 58.2
+          },
+          {
+            "word": "get",
+            "start": 58.2,
+            "end": 58.46
+          },
+          {
+            "word": "a",
+            "start": 58.46,
+            "end": 58.7
+          },
+          {
+            "word": "world",
+            "start": 58.7,
+            "end": 58.76
+          },
+          {
+            "word": "class",
+            "start": 58.76,
+            "end": 58.92
+          },
+          {
+            "word": "education",
+            "start": 58.92,
+            "end": 59.42
+          },
+          {
+            "word": "watching",
+            "start": 59.42,
+            "end": 59.74
+          },
+          {
+            "word": "YouTube",
+            "start": 59.74,
+            "end": 60.1
+          },
+          {
+            "word": "You",
+            "start": 60.24,
+            "end": 60.54
+          },
+          {
+            "word": "could",
+            "start": 60.54,
+            "end": 60.7
+          },
+          {
+            "word": "learn",
+            "start": 60.7,
+            "end": 60.9
+          },
+          {
+            "word": "as",
+            "start": 60.9,
+            "end": 61.04
+          },
+          {
+            "word": "an",
+            "start": 61.04,
+            "end": 61.52
+          },
+          {
+            "word": "aerospace",
+            "start": 61.52,
+            "end": 61.98
+          },
+          {
+            "word": "engineer",
+            "start": 61.98,
+            "end": 63.22
+          },
+          {
+            "word": "a",
+            "start": 63.72,
+            "end": 63.72
+          },
+          {
+            "word": "PhD",
+            "start": 63.72,
+            "end": 63.72
+          },
+          {
+            "word": "You",
+            "start": 64.18,
+            "end": 64.52
+          },
+          {
+            "word": "could",
+            "start": 64.52,
+            "end": 64.68
+          },
+          {
+            "word": "get",
+            "start": 64.68,
+            "end": 64.86
+          },
+          {
+            "word": "an",
+            "start": 64.86,
+            "end": 65.06
+          },
+          {
+            "word": "M",
+            "start": 65.06,
+            "end": 65.2
+          },
+          {
+            "word": "Eng",
+            "start": 65.2,
+            "end": 65.32
+          },
+          {
+            "word": "aerospace",
+            "start": 65.6,
+            "end": 66.04
+          },
+          {
+            "word": "just",
+            "start": 66.04,
+            "end": 66.54
+          },
+          {
+            "word": "by",
+            "start": 66.54,
+            "end": 66.76
+          },
+          {
+            "word": "watching",
+            "start": 66.76,
+            "end": 66.92
+          },
+          {
+            "word": "YouTube",
+            "start": 66.92,
+            "end": 67.26
+          },
+          {
+            "word": "and",
+            "start": 67.26,
+            "end": 67.52
+          },
+          {
+            "word": "just",
+            "start": 67.52,
+            "end": 67.68
+          },
+          {
+            "word": "taking",
+            "start": 67.68,
+            "end": 67.76
+          },
+          {
+            "word": "some",
+            "start": 67.76,
+            "end": 68.24
+          },
+          {
+            "word": "exams",
+            "start": 68.24,
+            "end": 68.24
+          },
+          {
+            "word": "But",
+            "start": 68.72,
+            "end": 69.2
+          },
+          {
+            "word": "people",
+            "start": 69.2,
+            "end": 69.3
+          },
+          {
+            "word": "don't",
+            "start": 69.3,
+            "end": 69.46
+          },
+          {
+            "word": "want",
+            "start": 69.46,
+            "end": 69.58
+          },
+          {
+            "word": "to",
+            "start": 69.58,
+            "end": 69.7
+          },
+          {
+            "word": "do",
+            "start": 69.7,
+            "end": 69.82
+          },
+          {
+            "word": "that",
+            "start": 69.82,
+            "end": 70.46
+          },
+          {
+            "word": "That's",
+            "start": 70.6,
+            "end": 70.8
+          },
+          {
+            "word": "not",
+            "start": 70.8,
+            "end": 70.98
+          },
+          {
+            "word": "how",
+            "start": 70.98,
+            "end": 71.14
+          },
+          {
+            "word": "most",
+            "start": 71.14,
+            "end": 71.5
+          },
+          {
+            "word": "people",
+            "start": 71.5,
+            "end": 71.7
+          },
+          {
+            "word": "learn",
+            "start": 71.7,
+            "end": 71.98
+          },
+          {
+            "word": "If",
+            "start": 72.06,
+            "end": 72.2
+          },
+          {
+            "word": "you",
+            "start": 72.2,
+            "end": 72.32
+          },
+          {
+            "word": "can",
+            "start": 72.32,
+            "end": 72.54
+          },
+          {
+            "word": "learn",
+            "start": 72.54,
+            "end": 72.64
+          },
+          {
+            "word": "that",
+            "start": 72.64,
+            "end": 72.8
+          },
+          {
+            "word": "way",
+            "start": 72.8,
+            "end": 73.02
+          },
+          {
+            "word": "if",
+            "start": 73.14,
+            "end": 73.34
+          },
+          {
+            "word": "you're",
+            "start": 73.34,
+            "end": 73.4
+          },
+          {
+            "word": "an",
+            "start": 73.4,
+            "end": 73.52
+          },
+          {
+            "word": "autodidact",
+            "start": 73.52,
+            "end": 73.96
+          },
+          {
+            "word": "go",
+            "start": 74.12,
+            "end": 74.46
+          },
+          {
+            "word": "for",
+            "start": 74.46,
+            "end": 74.76
+          },
+          {
+            "word": "it",
+            "start": 74.76,
+            "end": 74.94
+          },
+          {
+            "word": "That's",
+            "start": 75.08,
+            "end": 75.46
+          },
+          {
+            "word": "not",
+            "start": 75.46,
+            "end": 75.8
+          },
+          {
+            "word": "how",
+            "start": 75.8,
+            "end": 76.28
+          },
+          {
+            "word": "students",
+            "start": 76.28,
+            "end": 76.48
+          },
+          {
+            "word": "want",
+            "start": 76.48,
+            "end": 76.76
+          },
+          {
+            "word": "to",
+            "start": 76.76,
+            "end": 77.1
+          },
+          {
+            "word": "learn",
+            "start": 77.1,
+            "end": 77.1
+          },
+          {
+            "word": "So",
+            "start": 77.42,
+            "end": 77.72
+          },
+          {
+            "word": "how",
+            "start": 77.72,
+            "end": 77.98
+          },
+          {
+            "word": "do",
+            "start": 77.98,
+            "end": 78.34
+          },
+          {
+            "word": "students",
+            "start": 78.34,
+            "end": 78.52
+          },
+          {
+            "word": "want",
+            "start": 78.52,
+            "end": 78.76
+          },
+          {
+            "word": "to",
+            "start": 78.76,
+            "end": 79.02
+          },
+          {
+            "word": "learn",
+            "start": 79.02,
+            "end": 79.06
+          },
+          {
+            "word": "What",
+            "start": 79.72,
+            "end": 79.88
+          },
+          {
+            "word": "rights",
+            "start": 79.88,
+            "end": 80.56
+          },
+          {
+            "word": "should",
+            "start": 80.56,
+            "end": 80.72
+          },
+          {
+            "word": "they",
+            "start": 80.72,
+            "end": 80.96
+          },
+          {
+            "word": "have",
+            "start": 80.96,
+            "end": 81.28
+          },
+          {
+            "word": "around",
+            "start": 81.28,
+            "end": 81.74
+          },
+          {
+            "word": "their",
+            "start": 81.74,
+            "end": 82.18
+          },
+          {
+            "word": "data",
+            "start": 82.18,
+            "end": 82.62
+          },
+          {
+            "word": "what",
+            "start": 82.7,
+            "end": 82.86
+          },
+          {
+            "word": "models",
+            "start": 82.86,
+            "end": 83.12
+          },
+          {
+            "word": "they're",
+            "start": 83.12,
+            "end": 83.58
+          },
+          {
+            "word": "exposed",
+            "start": 83.58,
+            "end": 83.8
+          },
+          {
+            "word": "to",
+            "start": 83.8,
+            "end": 84.44
+          },
+          {
+            "word": "That's",
+            "start": 86.02,
+            "end": 86.5
+          },
+          {
+            "word": "really",
+            "start": 86.5,
+            "end": 86.7
+          },
+          {
+            "word": "important",
+            "start": 86.7,
+            "end": 87.04
           }
-        ],
-        "transcribed_at": "2026-04-14T18:19:37.111Z"
-      },
-      "voiceover_history": [
-        {
-          "transcript": "So fundamentally, the next few years require three big decisions. Is that what do we want to retain control over? What aspects of AI are we wanting to control? Because I believe there are aspects we should be controlling. Again, we buy some things, but we build and control some things too. Also, of course, for the refusedics, also refuse some things. There's no problem about saying, this thing is done old school. No problem at all. It's when you say, I'm not using any AI or any computers at all in my life, you become slightly extreme, and you're really cutting off your nose to spite your face. So what should we build or evaluate together? And importantly, what rights should students have? What rights should the people involved in this process? They don't want to be taught by an AI bot. If they did, they could go in and do that. It comes down to being lecture recordings. It's like, you could just be taught by on YouTube. Yeah, you could. You could absolutely get a world-class education watching YouTube. You could learn as an aerospace engineer, a PhD. You could get an M.Eng. aerospace just by watching YouTube and just taking some exams. But people don't want to do that. That's not how most people learn. If you can learn that way, if you're an autodidact, go for it. That's not how students want to learn. So how do students want to learn? What rights should they have around their data, what models they're exposed to? That's really important.",
-          "transcribed_at": "2026-04-13T18:57:03.204Z",
-          "duration": 88.32,
-          "replaced_at": "2026-04-14T18:19:34.430Z"
-        }
-      ]
+        ]
+      }
     },
     {
       "type": "statement",
@@ -32345,477 +31749,284 @@
       "id": "5qubwozg",
       "voiceover": {
         "file": "voiceovers/5qubwozg.webm",
-        "duration": 27.3,
+        "duration": 22.62,
         "mime": "audio/webm;codecs=opus",
-        "updated": "2026-04-14T18:20:06.085Z",
-        "transcript": "So to summarize what the next decade might look like, so we aren't just deciding whether to use AI or not, we are deciding on the default of how education will work for the next 10 years. Because this is happening, it's happened, and we have to be aware of that, we have to accept that. So it's not a sort of philosophical or AI good or AI bad question, it's instead how do we want to be educating students over the next decade, and that's how important these decisions are.",
+        "updated": "2026-04-13T18:42:15.423Z",
+        "transcript": "So what might the next decade look like? Well, we as universities aren't deciding, okay, should we use AI or not, right? We're deciding what are the defaults, right, for the next decades, okay? What is education going to look like, right? Either we get to decide, or someone's going to decide for us.",
+        "transcribed_at": "2026-04-13T18:57:04.273Z",
         "words": [
           {
             "word": "So",
             "start": 0,
-            "end": 0.32
-          },
-          {
-            "word": "to",
-            "start": 0.32,
-            "end": 0.64
-          },
-          {
-            "word": "summarize",
-            "start": 0.64,
-            "end": 0.76
+            "end": 0.24
           },
           {
             "word": "what",
-            "start": 0.76,
-            "end": 1.1
-          },
-          {
-            "word": "the",
-            "start": 1.1,
-            "end": 1.28
-          },
-          {
-            "word": "next",
-            "start": 1.28,
-            "end": 1.42
-          },
-          {
-            "word": "decade",
-            "start": 1.42,
-            "end": 1.62
+            "start": 0.24,
+            "end": 0.42
           },
           {
             "word": "might",
-            "start": 1.62,
-            "end": 1.88
-          },
-          {
-            "word": "look",
-            "start": 1.88,
-            "end": 2.06
-          },
-          {
-            "word": "like",
-            "start": 2.06,
-            "end": 2.28
-          },
-          {
-            "word": "so",
-            "start": 2.54,
-            "end": 2.74
-          },
-          {
-            "word": "we",
-            "start": 2.74,
-            "end": 2.82
-          },
-          {
-            "word": "aren't",
-            "start": 2.82,
-            "end": 3.1
-          },
-          {
-            "word": "just",
-            "start": 3.1,
-            "end": 3.48
-          },
-          {
-            "word": "deciding",
-            "start": 3.48,
-            "end": 3.9
-          },
-          {
-            "word": "whether",
-            "start": 3.9,
-            "end": 4.6
-          },
-          {
-            "word": "to",
-            "start": 4.6,
-            "end": 4.82
-          },
-          {
-            "word": "use",
-            "start": 4.82,
-            "end": 4.98
-          },
-          {
-            "word": "AI",
-            "start": 4.98,
-            "end": 5.12
-          },
-          {
-            "word": "or",
-            "start": 5.12,
-            "end": 5.34
-          },
-          {
-            "word": "not",
-            "start": 5.34,
-            "end": 5.54
-          },
-          {
-            "word": "we",
-            "start": 5.8,
-            "end": 6.04
-          },
-          {
-            "word": "are",
-            "start": 6.04,
-            "end": 6.32
-          },
-          {
-            "word": "deciding",
-            "start": 6.32,
-            "end": 6.66
-          },
-          {
-            "word": "on",
-            "start": 6.66,
-            "end": 6.88
+            "start": 0.42,
+            "end": 0.64
           },
           {
             "word": "the",
-            "start": 6.88,
-            "end": 6.92
-          },
-          {
-            "word": "default",
-            "start": 6.92,
-            "end": 7.22
-          },
-          {
-            "word": "of",
-            "start": 7.22,
-            "end": 7.4
-          },
-          {
-            "word": "how",
-            "start": 7.4,
-            "end": 7.62
-          },
-          {
-            "word": "education",
-            "start": 7.62,
-            "end": 8.12
-          },
-          {
-            "word": "will",
-            "start": 8.12,
-            "end": 8.48
-          },
-          {
-            "word": "work",
-            "start": 8.48,
-            "end": 8.8
-          },
-          {
-            "word": "for",
-            "start": 8.8,
-            "end": 9.06
-          },
-          {
-            "word": "the",
-            "start": 9.06,
-            "end": 9.28
+            "start": 0.64,
+            "end": 0.86
           },
           {
             "word": "next",
-            "start": 9.28,
-            "end": 9.28
-          },
-          {
-            "word": "10",
-            "start": 9.28,
-            "end": 9.52
-          },
-          {
-            "word": "years",
-            "start": 9.52,
-            "end": 9.68
-          },
-          {
-            "word": "Because",
-            "start": 9.72,
-            "end": 10.02
-          },
-          {
-            "word": "this",
-            "start": 10.02,
-            "end": 10.36
-          },
-          {
-            "word": "is",
-            "start": 10.36,
-            "end": 10.86
-          },
-          {
-            "word": "happening",
-            "start": 10.86,
-            "end": 11.2
-          },
-          {
-            "word": "it's",
-            "start": 11.32,
-            "end": 11.7
-          },
-          {
-            "word": "happened",
-            "start": 11.7,
-            "end": 11.96
-          },
-          {
-            "word": "and",
-            "start": 12.28,
-            "end": 13.78
-          },
-          {
-            "word": "we",
-            "start": 13.78,
-            "end": 14.28
-          },
-          {
-            "word": "have",
-            "start": 14.28,
-            "end": 14.44
-          },
-          {
-            "word": "to",
-            "start": 14.44,
-            "end": 14.56
-          },
-          {
-            "word": "be",
-            "start": 14.56,
-            "end": 14.76
-          },
-          {
-            "word": "aware",
-            "start": 14.76,
-            "end": 14.76
-          },
-          {
-            "word": "of",
-            "start": 14.76,
-            "end": 14.9
-          },
-          {
-            "word": "that",
-            "start": 14.9,
-            "end": 14.94
-          },
-          {
-            "word": "we",
-            "start": 15,
-            "end": 15.08
-          },
-          {
-            "word": "have",
-            "start": 15.08,
-            "end": 15.16
-          },
-          {
-            "word": "to",
-            "start": 15.16,
-            "end": 15.36
-          },
-          {
-            "word": "accept",
-            "start": 15.36,
-            "end": 15.56
-          },
-          {
-            "word": "that",
-            "start": 15.56,
-            "end": 16.22
-          },
-          {
-            "word": "So",
-            "start": 16.22,
-            "end": 16.7
-          },
-          {
-            "word": "it's",
-            "start": 16.7,
-            "end": 16.84
-          },
-          {
-            "word": "not",
-            "start": 16.84,
-            "end": 17.12
-          },
-          {
-            "word": "a",
-            "start": 17.12,
-            "end": 17.28
-          },
-          {
-            "word": "sort",
-            "start": 17.28,
-            "end": 17.78
-          },
-          {
-            "word": "of",
-            "start": 17.78,
-            "end": 17.86
-          },
-          {
-            "word": "philosophical",
-            "start": 17.86,
-            "end": 17.86
-          },
-          {
-            "word": "or",
-            "start": 17.86,
-            "end": 18.32
-          },
-          {
-            "word": "AI",
-            "start": 18.32,
-            "end": 18.52
-          },
-          {
-            "word": "good",
-            "start": 18.52,
-            "end": 18.76
-          },
-          {
-            "word": "or",
-            "start": 18.76,
-            "end": 18.9
-          },
-          {
-            "word": "AI",
-            "start": 18.9,
-            "end": 19.16
-          },
-          {
-            "word": "bad",
-            "start": 19.16,
-            "end": 19.3
-          },
-          {
-            "word": "question",
-            "start": 19.3,
-            "end": 19.72
-          },
-          {
-            "word": "it's",
-            "start": 19.8,
-            "end": 20.34
-          },
-          {
-            "word": "instead",
-            "start": 20.34,
-            "end": 20.58
-          },
-          {
-            "word": "how",
-            "start": 20.58,
-            "end": 21.12
-          },
-          {
-            "word": "do",
-            "start": 21.12,
-            "end": 21.3
-          },
-          {
-            "word": "we",
-            "start": 21.3,
-            "end": 21.46
-          },
-          {
-            "word": "want",
-            "start": 21.46,
-            "end": 21.78
-          },
-          {
-            "word": "to",
-            "start": 21.78,
-            "end": 21.98
-          },
-          {
-            "word": "be",
-            "start": 22.18,
-            "end": 22.66
-          },
-          {
-            "word": "educating",
-            "start": 22.66,
-            "end": 22.66
-          },
-          {
-            "word": "students",
-            "start": 22.66,
-            "end": 23.24
-          },
-          {
-            "word": "over",
-            "start": 23.24,
-            "end": 23.7
-          },
-          {
-            "word": "the",
-            "start": 23.7,
-            "end": 23.82
-          },
-          {
-            "word": "next",
-            "start": 23.82,
-            "end": 24.02
+            "start": 0.86,
+            "end": 1.2
           },
           {
             "word": "decade",
-            "start": 24.02,
-            "end": 24.3
+            "start": 1.2,
+            "end": 1.64
           },
           {
-            "word": "and",
-            "start": 24.3,
-            "end": 25
+            "word": "look",
+            "start": 1.64,
+            "end": 2.24
           },
           {
-            "word": "that's",
-            "start": 25,
-            "end": 25.24
+            "word": "like",
+            "start": 2.24,
+            "end": 2.5
           },
           {
-            "word": "how",
-            "start": 25.24,
-            "end": 25.48
+            "word": "Well",
+            "start": 3.36,
+            "end": 4
           },
           {
-            "word": "important",
-            "start": 25.48,
-            "end": 25.74
+            "word": "we",
+            "start": 4,
+            "end": 4.64
           },
           {
-            "word": "these",
-            "start": 25.74,
-            "end": 26.06
+            "word": "as",
+            "start": 4.64,
+            "end": 4.92
           },
           {
-            "word": "decisions",
-            "start": 26.06,
-            "end": 26.42
+            "word": "universities",
+            "start": 4.92,
+            "end": 5.36
+          },
+          {
+            "word": "aren't",
+            "start": 5.36,
+            "end": 6.22
+          },
+          {
+            "word": "deciding",
+            "start": 6.22,
+            "end": 6.84
+          },
+          {
+            "word": "okay",
+            "start": 7.84,
+            "end": 7.84
+          },
+          {
+            "word": "should",
+            "start": 7.84,
+            "end": 7.94
+          },
+          {
+            "word": "we",
+            "start": 7.94,
+            "end": 8.08
+          },
+          {
+            "word": "use",
+            "start": 8.08,
+            "end": 8.28
+          },
+          {
+            "word": "AI",
+            "start": 8.28,
+            "end": 8.5
+          },
+          {
+            "word": "or",
+            "start": 8.5,
+            "end": 8.72
+          },
+          {
+            "word": "not",
+            "start": 8.72,
+            "end": 8.96
+          },
+          {
+            "word": "right",
+            "start": 9.2,
+            "end": 9.7
+          },
+          {
+            "word": "We're",
+            "start": 9.78,
+            "end": 10.42
+          },
+          {
+            "word": "deciding",
+            "start": 10.42,
+            "end": 10.42
+          },
+          {
+            "word": "what",
+            "start": 10.42,
+            "end": 10.94
           },
           {
             "word": "are",
-            "start": 26.42,
-            "end": 26.86
+            "start": 10.94,
+            "end": 11.24
+          },
+          {
+            "word": "the",
+            "start": 11.24,
+            "end": 11.56
+          },
+          {
+            "word": "defaults",
+            "start": 11.56,
+            "end": 12.22
+          },
+          {
+            "word": "right",
+            "start": 12.22,
+            "end": 12.92
+          },
+          {
+            "word": "for",
+            "start": 12.92,
+            "end": 13.04
+          },
+          {
+            "word": "the",
+            "start": 13.04,
+            "end": 13.24
+          },
+          {
+            "word": "next",
+            "start": 13.24,
+            "end": 13.44
+          },
+          {
+            "word": "decades",
+            "start": 13.44,
+            "end": 13.88
+          },
+          {
+            "word": "okay",
+            "start": 13.98,
+            "end": 14.66
+          },
+          {
+            "word": "What",
+            "start": 14.66,
+            "end": 15.02
+          },
+          {
+            "word": "is",
+            "start": 15.02,
+            "end": 15.32
+          },
+          {
+            "word": "education",
+            "start": 15.32,
+            "end": 15.84
+          },
+          {
+            "word": "going",
+            "start": 15.84,
+            "end": 16.28
+          },
+          {
+            "word": "to",
+            "start": 16.28,
+            "end": 16.68
+          },
+          {
+            "word": "look",
+            "start": 16.68,
+            "end": 16.8
+          },
+          {
+            "word": "like",
+            "start": 16.8,
+            "end": 17.14
+          },
+          {
+            "word": "right",
+            "start": 17.62,
+            "end": 18.18
+          },
+          {
+            "word": "Either",
+            "start": 18.18,
+            "end": 18.38
+          },
+          {
+            "word": "we",
+            "start": 18.38,
+            "end": 18.78
+          },
+          {
+            "word": "get",
+            "start": 18.78,
+            "end": 18.9
+          },
+          {
+            "word": "to",
+            "start": 18.9,
+            "end": 19.38
+          },
+          {
+            "word": "decide",
+            "start": 19.38,
+            "end": 19.38
+          },
+          {
+            "word": "or",
+            "start": 19.48,
+            "end": 19.78
+          },
+          {
+            "word": "someone's",
+            "start": 19.78,
+            "end": 20.32
+          },
+          {
+            "word": "going",
+            "start": 20.32,
+            "end": 20.5
+          },
+          {
+            "word": "to",
+            "start": 20.5,
+            "end": 20.78
+          },
+          {
+            "word": "decide",
+            "start": 20.78,
+            "end": 21.1
+          },
+          {
+            "word": "for",
+            "start": 21.1,
+            "end": 21.9
+          },
+          {
+            "word": "us",
+            "start": 21.9,
+            "end": 22.1
           }
-        ],
-        "transcribed_at": "2026-04-14T18:20:08.134Z"
-      },
-      "voiceover_history": [
-        {
-          "transcript": "So what might the next decade look like? Well, we as universities aren't deciding, okay, should we use AI or not, right? We're deciding what are the defaults, right, for the next decades, okay? What is education going to look like, right? Either we get to decide, or someone's going to decide for us.",
-          "transcribed_at": "2026-04-13T18:57:04.273Z",
-          "duration": 22.62,
-          "replaced_at": "2026-04-14T18:20:06.085Z"
-        }
-      ]
+        ]
+      }
     },
     {
       "type": "statement",
@@ -32839,18 +32050,349 @@
       "id": "t3j2ripk",
       "voiceover": {
         "file": "voiceovers/t3j2ripk.webm",
-        "duration": 28.98,
+        "duration": 24.3,
         "mime": "audio/webm;codecs=opus",
-        "updated": "2026-04-14T18:20:40.080Z"
-      },
-      "voiceover_history": [
-        {
-          "transcript": "And a final closing question for you all, something to go away and think about, if AI becomes part of higher education infrastructure, who should control it? And what kind of universities should it serve? Universities will change, right? But I believe the best change will be when we control the AI and use AI to make the change ourselves, retain that autonomy. Thank you very much.",
-          "transcribed_at": "2026-04-13T18:57:05.719Z",
-          "duration": 24.3,
-          "replaced_at": "2026-04-14T18:20:40.080Z"
-        }
-      ]
+        "updated": "2026-04-13T18:42:42.259Z",
+        "transcript": "And a final closing question for you all, something to go away and think about, if AI becomes part of higher education infrastructure, who should control it? And what kind of universities should it serve? Universities will change, right? But I believe the best change will be when we control the AI and use AI to make the change ourselves, retain that autonomy. Thank you very much.",
+        "transcribed_at": "2026-04-13T18:57:05.719Z",
+        "words": [
+          {
+            "word": "And",
+            "start": 0,
+            "end": 0.58
+          },
+          {
+            "word": "a",
+            "start": 0.58,
+            "end": 1.24
+          },
+          {
+            "word": "final",
+            "start": 1.24,
+            "end": 1.42
+          },
+          {
+            "word": "closing",
+            "start": 1.42,
+            "end": 1.92
+          },
+          {
+            "word": "question",
+            "start": 1.92,
+            "end": 2.2
+          },
+          {
+            "word": "for",
+            "start": 2.2,
+            "end": 2.46
+          },
+          {
+            "word": "you",
+            "start": 2.46,
+            "end": 2.62
+          },
+          {
+            "word": "all",
+            "start": 2.62,
+            "end": 3.22
+          },
+          {
+            "word": "something",
+            "start": 3.48,
+            "end": 3.74
+          },
+          {
+            "word": "to",
+            "start": 3.74,
+            "end": 3.86
+          },
+          {
+            "word": "go",
+            "start": 3.86,
+            "end": 4.02
+          },
+          {
+            "word": "away",
+            "start": 4.02,
+            "end": 4.16
+          },
+          {
+            "word": "and",
+            "start": 4.16,
+            "end": 4.32
+          },
+          {
+            "word": "think",
+            "start": 4.32,
+            "end": 4.44
+          },
+          {
+            "word": "about",
+            "start": 4.44,
+            "end": 4.8
+          },
+          {
+            "word": "if",
+            "start": 5.46,
+            "end": 5.62
+          },
+          {
+            "word": "AI",
+            "start": 5.62,
+            "end": 5.9
+          },
+          {
+            "word": "becomes",
+            "start": 5.9,
+            "end": 6.18
+          },
+          {
+            "word": "part",
+            "start": 6.18,
+            "end": 6.48
+          },
+          {
+            "word": "of",
+            "start": 6.48,
+            "end": 6.74
+          },
+          {
+            "word": "higher",
+            "start": 6.74,
+            "end": 6.8
+          },
+          {
+            "word": "education",
+            "start": 6.8,
+            "end": 7.08
+          },
+          {
+            "word": "infrastructure",
+            "start": 7.08,
+            "end": 7.54
+          },
+          {
+            "word": "who",
+            "start": 7.98,
+            "end": 8.1
+          },
+          {
+            "word": "should",
+            "start": 8.1,
+            "end": 8.34
+          },
+          {
+            "word": "control",
+            "start": 8.34,
+            "end": 8.66
+          },
+          {
+            "word": "it",
+            "start": 8.66,
+            "end": 8.9
+          },
+          {
+            "word": "And",
+            "start": 9.2,
+            "end": 9.46
+          },
+          {
+            "word": "what",
+            "start": 9.46,
+            "end": 9.58
+          },
+          {
+            "word": "kind",
+            "start": 9.58,
+            "end": 9.9
+          },
+          {
+            "word": "of",
+            "start": 9.9,
+            "end": 9.98
+          },
+          {
+            "word": "universities",
+            "start": 9.98,
+            "end": 10.32
+          },
+          {
+            "word": "should",
+            "start": 10.32,
+            "end": 10.58
+          },
+          {
+            "word": "it",
+            "start": 10.58,
+            "end": 10.92
+          },
+          {
+            "word": "serve",
+            "start": 10.92,
+            "end": 10.98
+          },
+          {
+            "word": "Universities",
+            "start": 11.74,
+            "end": 11.86
+          },
+          {
+            "word": "will",
+            "start": 11.86,
+            "end": 12.48
+          },
+          {
+            "word": "change",
+            "start": 12.48,
+            "end": 12.9
+          },
+          {
+            "word": "right",
+            "start": 13.24,
+            "end": 13.6
+          },
+          {
+            "word": "But",
+            "start": 13.76,
+            "end": 14
+          },
+          {
+            "word": "I",
+            "start": 14,
+            "end": 14.36
+          },
+          {
+            "word": "believe",
+            "start": 14.36,
+            "end": 14.36
+          },
+          {
+            "word": "the",
+            "start": 14.54,
+            "end": 15.1
+          },
+          {
+            "word": "best",
+            "start": 15.1,
+            "end": 15.38
+          },
+          {
+            "word": "change",
+            "start": 15.38,
+            "end": 15.78
+          },
+          {
+            "word": "will",
+            "start": 15.78,
+            "end": 16
+          },
+          {
+            "word": "be",
+            "start": 16,
+            "end": 16.1
+          },
+          {
+            "word": "when",
+            "start": 16.1,
+            "end": 16.32
+          },
+          {
+            "word": "we",
+            "start": 16.32,
+            "end": 16.62
+          },
+          {
+            "word": "control",
+            "start": 16.62,
+            "end": 17.1
+          },
+          {
+            "word": "the",
+            "start": 17.1,
+            "end": 17.28
+          },
+          {
+            "word": "AI",
+            "start": 17.28,
+            "end": 17.44
+          },
+          {
+            "word": "and",
+            "start": 17.44,
+            "end": 17.7
+          },
+          {
+            "word": "use",
+            "start": 17.7,
+            "end": 17.8
+          },
+          {
+            "word": "AI",
+            "start": 17.8,
+            "end": 18.1
+          },
+          {
+            "word": "to",
+            "start": 18.1,
+            "end": 18.4
+          },
+          {
+            "word": "make",
+            "start": 18.4,
+            "end": 18.6
+          },
+          {
+            "word": "the",
+            "start": 18.6,
+            "end": 18.8
+          },
+          {
+            "word": "change",
+            "start": 18.8,
+            "end": 19.06
+          },
+          {
+            "word": "ourselves",
+            "start": 19.06,
+            "end": 19.52
+          },
+          {
+            "word": "retain",
+            "start": 20.08,
+            "end": 20.38
+          },
+          {
+            "word": "that",
+            "start": 20.38,
+            "end": 21.14
+          },
+          {
+            "word": "autonomy",
+            "start": 21.14,
+            "end": 21.36
+          },
+          {
+            "word": "Thank",
+            "start": 22.4,
+            "end": 22.96
+          },
+          {
+            "word": "you",
+            "start": 22.96,
+            "end": 23.14
+          },
+          {
+            "word": "very",
+            "start": 23.14,
+            "end": 23.46
+          },
+          {
+            "word": "much",
+            "start": 23.46,
+            "end": 23.68
+          }
+        ]
+      }
     }
   ]
 }
