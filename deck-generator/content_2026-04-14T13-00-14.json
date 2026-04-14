@@ -1144,9 +1144,7 @@
         "points": [
           "Explain that most of my day-to-day work is free-text analysis with UK education institutions through Student Voice AI.",
           "This means I see what AI and data practices look like inside real institutional workflows, not only in theory.",
-          "Say explicitly that the talk comes from looking at both the technology and the institutional consequences.",
-          "Reference: Student Voice AI homepage / customer evidence, showing Russell Group clients including Edinburgh, Leeds, King's, Warwick, UCL, LSE and Queen's University Belfast. https://www.studentvoice.ai/",
-          "Reference: Newcastle University partnership announcement, updated 6 March 2026, supporting the total of eight Russell Group universities mentioned in the talk. https://www.studentvoice.ai/blog/student-voice-and-university-of-newcastle-2023/"
+          "Say explicitly that the talk comes from looking at both the technology and the institutional consequences."
         ]
       },
       "id": "030zw8g3",
@@ -6213,10 +6211,7 @@
         "points": [
           "Use the HEPI figures to show this is already mainstream student practice.",
           "Link the assessment figure directly to the conference context: the room already knows assessment is changing.",
-          "The point is not surprise at student use; the point is that institutional governance can no longer lag behind it.",
-          "Reference: HEPI, Student Generative Artificial Intelligence Survey 2026, 12 March 2026. https://www.hepi.ac.uk/reports/student-generative-ai-survey-2026/",
-          "Reference: Survey conducted by Savanta in December 2025, based on 1,054 full-time UK undergraduates. https://www.hepi.ac.uk/reports/student-generative-ai-survey-2026/",
-          "Reference: HEPI reports 95% use AI in at least one way, 94% use generative AI to help with assessed work, and 65% say assessment has changed significantly because of AI. https://www.hepi.ac.uk/reports/student-generative-ai-survey-2026/"
+          "The point is not surprise at student use; the point is that institutional governance can no longer lag behind it."
         ]
       },
       "lenses": [
@@ -8769,14 +8764,14 @@
     {
       "type": "content",
       "section": "The bubble",
-      "heading": "Tech companies are building capacity universities may later inherit",
+      "heading": "The boom is building capacity universities may later inherit",
       "body": "The current AI boom is not just hype. It is also an enormous build-out of compute, models, tooling and organisational knowledge that may outlast the frenzy. If universities are strategic, some of that capacity can become cheaper access, better tools and more credible public-interest alternatives.",
       "points": [
         {
           "title": "Compute and tooling"
         },
         {
-          "title": "Open models"
+          "title": "Open models and hardware"
         },
         {
           "title": "Institutional learning"
@@ -8790,8 +8785,7 @@
           "Say that the question is not whether infrastructure is being built; it is who will control what is left behind.",
           "Compute and tooling: Data centres, GPU fleets, orchestration frameworks and evaluation tooling are being hardened quickly.",
           "Open models and hardware: Maturing open models and post-boom hardware markets can make sector alternatives more plausible over time.",
-          "Institutional learning: Universities are also learning fast about policy, pedagogy and workflow design while the ecosystem is moving.",
-          "References: Synergy Research Group, Q4 2025 cloud market update; Alphabet Investor Relations, 2025 Q4 Earnings Call, 4 February 2026; Reuters factbox on major AI infrastructure commitments. https://www.srgresearch.com/articles/genai-helps-drive-quarterly-cloud-revenues-to-119-billion-as-growth-rate-jumped-yet-again-in-q4 https://abc.xyz/investor/events/event-details/2026/2025-Q4-Earnings-Call-2026-Dr_C033hS6/default.aspx https://www.tradingview.com/news/reuters.com%2C2025%3Anewsml_L3N3V91EW%3A0-companies-pouring-billions-to-advance-ai-infrastructure/"
+          "Institutional learning: Universities are also learning fast about policy, pedagogy and workflow design while the ecosystem is moving."
         ]
       },
       "id": "8svyxotb",
@@ -10494,15 +10488,15 @@
       "stats": [
         {
           "value": "68%",
-          "label": "top three providers' share of the public cloud market in Q4 2025"
+          "label": "top three cloud providers' share of the public-cloud market in 2025"
         },
         {
-          "value": "$175-185bn",
-          "label": "Alphabet's guided 2026 capital expenditure range, with most CapEx invested in technical infrastructure"
+          "value": "$185bn",
+          "label": "Alphabet's signalled 2026 capital expenditure, largely for technical infrastructure"
         },
         {
-          "value": "~$1tn",
-          "label": "announced multi-year AI infrastructure deals and project ceilings shaping the frontier stack"
+          "value": "$1T",
+          "label": "strategic AI partnerships and GPU commitments shaping the frontier stack"
         }
       ],
       "notes": {
@@ -10510,10 +10504,7 @@
         "points": [
           "Use these figures to make the upstream stack feel vast and unevenly owned.",
           "The point is not memorising exact numbers; it is seeing how far beyond single-university scale this market operates.",
-          "This helps explain why universities are mostly downstream actors unless they collaborate strategically.",
-          "Reference: Synergy Research Group, Q4 2025 public cloud market share update, 5 February 2026; the top three providers held 68% of the public cloud market in Q4 2025. https://www.srgresearch.com/articles/genai-helps-drive-quarterly-cloud-revenues-to-119-billion-as-growth-rate-jumped-yet-again-in-q4",
-          "Reference: Alphabet Investor Relations, 2025 Q4 Earnings Call, 4 February 2026; 2026 CapEx guidance is $175bn-$185bn, with most CapEx invested in technical infrastructure. https://abc.xyz/investor/events/event-details/2026/2025-Q4-Earnings-Call-2026-Dr_C033hS6/default.aspx",
-          "Reference: Reuters factbox on major AI infrastructure commitments including Stargate (up to $500bn), OpenAI-Oracle ($300bn), and Nvidia-OpenAI (up to $100bn), supporting the rough ~$1tn framing. https://www.tradingview.com/news/reuters.com%2C2025%3Anewsml_L3N3V91EW%3A0-companies-pouring-billions-to-advance-ai-infrastructure/"
+          "This helps explain why universities are mostly downstream actors unless they collaborate strategically."
         ]
       },
       "id": "yx2lcivr",
@@ -10522,7 +10513,7 @@
         "duration": 58.32,
         "mime": "audio/webm;codecs=opus",
         "updated": "2026-04-13T18:09:31.904Z",
-        "transcript": "And I don't want to dwell on this, but the actual money being spent and the scale of this build out and the boom is absolutely spectacular. So just three quick examples. Alphabet guided for 175 to 185 billion dollars of capital expenditure in 2026, mostly for technical infrastructure. 68% of the public cloud market in Q4 2025 was held by the top three providers. Hi AWS, sponsor of this conference. And there is around a trillion dollars in announced multi-year AI infrastructure deals and project ceilings shaping the frontier stack. Now, a lot of this money is entirely circular, which means that when the buck stops, companies will collapse. But again, I don't care. The stock market will care and probably care a little bit, but fundamentally, what's left over will be useful. These data centers will still be useful.",
+        "transcript": "And I don't want to dwell on this, but the actual money being spent and the scale of this build out and the boom is absolutely spectacular. So it's quick examples, $185 billion is what Alphabet said they were going to spend in capital expenditure. Like data centers, basically, that's just one of the main players, two thirds of all the public cloud market is shared by the top three cloud providers. Hi AWS, sponsor of this conference. And there are basically trillions of dollars in strategic partnerships of GPU commitments back and forth. Now, a lot of this money is entirely circular, which means that when the buck stops, companies will collapse. But again, I don't care. The stock market will care and probably care a little bit, but fundamentally, what's left over will be useful. These data centers will still be useful.",
         "transcribed_at": "2026-04-13T18:55:31.425Z",
         "words": [
           {
@@ -11250,7 +11241,7 @@
     },
     {
       "type": "content",
-      "section": "The bubble",
+      "section": "The build-out",
       "heading": "But infrastructure built in a frenzy can still produce dependency",
       "body": "Build-outs do not guarantee healthy outcomes. The same boom that creates useful capacity can also create habits of lock-in, misallocated effort and narrow models of progress.",
       "points": [
@@ -12808,7 +12799,7 @@
     {
       "type": "content",
       "section": "Who sets the defaults?",
-      "heading": "A small number of firms increasingly control every layer",
+      "heading": "A small number of firms increasingly control the stack",
       "body": "AI is not arriving in higher education as a neutral marketplace of interchangeable tools. A concentrated set of firms controls key model, cloud and interface layers, leaving universities mostly downstream users of systems shaped elsewhere.",
       "points": [
         {
@@ -12829,9 +12820,7 @@
           "Use the scale asymmetry to explain why universities are usually downstream even when they are important customers.",
           "Model layer: A handful of providers dominate frontier model access and shape the pace of release.",
           "Infrastructure and interface: Cloud concentration and campus platforms together shape cost, continuity, distribution and defaults.",
-          "Scale asymmetry: Universities will rarely win by outspending the frontier, so leverage has to come from strategy, collaboration and governance.",
-          "Reference: Synergy Research Group, Q4 2025 public cloud market share update; the top three providers held 68% of the public cloud market in Q4 2025. https://www.srgresearch.com/articles/genai-helps-drive-quarterly-cloud-revenues-to-119-billion-as-growth-rate-jumped-yet-again-in-q4",
-          "Reference: Alphabet Investor Relations, 2025 Q4 Earnings Call, 4 February 2026; 2026 CapEx guidance is $175bn-$185bn. https://abc.xyz/investor/events/event-details/2026/2025-Q4-Earnings-Call-2026-Dr_C033hS6/default.aspx"
+          "Scale asymmetry: Universities will rarely win by outspending the frontier, so leverage has to come from strategy, collaboration and governance."
         ]
       },
       "lenses": [
@@ -12843,7 +12832,7 @@
         "duration": 49.08,
         "mime": "audio/webm;codecs=opus",
         "updated": "2026-04-13T18:12:21.997Z",
-        "transcript": "There's a very small number of firms that are controlling this AI stack, the hardware, the software, the inference, all these sort of things. These firms control everything, and we are purely downstream users. We are not going to be competing with them on scale. That's kind of why I went through all that investment. We do not have 175 to 185 billion dollars a year to invest in hardware, and nor should we. Our aim should be to use the hardware that will be left in the wayside, okay, one or two generations old, that'll be perfectly good for what we want to do, and use that. We shouldn't be trying to compete with them, right? We're not starting our own AI frontier lab. We're thinking about, okay, how can these tools, these approaches, all this hardware that's been built out, be used for our own ends?",
+        "transcript": "There's a very small number of firms that are controlling this AI stack, the hardware, the software, the inference, all these sort of things. These firms control everything, and we are purely downstream users. We are not going to be competing with them on scale. That's kind of why I went through all that investment. We do not have 185 billion pounds a year to invest in hardware, and nor should we. Our aim should be to use the hardware that will be left in the wayside, okay, one or two generations old, that'll be perfectly good for what we want to do, and use that. We shouldn't be trying to compete with them, right? We're not starting our own AI frontier lab. We're thinking about, okay, how can these tools, these approaches, all this hardware that's been built out, be used for our own ends?",
         "transcribed_at": "2026-04-13T18:55:40.562Z",
         "words": [
           {
@@ -14724,7 +14713,7 @@
     {
       "type": "content",
       "section": "Who sets the defaults?",
-      "heading": "Procurement teams set the agenda",
+      "heading": "Agenda-setting arrives through ordinary procurement",
       "body": "The deepest risk is not only lock-in but agenda-setting. Mission drift enters through reasonable purchases that gradually rewrite what counts as normal teaching infrastructure, research workflow and institutional analytics.",
       "points": [
         {
@@ -15397,7 +15386,7 @@
     {
       "type": "statement",
       "section": "TAKEAWAY",
-      "text": "If universities buy into a stack on vendor terms, the infrastructure is decided before it's debated.",
+      "text": "If universities buy into the stack on vendor terms, the infrastructure is decided before it's debated.",
       "highlight": "infrastructure is decided before it's debated",
       "attribution": "",
       "notes": {
@@ -15797,7 +15786,7 @@
     {
       "type": "section-divider",
       "section_number": 4,
-      "title": "What dependence looks like",
+      "title": "What dependence does",
       "subtitle": "Pedagogy, data and educational purpose",
       "notes": {
         "transition": "After the procurement implication, move back into what dependence actually does inside the university.",
@@ -16006,7 +15995,7 @@
     },
     {
       "type": "content",
-      "section": "What dependence looks like",
+      "section": "What dependence does",
       "heading": "The crucial divide is between augmentation and substitution",
       "body": "The most important design decision is not whether AI is present. It is whether AI is used to amplify human expertise or to thin it out.",
       "points": [
@@ -17068,7 +17057,7 @@
     },
     {
       "type": "content",
-      "section": "What dependence looks like",
+      "section": "What dependence does",
       "heading": "The easiest uses to scale are often the least educationally valuable",
       "body": "Universities under pressure are especially vulnerable to AI uses that look efficient because they industrialise surface tasks. The more defensible uses usually complement human work instead of trying to replace it.",
       "points": [
@@ -17600,7 +17589,7 @@
     },
     {
       "type": "content",
-      "section": "What dependence looks like",
+      "section": "What dependence does",
       "heading": "Pedagogy starts to bend around what the platform can measure",
       "body": "Once AI tools are tightly integrated, course design can start adapting to the system rather than the other way round. That is how commercial logic becomes pedagogic logic.",
       "points": [
@@ -18592,8 +18581,8 @@
     },
     {
       "type": "content",
-      "section": "What dependence looks like",
-      "heading": "Priceless educational data will be captured unless it is governed",
+      "section": "What dependence does",
+      "heading": "Educational data can be captured unless it is governed",
       "body": "Universities sit on rich corpora of writing, interaction and workflow data. Once AI layers are integrated, those traces become commercially valuable far beyond their immediate educational use unless institutions treat them as governed assets.",
       "points": [
         {
@@ -25785,7 +25774,7 @@
           "title": "Shared evaluation"
         },
         {
-          "title": "national, regional or mission-based"
+          "title": "Public-interest infrastructure"
         }
       ],
       "notes": {
@@ -26740,10 +26729,10 @@
           "title": "Compute where it matters"
         },
         {
-          "title": "University specific models"
+          "title": "Models for university tasks"
         },
         {
-          "title": "Continual evaluation"
+          "title": "Evaluation under our control"
         }
       ],
       "notes": {
@@ -27596,14 +27585,14 @@
     {
       "type": "content",
       "section": "A different strategy",
-      "heading": "The AI boom creates a window for shared sector capacity",
+      "heading": "The boom creates a window for shared sector capacity",
       "body": "As hardware markets soften and open-weight models mature, the opportunity is to build common services around university-specific tasks rather than repeat the frontier race at smaller scale.",
       "points": [
         {
           "title": "Shared compute pools"
         },
         {
-          "title": "University-specific"
+          "title": "University-specific services"
         },
         {
           "title": "Common assurance"
@@ -31572,8 +31561,8 @@
     {
       "type": "statement",
       "section": "Closing question",
-      "text": "We have all the pieces to build and control our own AI systems, so what are we going to build?",
-      "highlight": "build and control",
+      "text": "If AI becomes part of higher education's infrastructure, who should control it, and what kind of university should it serve?",
+      "highlight": "who should control it",
       "attribution": "",
       "notes": {
         "transition": "End with the question rather than another answer.",
