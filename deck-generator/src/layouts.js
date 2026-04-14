@@ -262,7 +262,9 @@ export function readingGridCovers(slide, page) {
   const books = Array.isArray(slide.books) ? slide.books : [];
   const cards = books.map(b => `
     <figure class="reading-book">
-      ${b.cover ? `<img class="reading-book-cover" src="/${b.cover}" alt="${(b.title || '').replace(/"/g, '&quot;')} cover">` : ''}
+      <div class="reading-book-frame">
+        ${b.cover ? `<img class="reading-book-cover" src="/${b.cover}" alt="${(b.title || '').replace(/"/g, '&quot;')} cover">` : ''}
+      </div>
       <figcaption>
         <div class="reading-book-title">${b.title || ''}</div>
         <div class="reading-book-authors">${b.authors || ''}</div>

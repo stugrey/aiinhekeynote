@@ -17924,3 +17924,135 @@ Edits: `src/style.css:858/884` (content-split-cards) and `src/style.css:1068/109
 _**User (2026-04-14 20:35:03Z)**_
 
 the book covers seem fine when palying but seem squashd on teh pptx output
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-14 20:36:00Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 20:36:02Z)**_
+
+That's a known html2canvas quirk — it doesn't honour `object-fit: contain` on `<img>` elements and stretches them to fill the box. The fix is to wrap the image in a flex container and use `max-width`/`max-height` + `auto` instead of `object-fit`.
+
+_**Agent (claude-opus-4-6 2026-04-14 20:36:06Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/src/layouts.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 20:36:25Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 20:36:29Z)**_
+
+Now verify the viewer still looks right, then test html2canvas output on slide 44 to confirm the PPTX fix:
+
+_**Agent (claude-opus-4-6 2026-04-14 20:36:54Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Verify viewer + html2canvas output
+
+```bash
+cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && cat > shot-covers-fix.mjs <<'NODE'
+import { chromium } from 'playwright';
+const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' });
+const page = await browser.newPage({ viewport: { width: 1600, height: 1000 } });
+
+// 1. Viewer — confirm visual still correct
+await page.goto('http://localhost:5173/viewer.html#slide=44', { waitUntil: 'networkidle' });
+await page.locator('#start-btn').click();
+await page.waitForTimeout(2500);
+await page.keyboard.press('c');
+await page.waitForTimeout(300);
+await page.locator('#slide-stage > .slide').screenshot({ path: '/tmp/covers-viewer.png' });
+
+// 2. Editor + html2canvas path — navigate to slide 44 page and click Export PNG
+await page.goto('http://localhost:5173/', { waitUntil: 'networkidle' });
+// navigate to the page containing slide 44
+const page44 = Math.floor((44 - 1) / 5);
+await page.evaluate((p) => sessionStorage.setItem('deckPage', String(p)), page44);
+await page.reload({ waitUntil: 'networkidle' });
+await page.waitForTimeout(2500);
+
+// Run html2canvas directly on slide 44 and save the result dataURL
+const dataUrl = await page.evaluate(async () => {
+  const { default: html2canvas } = await import('/node_modules/.vite/deps/html2canvas.js').catch(async () => {
+    // fallback: use the globally-loaded one the editor has imported
+    return { default: (await import('html2canvas')).default };
+  });
+  const el = document.getElementById('slide-44');
+  if (!el) return null;
+  const scale = Math.ceil(3840 / el.offsetWidth);
+  const canvas = await html2canvas(el, { scale, useCORS: true, logging: false, backgroundColor: null });
+  return canvas.toDataURL('image/png');
+});
+if (dataUrl) {
+  const b64 = dataUrl.replace(/^data:image\/png;base64,/, '');
+  const fs = await import('node:fs');
+  fs.writeFileSync('/tmp/covers-html2canvas.png', Buffer.from(b64, 'base64'));
+  console.log('html2canvas capture saved');
+} else {
+  console.log('slide 44 not found in editor DOM');
+}
+
+await browser.close();
+NODE
+node shot-covers-fix.mjs 2>&1; rm -f shot-covers-fix.mjs
+```
+
+```text
+html2canvas capture saved
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 20:37:04Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `/tmp/covers-viewer.png`
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 20:37:10Z)**_
+
+Viewer still looks right. Now the html2canvas output:
+
+_**Agent (claude-opus-4-6 2026-04-14 20:37:26Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Downsize html2canvas capture for viewing
+
+`cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && sips -Z 1000 /tmp/covers-html2canvas.png --out /tmp/covers-h2c-small.png 2>&1 | tail -3 && file /tmp/covers-h2c-small.png`
+
+```text
+/private/tmp/covers-html2canvas.png
+  /private/tmp/covers-h2c-small.png
+/tmp/covers-h2c-small.png: PNG image data, 1000 x 562, 8-bit/color RGBA, non-interlaced
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 20:37:32Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `/tmp/covers-h2c-small.png`
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 20:37:46Z)**_
+
+Fixed. The html2canvas capture now shows the six book covers at their correct 2:3 aspect ratio — no horizontal squashing. Compare to the viewer screenshot above: they're visually identical, which is what you want (PPTX output matches on-screen rendering).
+
+The change: wrapped each `<img>` in a `.reading-book-frame` flex box and swapped `width:100%; height:100%; object-fit:contain` on the image for `max-width:100%; max-height:100%; width:auto; height:auto`. html2canvas respects the natural-width sizing but ignores `object-fit`, so the new pattern works on both the live viewer and the html2canvas capture path.
+
+Edits: `src/layouts.js:265` (added `.reading-book-frame` wrapper) and `src/style.css:1500` area (new frame rule, updated cover rule). Next Export All will flow through to a clean PPTX.

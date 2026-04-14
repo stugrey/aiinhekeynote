@@ -1437,14 +1437,24 @@ body {
   height: 100%;
 }
 
-.reading-grid-covers .reading-book-cover {
+/* Frame holds the image and centres it. Using max-width/max-height on the
+   img (instead of object-fit on the img itself) keeps html2canvas happy —
+   it doesn't honour object-fit and otherwise stretches covers to the box. */
+.reading-grid-covers .reading-book-frame {
   flex: 1 1 auto;
-  display: block;
-  width: 100%;
-  height: 100%;
   min-height: 0;
-  object-fit: contain;
-  object-position: bottom center;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.reading-grid-covers .reading-book-cover {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
 }
 
 .reading-grid-covers .reading-book figcaption {
