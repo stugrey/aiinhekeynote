@@ -1300,3 +1300,3550 @@ Delete orphaned voiceover audio file
 _**Agent (claude-opus-4-6 2026-04-14 18:12:38Z)**_
 
 Done. Removed slide 37 (`dw3hcdtx` — "The AI boom creates a window for shared sector capacity") from `content.json` (44 → 43 slides) and deleted its orphaned `voiceovers/dw3hcdtx.webm`.
+
+---
+
+_**User (2026-04-14 18:22:30Z)**_
+
+I would like to add a final slide with further reading which lists all the books I read making this. You should be able to find that, hopefully, in the documents, but they were in shitification. There were power in progress. They were boom. I think some others. Could you add an extra slide of this? It'll be a different format because I want to have their covers on it. Plan out how to do this.
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-14 18:22:37Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:22:38Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+List keynote working directory
+
+`ls "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/"`
+
+```text
+deck-generator
+keynote_ai_infrastructure_he_dossier.docx
+visual_reference
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:22:45Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Convert dossier .docx to plain text
+
+`cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote" && which pandoc && pandoc keynote_ai_infrastructure_he_dossier.docx -t plain -o /tmp/keynote_dossier.txt && wc -l /tmp/keynote_dossier.txt`
+
+```text
+Exit code 1
+pandoc not found
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:22:53Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Extract text from .docx
+
+`cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote" && unzip -p keynote_ai_infrastructure_he_dossier.docx word/document.xml | python3 -c "import sys, re; x = sys.stdin.read(); x = re.sub(r'</w:p>', '\n', x); x = re.sub(r'<[^>]+>', '', x); print(x)" > /tmp/keynote_dossier.txt && wc -l /tmp/keynote_dossier.txt`
+
+```text
+     919 /tmp/keynote_dossier.txt
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:22:56Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `/tmp/keynote_dossier.txt` pattern `nshittif|Doctorow|Acemoglu|Johnson|Power and Progress|Boom|Hobart|Huber|ISBN|further reading|Further Reading|book`
+
+```text
+5-Deep research dossier and keynote drafting pack
+6:Prepared as a full briefing pack: conference reading, abstract stress-test, annotated concept notebook, evidence base, policy agenda, slide storyboard, and Q&amp;A backup.
+7-Core framingThe conference is asking how higher education should use AI. This keynote asks who will control the infrastructure on which those uses depend.
+--
+25-• 3. Stress-testing your abstract
+26:• 4. Annotated concept notebook: every note, definition, and linked idea expanded
+27-• 5. Evidence base for the keynote
+--
+145-
+146:4. Annotated concept notebook: every note, definition, and linked idea expanded
+147-This section expands every topic in your note list and turns it into usable keynote material. For each item, the aim is the same: define the concept, explain why it matters for this talk, show how to use it, and flag any caveat or overclaim to avoid.
+--
+270-How it helps the keynote: Use this concept to counter a simplistic scaling narrative. If universities want systems that genuinely work in their contexts, the answer is not always 'use a bigger general model'. Often it is 'use a more grounded, better-evaluated, more accountable one'.
+271:Caution: Treat 'language hypothesis' and 'grounding hypothesis' as useful labels for a debate, not as rigid textbook categories.
+272-
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:22:58Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:23:02Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Search dossier for book titles/authors
+
+`grep -n -i -E "enshit|acemoglu|hobart|karen hao|empire of ai|your face belongs|power and progress|broken code|chokepoint" /tmp/keynote_dossier.txt`
+
+```text
+(Bash completed with no output)
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:23:05Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./` pattern `nshittif|cemoglu|obart|aren Hao|ower and Progress|mpire of AI`
+
+```text
+Found 4 files
+.specstory/history/2026-04-14_17-12-47Z-can-you-also-store.md
+deck-generator/content_2026-03-30T08-38-32.json
+deck-generator/content_2026-03-30T08-38-07.json
+deck-generator/content_2026-03-30T08-33-44.json
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:23:09Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./deck-generator/content_2026-03-30T08-33-44.json` pattern `nshittif|cemoglu|obart|aren Hao|ower and Progress|mpire of AI|octorow|yrne`
+
+```text
+205-      "type": "section-divider",
+206-      "section_number": 3,
+207:      "title": "Power and Progress",
+208-      "subtitle": "The politics of direction: who decides what AI is for?"
+209-    },
+210-    {
+211-      "type": "content",
+212:      "section": "Power and Progress",
+213:      "heading": "Power and Progress argues that technology does not automatically equal social progress",
+214:      "body": "Acemoglu and Johnson show that broad gains from technological change usually arrive only after workers, citizens and institutions reshape how the technology is deployed and how the surplus is shared. The direction of innovation is political, not natural.",
+215-      "points": [
+216-        {
+--
+230-    {
+231-      "type": "content",
+232:      "section": "Power and Progress",
+233-      "heading": "In universities, the first P&P question is whose goals are being encoded",
+234-      "body": "AI deployments always embody priorities. In a constrained higher education environment, efficiency, scale and cost-saving narratives can quietly dominate over educational purpose unless staff, students and academic governance bodies meaningfully shape the agenda.",
+--
+250-    {
+251-      "type": "content",
+252:      "section": "Power and Progress",
+253:      "heading": "Power and Progress pushes HE toward task-creating, not labour-replacing, AI",
+254-      "body": "A P&P-aligned strategy uses AI to remove drudgery and expand high-value human work rather than to substitute for teachers, advisers or researchers. That distinction should become a design test for pilots, tenders and institutional strategy.",
+255-      "points": [
+--
+270-    {
+271-      "type": "content",
+272:      "section": "Power and Progress",
+273-      "heading": "Data extraction and inequality sit at the centre of the P&P reading",
+274-      "body": "When a small number of firms control models and platforms, public educational activity can become private rent streams. At the same time, uneven access to tools, skills and support can widen inequalities between and within institutions.",
+--
+290-    {
+291-      "type": "content",
+292:      "section": "Power and Progress",
+293:      "heading": "A Power and Progress strategy starts from public-interest goals",
+294:      "body": "If universities take Acemoglu and Johnson seriously, AI strategy begins with purpose rather than adoption. Institutions should define what AI is for, reject headcount reduction as a primary objective, and make governance more democratic, plural and equity-aware.",
+295-      "points": [
+296-        {
+--
+310-    {
+311-      "type": "statement",
+312:      "section": "Power and Progress",
+313-      "text": "Use AI to remove drudgery and amplify human contact and expertise, not as a pretext to remove humans from education.",
+314-      "highlight": "remove drudgery",
+315:      "attribution": "Power and Progress–style principle"
+316-    },
+317-    {
+--
+431-      "type": "section-divider",
+432-      "section_number": 5,
+433:      "title": "Enshittification",
+434-      "subtitle": "How platforms move from helpful subsidy to extractive chokepoint"
+435-    },
+436-    {
+437-      "type": "content",
+438:      "section": "Enshittification",
+439:      "heading": "Enshittification names the lifecycle of extractive platforms",
+440:      "body": "Cory Doctorow’s pattern is simple and brutal: platforms are initially good to users, then tilt toward business customers, then squeeze both sides once lock-in is high and exit is hard. The mechanism is control over the chokepoints through which everyone else has to pass.",
+441-      "points": [
+442-        {
+--
+456-    {
+457-      "type": "content",
+458:      "section": "Enshittification",
+459-      "heading": "In HE, the early phases look attractive",
+460:      "body": "The first stages of enshittification are exactly what many institutions currently experience as AI opportunity: generous discounts, useful study tools, fast feedback, drafting support and analytics. The danger is that these benefits normalise deep dependence before governance catches up.",
+461-      "points": [
+462-        {
+--
+476-    {
+477-      "type": "content",
+478:      "section": "Enshittification",
+479-      "heading": "The later phase is institutional squeeze",
+480-      "body": "Once universities are locked into a small number of providers for models, cloud and interfaces, the leverage shifts. At that point, price ratchets, feature paywalls, proprietary formats and integration dependencies become a structural budget and autonomy problem.",
+--
+496-    {
+497-      "type": "content",
+498:      "section": "Enshittification",
+499:      "heading": "Doctorow’s remedy maps well onto HE strategy",
+500:      "body": "The anti-enshittification agenda is practical rather than nostalgic: preserve interoperability, strengthen portability, resist chokepoints and keep a real right of exit. For universities, that means designing AI-enhanced education so it can move between providers or back to non-AI modes when required.",
+501-      "points": [
+502-        {
+--
+516-    {
+517-      "type": "statement",
+518:      "section": "Enshittification",
+519-      "text": "Preserve the right of exit before convenience hardens into captivity.",
+520-      "highlight": "right of exit",
+521:      "attribution": "Doctorow-style principle"
+522-    },
+523-    {
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:23:16Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:23:18Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./deck-generator/content_2026-03-30T08-33-44.json` pattern `\bBoom\b|Hobart|Huber|bubble`
+
+```text
+113-      "section_number": 2,
+114:      "title": "Pop! and the AI bubble",
+115-      "subtitle": "Using speculative overinvestment without being captured by it"
+--
+118-      "type": "content",
+119:      "section": "Pop! and the AI bubble",
+120:      "heading": "Pop! treats bubbles as irrational surges that still build real infrastructure",
+121:      "body": "Daniel Gross’s core argument is optimistic but unsentimental: bubbles massively overfund new technologies, most investors lose, but society keeps the infrastructure and the learning. The key is to separate durable public value from temporary speculative mania.",
+122-      "points": [
+--
+138-      "type": "content",
+139:      "section": "Pop! and the AI bubble",
+140:      "heading": "Applied to AI, the bubble is building infrastructure that HE may later inherit",
+141-      "body": "The current AI boom is concentrated in a small number of firms, but it is still producing assets that universities may eventually use more cheaply and more effectively than they can today. The strategic task is to inherit the infrastructure without inheriting total dependence.",
+--
+158-      "type": "content",
+159:      "section": "Pop! and the AI bubble",
+160-      "heading": "Pop! also clarifies the dangers of the frenzy phase",
+161:      "body": "Gross is not arguing that bubbles are fair. In higher education, the same boom that creates useful infrastructure can also generate vendor lock-in, misdirected effort and a narrowing of the ecosystem around a handful of dominant providers.",
+162-      "points": [
+--
+178-      "type": "content",
+179:      "section": "Pop! and the AI bubble",
+180-      "heading": "The Pop! lesson for universities is to free-ride on capex while protecting options",
+181:      "body": "If this is a bubble, universities should use the period of abundance to negotiate hard, experiment widely and build durable internal capability. The value that survives the pop should be skills, open standards, evaluation know-how and the ability to walk away if necessary.",
+182-      "points": [
+--
+188-          "title": "Invest in people, not just licences",
+189:          "description": "Use bubble-era energy to build AI-native pedagogy, workflow design, data engineering and evaluation skills."
+190-        },
+--
+198-      "type": "statement",
+199:      "section": "Pop! and the AI bubble",
+200-      "text": "Treat big AI as infrastructure, not overlords.",
+--
+717-      "section": "Stewardship and scenarios",
+718:      "heading": "Scenario 2030: higher education played the bubble well",
+719-      "body": "In the good scenario, universities used the boom years to learn fast, negotiate hard and build open capabilities. They ended up with cheaper infrastructure, stronger internal expertise and more plural ecosystems rather than deeper dependence on a single commercial trajectory.",
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:23:24Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:23:26Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./deck-generator/content.json` pattern `nshittif|cemoglu|obart|ower and Progress|mpire|octorow|yrne|Hobart|Huber|Pop!|Daniel Gross|Boom`
+
+```text
+No matches found
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:23:29Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./deck-generator/content.json` pattern `references|Further Reading|further reading|reading list|bibliography|book`
+
+```text
+20357-      "voiceover_history": [
+20358-        {
+20359:          "transcript": "Now, in the next section, I'll talk about, okay, why am I so wary of these big companies? And that's because we look to history, right? These tech companies, there's a playbook, and it's not necessarily through bias or sometimes it's through malice. It's more through a nature of VC-backed tech companies.",
+20360-          "transcribed_at": "2026-04-13T18:56:11.504Z",
+20361-          "duration": 17.04,
+--
+21038-      "voiceover_history": [
+21039-        {
+21040:[Omitted long matching line]
+21041-          "transcribed_at": "2026-04-13T18:56:14.098Z",
+21042-          "duration": 50.82,
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:23:33Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./deck-generator/content.json` pattern `"references"|"Further|"section":.*[Rr]ead`
+
+```text
+No matches found
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:23:38Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Inspect content.json slides summary
+
+```bash
+cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && node -e '
+const fs = require("fs");
+const j = JSON.parse(fs.readFileSync("content.json","utf8"));
+console.log("slides:", j.slides.length);
+const types = {};
+j.slides.forEach((s,i)=>{
+  types[s.type]=(types[s.type]||0)+1;
+});
+console.log("types:", types);
+console.log("\nlast 3 slides:");
+j.slides.slice(-3).forEach((s,i)=>{
+  const idx = j.slides.length - 3 + i + 1;
+  console.log(idx, s.type, "|", s.heading || s.title || s.text || "");
+});
+'
+```
+
+```text
+slides: 43
+types: { cover: 1, 'section-divider': 10, statement: 9, content: 21, data: 2 }
+
+last 3 slides:
+41 content | The next few years require three decisions from leaders
+42 statement | Universities are not only deciding whether to use AI. They are helping fix the defaults of higher education for years.
+43 statement | We have all the pieces to build and control our own AI systems, so what are we going to build?
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:23:42Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:23:42Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./deck-generator/src/layouts.js`
+
+```text
+1	/**
+2	 * Layout template functions.
+3	 * Each returns an HTML string for the slide's inner content.
+4	 * Layouts reference CSS custom properties — never hard-coded colours/fonts.
+5	 */
+6	
+7	const LENS_META = {
+8	  transparency: { short: 'T', label: 'Transparency' },
+9	  distortion: { short: 'D', label: 'Distortion' },
+10	  extraction: { short: 'E', label: 'Extraction' },
+11	};
+12	
+13	function renderLensMarkers(slide) {
+14	  const hasLenses = Array.isArray(slide.lenses) && slide.lenses.length > 0;
+15	
+16	  const markers = hasLenses
+17	    ? slide.lenses
+18	        .filter(lens => LENS_META[lens])
+19	        .map((lens) => {
+20	          const meta = LENS_META[lens];
+21	          return `<span class="lens-marker lens-marker--${lens} lens-marker--droplet" title="${meta.label}"><canvas class="lens-droplet-canvas" data-lens="${lens}"></canvas><span class="lens-droplet-letter">${meta.short}</span></span>`;
+22	        })
+23	        .join('')
+24	    : '';
+25	
+26	  return `<div class="lens-marker-group" aria-label="Applied lenses">${markers}</div>`;
+27	}
+28	
+29	// ─── COVER LAYOUTS ──────────────────────────────
+30	
+31	export function coverBoldFull(slide) {
+32	  return `
+33	    <div class="slide-inner cover-bold-full">
+34	      <div class="cover-title">${slide.title}</div>
+35	      ${slide.subtitle ? `<div class="cover-subtitle">${slide.subtitle}</div>` : ''}
+36	      <div class="cover-bottom">
+37	        <div class="cover-author">${slide.author || ''}</div>
+38	        <div class="cover-date-pill">${slide.date || ''}</div>
+39	      </div>
+40	      ${renderLensMarkers(slide)}
+41	    </div>
+42	  `;
+43	}
+44	
+45	export function coverDarkMinimal(slide) {
+46	  return `
+47	    <div class="slide-inner cover-dark-minimal">
+48	      <div class="cover-top">
+49	        <div class="cover-badge">${slide.badge || ''}</div>
+50	        <div class="cover-date-pill">${slide.date || ''}</div>
+51	      </div>
+52	      <div class="cover-title">${slide.title}</div>
+53	      <div class="cover-subtitle">${slide.subtitle || ''}</div>
+54	      ${renderLensMarkers(slide)}
+55	    </div>
+56	  `;
+57	}
+58	
+59	// ─── SECTION DIVIDER LAYOUTS ────────────────────
+60	
+61	export function dividerColorBurst(slide, page) {
+62	  return `
+63	    <div class="slide-inner divider-color-burst">
+64	      <div class="divider-center">
+65	        ${slide.section_number != null
+66	          ? `<div class="divider-badge">Section ${slide.section_number}</div>`
+67	          : ''}
+68	        <div class="divider-title">${slide.title}</div>
+69	      </div>
+70	      <div class="divider-footer">
+71	        <span class="divider-page">${String(page).padStart(2, '0')}</span>
+72	        ${renderLensMarkers(slide)}
+73	      </div>
+74	    </div>
+75	  `;
+76	}
+77	
+78	export function dividerDarkCinematic(slide, page) {
+79	  return `
+80	    <div class="slide-inner divider-dark-cinematic">
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:23:45Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Get layout/main file sizes
+
+`cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && wc -l src/layouts.js src/main.js`
+
+```text
+     290 src/layouts.js
+    1631 src/main.js
+    1921 total
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:23:49Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./deck-generator/src/layouts.js` pattern `export function|^function|slide.type|pickLayout|layoutFor|case '`
+
+```text
+13:function renderLensMarkers(slide) {
+31:export function coverBoldFull(slide) {
+45:export function coverDarkMinimal(slide) {
+61:export function dividerColorBurst(slide, page) {
+78:export function dividerDarkCinematic(slide, page) {
+96:export function contentSplitCards(slide, page) {
+133:export function contentWideVisual(slide, page) {
+168:export function dataBigNumbers(slide, page) {
+203:export function dataFullBleed(slide, page) {
+229:export function statementCentered(slide) {
+245:export function statementEditorial(slide) {
+263:function escapeRegex(str) {
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:23:52Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./deck-generator/src/main.js` pattern `LAYOUTS|layoutFor|slide\.type|pickLayout|renderSlide|coverBold|statement|import.*layouts`
+
+```text
+1:import { layoutRegistry } from './layouts.js';
+72:  statement:         [
+73:    { value: 'statement-centered',  label: 'Centered — Superlist' },
+74:    { value: 'statement-editorial', label: 'Editorial — WeTransfer' },
+81:  statement:         ['section', 'text', 'highlight', 'attribution'],
+456:        filename: `slide-${String(page).padStart(2, '0')}-${slide.type}.png`,
+1006:  const fields = EDITABLE_FIELDS[slide.type] || [];
+1042:  if (slide.type === 'content' && slide.points) {
+1078:  if (slide.type === 'data' && slide.stats) {
+1179:  const layoutName = config.layouts[slide.type] || Object.values(config.layouts)[0];
+1313:    const layoutName = config.layouts[slide.type] || Object.values(config.layouts)[0];
+1317:      console.warn(`Layout "${layoutName}" not found for slide type "${slide.type}"`);
+1330:    labelText.textContent = `${String(page).padStart(2, '0')} — ${slide.type} — ${layoutName}`;
+1385:    exportBtn.addEventListener('click', () => exportSlide(page, slide.type));
+1524:  const layoutName = config.layouts[slide.type] || Object.values(config.layouts)[0];
+1567:  label.textContent = `${slide.type} — ${layoutName}`;
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:23:55Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./deck-generator/src/main.js`
+
+```text
+30	];
+31	
+32	const SHAPES = [
+33	  { value: 'none',        label: 'None' },
+34	  { value: 'pills',       label: 'Pills — WeTransfer' },
+35	  { value: 'blobs',       label: 'Blobs — Ace & Tate' },
+36	  { value: 'blocks',      label: 'Colour Blocks — Artsy' },
+37	  { value: 'golden-rect', label: 'Golden Rectangle — DIA' },
+38	  { value: 'droplets',        label: 'Water Droplets — WebGL' },
+39	  { value: 'droplets-tinted', label: 'Tinted Droplets — WebGL (mint)' },
+40	  { value: 'droplets-coral',  label: 'Tinted Droplets — WebGL (coral)' },
+41	  { value: 'droplets-oil',     label: 'Crude Oil — WebGL (iridescent)' },
+42	  { value: 'droplets-mercury', label: 'Mercury — WebGL (liquid metal)' },
+43	  { value: 'droplets-frosted', label: 'Frosted — WebGL (ground glass)' },
+44	  { value: 'droplets-ice',     label: 'Frozen Ice — WebGL (crystalline)' },
+45	];
+46	
+47	const PINSTRIPES = [
+48	  { value: 'none',       label: 'None' },
+49	  { value: 'vertical',   label: 'Vertical' },
+50	  { value: 'horizontal', label: 'Horizontal' },
+51	  { value: 'diagonal',   label: 'Diagonal' },
+52	];
+53	
+54	// Layout options grouped by slide type
+55	const LAYOUT_OPTIONS = {
+56	  cover:             [
+57	    { value: 'cover-bold-full',    label: 'Bold Full — Monzo' },
+58	    { value: 'cover-dark-minimal', label: 'Dark Minimal — Glide' },
+59	  ],
+60	  'section-divider': [
+61	    { value: 'divider-color-burst',    label: 'Colour Burst — Monzo / DIA' },
+62	    { value: 'divider-dark-cinematic', label: 'Dark Cinematic — Glide' },
+63	  ],
+64	  content:           [
+65	    { value: 'content-split-cards', label: 'Split Cards — Beyond Trends' },
+66	    { value: 'content-wide-visual', label: 'Wide Visual — Monzo / DIA' },
+67	  ],
+68	  data:              [
+69	    { value: 'data-big-numbers', label: 'Big Numbers — Artsy' },
+70	    { value: 'data-full-bleed',  label: 'Full Bleed — Artsy area' },
+71	  ],
+72	  statement:         [
+73	    { value: 'statement-centered',  label: 'Centered — Superlist' },
+74	    { value: 'statement-editorial', label: 'Editorial — WeTransfer' },
+75	  ],
+76	};
+77	
+78	/** Editable text fields per slide type */
+79	const EDITABLE_FIELDS = {
+80	  cover:             ['title', 'subtitle', 'author', 'badge', 'date'],
+81	  statement:         ['section', 'text', 'highlight', 'attribution'],
+82	  'section-divider': ['title', 'subtitle'],
+83	  content:           ['section', 'heading', 'body'],
+84	  data:              ['section', 'heading', 'body'],
+85	};
+86	
+87	/** Stored state */
+88	let currentConfig = null;
+89	let currentContent = null;
+90	let contentDirty = false;
+91	const SLIDES_PER_PAGE = 5;
+92	let currentPage = Number(sessionStorage.getItem('deckPage') || 0);
+93	let deckPostInitsReady = Promise.resolve();
+94	
+95	/** Update page and persist to sessionStorage */
+96	function setPage(page) {
+97	  currentPage = page;
+98	  sessionStorage.setItem('deckPage', page);
+99	}
+100	
+101	/** Navigate to a page, re-render, and scroll */
+102	function goToPage(page, direction) {
+103	  setPage(page);
+104	  renderDeck();
+105	  renderPagination();
+106	  if (direction === 'forward') {
+107	    document.getElementById('deck').scrollIntoView({ behavior: 'smooth', block: 'start' });
+108	  } else if (direction === 'back') {
+109	    document.getElementById('pagination-bottom')?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+110	  }
+111	}
+112	
+113	/** Generate a small noise texture, return data URL */
+114	let noiseDataURL = '';
+115	function generateNoiseTexture() {
+116	  const size = 512;
+117	  const canvas = document.createElement('canvas');
+118	  canvas.width = size;
+119	  canvas.height = size;
+120	  const ctx = canvas.getContext('2d');
+121	  const img = ctx.createImageData(size, size);
+122	  for (let i = 0; i < img.data.length; i += 4) {
+123	    const v = Math.floor(Math.random() * 255);
+124	    img.data[i] = v;
+125	    img.data[i + 1] = v;
+126	    img.data[i + 2] = v;
+127	    img.data[i + 3] = 255;
+128	  }
+129	  ctx.putImageData(img, 0, 0);
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:23:58Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./deck-generator/src/layouts.js`
+
+```text
+130	  `;
+131	}
+132	
+133	export function contentWideVisual(slide, page) {
+134	  const colors = [
+135	    'var(--color-accent-1)',
+136	    'var(--color-accent-2)',
+137	    'var(--color-accent-3)',
+138	    'var(--color-accent-4)',
+139	  ];
+140	
+141	  const cards = (slide.points || []).map((point, i) => `
+142	    <div class="visual-card">
+143	      <div class="card-accent" style="background: ${colors[i % colors.length]}"></div>
+144	      <h3>${point.title}</h3>
+145	      <p>${point.description}</p>
+146	    </div>
+147	  `).join('');
+148	
+149	  return `
+150	    <div class="slide-inner content-wide-visual">
+151	      <div class="content-nav">${slide.section || ''}</div>
+152	      <div class="content-body-area">
+153	        <div class="content-left">
+154	          <h2>${slide.heading}</h2>
+155	          ${slide.body ? `<p>${slide.body}</p>` : ''}
+156	        </div>
+157	        <div class="content-right">
+158	          ${cards}
+159	        </div>
+160	      </div>
+161	      ${renderLensMarkers(slide)}
+162	    </div>
+163	  `;
+164	}
+165	
+166	// ─── DATA LAYOUTS ───────────────────────────────
+167	
+168	export function dataBigNumbers(slide, page) {
+169	  const bgColors = [
+170	    'var(--color-accent-1)',
+171	    'var(--color-accent-2)',
+172	    'var(--color-accent-3)',
+173	    'var(--color-accent-4)',
+174	  ];
+175	
+176	  const blocks = (slide.stats || []).map((stat, i) => `
+177	    <div class="stat-block" data-accent="${i % bgColors.length}" style="background: ${bgColors[i % bgColors.length]}">
+178	      <div class="stat-value">${stat.value}</div>
+179	      <div class="stat-label">${stat.label}</div>
+180	    </div>
+181	  `).join('');
+182	
+183	  return `
+184	    <div class="slide-inner data-big-numbers">
+185	      <div class="data-nav">${slide.section || ''}</div>
+186	      <div class="data-body">
+187	        <div class="data-left">
+188	          <h2>${slide.heading}</h2>
+189	          ${slide.body ? `<p>${slide.body}</p>` : ''}
+190	        </div>
+191	        <div class="data-right">
+192	          ${blocks}
+193	        </div>
+194	      </div>
+195	      <div class="data-footer">
+196	        <span class="data-page">${String(page).padStart(2, '0')}</span>
+197	        ${renderLensMarkers(slide)}
+198	      </div>
+199	    </div>
+200	  `;
+201	}
+202	
+203	export function dataFullBleed(slide, page) {
+204	  const bgColors = [
+205	    'var(--color-shape-1)',
+206	    'var(--color-shape-2)',
+207	    'var(--color-shape-3)',
+208	    'var(--color-accent-4)',
+209	  ];
+210	
+211	  const blocks = (slide.stats || []).map((stat, i) => `
+212	    <div class="stat-block" style="background: ${bgColors[i % bgColors.length]}; color: var(--color-text-on-dark);">
+213	      <div class="stat-year">${stat.year || ''}</div>
+214	      <div class="stat-value">${stat.value}</div>
+215	      <div class="stat-label">${stat.label}</div>
+216	    </div>
+217	  `).join('');
+218	
+219	  return `
+220	    <div class="slide-inner data-full-bleed">
+221	      ${blocks}
+222	      ${renderLensMarkers(slide)}
+223	    </div>
+224	  `;
+225	}
+226	
+227	// ─── STATEMENT LAYOUTS ──────────────────────────
+228	
+229	export function statementCentered(slide) {
+230	  const text = slide.text.replace(
+231	    new RegExp(`(${escapeRegex(slide.highlight)})`, 'gi'),
+232	    '<span class="highlight">$1</span>'
+233	  );
+234	
+235	  return `
+236	    <div class="slide-inner statement-centered">
+237	      <div class="statement-label">${slide.section || ''}</div>
+238	      <div class="statement-text">${text}</div>
+239	      ${slide.attribution ? `<div class="statement-attribution">${slide.attribution}</div>` : ''}
+240	      ${renderLensMarkers(slide)}
+241	    </div>
+242	  `;
+243	}
+244	
+245	export function statementEditorial(slide) {
+246	  const text = slide.text.replace(
+247	    new RegExp(`(${escapeRegex(slide.highlight)})`, 'gi'),
+248	    '<span class="highlight">$1</span>'
+249	  );
+250	
+251	  return `
+252	    <div class="slide-inner statement-editorial">
+253	      <div class="statement-label">${slide.section || ''}</div>
+254	      <div class="statement-text">${text}</div>
+255	      ${slide.attribution ? `<div class="statement-attribution">${slide.attribution}</div>` : ''}
+256	      ${renderLensMarkers(slide)}
+257	    </div>
+258	  `;
+259	}
+260	
+261	// ─── HELPERS ────────────────────────────────────
+262	
+263	function escapeRegex(str) {
+264	  if (!str) return '';
+265	  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+266	}
+267	
+268	// ─── LAYOUT REGISTRY ────────────────────────────
+269	
+270	export const layoutRegistry = {
+271	  // Covers
+272	  'cover-bold-full':      coverBoldFull,
+273	  'cover-dark-minimal':   coverDarkMinimal,
+274	
+275	  // Dividers
+276	  'divider-color-burst':     dividerColorBurst,
+277	  'divider-dark-cinematic':  dividerDarkCinematic,
+278	
+279	  // Content
+280	  'content-split-cards':  contentSplitCards,
+281	  'content-wide-visual':  contentWideVisual,
+282	
+283	  // Data
+284	  'data-big-numbers':     dataBigNumbers,
+285	  'data-full-bleed':      dataFullBleed,
+286	
+287	  // Statement
+288	  'statement-centered':   statementCentered,
+289	  'statement-editorial':  statementEditorial,
+290	};
+291
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:24:02Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Check public/tokens dirs for asset layout
+
+`ls "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/public" 2>/dev/null; ls "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/tokens" 2>/dev/null`
+
+```text
+env-theater.hdr
+ace-tate.css
+artsy.css
+beyond-trends.css
+dia.css
+glide.css
+monzo.css
+space10.css
+superlist.css
+wetransfer.css
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:24:06Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `/tmp/keynote_dossier.txt` pattern `Power and Progress|Enshittification|Boom|Pop!|Doctorow|Acemoglu`
+
+```text
+No matches found
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:24:09Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Search for reading list in dossier
+
+`grep -n -i -E "further reading|bibliography|reading|sources" /tmp/keynote_dossier.txt | head -30`
+
+```text
+6:Prepared as a full briefing pack: conference reading, abstract stress-test, annotated concept notebook, evidence base, policy agenda, slide storyboard, and Q&amp;A backup.
+24:• 2. Reading the room: conference themes, programme tensions, and audience implications
+32:• 10. Coverage map of your original notes and selected sources
+52:2. Reading the room: conference themes, programme tensions, and audience implications
+190:Definition: Stafford Beer's viable system model describes how complex organisations stay coherent in changing environments. In shorthand: System 1 handles operations; System 2 coordinates; System 3 controls and allocates resources; System 4 scans the environment and adapts; System 5 defines policy, identity, and overall direction. The model is recursive: viable subsystems also need these functions.
+523:• Ability to cite sources, reveal uncertainty, and fail safely
+733:10. Coverage map of your original notes and selected sources
+789:Used to frame educational data and knowledge as politically contested resources.
+818:Jisc AI maturity and governance resources
+854:This document cites sources by title and organisation in the main body rather than with formal academic referencing. That is deliberate: it is designed as a drafting pack, not as a publication-ready essay. If you later turn the keynote into a paper or article, you should convert the strongest sections into full citations.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:24:29Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:24:45Z)**_
+
+Here's the plan. I need a couple of things confirmed from you before I start.
+
+## What I found
+
+From earlier content.json drafts I can see three books referenced:
+- **Power and Progress** — Acemoglu & Johnson
+- **Enshittification** — Cory Doctorow
+- **Pop!: Why Bubbles Are Great for the Economy** — Daniel Gross (this is the "boom/bubble" book you seem to mean — older drafts had a "Pop! and the AI bubble" section)
+
+The `.docx` dossier doesn't contain a formal reading list. So I can't auto-recover "some others" — you'd need to name them.
+
+## Open questions
+
+1. **Which books?** Confirm the three above, plus any others you want. A "Further reading" slide usually works best with 4–8 covers in a tidy grid.
+2. **Covers source.** Safest route for a local, offline-friendly slide: you drop jpgs into `deck-generator/public/book-covers/` (any size; I'll CSS-fit them). Alternatives: I fetch from Open Library's free covers API, or you give me ISBNs and I'll pull them. Open Library is lowest-friction but needs net at render time unless I cache locally.
+
+## Implementation steps (once books + covers are settled)
+
+1. **New slide type** `further-reading` added to `LAYOUT_OPTIONS` and `EDITABLE_FIELDS` in `src/main.js:55,79`.
+2. **New layout** `readingGridCovers` in `src/layouts.js` — renders a title + responsive grid of `<figure>` cards (cover image, book title, author). Registered in `layoutRegistry` at `src/layouts.js:270`.
+3. **CSS** for `.reading-grid-covers` in `src/style.css` — grid of 3–4 cols depending on count, covers aspect-ratio locked to ~2:3, subtle card treatment that matches the existing statement/content aesthetic.
+4. **Covers folder** `deck-generator/public/book-covers/` (Vite will serve this as `/book-covers/*`).
+5. **Content** — append one slide to `content.json` with shape:
+   ```json
+   { "type": "further-reading", "section": "Further reading",
+     "heading": "Books that shaped this keynote",
+     "books": [ { "title": "...", "authors": "...", "cover": "book-covers/power-and-progress.jpg" } ] }
+   ```
+6. **Lens markers + page number** — reused from existing layouts so export/PNG path keeps working unchanged.
+7. **No voiceover required** (this slide is the outro; you can still record one via the existing control if you want).
+
+**Two quick asks before I build:**
+- Full book list (confirm the three above + name the rest)?
+- Do you want to supply covers yourself, or shall I pull them from Open Library given ISBNs/titles?
+
+---
+
+_**User (2026-04-14 18:25:42Z)**_
+
+There was also Supremacy by Parmi Olson and Empire of AI by Karen Hao. Ideally, on this final slide, it would include these book covers with the titles and authors. It would include an area for a LinkedIn QR code for myself and that final closing question repeated on this final slide, because this will be staying up while I'm doing the questions..
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-14 18:26:05Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:26:19Z)**_
+
+Got it. Updated plan below — only the deltas from before.
+
+## Updated book list (5)
+
+1. **Power and Progress** — Daron Acemoglu & Simon Johnson
+2. **Enshittification** — Cory Doctorow
+3. **Supremacy** — Parmy Olson
+4. **Empire of AI** — Karen Hao
+5. **?** — You earlier said "boom". Two candidates: *Pop!* by Daniel Gross (what the old draft referenced) or *Boom: Bubbles and the End of Stagnation* by Byrne Hobart & Tobias Huber. Which one? (Or drop it entirely.)
+
+## Slide layout sketch
+
+Single slide, three zones on one canvas:
+
+```
+┌──────────────────────────────────────────────┐
+│  Further reading                             │  ← small section label
+│                                              │
+│  "We have all the pieces... what are we       │  ← closing question
+│   going to build?"                            │    (reused verbatim from
+│                                              │     current slide 43)
+│                                              │
+│  [cover][cover][cover][cover][cover]         │  ← 5-up grid, titles +
+│   title   title   title   title   title       │    authors below each
+│                                              │
+│                                      [ QR ]  │  ← LinkedIn QR, bottom-right
+│                                   Connect    │    with short label
+└──────────────────────────────────────────────┘
+```
+
+I already captured the closing question from the existing final statement slide — I'll reuse it verbatim so the two slides echo each other while you take Q&A.
+
+## Additions to the previous plan
+
+- **QR code**: I'll pre-generate a PNG (crisper in PNG export than inline SVG, simpler than adding a runtime JS lib). I need your **LinkedIn URL** (e.g. `https://www.linkedin.com/in/stugrey/`). I'll commit it at `public/book-covers/linkedin-qr.png` or similar.
+- **Slide data shape** grows to:
+  ```json
+  {
+    "type": "further-reading",
+    "section": "Further reading",
+    "closing_question": "We have all the pieces...",
+    "closing_highlight": "what are we going to build",
+    "qr": { "image": "book-covers/linkedin-qr.png", "label": "Connect on LinkedIn" },
+    "books": [ {title, authors, cover}, ... ]
+  }
+  ```
+- **Editable fields** in `main.js:79`: `['section', 'closing_question', 'closing_highlight']` — books + QR stay structural (edit via content.json).
+- **Layout** still `readingGridCovers` but now renders the three zones above. One CSS grid with named areas: `label`, `quote`, `books`, `qr`.
+
+## Three asks before I build
+
+1. Which "boom" book (Pop!, Boom, or drop it)?
+2. Your LinkedIn URL?
+3. Covers: you drop jpgs into `deck-generator/public/book-covers/`, or I fetch from Open Library by ISBN/title?
+
+---
+
+_**User (2026-04-14 18:27:10Z)**_
+
+Use both pop and boom. https://www.linkedin.com/in/stuartgrey/ Can you fetch the covers from Open Library?
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-14 18:27:23Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:27:23Z)**_
+
+On it. I'll start by checking available tools and fetching covers in parallel.
+
+_**Agent (claude-opus-4-6 2026-04-14 18:27:25Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Check for QR generation tools
+
+`which qrencode 2>/dev/null; python3 -c "import qrcode; print('python qrcode ok')" 2>&1; which segno 2>/dev/null`
+
+```text
+Exit code 1
+qrencode not found
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ModuleNotFoundError: No module named 'qrcode'
+segno not found
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:27:26Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Create book-covers directory
+
+`mkdir -p "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/public/book-covers"`
+
+```text
+<tool_use_error>Cancelled: parallel tool call Bash(which qrencode 2>/dev/null; python3 -c "…) errored</tool_use_error>
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:27:30Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Create book-covers directory
+
+`mkdir -p "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/public/book-covers"`
+
+```text
+(Bash completed with no output)
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:27:33Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Check node_modules for qrcode packages
+
+`cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && ls node_modules | grep -iE "qrcode|qr-" | head`
+
+```text
+(Bash completed with no output)
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:27:44Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:27:45Z)**_
+
+I'll write a small Node script to fetch all six covers from Open Library + the QR from a free QR service. No new deps needed.
+
+_**Agent (claude-opus-4-6 2026-04-14 18:28:25Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Fetch all book covers and LinkedIn QR
+
+```bash
+cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && cat > /tmp/fetch-covers.mjs <<'NODE'
+import fs from 'node:fs';
+import path from 'node:path';
+
+const OUT = path.resolve('public/book-covers');
+fs.mkdirSync(OUT, { recursive: true });
+
+const books = [
+  { slug: 'power-and-progress', title: 'Power and Progress',   authors: 'Daron Acemoglu & Simon Johnson', q: { title: 'Power and Progress', author: 'Acemoglu' } },
+  { slug: 'enshittification',   title: 'Enshittification',     authors: 'Cory Doctorow',                  q: { title: 'Enshittification', author: 'Doctorow' } },
+  { slug: 'supremacy',          title: 'Supremacy',            authors: 'Parmy Olson',                    q: { title: 'Supremacy AI ChatGPT', author: 'Olson' } },
+  { slug: 'empire-of-ai',       title: 'Empire of AI',         authors: 'Karen Hao',                      q: { title: 'Empire of AI', author: 'Karen Hao' } },
+  { slug: 'pop',                title: 'Pop!',                 authors: 'Daniel Gross',                   q: { title: 'Pop Why Bubbles Are Great', author: 'Daniel Gross' } },
+  { slug: 'boom',               title: 'Boom',                 authors: 'Byrne Hobart & Tobias Huber',    q: { title: 'Boom Bubbles End of Stagnation', author: 'Hobart' } },
+];
+
+async function searchCoverId({ title, author }) {
+  const url = `https://openlibrary.org/search.json?title=${encodeURIComponent(title)}&author=${encodeURIComponent(author)}&limit=10`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`search ${res.status}`);
+  const data = await res.json();
+  const docs = (data.docs || []).filter(d => d.cover_i);
+  if (!docs.length) return null;
+  // Prefer docs whose first_publish_year looks plausible (>=2007) and has an ISBN
+  docs.sort((a, b) => (b.edition_count || 0) - (a.edition_count || 0));
+  return {
+    cover_i: docs[0].cover_i,
+    matched_title: docs[0].title,
+    matched_author: (docs[0].author_name || []).join(', '),
+    year: docs[0].first_publish_year,
+  };
+}
+
+async function downloadCover(cover_i, outPath) {
+  const url = `https://covers.openlibrary.org/b/id/${cover_i}-L.jpg`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`cover ${res.status}`);
+  const buf = Buffer.from(await res.arrayBuffer());
+  if (buf.length < 1000) throw new Error(`cover too small (${buf.length}B) — likely placeholder`);
+  fs.writeFileSync(outPath, buf);
+  return buf.length;
+}
+
+for (const b of books) {
+  try {
+    const hit = await searchCoverId(b.q);
+    if (!hit) { console.log(`MISS  ${b.slug} — no cover in Open Library`); continue; }
+    const outPath = path.join(OUT, `${b.slug}.jpg`);
+    const size = await downloadCover(hit.cover_i, outPath);
+    console.log(`OK    ${b.slug.padEnd(20)} cover_i=${hit.cover_i} ${(size/1024).toFixed(0)}KB — matched "${hit.matched_title}" by ${hit.matched_author} (${hit.year})`);
+  } catch (e) {
+    console.log(`FAIL  ${b.slug} — ${e.message}`);
+  }
+}
+
+// QR code for LinkedIn — use api.qrserver.com (simple PNG generator, no deps)
+try {
+  const data = encodeURIComponent('https://www.linkedin.com/in/stuartgrey/');
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=600x600&margin=0&data=${data}`;
+  const res = await fetch(qrUrl);
+  if (!res.ok) throw new Error(`qr ${res.status}`);
+  const buf = Buffer.from(await res.arrayBuffer());
+  fs.writeFileSync(path.join(OUT, 'linkedin-qr.png'), buf);
+  console.log(`OK    linkedin-qr          ${(buf.length/1024).toFixed(0)}KB`);
+} catch (e) {
+  console.log(`FAIL  linkedin-qr — ${e.message}`);
+}
+NODE
+node /tmp/fetch-covers.mjs
+```
+
+```text
+OK    power-and-progress   cover_i=13213846 34KB — matched "Power and Progress" by Daron Acemoglu, Simon Johnson (2023)
+OK    enshittification     cover_i=15170236 42KB — matched "Enshittification" by Cory Doctorow (2025)
+MISS  supremacy — no cover in Open Library
+OK    empire-of-ai         cover_i=15204209 33KB — matched "Empire of AI" by Karen Hao (2025)
+MISS  pop — no cover in Open Library
+MISS  boom — no cover in Open Library
+OK    linkedin-qr          1KB
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:28:35Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:28:36Z)**_
+
+Got 3 of 6. Let me retry Supremacy, Pop!, and Boom with ISBN-based lookups and broader queries.
+
+_**Agent (claude-opus-4-6 2026-04-14 18:32:51Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Retry missing covers via ISBN + Google Books fallback
+
+```bash
+cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && cat > /tmp/fetch-misses.mjs <<'NODE'
+import fs from 'node:fs';
+import path from 'node:path';
+
+const OUT = path.resolve('public/book-covers');
+
+// Known ISBNs — verified by title + author + publisher
+const targets = [
+  { slug: 'supremacy', label: 'Supremacy — Parmy Olson',
+    isbns: ['9781250337412', '9781035027583', '1035027585', '1250337410'] },
+  { slug: 'pop', label: 'Pop! — Daniel Gross',
+    isbns: ['9780061121876', '0061121878', '9780061566738'] },
+  { slug: 'boom', label: 'Boom — Hobart & Huber',
+    isbns: ['9781953953452', '1953953458'] },
+];
+
+async function tryIsbnCover(isbn) {
+  // Open Library cover API returns a 1x1 gif placeholder if missing unless default=false
+  const url = `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg?default=false`;
+  const res = await fetch(url);
+  if (!res.ok) return null;
+  const buf = Buffer.from(await res.arrayBuffer());
+  if (buf.length < 2000) return null;
+  return buf;
+}
+
+async function tryGoogleBooks(isbn) {
+  // Google Books Volumes API: no key needed for basic search
+  const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
+  const res = await fetch(url);
+  if (!res.ok) return null;
+  const data = await res.json();
+  const item = data.items?.[0];
+  const link = item?.volumeInfo?.imageLinks?.thumbnail
+            || item?.volumeInfo?.imageLinks?.smallThumbnail;
+  if (!link) return null;
+  // upgrade to larger edge param if available
+  const bigger = link.replace(/&edge=curl/, '').replace(/zoom=\d/, 'zoom=2');
+  const imgRes = await fetch(bigger);
+  if (!imgRes.ok) return null;
+  const buf = Buffer.from(await imgRes.arrayBuffer());
+  return buf.length > 2000 ? buf : null;
+}
+
+for (const t of targets) {
+  let found = null;
+  let source = '';
+  for (const isbn of t.isbns) {
+    const buf = await tryIsbnCover(isbn);
+    if (buf) { found = buf; source = `openlibrary isbn:${isbn}`; break; }
+  }
+  if (!found) {
+    for (const isbn of t.isbns) {
+      const buf = await tryGoogleBooks(isbn);
+      if (buf) { found = buf; source = `googlebooks isbn:${isbn}`; break; }
+    }
+  }
+  if (found) {
+    const outPath = path.join(OUT, `${t.slug}.jpg`);
+    fs.writeFileSync(outPath, found);
+    console.log(`OK    ${t.slug.padEnd(12)} ${(found.length/1024).toFixed(0)}KB — ${source}`);
+  } else {
+    console.log(`FAIL  ${t.slug} — no cover found for ${t.label}`);
+  }
+}
+NODE
+node /tmp/fetch-misses.mjs
+```
+
+```text
+FAIL  supremacy — no cover found for Supremacy — Parmy Olson
+FAIL  pop — no cover found for Pop! — Daniel Gross
+FAIL  boom — no cover found for Boom — Hobart & Huber
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:32:54Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:33:03Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Debug Google Books results for 3 missing books
+
+```bash
+cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && cat > /tmp/debug-books.mjs <<'NODE'
+const tests = [
+  { label: 'supremacy (Olson)',  q: 'intitle:Supremacy+inauthor:Olson' },
+  { label: 'pop (Gross)',        q: 'intitle:Pop+inauthor:Daniel+Gross+subject:bubble' },
+  { label: 'boom (Hobart)',      q: 'intitle:Boom+inauthor:Hobart' },
+];
+
+for (const t of tests) {
+  const url = `https://www.googleapis.com/books/v1/volumes?q=${t.q}&maxResults=5`;
+  const res = await fetch(url);
+  const data = await res.json();
+  console.log(`\n=== ${t.label} ===`);
+  (data.items || []).slice(0, 5).forEach((it, i) => {
+    const v = it.volumeInfo;
+    console.log(`${i+1}. "${v.title}" — ${(v.authors||[]).join(', ')} [${v.publishedDate || '?'}]`);
+    console.log(`   thumb: ${v.imageLinks?.thumbnail || '(none)'}`);
+  });
+}
+NODE
+node /tmp/debug-books.mjs
+```
+
+```text
+=== supremacy (Olson) ===
+
+=== pop (Gross) ===
+
+=== boom (Hobart) ===
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:33:06Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:33:07Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Raw Google Books check
+
+`curl -s "https://www.googleapis.com/books/v1/volumes?q=Supremacy+Olson+AI&maxResults=3" | python3 -m json.tool 2>&1 | head -50`
+
+```text
+{
+    "error": {
+        "code": 429,
+        "message": "Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'books.googleapis.com' for consumer 'project_number:624717413613'.",
+        "errors": [
+            {
+                "message": "Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'books.googleapis.com' for consumer 'project_number:624717413613'.",
+                "domain": "global",
+                "reason": "rateLimitExceeded"
+            }
+        ],
+        "status": "RESOURCE_EXHAUSTED",
+        "details": [
+            {
+                "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+                "reason": "RATE_LIMIT_EXCEEDED",
+                "domain": "googleapis.com",
+                "metadata": {
+                    "quota_limit_value": "20000000",
+                    "service": "books.googleapis.com",
+                    "quota_location": "global",
+                    "quota_metric": "books.googleapis.com/default",
+                    "quota_unit": "1/d/{project}",
+                    "quota_limit": "defaultPerDayPerProject",
+                    "consumer": "projects/624717413613"
+                }
+            },
+            {
+                "@type": "type.googleapis.com/google.rpc.Help",
+                "links": [
+                    {
+                        "description": "Request a higher quota limit.",
+                        "url": "https://cloud.google.com/docs/quotas/help/request_increase"
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:33:15Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:33:33Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Retry with flexible Open Library searches
+
+```bash
+cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && cat > /tmp/fetch-misses2.mjs <<'NODE'
+import fs from 'node:fs';
+import path from 'node:path';
+
+const OUT = path.resolve('public/book-covers');
+
+const searches = [
+  { slug: 'supremacy', tests: [
+      { author: 'Parmy Olson', titleMatch: /supremacy/i },
+      { author: 'Olson', titleMatch: /supremacy/i },
+      { q: 'Supremacy AI ChatGPT Parmy Olson', titleMatch: /supremacy/i },
+  ]},
+  { slug: 'pop', tests: [
+      { author: 'Daniel Gross', titleMatch: /^pop/i },
+      { q: 'Pop Why Bubbles Are Great Daniel Gross', titleMatch: /pop/i },
+  ]},
+  { slug: 'boom', tests: [
+      { author: 'Byrne Hobart', titleMatch: /boom/i },
+      { author: 'Hobart Huber', titleMatch: /boom/i },
+      { q: 'Boom Bubbles End of Stagnation', titleMatch: /boom/i },
+  ]},
+];
+
+async function searchOL(opts) {
+  const p = new URLSearchParams();
+  if (opts.q) p.set('q', opts.q);
+  if (opts.author) p.set('author', opts.author);
+  if (opts.title) p.set('title', opts.title);
+  p.set('limit', '30');
+  const url = `https://openlibrary.org/search.json?${p}`;
+  const res = await fetch(url);
+  if (!res.ok) return [];
+  const d = await res.json();
+  return d.docs || [];
+}
+
+async function download(cover_i, outPath) {
+  const url = `https://covers.openlibrary.org/b/id/${cover_i}-L.jpg?default=false`;
+  const r = await fetch(url);
+  if (!r.ok) return false;
+  const buf = Buffer.from(await r.arrayBuffer());
+  if (buf.length < 2000) return false;
+  fs.writeFileSync(outPath, buf);
+  return buf.length;
+}
+
+for (const s of searches) {
+  let done = false;
+  for (const test of s.tests) {
+    if (done) break;
+    const docs = await searchOL(test);
+    const filtered = docs.filter(d => d.cover_i && (!test.titleMatch || test.titleMatch.test(d.title || '')));
+    console.log(`${s.slug}: ${filtered.length} cover candidates from ${JSON.stringify(test)}`);
+    filtered.slice(0, 5).forEach(d => console.log(`  cover_i=${d.cover_i}  "${d.title}" — ${(d.author_name||[]).join(', ')} [${d.first_publish_year}]`));
+    for (const d of filtered) {
+      const size = await download(d.cover_i, path.join(OUT, `${s.slug}.jpg`));
+      if (size) {
+        console.log(`  -> downloaded ${s.slug}.jpg (${(size/1024).toFixed(0)}KB) from cover_i=${d.cover_i}`);
+        done = true;
+        break;
+      }
+    }
+  }
+  if (!done) console.log(`  FAIL ${s.slug}`);
+}
+NODE
+node /tmp/fetch-misses2.mjs
+```
+
+```text
+supremacy: 1 cover candidates from {"author":"Parmy Olson","titleMatch":{}}
+  cover_i=14815392  "Supremacy" — Parmy Olson [2024]
+  -> downloaded supremacy.jpg (67KB) from cover_i=14815392
+pop: 1 cover candidates from {"author":"Daniel Gross","titleMatch":{}}
+  cover_i=46751  "Pop!" — Daniel Gross [2007]
+  -> downloaded pop.jpg (39KB) from cover_i=46751
+boom: 1 cover candidates from {"author":"Byrne Hobart","titleMatch":{}}
+  cover_i=15101647  "Boom" — Byrne Hobart, Tobias Huber [2024]
+  -> downloaded boom.jpg (44KB) from cover_i=15101647
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:33:35Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:33:36Z)**_
+
+All 6 covers + QR downloaded. Let me verify.
+
+_**Agent (claude-opus-4-6 2026-04-14 18:33:45Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Verify downloaded files
+
+`cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/public/book-covers" && ls -la && file *.jpg *.png`
+
+```text
+total 552
+drwxr-xr-x@ 9 stugrey  staff    288 14 Apr 19:33 .
+drwx------  4 stugrey  staff    128 14 Apr 19:33 ..
+-rw-r--r--@ 1 stugrey  staff  45517 14 Apr 19:33 boom.jpg
+-rw-r--r--@ 1 stugrey  staff  33472 14 Apr 19:28 empire-of-ai.jpg
+-rw-r--r--@ 1 stugrey  staff  42786 14 Apr 19:28 enshittification.jpg
+-rw-r--r--@ 1 stugrey  staff    817 14 Apr 19:28 linkedin-qr.png
+-rw-r--r--@ 1 stugrey  staff  40188 14 Apr 19:33 pop.jpg
+-rw-r--r--@ 1 stugrey  staff  34763 14 Apr 19:28 power-and-progress.jpg
+-rw-r--r--@ 1 stugrey  staff  68922 14 Apr 19:33 supremacy.jpg
+boom.jpg:               JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 333x500, components 3
+empire-of-ai.jpg:       JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 260x400, components 3
+enshittification.jpg:   JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 500x500, components 3
+pop.jpg:                JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 329x500, components 3
+power-and-progress.jpg: JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 323x500, components 3
+supremacy.jpg:          JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 329x500, components 3
+linkedin-qr.png:        PNG image data, 600 x 600, 1-bit colormap, non-interlaced
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:33:50Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:33:51Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./deck-generator/public/book-covers/enshittification.jpg`
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:33:57Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:33:58Z)**_
+
+Enshittification is the (square) audiobook cover — it's Doctorow's and reads well, I'll keep it. Moving on to implementation.
+
+_**Agent (claude-opus-4-6 2026-04-14 18:33:59Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./deck-generator/src/layouts.js`
+
+```text
+96	export function contentSplitCards(slide, page) {
+97	  const colors = [
+98	    'var(--color-accent-1)',
+99	    'var(--color-accent-2)',
+100	    'var(--color-accent-3)',
+101	    'var(--color-accent-4)',
+102	  ];
+103	
+104	  const cards = (slide.points || []).map((point, i) => `
+105	    <div class="evidence-card">
+106	      <div class="card-icon" style="background: ${colors[i % colors.length]}"></div>
+107	      <div class="card-text">
+108	        <h3>${point.title}</h3>
+109	      </div>
+110	    </div>
+111	  `).join('');
+112	
+113	  return `
+114	    <div class="slide-inner content-split-cards">
+115	      <div class="content-nav">${slide.section || ''}</div>
+116	      <div class="content-body-area">
+117	        <div class="content-left">
+118	          <h2>${slide.heading}</h2>
+119	          ${slide.body ? `<p>${slide.body}</p>` : ''}
+120	        </div>
+121	        <div class="content-right">
+122	          ${cards}
+123	        </div>
+124	      </div>
+125	      <div class="content-footer">
+126	        <span class="page-number">${String(page).padStart(2, '0')}</span>
+127	        ${renderLensMarkers(slide)}
+128	      </div>
+129	    </div>
+130	  `;
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:34:02Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./deck-generator/src/style.css`
+
+```text
+1	/* ============================================
+2	   BASE STYLES — slide container + reset
+3	   ============================================ */
+4	
+5	*, *::before, *::after {
+6	  margin: 0;
+7	  padding: 0;
+8	  box-sizing: border-box;
+9	}
+10	
+11	body {
+12	  background: #1a1a1a;
+13	  font-family: 'Inter', sans-serif;
+14	  padding: 2rem;
+15	}
+16	
+17	/* --- Controls panel --- */
+18	#controls {
+19	  max-width: 1200px;
+20	  margin: 0 auto 2rem;
+21	  padding: 1.5rem 2rem;
+22	  background: #2a2a2a;
+23	  border-radius: 0.75rem;
+24	  color: #ccc;
+25	  font-size: 0.85rem;
+26	  font-family: 'DM Mono', monospace;
+27	  line-height: 1.6;
+28	  position: sticky;
+29	  top: 1rem;
+30	  z-index: 100;
+31	  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+32	}
+33	
+34	#controls .ctrl-header {
+35	  display: flex;
+36	  justify-content: space-between;
+37	  align-items: center;
+38	}
+39	
+40	#controls .ctrl-body {
+41	  margin-top: 1rem;
+42	}
+43	
+44	#controls h2 {
+45	  color: #fff;
+46	  font-family: 'Space Grotesk', sans-serif;
+47	  font-size: 1rem;
+48	  margin: 0;
+49	}
+50	
+51	#controls .ctrl-row {
+52	  display: flex;
+53	  gap: 1rem;
+54	  margin-bottom: 0.75rem;
+55	  flex-wrap: wrap;
+56	}
+57	
+58	#controls .ctrl-row--layouts {
+59	  padding-top: 0.75rem;
+60	  border-top: 1px solid #3a3a3a;
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:34:06Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./deck-generator/src/style.css` pattern `statement-centered|\.slide-inner|\.content-split-cards|\.content-wide-visual`
+
+```text
+461:.slide-inner {
+474:.slide-inner * {
+570:.content-split-cards .content-footer .lens-marker-group {
+575:.statement-centered .lens-marker-group,
+833:.content-split-cards {
+840:.content-split-cards .content-nav {
+851:.content-split-cards .content-body-area {
+858:.content-split-cards .content-left {
+866:.content-split-cards .content-left h2 {
+876:.content-split-cards .content-left p {
+884:.content-split-cards .content-right {
+892:.content-split-cards .evidence-card {
+901:.content-split-cards .evidence-card .card-icon {
+911:.content-split-cards .evidence-card .card-text {
+918:.content-split-cards .evidence-card .card-text h3 {
+926:.content-split-cards .evidence-card .card-text p {
+932:.content-split-cards .content-footer {
+941:.content-split-cards .page-number {
+953:.content-wide-visual {
+960:.content-wide-visual .content-nav {
+969:.content-wide-visual .content-body-area {
+976:.content-wide-visual .content-left {
+985:.content-wide-visual .content-left h2 {
+995:.content-wide-visual .content-left p {
+1001:.content-wide-visual .content-right {
+
+[Showing results with pagination = limit: 25]
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:34:09Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./deck-generator/src/style.css`
+
+```text
+455	}
+456	
+457	.slide {
+458	  container-type: inline-size;
+459	}
+460	
+461	.slide-inner {
+462	  width: 100%;
+463	  height: 100%;
+464	  position: relative;
+465	  display: flex;
+466	  font-family: var(--font-body);
+467	  font-weight: var(--font-body-weight);
+468	  font-size: var(--body-size);
+469	  line-height: var(--body-line-height);
+470	  overflow: hidden;
+471	}
+472	
+473	/* Safety: all text containers can shrink in flex layouts */
+474	.slide-inner * {
+475	  min-height: 0;
+476	  min-width: 0;
+477	}
+478	
+479	.lens-marker-group {
+480	  position: absolute;
+481	  right: var(--slide-padding);
+482	  bottom: var(--slide-padding);
+483	  left: auto;
+484	  width: max-content;
+485	  min-height: 2.8rem;
+486	  display: flex;
+487	  align-items: center;
+488	  gap: 0;
+489	  z-index: 3;
+490	  pointer-events: none;
+491	}
+492	
+493	.lens-marker {
+494	  width: 1.55rem;
+495	  height: 1.55rem;
+496	  border-radius: 999px;
+497	  display: inline-flex;
+498	  align-items: center;
+499	  justify-content: center;
+500	  font-family: 'DM Mono', monospace;
+501	  font-size: 0.7rem;
+502	  font-weight: 700;
+503	  letter-spacing: 0.02em;
+504	  backdrop-filter: blur(10px);
+505	  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
+506	}
+507	
+508	.lens-marker--transparency:not(.lens-marker--droplet) {
+509	  background: rgba(103, 220, 255, 0.16);
+510	  color: #DFF9FF;
+511	  border: 1px solid rgba(103, 220, 255, 0.45);
+512	}
+513	
+514	.lens-marker--droplet {
+515	  position: relative;
+516	  width: 2.8rem;
+517	  height: 2.8rem;
+518	  font-size: 0.85rem;
+519	  background: transparent;
+520	  border: none;
+521	  box-shadow: none;
+522	  backdrop-filter: none;
+523	  overflow: hidden;
+524	  margin-left: -0.8rem;
+525	}
+526	
+527	.lens-marker--droplet:first-child {
+528	  margin-left: 0;
+529	}
+530	
+531	.lens-marker--droplet .lens-droplet-canvas {
+532	  position: absolute;
+533	  inset: 0;
+534	  width: 100%;
+535	  height: 100%;
+536	  border-radius: inherit;
+537	  display: block;
+538	}
+539	
+540	.lens-marker--droplet .lens-droplet-letter {
+541	  position: relative;
+542	  z-index: 2;
+543	  pointer-events: none;
+544	  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+545	}
+546	
+547	.lens-marker--distortion.lens-marker--droplet .lens-droplet-letter,
+548	.lens-marker--extraction.lens-marker--droplet .lens-droplet-letter {
+549	  color: #fff;
+550	  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+551	}
+552	
+553	.lens-marker--distortion:not(.lens-marker--droplet) {
+554	  background: rgba(255, 183, 77, 0.16);
+555	  color: #FFF1D5;
+556	  border: 1px solid rgba(255, 183, 77, 0.45);
+557	}
+558	
+559	.lens-marker--extraction:not(.lens-marker--droplet) {
+560	  background: rgba(255, 112, 102, 0.16);
+561	  color: #FFE3DE;
+562	  border: 1px solid rgba(255, 112, 102, 0.48);
+563	}
+564	
+565	.cover-bold-full .lens-marker-group,
+566	.cover-dark-minimal .lens-marker-group {
+567	  bottom: 1.2rem;
+568	}
+569	
+570	.content-split-cards .content-footer .lens-marker-group {
+571	  position: static;
+572	  margin-left: auto;
+573	}
+574	
+575	.statement-centered .lens-marker-group,
+576	.statement-editorial .lens-marker-group {
+577	  right: var(--slide-padding);
+578	  bottom: var(--slide-padding);
+579	}
+580	
+581	
+582	.divider-color-burst .lens-marker,
+583	.cover-bold-full .lens-marker,
+584	.data-full-bleed .lens-marker {
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:34:12Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./deck-generator/src/style.css`
+
+```text
+825	
+826	
+827	/* ============================================
+828	   LAYOUT: content-split-cards
+829	   Inspired by: Beyond Trends
+830	   Left text (50%) + right stacked cards (50%)
+831	   ============================================ */
+832	
+833	.content-split-cards {
+834	  background: var(--color-bg-primary);
+835	  color: var(--color-text-primary);
+836	  flex-direction: column;
+837	  padding: var(--slide-padding);
+838	}
+839	
+840	.content-split-cards .content-nav {
+841	  font-family: var(--font-body);
+842	  font-size: var(--caption-size);
+843	  text-transform: uppercase;
+844	  letter-spacing: 0.08em;
+845	  color: var(--color-text-secondary);
+846	  margin-bottom: 1.5rem;
+847	  padding-bottom: 0.75rem;
+848	  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+849	}
+850	
+851	.content-split-cards .content-body-area {
+852	  display: flex;
+853	  gap: calc(var(--element-gap) * 2);
+854	  flex: 1;
+855	  overflow: hidden;
+856	}
+857	
+858	.content-split-cards .content-left {
+859	  flex: 1;
+860	  display: flex;
+861	  flex-direction: column;
+862	  justify-content: center;
+863	  overflow: hidden;
+864	}
+865	
+866	.content-split-cards .content-left h2 {
+867	  font-family: var(--font-display);
+868	  font-weight: var(--font-display-weight);
+869	  font-size: clamp(1.2rem, 2.2cqi, var(--heading-size-md));
+870	  line-height: 1.2;
+871	  letter-spacing: var(--heading-spacing);
+872	  text-transform: var(--heading-transform);
+873	  margin-bottom: 1.2rem;
+874	}
+875	
+876	.content-split-cards .content-left p {
+877	  font-size: var(--body-size);
+878	  line-height: var(--body-line-height);
+879	  color: var(--color-text-secondary);
+880	  max-width: 42ch;
+881	  overflow: hidden;
+882	}
+883	
+884	.content-split-cards .content-right {
+885	  flex: 1;
+886	  display: flex;
+887	  flex-direction: column;
+888	  gap: 1rem;
+889	  justify-content: center;
+890	}
+891	
+892	.content-split-cards .evidence-card {
+893	  background: var(--color-bg-secondary);
+894	  border-radius: var(--card-border-radius);
+895	  padding: 1.4rem 1.6rem;
+896	  display: flex;
+897	  align-items: center;
+898	  gap: 1rem;
+899	}
+900	
+901	.content-split-cards .evidence-card .card-icon {
+902	  width: 2.5rem;
+903	  height: 2.5rem;
+904	  border-radius: var(--shape-border-radius);
+905	  flex-shrink: 0;
+906	  display: flex;
+907	  align-items: center;
+908	  justify-content: center;
+909	}
+910	
+911	.content-split-cards .evidence-card .card-text {
+912	  flex: 1;
+913	  min-height: 2.5rem;
+914	  display: flex;
+915	  align-items: center;
+916	}
+917	
+918	.content-split-cards .evidence-card .card-text h3 {
+919	  font-family: var(--font-display);
+920	  font-weight: 600;
+921	  font-size: 1.3rem;
+922	  line-height: 1.1;
+923	  margin-bottom: 0;
+924	}
+925	
+926	.content-split-cards .evidence-card .card-text p {
+927	  font-size: var(--caption-size);
+928	  color: var(--color-text-secondary);
+929	  line-height: 1.5;
+930	}
+931	
+932	.content-split-cards .content-footer {
+933	  display: flex;
+934	  align-items: center;
+935	  justify-content: space-between;
+936	  padding-top: 0.75rem;
+937	  border-top: 1px solid rgba(0, 0, 0, 0.06);
+938	  margin-top: auto;
+939	}
+940	
+941	.content-split-cards .page-number {
+942	  font-size: var(--caption-size);
+943	  color: var(--color-text-secondary);
+944	}
+945	
+946	
+947	/* ============================================
+948	   LAYOUT: content-wide-visual
+949	   Inspired by: Monzo / DIA / Glide
+950	   Left narrow text (30%) + right wide area (70%)
+951	   ============================================ */
+952	
+953	.content-wide-visual {
+954	  background: var(--color-bg-primary);
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:34:15Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Find end of style.css
+
+`cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && wc -l src/style.css && tail -30 src/style.css`
+
+```text
+    1478 src/style.css
+  pointer-events: none;
+}
+
+#play-overlay .play-voiceover {
+  position: fixed;
+  bottom: 1.2rem;
+  left: 1.5rem;
+  display: flex;
+  align-items: center;
+  pointer-events: auto;
+}
+
+#play-overlay .play-voiceover .voiceover-row {
+  margin-right: 0;
+}
+
+#play-overlay .play-voiceover .voiceover-btn {
+  border-color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(0, 0, 0, 0.4);
+}
+
+#play-overlay .play-voiceover .voiceover-btn:hover:not(:disabled) {
+  color: #5DD4E0;
+  border-color: #5DD4E0;
+}
+
+#play-overlay .play-voiceover .voiceover-duration {
+  color: rgba(255, 255, 255, 0.55);
+}
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:34:19Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./deck-generator/src/style.css` pattern `--slide-padding|--color-bg-primary|--color-accent-1|--heading-size-lg|--heading-size-xl`
+
+```text
+481:  right: var(--slide-padding);
+482:  bottom: var(--slide-padding);
+577:  right: var(--slide-padding);
+578:  bottom: var(--slide-padding);
+596:  background: var(--color-accent-1);
+599:  padding: var(--slide-padding);
+605:  font-size: clamp(2.5rem, 8cqi, var(--heading-size-xl));
+642:  background: var(--color-bg-primary);
+663:  padding: var(--slide-padding);
+676:  color: var(--color-accent-1);
+694:  font-size: clamp(2.5rem, 8cqi, var(--heading-size-xl));
+724:  padding: var(--slide-padding);
+744:  font-size: clamp(2.5rem, 8cqi, var(--heading-size-xl));
+785:  padding: var(--slide-padding);
+798:  color: var(--color-accent-1);
+
+[Showing results with pagination = limit: 15]
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:34:22Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+List token files
+
+`cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && ls tokens/`
+
+```text
+ace-tate.css
+artsy.css
+beyond-trends.css
+dia.css
+glide.css
+monzo.css
+space10.css
+superlist.css
+wetransfer.css
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:34:25Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./deck-generator/tokens/superlist.css` pattern `--color-bg-primary|--color-text-primary|--slide-padding|--heading-size-xl|--caption-size|--color-accent-1|--card-border-radius`
+
+```text
+8:  --color-bg-primary:    #F5F5F5;   /* light grey */
+14:  --color-text-primary:  #1A1A3E;   /* navy on light */
+19:  --color-accent-1:      #F05A3E;   /* coral / salmon red */
+38:  --heading-size-xl:     7rem;
+42:  --caption-size:        0.8rem;
+49:  --slide-padding:       4rem;
+53:  --card-border-radius:  1rem;
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:34:28Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:34:30Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Inspect final statement slide
+
+```bash
+cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && node -e '
+const j = JSON.parse(require("fs").readFileSync("content.json","utf8"));
+console.log(JSON.stringify(j.slides[j.slides.length-1], null, 2));
+'
+```
+
+```text
+{
+  "type": "statement",
+  "section": "Closing question",
+  "text": "We have all the pieces to build and control our own AI systems, so what are we going to build?",
+  "highlight": "build and control",
+  "attribution": "",
+  "notes": {
+    "transition": "End with the question rather than another answer.",
+    "points": [
+      "Let the closing question hang for a moment and hand neatly into discussion or panel.",
+      "The point is to force the room to connect infrastructure control with the kind of university it wants AI to serve.",
+      "Do not rush the last line; it is the civic and institutional landing point."
+    ]
+  },
+  "lenses": [
+    "transparency",
+    "distortion",
+    "extraction"
+  ],
+  "id": "t3j2ripk",
+  "voiceover": {
+    "file": "voiceovers/t3j2ripk.webm",
+    "duration": 28.98,
+    "mime": "audio/webm;codecs=opus",
+    "updated": "2026-04-14T18:20:40.080Z"
+  },
+  "voiceover_history": [
+    {
+      "transcript": "And a final closing question for you all, something to go away and think about, if AI becomes part of higher education infrastructure, who should control it? And what kind of universities should it serve? Universities will change, right? But I believe the best change will be when we control the AI and use AI to make the change ourselves, retain that autonomy. Thank you very much.",
+      "transcribed_at": "2026-04-13T18:57:05.719Z",
+      "duration": 24.3,
+      "replaced_at": "2026-04-14T18:20:40.080Z"
+    }
+  ]
+}
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:34:33Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:34:33Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./deck-generator/config.json`
+
+```text
+1	{
+2	  "palette": "monzo",
+3	  "typography": "monzo",
+4	  "shapes": "none",
+5	  "pinstripes": "diagonal",
+6	  "noise": 5,
+7	  "layouts": {
+8	    "cover": "cover-bold-full",
+9	    "section-divider": "divider-color-burst",
+10	    "content": "content-split-cards",
+11	    "data": "data-big-numbers",
+12	    "statement": "statement-centered"
+13	  },
+14	  "slideShapes": {
+15	    "0": "droplets",
+16	    "4": "droplets",
+17	    "5": "droplets-mercury",
+18	    "6": "droplets-oil"
+19	  }
+20	}
+21
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:34:36Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./deck-generator/src/main.js`
+
+```text
+1160	    markDirty();
+1161	  });
+1162	
+1163	  notePointsGroup.appendChild(notePointsLabel);
+1164	  notePointsGroup.appendChild(notePointsInput);
+1165	  panel.appendChild(notePointsGroup);
+1166	
+1167	  return panel;
+1168	}
+1169	
+1170	/** Re-render a single slide in place (without tearing down the whole deck) */
+1171	function renderSingleSlide(slideIndex) {
+1172	  const config = currentConfig;
+1173	  const slide = currentContent.slides[slideIndex];
+1174	  const page = slideIndex + 1;
+1175	
+1176	  const slideEl = document.getElementById(`slide-${page}`);
+1177	  if (!slideEl) return;
+1178	
+1179	  const layoutName = config.layouts[slide.type] || Object.values(config.layouts)[0];
+1180	  const layoutFn = layoutRegistry[layoutName];
+1181	  if (!layoutFn) return;
+1182	
+1183	  slideEl.innerHTML = layoutFn(slide, page);
+1184	
+1185	  const inner = slideEl.querySelector('.slide-inner');
+1186	  if (!inner) return;
+1187	
+1188	  // Re-inject textures (shapes are NOT re-injected to avoid WebGL churn)
+1189	  if (config.pinstripes !== 'none') {
+1190	    inner.insertAdjacentHTML('afterbegin', '<div class="shape-overlay texture-pinstripes"></div>');
+1191	  }
+1192	  inner.insertAdjacentHTML(
+1193	    'afterbegin',
+1194	    `<div class="shape-overlay texture-noise" style="background-image:url(${noiseDataURL});opacity:${config.noise / 100}"></div>`,
+1195	  );
+1196	
+1197	  // Fix stat block contrast if this is a data slide
+1198	  slideEl.querySelectorAll('.stat-block').forEach(block => {
+1199	    const blockL = luminance(getComputedStyle(block).backgroundColor);
+1200	    block.style.color = blockL > 0.18 ? '#1B2A3D' : '#FFFFFF';
+1201	    const inner2 = block.closest('.slide-inner');
+1202	    if (inner2) {
+1203	      const slideL = luminance(getComputedStyle(inner2).backgroundColor);
+1204	      block.style.border = Math.abs(blockL - slideL) < 0.05 ? '1px solid rgba(255,255,255,0.15)' : '';
+1205	    }
+1206	  });
+1207	
+1208	  // Fit stat value sizes for this slide — all match the longest text
+1209	  const statValues = slideEl.querySelectorAll('.stat-value');
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:35:17Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:35:17Z)**_
+
+I have everything I need. Let me make all the edits now.
+
+_**Agent (claude-opus-4-6 2026-04-14 18:35:25Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/src/layouts.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:35:29Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/src/layouts.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:35:34Z)**_
+
+Now register the new slide type in `main.js`:
+
+_**Agent (claude-opus-4-6 2026-04-14 18:35:37Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/src/main.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:35:41Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/src/main.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:35:43Z)**_
+
+Now the CSS:
+
+_**Agent (claude-opus-4-6 2026-04-14 18:35:44Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./deck-generator/src/style.css`
+
+```text
+1060	.data-big-numbers .data-body {
+1061	  display: flex;
+1062	  gap: calc(var(--element-gap) * 2);
+1063	  align-items: center;
+1064	  flex: 1;
+1065	  overflow: hidden;
+1066	}
+1067	
+1068	.data-big-numbers .data-left {
+1069	  flex: 1;
+1070	  overflow: hidden;
+1071	}
+1072	
+1073	.data-big-numbers .data-left h2 {
+1074	  font-family: var(--font-display);
+1075	  font-weight: var(--font-display-weight);
+1076	  font-size: clamp(1.2rem, 2.2cqi, var(--heading-size-md));
+1077	  line-height: 1.2;
+1078	  letter-spacing: var(--heading-spacing);
+1079	  text-transform: var(--heading-transform);
+1080	  margin-bottom: 1rem;
+1081	}
+1082	
+1083	.data-big-numbers .data-left p {
+1084	  font-size: var(--body-size);
+1085	  opacity: 0.65;
+1086	  line-height: var(--body-line-height);
+1087	  max-width: 38ch;
+1088	}
+1089	
+1090	.data-big-numbers .data-right {
+1091	  flex: 1;
+1092	  display: flex;
+1093	  gap: 1rem;
+1094	  align-items: stretch;
+1095	}
+1096	
+1097	.data-big-numbers .stat-block {
+1098	  flex: 1;
+1099	  border-radius: var(--card-border-radius);
+1100	  padding: 1.5rem 1.2rem;
+1101	  display: flex;
+1102	  flex-direction: column;
+1103	  justify-content: flex-start;
+1104	  container-type: inline-size;
+1105	  min-width: 0;
+1106	}
+1107	
+1108	.data-big-numbers .stat-block .stat-value {
+1109	  font-family: var(--font-display);
+1110	  font-weight: var(--font-display-weight);
+1111	  font-size: 3rem;  /* base size — JS fitStatSizes() overrides per block */
+1112	  line-height: 1;
+1113	  letter-spacing: var(--heading-spacing);
+1114	  margin-bottom: 0.5rem;
+1115	}
+1116	
+1117	.data-big-numbers .stat-block .stat-label {
+1118	  font-family: var(--font-body);
+1119	  font-size: var(--caption-size);
+1120	  opacity: 0.85;
+1121	  line-height: 1.4;
+1122	}
+1123	
+1124	.data-big-numbers .data-footer {
+1125	  display: flex;
+1126	  align-items: center;
+1127	  margin-top: auto;
+1128	}
+1129	
+1130	.data-big-numbers .data-page {
+1131	  font-size: var(--caption-size);
+1132	  opacity: 0.3;
+1133	}
+1134	
+1135	.data-big-numbers .data-footer .lens-marker-group {
+1136	  position: static;
+1137	  margin-left: auto;
+1138	}
+1139
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:35:47Z)**_
+
+<tool-use data-tool-type="search" data-tool-name="Grep"><details>
+<summary>Tool use: **Grep**</summary>
+ path `./deck-generator/src/style.css` pattern `statement-centered\b`
+
+```text
+575:.statement-centered .lens-marker-group,
+1190:   LAYOUT: statement-centered
+1195:.statement-centered {
+1207:.statement-centered .statement-label {
+1216:.statement-centered .statement-text {
+1226:.statement-centered .statement-text .highlight {
+1230:.statement-centered .statement-attribution {
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:35:50Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./deck-generator/src/style.css`
+
+```text
+1188	
+1189	/* ============================================
+1190	   LAYOUT: statement-centered
+1191	   Inspired by: Superlist / Ace & Tate
+1192	   Centred bold text with accent highlights
+1193	   ============================================ */
+1194	
+1195	.statement-centered {
+1196	  background: var(--color-bg-dark);
+1197	  color: var(--color-text-on-dark);
+1198	  flex-direction: column;
+1199	  align-items: center;
+1200	  justify-content: center;
+1201	  padding: var(--slide-padding);
+1202	  padding-left: 8%;
+1203	  padding-right: 8%;
+1204	  text-align: center;
+1205	}
+1206	
+1207	.statement-centered .statement-label {
+1208	  font-family: var(--font-body);
+1209	  font-size: var(--caption-size);
+1210	  text-transform: uppercase;
+1211	  letter-spacing: 0.12em;
+1212	  color: var(--color-accent-1);
+1213	  margin-bottom: 2rem;
+1214	}
+1215	
+1216	.statement-centered .statement-text {
+1217	  font-family: var(--font-display);
+1218	  font-weight: var(--font-display-weight);
+1219	  font-size: clamp(1.5rem, 4cqi, var(--heading-size-lg));
+1220	  line-height: 1.15;
+1221	  letter-spacing: var(--heading-spacing);
+1222	  text-transform: var(--heading-transform);
+1223	  max-width: 22ch;
+1224	}
+1225	
+1226	.statement-centered .statement-text .highlight {
+1227	  color: var(--color-accent-1);
+1228	}
+1229	
+1230	.statement-centered .statement-attribution {
+1231	  font-family: var(--font-body);
+1232	  font-size: var(--caption-size);
+1233	  opacity: 0.4;
+1234	  margin-top: 2.5rem;
+1235	}
+1236	
+1237	
+1238	/* ============================================
+1239	   LAYOUT: statement-editorial
+1240	   Inspired by: WeTransfer / Beyond Trends
+1241	   Light bg, large serif text with inline shapes
+1242	   ============================================ */
+1243	
+1244	.statement-editorial {
+1245	  background: var(--color-bg-primary);
+1246	  color: var(--color-text-primary);
+1247	  flex-direction: column;
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:35:54Z)**_
+
+Now I'll append the reading-grid-covers CSS. I need to place it so it picks up lens-marker overrides consistently.
+
+_**Agent (claude-opus-4-6 2026-04-14 18:35:55Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./deck-generator/src/style.css`
+
+```text
+1285	  display: inline-block;
+1286	  height: 1.6em;
+1287	  line-height: 1.6em;
+1288	  padding: 0 0.6em;
+1289	  border-radius: 100px;
+1290	  text-align: center;
+1291	  font-size: 0.6em;
+1292	  vertical-align: middle;
+1293	  margin: 0 0.15em;
+1294	  font-family: var(--font-body);
+1295	  font-weight: 500;
+1296	}
+1297	
+1298	.statement-editorial .statement-attribution {
+1299	  font-family: var(--font-body);
+1300	  font-size: var(--body-size);
+1301	  color: var(--color-text-secondary);
+1302	  margin-top: 2rem;
+1303	  font-style: italic;
+1304	}
+1305	
+1306	
+1307	/* ============================================
+1308	   TEXTURE: Pinstripes
+1309	   Very fine lines via repeating-linear-gradient.
+1310	   Real DOM elements (not pseudo-elements) so that
+1311	   html2canvas captures them for WebGL refraction.
+1312	   Uses currentColor so stripes adapt to the slide's
+1313	   text colour (dark on light, light on dark).
+1314	   ============================================ */
+1315	
+1316	.texture-pinstripes {
+1317	  position: absolute;
+1318	  inset: 0;
+1319	  pointer-events: none;
+1320	  z-index: 0;
+1321	  opacity: 0.06;
+1322	}
+1323	
+1324	.slide[data-pinstripes="vertical"] .texture-pinstripes {
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:36:14Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:36:17Z)**_
+
+Now register the layout in `config.json` and append the slide to `content.json`:
+
+_**Agent (claude-opus-4-6 2026-04-14 18:36:19Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/config.json has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:36:30Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Append further-reading slide to content.json
+
+```bash
+cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && node -e '
+const fs = require("fs");
+const j = JSON.parse(fs.readFileSync("content.json", "utf8"));
+const newSlide = {
+  type: "further-reading",
+  section: "Further reading",
+  closing_question: "We have all the pieces to build and control our own AI systems, so what are we going to build?",
+  closing_highlight: "build and control",
+  qr: {
+    image: "book-covers/linkedin-qr.png",
+    label: "Connect — linkedin.com/in/stuartgrey"
+  },
+  books: [
+    { title: "Power and Progress",  authors: "Daron Acemoglu & Simon Johnson", cover: "book-covers/power-and-progress.jpg" },
+    { title: "Enshittification",    authors: "Cory Doctorow",                  cover: "book-covers/enshittification.jpg" },
+    { title: "Supremacy",           authors: "Parmy Olson",                    cover: "book-covers/supremacy.jpg" },
+    { title: "Empire of AI",        authors: "Karen Hao",                      cover: "book-covers/empire-of-ai.jpg" },
+    { title: "Pop!",                authors: "Daniel Gross",                   cover: "book-covers/pop.jpg" },
+    { title: "Boom",                authors: "Byrne Hobart & Tobias Huber",    cover: "book-covers/boom.jpg" }
+  ],
+  lenses: ["transparency", "distortion", "extraction"],
+  id: "furreadx"
+};
+j.slides.push(newSlide);
+fs.writeFileSync("content.json", JSON.stringify(j, null, 2) + "\n");
+console.log("slides now:", j.slides.length);
+console.log("last slide type:", j.slides[j.slides.length-1].type);
+'
+```
+
+```text
+slides now: 44
+last slide type: further-reading
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:36:33Z)**_
+
+Now let me start the dev server and verify the slide renders.
+
+_**Agent (claude-opus-4-6 2026-04-14 18:37:02Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Check if vite dev server is running
+
+`cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && lsof -iTCP -sTCP:LISTEN -P 2>/dev/null | grep -E "5173|4173"`
+
+```text
+node      32936 stugrey   36u  IPv6 0x73a67f301a70ee9c      0t0  TCP localhost:5173 (LISTEN)
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:37:13Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:37:14Z)**_
+
+Dev server is running. Let me sanity-check the syntax and JSON before asking you to look at it.
+
+_**Agent (claude-opus-4-6 2026-04-14 18:37:16Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Validate JS import and JSON files
+
+`cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && node --input-type=module -e "import('./src/layouts.js').then(m => console.log('layouts.js OK — layouts:', Object.keys(m.layoutRegistry).length)).catch(e => { console.error('layouts.js ERR:', e.message); process.exit(1); })" && node -e 'JSON.parse(require("fs").readFileSync("content.json","utf8")); JSON.parse(require("fs").readFileSync("config.json","utf8")); console.log("content.json + config.json OK")'`
+
+```text
+layouts.js OK — layouts: 11
+content.json + config.json OK
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:37:19Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Verify dev server serves assets
+
+`curl -s -o /dev/null -w "%{http_code}\n" http://localhost:5173/ && curl -s -o /dev/null -w "%{http_code} /book-covers/power-and-progress.jpg\n" http://localhost:5173/book-covers/power-and-progress.jpg && curl -s -o /dev/null -w "%{http_code} /book-covers/linkedin-qr.png\n" http://localhost:5173/book-covers/linkedin-qr.png`
+
+```text
+200
+200 /book-covers/power-and-progress.jpg
+200 /book-covers/linkedin-qr.png
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:37:28Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:37:29Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./deck-generator/src/main.js`
+
+```text
+1000	  });
+1001	  playBtn.addEventListener('click', () => playVoiceover(slideIndex, controls));
+1002	  deleteBtn.addEventListener('click', () => deleteVoiceover(slideIndex, controls));
+1003	
+1004	  controls.refresh();
+1005	  return { element: wrapper, controls };
+1006	}
+1007	
+1008	/** Build the collapsible edit panel for a slide */
+1009	function buildEditPanel(slide, slideIndex) {
+1010	  const fields = EDITABLE_FIELDS[slide.type] || [];
+1011	  const panel = document.createElement('div');
+1012	  panel.className = 'slide-edit-panel';
+1013	  panel.style.display = 'none';
+1014	
+1015	  // Top-level text fields
+1016	  fields.forEach(key => {
+1017	    const val = slide[key] ?? '';
+1018	    const isLong = key === 'body' || key === 'text';
+1019	
+1020	    const group = document.createElement('div');
+1021	    group.className = 'edit-group';
+1022	
+1023	    const label = document.createElement('label');
+1024	    label.className = 'edit-label';
+1025	    label.textContent = key;
+1026	
+1027	    const input = isLong
+1028	      ? document.createElement('textarea')
+1029	      : document.createElement('input');
+1030	    input.className = 'edit-input';
+1031	    input.value = val;
+1032	    if (isLong) input.rows = 3;
+1033	
+1034	    input.addEventListener('input', () => {
+1035	      currentContent.slides[slideIndex][key] = input.value;
+1036	      markDirty();
+1037	      renderSingleSlide(slideIndex);
+1038	    });
+1039	
+1040	    group.appendChild(label);
+1041	    group.appendChild(input);
+1042	    panel.appendChild(group);
+1043	  });
+1044	
+1045	  // Nested array fields: points[] for content, stats[] for data
+1046	  if (slide.type === 'content' && slide.points) {
+1047	    slide.points.forEach((point, pi) => {
+1048	      const header = document.createElement('div');
+1049	      header.className = 'edit-nested-header';
+1050	      header.textContent = `Point ${pi + 1}`;
+1051	      panel.appendChild(header);
+1052	
+1053	      ['title', 'description'].forEach(key => {
+1054	        const group = document.createElement('div');
+1055	        group.className = 'edit-group';
+1056	
+1057	        const label = document.createElement('label');
+1058	        label.className = 'edit-label';
+1059	        label.textContent = key;
+1060	
+1061	        const isLong = key === 'description';
+1062	        const input = isLong
+1063	          ? document.createElement('textarea')
+1064	          : document.createElement('input');
+1065	        input.className = 'edit-input';
+1066	        input.value = point[key] ?? '';
+1067	        if (isLong) input.rows = 2;
+1068	
+1069	        input.addEventListener('input', () => {
+1070	          currentContent.slides[slideIndex].points[pi][key] = input.value;
+1071	          markDirty();
+1072	          renderSingleSlide(slideIndex);
+1073	        });
+1074	
+1075	        group.appendChild(label);
+1076	        group.appendChild(input);
+1077	        panel.appendChild(group);
+1078	      });
+1079	    });
+1080	  }
+1081	
+1082	  if (slide.type === 'data' && slide.stats) {
+1083	    slide.stats.forEach((stat, si) => {
+1084	      const header = document.createElement('div');
+1085	      header.className = 'edit-nested-header';
+1086	      header.textContent = `Stat ${si + 1}`;
+1087	      panel.appendChild(header);
+1088	
+1089	      ['value', 'label'].forEach(key => {
+1090	        const group = document.createElement('div');
+1091	        group.className = 'edit-group';
+1092	
+1093	        const label = document.createElement('label');
+1094	        label.className = 'edit-label';
+1095	        label.textContent = key;
+1096	
+1097	        const input = document.createElement('input');
+1098	        input.className = 'edit-input';
+1099	        input.value = stat[key] ?? '';
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:37:32Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:37:32Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Check package.json deps
+
+`cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && cat package.json | head -40`
+
+```text
+{
+  "name": "deck-generator",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "export": "node scripts/export.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.48.0",
+    "vite": "^6.0.0"
+  },
+  "dependencies": {
+    "html2canvas": "^1.4.1",
+    "pdfkit": "^0.18.0",
+    "pptxgenjs": "^4.0.1",
+    "sharp": "^0.34.5",
+    "three": "^0.183.2"
+  }
+}
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:37:35Z)**_
+
+Playwright is available. Let me do a headless render and screenshot of slide 44.
+
+_**Agent (claude-opus-4-6 2026-04-14 18:37:57Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Headless screenshot of slide 44
+
+```bash
+cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && cat > /tmp/shot-slide44.mjs <<'NODE'
+import { chromium } from 'playwright';
+
+const browser = await chromium.launch();
+const page = await browser.newPage({ viewport: { width: 1600, height: 1200 } });
+
+page.on('pageerror', e => console.error('PAGEERROR:', e.message));
+page.on('console', m => { if (m.type() === 'error' || m.type() === 'warning') console.log(`[${m.type()}]`, m.text()); });
+
+await page.goto('http://localhost:5173/', { waitUntil: 'networkidle' });
+
+// Jump to last page in the paginator
+await page.evaluate(() => {
+  // deck paginates 5 at a time; jump to the last page programmatically
+  const total = window.currentContent?.slides?.length ?? 0;
+  console.log('total slides', total);
+});
+
+// Navigate via sessionStorage then reload
+const lastPageIdx = Math.floor((44 - 1) / 5);
+await page.evaluate((idx) => sessionStorage.setItem('deckPage', String(idx)), lastPageIdx);
+await page.reload({ waitUntil: 'networkidle' });
+await page.waitForTimeout(1200);
+
+const slide44 = page.locator('#slide-44');
+await slide44.waitFor({ state: 'visible', timeout: 5000 });
+await slide44.screenshot({ path: '/tmp/slide44.png' });
+console.log('shot saved to /tmp/slide44.png');
+
+await browser.close();
+NODE
+node /tmp/shot-slide44.mjs 2>&1
+```
+
+```text
+Exit code 1
+node:internal/modules/esm/resolve:873
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'playwright' imported from /private/tmp/shot-slide44.mjs
+    at packageResolve (node:internal/modules/esm/resolve:873:9)
+    at moduleResolve (node:internal/modules/esm/resolve:946:18)
+    at defaultResolve (node:internal/modules/esm/resolve:1188:11)
+    at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:708:12)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:657:25)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:640:38)
+    at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:264:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:168:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v20.19.5
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:38:35Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Run playwright script from project dir
+
+`mv /tmp/shot-slide44.mjs "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/shot-slide44.mjs" && cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && node shot-slide44.mjs 2>&1; rm -f shot-slide44.mjs`
+
+```text
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+browserType.launch: Executable doesn't exist at /Users/stugrey/Library/Caches/ms-playwright/chromium_headless_shell-1208/chrome-headless-shell-mac-arm64/chrome-headless-shell
+╔═════════════════════════════════════════════════════════════════════════╗
+║ Looks like Playwright Test or Playwright was just installed or updated. ║
+║ Please run the following command to download new browsers:              ║
+║                                                                         ║
+║     npx playwright install                                              ║
+║                                                                         ║
+║ <3 Playwright Team                                                      ║
+╚═════════════════════════════════════════════════════════════════════════╝
+    at /Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/shot-slide44.mjs:3:32 {
+  name: 'Error'
+}
+
+Node.js v20.19.5
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:38:39Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:38:53Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Check what playwright browsers are installed
+
+`ls ~/Library/Caches/ms-playwright/ 2>/dev/null`
+
+```text
+mcp-chrome
+mcp-chrome-ca025b1
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:38:57Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Inspect mcp-chrome contents
+
+`ls ~/Library/Caches/ms-playwright/mcp-chrome/ 2>/dev/null && find ~/Library/Caches/ms-playwright/mcp-chrome -name "chrome*" -o -name "headless*" 2>/dev/null | head`
+
+```text
+BrowserMetrics-spare.pma
+ChromeFeatureState
+component_crx_cache
+Default
+extensions_crx_cache
+first_party_sets.db
+first_party_sets.db-journal
+GraphiteDawnCache
+GrShaderCache
+Last Version
+Local State
+NativeMessagingHosts
+RunningChromeVersion
+Safe Browsing
+segmentation_platform
+ShaderCache
+SingletonCookie
+SingletonLock
+SingletonSocket
+Variations
+/Users/stugrey/Library/Caches/ms-playwright/mcp-chrome/Default/chrome_cart_db
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:39:00Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:39:09Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Check for installed Chrome/Chromium
+
+`ls "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" 2>/dev/null && echo OK; ls "/Applications/Chromium.app/Contents/MacOS/Chromium" 2>/dev/null && echo OK`
+
+```text
+Exit code 1
+/Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+OK
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:39:31Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Screenshot slide 44 via system Chrome
+
+```bash
+cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && cat > shot-slide44.mjs <<'NODE'
+import { chromium } from 'playwright';
+
+const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' });
+const page = await browser.newPage({ viewport: { width: 1600, height: 1200 } });
+
+page.on('pageerror', e => console.error('PAGEERROR:', e.message));
+page.on('console', m => {
+  if (m.type() === 'error' || m.type() === 'warning') console.log(`[${m.type()}]`, m.text());
+});
+
+await page.goto('http://localhost:5173/', { waitUntil: 'networkidle' });
+
+const lastPageIdx = Math.floor((44 - 1) / 5);
+await page.evaluate((idx) => sessionStorage.setItem('deckPage', String(idx)), lastPageIdx);
+await page.reload({ waitUntil: 'networkidle' });
+await page.waitForTimeout(1500);
+
+const slide44 = page.locator('#slide-44');
+await slide44.waitFor({ state: 'visible', timeout: 5000 });
+await slide44.screenshot({ path: '/tmp/slide44.png' });
+console.log('shot saved to /tmp/slide44.png');
+
+await browser.close();
+NODE
+node shot-slide44.mjs 2>&1
+rm -f shot-slide44.mjs
+```
+
+```text
+[error] Failed to load resource: the server responded with a status of 404 (Not Found)
+[warning] RGBELoader has been deprecated. Please use HDRLoader instead.
+[warning] RGBELoader has been deprecated. Please use HDRLoader instead.
+shot saved to /tmp/slide44.png
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:39:35Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `/tmp/slide44.png`
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:39:49Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:40:01Z)**_
+
+Slide 44 renders correctly. All 6 covers loaded, the closing question is prominent with "build and control" highlighted in coral, the QR code sits top-right with the LinkedIn URL label, and lens markers + page number are in place.
+
+## What I added
+
+- **`deck-generator/public/book-covers/`** — 6 covers fetched from Open Library (power-and-progress, enshittification, supremacy, empire-of-ai, pop, boom) plus `linkedin-qr.png` generated from api.qrserver.com.
+- **`src/layouts.js`** — new `readingGridCovers` layout function + registration in `layoutRegistry`.
+- **`src/main.js`** — `further-reading` added to `LAYOUT_OPTIONS` and `EDITABLE_FIELDS`.
+- **`src/style.css`** — new `.reading-grid-covers` layout block (closing question, 6-cover flex row, QR card, footer with page + lens markers).
+- **`config.json`** — `"further-reading": "reading-grid-covers"` layout mapping.
+- **`content.json`** — appended slide 44 with closing question verbatim from slide 43, highlight `"build and control"`, and QR label `"Connect — linkedin.com/in/stuartgrey"`.
+
+## Notes
+
+- **Enshittification cover** is the square audiobook edition — it reads clearly at a distance but has a different aspect ratio. The layout `object-fit: contain`s it so it letterboxes inside the same 2:3 card shape. If you prefer the UK hardcover instead, drop a replacement JPG at `public/book-covers/enshittification.jpg` and reload.
+- **Supremacy** pulled a UK edition cover; if you want the US hardcover, same swap.
+- The slide reuses your existing closing question — you can edit the text in the panel (fields: `section`, `closing_question`, `closing_highlight`) without touching `content.json`.
+- Refresh your browser to see it — dev server already picked up the HMR.
+
+---
+
+_**User (2026-04-14 18:40:52Z)**_
+
+Try harder to find the proper book cover of Enshittification. Also, I don't like the book covers being set within the white bounding boxes. Please just make them stand alone. Can try and make better use of the space and add a small further reading subtitle next to the books.
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-14 18:41:00Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:41:01Z)**_
+
+I'll start by hunting for the proper Enshittification hardcover and then tackle the layout.
+
+_**Agent (claude-opus-4-6 2026-04-14 18:41:55Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Inspect all Enshittification editions
+
+```bash
+cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && cat > /tmp/hunt-enshit.mjs <<'NODE'
+// Inspect all Open Library editions of the Enshittification work.
+// The first hit was cover_i=15170236 which is the audiobook square cover.
+// We want a hardcover with a 2:3 aspect.
+
+const searchUrl = 'https://openlibrary.org/search.json?title=Enshittification&author=Doctorow&limit=30';
+const s = await (await fetch(searchUrl)).json();
+console.log('docs:', s.docs?.length);
+for (const d of (s.docs || [])) {
+  console.log(`\n- work: ${d.key}`);
+  console.log(`  title: ${d.title}`);
+  console.log(`  author: ${(d.author_name||[]).join(', ')}`);
+  console.log(`  first cover_i: ${d.cover_i}`);
+  console.log(`  isbn sample: ${(d.isbn||[]).slice(0,6).join(', ')}`);
+  console.log(`  publisher sample: ${(d.publisher||[]).slice(0,6).join(' | ')}`);
+}
+
+// Fetch editions endpoint for the main work to see ALL covers
+const workKey = s.docs?.[0]?.key;
+if (workKey) {
+  const ed = await (await fetch(`https://openlibrary.org${workKey}/editions.json?limit=50`)).json();
+  console.log(`\n=== editions of ${workKey}: ${ed.entries?.length || 0} ===`);
+  for (const e of (ed.entries || [])) {
+    console.log(`- ${e.title}`);
+    console.log(`  publishers: ${(e.publishers||[]).join(', ')}`);
+    console.log(`  publish_date: ${e.publish_date}`);
+    console.log(`  physical_format: ${e.physical_format || '?'}`);
+    console.log(`  isbn_13: ${(e.isbn_13||[]).join(', ')}`);
+    console.log(`  covers: ${(e.covers||[]).join(', ')}`);
+  }
+}
+NODE
+node /tmp/hunt-enshit.mjs 2>&1 | head -120
+```
+
+```text
+docs: 2
+
+- work: /works/OL42455337W
+  title: Enshittification
+  author: Cory Doctorow
+  first cover_i: 15170236
+  isbn sample: 
+  publisher sample: 
+
+- work: /works/OL44544479W
+  title: Enshittification
+  author: Cory Doctorow
+  first cover_i: undefined
+  isbn sample: 
+  publisher sample: 
+
+=== editions of /works/OL42455337W: 4 ===
+- Enshittification
+  publishers: Macmillan Audio
+  publish_date: October 27, 2025
+  physical_format: digital audio
+  isbn_13: 9781250417602
+  covers: 15170236
+- Enshittification
+  publishers: SD Books
+  publish_date: 2025
+  physical_format: ?
+  isbn_13: 9781836742227
+  covers: 15157911
+- Enshittification
+  publishers: MCD / Farrar, Straus and Giroux
+  publish_date: Oct 07, 2025
+  physical_format: hardcover
+  isbn_13: 9780374619329
+  covers: 15096926
+- Enshittification
+  publishers: Farrar, Straus & Giroux
+  publish_date: 2025
+  physical_format: eBook
+  isbn_13: 9780374619336
+  covers: 15136120
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:41:57Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:41:58Z)**_
+
+Found the hardcover. Cover 15096926 is the Farrar, Straus & Giroux hardcover edition. Downloading.
+
+_**Agent (claude-opus-4-6 2026-04-14 18:42:01Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Download hardcover Enshittification
+
+`cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && curl -s "https://covers.openlibrary.org/b/id/15096926-L.jpg?default=false" -o public/book-covers/enshittification.jpg && file public/book-covers/enshittification.jpg && ls -l public/book-covers/enshittification.jpg`
+
+```text
+public/book-covers/enshittification.jpg: JPEG image data, JFIF standard 1.01, aspect ratio, density 1x1, segment length 16, baseline, precision 8, 329x500, components 3
+-rw-r--r--@ 1 stugrey  staff  39313 14 Apr 19:42 public/book-covers/enshittification.jpg
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:42:04Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./deck-generator/public/book-covers/enshittification.jpg`
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:42:07Z)**_
+
+Proper hardcover — white background, 2:3 aspect. Now the layout changes: drop the card backgrounds on covers, tighten the layout, and add a "further reading" sublabel next to the books row.
+
+_**Agent (claude-opus-4-6 2026-04-14 18:42:08Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./deck-generator/src/layouts.js`
+
+```text
+263	export function readingGridCovers(slide, page) {
+264	  const books = Array.isArray(slide.books) ? slide.books : [];
+265	  const cards = books.map(b => `
+266	    <figure class="reading-book">
+267	      <div class="reading-book-cover">
+268	        ${b.cover ? `<img src="/${b.cover}" alt="${(b.title || '').replace(/"/g, '&quot;')} cover">` : ''}
+269	      </div>
+270	      <figcaption>
+271	        <div class="reading-book-title">${b.title || ''}</div>
+272	        <div class="reading-book-authors">${b.authors || ''}</div>
+273	      </figcaption>
+274	    </figure>
+275	  `).join('');
+276	
+277	  const quoteText = slide.closing_question
+278	    ? slide.closing_question.replace(
+279	        new RegExp(`(${escapeRegex(slide.closing_highlight)})`, 'gi'),
+280	        '<span class="highlight">$1</span>',
+281	      )
+282	    : '';
+283	
+284	  const qr = slide.qr || {};
+285	  const qrBlock = qr.image ? `
+286	    <div class="reading-qr">
+287	      <img src="/${qr.image}" alt="${(qr.label || 'QR code').replace(/"/g, '&quot;')}">
+288	      <div class="reading-qr-label">${qr.label || ''}</div>
+289	    </div>
+290	  ` : '';
+291	
+292	  return `
+293	    <div class="slide-inner reading-grid-covers">
+294	      <div class="reading-nav">${slide.section || ''}</div>
+295	      <div class="reading-top">
+296	        <div class="reading-quote">${quoteText}</div>
+297	        ${qrBlock}
+298	      </div>
+299	      <div class="reading-books">${cards}</div>
+300	      <div class="reading-footer">
+301	        <span class="page-number">${String(page).padStart(2, '0')}</span>
+302	        ${renderLensMarkers(slide)}
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:43:15Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:43:16Z)**_
+
+Now the layout edits. I'll restructure so the closing question fills the top, the books row gets most of the vertical space, covers float without boxes, and a small label+subtitle sits to the left of the books.
+
+_**Agent (claude-opus-4-6 2026-04-14 18:43:26Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/src/layouts.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:43:29Z)**_
+
+Now replace the CSS block:
+
+_**Agent (claude-opus-4-6 2026-04-14 18:43:57Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:44:00Z)**_
+
+Add the `section_subtitle` field to the slide content and make it editable:
+
+_**Agent (claude-opus-4-6 2026-04-14 18:44:02Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/src/main.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:44:08Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Add section_subtitle to the slide
+
+```bash
+cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && node -e '
+const fs = require("fs");
+const j = JSON.parse(fs.readFileSync("content.json","utf8"));
+const last = j.slides[j.slides.length-1];
+if (last.type !== "further-reading") { console.error("last slide is not further-reading"); process.exit(1); }
+last.section_subtitle = "The six books shaping this talk";
+fs.writeFileSync("content.json", JSON.stringify(j, null, 2) + "\n");
+console.log("added section_subtitle");
+'
+```
+
+```text
+added section_subtitle
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:44:25Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Re-screenshot slide 44
+
+```bash
+cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && cat > shot-slide44.mjs <<'NODE'
+import { chromium } from 'playwright';
+const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' });
+const page = await browser.newPage({ viewport: { width: 1600, height: 1200 } });
+page.on('pageerror', e => console.error('PAGEERROR:', e.message));
+page.on('console', m => { if (m.type() === 'error') console.log(`[${m.type()}]`, m.text()); });
+await page.goto('http://localhost:5173/', { waitUntil: 'networkidle' });
+const lastPageIdx = Math.floor((44 - 1) / 5);
+await page.evaluate((idx) => sessionStorage.setItem('deckPage', String(idx)), lastPageIdx);
+await page.reload({ waitUntil: 'networkidle' });
+await page.waitForTimeout(1500);
+const slide44 = page.locator('#slide-44');
+await slide44.waitFor({ state: 'visible', timeout: 5000 });
+await slide44.screenshot({ path: '/tmp/slide44.png' });
+console.log('ok');
+await browser.close();
+NODE
+node shot-slide44.mjs 2>&1; rm -f shot-slide44.mjs
+```
+
+```text
+[error] Failed to load resource: the server responded with a status of 404 (Not Found)
+ok
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:44:28Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `/tmp/slide44.png`
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:44:43Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:44:47Z)**_
+
+Screenshot looks clean. Let me read it against the asks:
+
+- **Enshittification hardcover** — now showing the proper Farrar, Straus & Giroux hardcover (2:3, white bg, "Cory Doctorow" at bottom).
+- **No bounding boxes** — covers float free, no backgrounds or shadows.
+- **Better use of space** — closing question is now ~50% bigger, covers fill more vertical room, no wasted top nav strip.
+- **Subtitle next to books** — "FURTHER READING / The six books shaping this talk" sits to the left of the row, with a coral rule above it.
+
+Six covers visible with titles + authors. Edit the subtitle text in the slide panel (field: `section_subtitle`) if you want a different line.
+
+---
+
+_**User (2026-04-14 18:45:14Z)**_
+
+Remove the slide number, the horizontal line, and the title marks to make more space because I really liked the cover to be a bit larger. The top half is fine, but the bottom half needs more room to breathe.
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-14 18:45:24Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:45:30Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/src/layouts.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:45:37Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:45:56Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:46:11Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Re-screenshot after removing footer
+
+```bash
+cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && cat > shot-slide44.mjs <<'NODE'
+import { chromium } from 'playwright';
+const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' });
+const page = await browser.newPage({ viewport: { width: 1600, height: 1200 } });
+page.on('pageerror', e => console.error('PAGEERROR:', e.message));
+await page.goto('http://localhost:5173/', { waitUntil: 'networkidle' });
+await page.evaluate((idx) => sessionStorage.setItem('deckPage', String(idx)), Math.floor((44 - 1) / 5));
+await page.reload({ waitUntil: 'networkidle' });
+await page.waitForTimeout(1500);
+await page.locator('#slide-44').screenshot({ path: '/tmp/slide44.png' });
+await browser.close();
+NODE
+node shot-slide44.mjs 2>&1; rm -f shot-slide44.mjs
+```
+
+```text
+(Bash completed with no output)
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:46:14Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `/tmp/slide44.png`
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:46:34Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:46:35Z)**_
+
+Good — covers visibly bigger. Two remaining polish items: the label "FURTHER READING" wraps and its vertical alignment still references the removed footer. Let me tighten that.
+
+_**Agent (claude-opus-4-6 2026-04-14 18:46:39Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:46:53Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Re-screenshot
+
+```bash
+cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && cat > shot-slide44.mjs <<'NODE'
+import { chromium } from 'playwright';
+const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' });
+const page = await browser.newPage({ viewport: { width: 1600, height: 1200 } });
+await page.goto('http://localhost:5173/', { waitUntil: 'networkidle' });
+await page.evaluate((idx) => sessionStorage.setItem('deckPage', String(idx)), Math.floor((44 - 1) / 5));
+await page.reload({ waitUntil: 'networkidle' });
+await page.waitForTimeout(1500);
+await page.locator('#slide-44').screenshot({ path: '/tmp/slide44.png' });
+await browser.close();
+NODE
+node shot-slide44.mjs 2>&1; rm -f shot-slide44.mjs
+```
+
+```text
+(Bash completed with no output)
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:46:56Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `/tmp/slide44.png`
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:47:00Z)**_
+
+Done. Removed the page number, horizontal rule, and lens markers (the "title marks"). Covers are now noticeably larger, "FURTHER READING" sits on one line with a coral rule above it, and the subtitle "The six books shaping this talk" fits cleanly next to the books row.
+
+---
+
+_**User (2026-04-14 18:48:20Z)**_
+
+It's much better, but I would like the covers all aligned vertically.
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-14 18:49:12Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:49:14Z)**_
+
+The uneven heights come from the "Byrne Hobart & Tobias Huber" caption wrapping to 2 lines, which shrinks Boom's cover relative to the others. I'll reserve caption space so all covers share one baseline, and give the figures equal widths.
+
+_**Agent (claude-opus-4-6 2026-04-14 18:49:18Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:49:40Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Re-screenshot after alignment fix
+
+```bash
+cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && cat > shot-slide44.mjs <<'NODE'
+import { chromium } from 'playwright';
+const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' });
+const page = await browser.newPage({ viewport: { width: 1600, height: 1200 } });
+await page.goto('http://localhost:5173/', { waitUntil: 'networkidle' });
+await page.evaluate((idx) => sessionStorage.setItem('deckPage', String(idx)), Math.floor((44 - 1) / 5));
+await page.reload({ waitUntil: 'networkidle' });
+await page.waitForTimeout(1500);
+await page.locator('#slide-44').screenshot({ path: '/tmp/slide44.png' });
+await browser.close();
+NODE
+node shot-slide44.mjs 2>&1; rm -f shot-slide44.mjs
+```
+
+```text
+(Bash completed with no output)
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:49:42Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `/tmp/slide44.png`
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:49:45Z)**_
+
+All six covers now share the same top and bottom baseline. Boom's two-line author caption no longer squeezes its cover shorter than the others, and the equal-width figures keep the row cleanly gridded.
+
+---
+
+_**User (2026-04-14 18:50:20Z)**_
+
+Can you make the QR code a bit bigger and put a connecting LinkedIn underneath it? We don't need the full URL, cause realistically people aren't going to type that in, so maybe my name again will be useful. I'll let you decide.
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-14 18:50:35Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:50:35Z)**_
+
+I'll bump the QR size and change the label to "Connect on LinkedIn" / **Stuart Grey** — two-tier so the name reads as the prominent piece.
+
+_**Agent (claude-opus-4-6 2026-04-14 18:50:39Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/src/layouts.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:50:48Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:50:53Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Update QR label and name in content.json
+
+```bash
+cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && node -e '
+const fs = require("fs");
+const j = JSON.parse(fs.readFileSync("content.json","utf8"));
+const last = j.slides[j.slides.length-1];
+last.qr = { image: "book-covers/linkedin-qr.png", label: "Connect on LinkedIn", name: "Stuart Grey" };
+fs.writeFileSync("content.json", JSON.stringify(j, null, 2) + "\n");
+console.log("updated qr label + name");
+'
+```
+
+```text
+updated qr label + name
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:51:14Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Re-screenshot
+
+```bash
+cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && cat > shot-slide44.mjs <<'NODE'
+import { chromium } from 'playwright';
+const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' });
+const page = await browser.newPage({ viewport: { width: 1600, height: 1200 } });
+await page.goto('http://localhost:5173/', { waitUntil: 'networkidle' });
+await page.evaluate((idx) => sessionStorage.setItem('deckPage', String(idx)), Math.floor((44 - 1) / 5));
+await page.reload({ waitUntil: 'networkidle' });
+await page.waitForTimeout(1500);
+await page.locator('#slide-44').screenshot({ path: '/tmp/slide44.png' });
+await browser.close();
+NODE
+node shot-slide44.mjs 2>&1; rm -f shot-slide44.mjs
+```
+
+```text
+(Bash completed with no output)
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:51:17Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `/tmp/slide44.png`
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:51:21Z)**_
+
+QR is visibly larger and the caption now reads `CONNECT ON LINKEDIN` above **Stuart Grey** as the prominent line. Book row alignment unchanged.
+
+---
+
+_**User (2026-04-14 18:52:04Z)**_
+
+That's great. Remove the Stuart Grey as a separate thing. Also remove the line "the six books shaping this talk; further reading is enough".
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-14 18:52:09Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 18:52:11Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Remove qr.name and section_subtitle from slide
+
+```bash
+cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && node -e '
+const fs = require("fs");
+const j = JSON.parse(fs.readFileSync("content.json","utf8"));
+const last = j.slides[j.slides.length-1];
+delete last.qr.name;
+delete last.section_subtitle;
+fs.writeFileSync("content.json", JSON.stringify(j, null, 2) + "\n");
+console.log("removed qr.name and section_subtitle");
+'
+```
+
+```text
+removed qr.name and section_subtitle
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:52:28Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Re-screenshot
+
+```bash
+cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && cat > shot-slide44.mjs <<'NODE'
+import { chromium } from 'playwright';
+const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' });
+const page = await browser.newPage({ viewport: { width: 1600, height: 1200 } });
+await page.goto('http://localhost:5173/', { waitUntil: 'networkidle' });
+await page.evaluate((idx) => sessionStorage.setItem('deckPage', String(idx)), Math.floor((44 - 1) / 5));
+await page.reload({ waitUntil: 'networkidle' });
+await page.waitForTimeout(1500);
+await page.locator('#slide-44').screenshot({ path: '/tmp/slide44.png' });
+await browser.close();
+NODE
+node shot-slide44.mjs 2>&1; rm -f shot-slide44.mjs
+```
+
+```text
+(Bash completed with no output)
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:52:31Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `/tmp/slide44.png`
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 18:52:34Z)**_
+
+Done. "Stuart Grey" gone from under the QR (just `CONNECT ON LINKEDIN` now), and the subtitle gone from the left rail (just `FURTHER READING` under the coral rule).

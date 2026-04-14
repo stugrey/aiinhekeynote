@@ -32851,6 +32851,54 @@
           "replaced_at": "2026-04-14T18:20:40.080Z"
         }
       ]
+    },
+    {
+      "type": "further-reading",
+      "section": "Further reading",
+      "closing_question": "We have all the pieces to build and control our own AI systems, so what are we going to build?",
+      "closing_highlight": "build and control",
+      "qr": {
+        "image": "book-covers/linkedin-qr.png",
+        "label": "Connect on LinkedIn"
+      },
+      "books": [
+        {
+          "title": "Power and Progress",
+          "authors": "Daron Acemoglu & Simon Johnson",
+          "cover": "book-covers/power-and-progress.jpg"
+        },
+        {
+          "title": "Enshittification",
+          "authors": "Cory Doctorow",
+          "cover": "book-covers/enshittification.jpg"
+        },
+        {
+          "title": "Supremacy",
+          "authors": "Parmy Olson",
+          "cover": "book-covers/supremacy.jpg"
+        },
+        {
+          "title": "Empire of AI",
+          "authors": "Karen Hao",
+          "cover": "book-covers/empire-of-ai.jpg"
+        },
+        {
+          "title": "Pop!",
+          "authors": "Daniel Gross",
+          "cover": "book-covers/pop.jpg"
+        },
+        {
+          "title": "Boom",
+          "authors": "Byrne Hobart & Tobias Huber",
+          "cover": "book-covers/boom.jpg"
+        }
+      ],
+      "lenses": [
+        "transparency",
+        "distortion",
+        "extraction"
+      ],
+      "id": "furreadx"
     }
   ]
 }

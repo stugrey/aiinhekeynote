@@ -258,6 +258,53 @@ export function statementEditorial(slide) {
   `;
 }
 
+// ─── FURTHER READING LAYOUT ─────────────────────
+
+export function readingGridCovers(slide, page) {
+  const books = Array.isArray(slide.books) ? slide.books : [];
+  const cards = books.map(b => `
+    <figure class="reading-book">
+      ${b.cover ? `<img class="reading-book-cover" src="/${b.cover}" alt="${(b.title || '').replace(/"/g, '&quot;')} cover">` : ''}
+      <figcaption>
+        <div class="reading-book-title">${b.title || ''}</div>
+        <div class="reading-book-authors">${b.authors || ''}</div>
+      </figcaption>
+    </figure>
+  `).join('');
+
+  const quoteText = slide.closing_question
+    ? slide.closing_question.replace(
+        new RegExp(`(${escapeRegex(slide.closing_highlight)})`, 'gi'),
+        '<span class="highlight">$1</span>',
+      )
+    : '';
+
+  const qr = slide.qr || {};
+  const qrBlock = qr.image ? `
+    <div class="reading-qr">
+      <img src="/${qr.image}" alt="${(qr.label || qr.name || 'QR code').replace(/"/g, '&quot;')}">
+      ${qr.label ? `<div class="reading-qr-label">${qr.label}</div>` : ''}
+      ${qr.name ? `<div class="reading-qr-name">${qr.name}</div>` : ''}
+    </div>
+  ` : '';
+
+  return `
+    <div class="slide-inner reading-grid-covers">
+      <div class="reading-top">
+        <div class="reading-quote">${quoteText}</div>
+        ${qrBlock}
+      </div>
+      <div class="reading-books-section">
+        <div class="reading-books-label">
+          <div class="reading-books-kicker">${slide.section || ''}</div>
+          ${slide.section_subtitle ? `<div class="reading-books-sub">${slide.section_subtitle}</div>` : ''}
+        </div>
+        <div class="reading-books">${cards}</div>
+      </div>
+    </div>
+  `;
+}
+
 // ─── HELPERS ────────────────────────────────────
 
 function escapeRegex(str) {
@@ -287,4 +334,7 @@ export const layoutRegistry = {
   // Statement
   'statement-centered':   statementCentered,
   'statement-editorial':  statementEditorial,
+
+  // Further reading
+  'reading-grid-covers':  readingGridCovers,
 };

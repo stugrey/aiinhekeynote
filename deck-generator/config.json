@@ -9,7 +9,8 @@
     "section-divider": "divider-color-burst",
     "content": "content-split-cards",
     "data": "data-big-numbers",
-    "statement": "statement-centered"
+    "statement": "statement-centered",
+    "further-reading": "reading-grid-covers"
   },
   "slideShapes": {
     "0": "droplets",

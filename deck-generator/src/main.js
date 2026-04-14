@@ -73,6 +73,9 @@ const LAYOUT_OPTIONS = {
     { value: 'statement-centered',  label: 'Centered — Superlist' },
     { value: 'statement-editorial', label: 'Editorial — WeTransfer' },
   ],
+  'further-reading': [
+    { value: 'reading-grid-covers', label: 'Covers Grid' },
+  ],
 };
 
 /** Editable text fields per slide type */
@@ -82,6 +85,7 @@ const EDITABLE_FIELDS = {
   'section-divider': ['title', 'subtitle'],
   content:           ['section', 'heading', 'body'],
   data:              ['section', 'heading', 'body'],
+  'further-reading': ['section', 'section_subtitle', 'closing_question', 'closing_highlight'],
 };
 
 /** Stored state */
