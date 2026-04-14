@@ -1,0 +1,12 @@
+/voiceovers/*.webm
+  Content-Type: audio/webm; codecs=opus
+
+/voiceovers/*.m4a
+  Content-Type: audio/mp4; codecs="mp4a.40.2"
+
+/pdf/*.pdf
+  Content-Type: application/pdf
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer-when-downgrade

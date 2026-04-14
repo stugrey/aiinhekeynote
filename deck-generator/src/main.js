@@ -1,6 +1,16 @@
 import { layoutRegistry } from './layouts.js';
 import { shapeRegistry, cleanupShapes } from './shapes.js';
 import { initLensBadgeDroplets } from './shapes-droplets.js';
+import {
+  renderSlide,
+  runPostInits,
+  generateNoiseTexture as renderGenerateNoiseTexture,
+  generatePinstripeTexture as renderGeneratePinstripeTexture,
+  fitStatSizes as renderFitStatSizes,
+  fixStatBlockContrast as renderFixStatBlockContrast,
+  resolvePinstripes as renderResolvePinstripes,
+  luminance as renderLuminance,
+} from './render.js';
 
 const CONFIG_URL = '/config.json';
 const CONTENT_URL = '/content.json';
@@ -114,24 +124,10 @@ function goToPage(page, direction) {
   }
 }
 
-/** Generate a small noise texture, return data URL */
+/** Noise texture data URL — generated once at init, reused for every slide */
 let noiseDataURL = '';
 function generateNoiseTexture() {
-  const size = 512;
-  const canvas = document.createElement('canvas');
-  canvas.width = size;
-  canvas.height = size;
-  const ctx = canvas.getContext('2d');
-  const img = ctx.createImageData(size, size);
-  for (let i = 0; i < img.data.length; i += 4) {
-    const v = Math.floor(Math.random() * 255);
-    img.data[i] = v;
-    img.data[i + 1] = v;
-    img.data[i + 2] = v;
-    img.data[i + 3] = 255;
-  }
-  ctx.putImageData(img, 0, 0);
-  noiseDataURL = canvas.toDataURL('image/png');
+  noiseDataURL = renderGenerateNoiseTexture();
 }
 
 async function init() {
@@ -365,38 +361,9 @@ function renderPagination() {
   document.getElementById('deck').after(createPaginationNav('pagination-bottom'));
 }
 
-/** Generate a pinstripe tile as a data URL for html2canvas export */
+/** Pinstripe tile — wraps the shared helper so call sites don't change */
 function generatePinstripeTexture(direction, color) {
-  const canvas = document.createElement('canvas');
-  const ctx = canvas.getContext('2d');
-
-  if (direction === 'diagonal') {
-    const size = 8;
-    canvas.width = size;
-    canvas.height = size;
-    ctx.strokeStyle = color;
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.moveTo(size, 0);
-    ctx.lineTo(0, size);
-    ctx.stroke();
-    // Wrap the line so the tile repeats seamlessly
-    ctx.beginPath();
-    ctx.moveTo(size + size, 0);
-    ctx.lineTo(0, size + size);
-    ctx.stroke();
-  } else {
-    canvas.width = direction === 'vertical' ? 9 : 1;
-    canvas.height = direction === 'vertical' ? 1 : 9;
-    ctx.fillStyle = color;
-    if (direction === 'vertical') {
-      ctx.fillRect(8, 0, 1, 1);
-    } else {
-      ctx.fillRect(0, 8, 1, 1);
-    }
-  }
-
-  return canvas.toDataURL('image/png');
+  return renderGeneratePinstripeTexture(direction, color);
 }
 
 /** Export a single slide as a PNG download */
@@ -440,6 +407,18 @@ async function exportAllSlides() {
   const totalPages = Math.ceil(totalSlides / SLIDES_PER_PAGE);
   const { default: html2canvas } = await import('html2canvas');
   const pendingSaves = [];
+
+  // Delete stale slide-*.png from the export dirs so the PPTX/PDF builder
+  // doesn't mix old and new takes. Filenames include the slide type, so a
+  // layout/type change leaves ghosts behind unless we clear first.
+  btn.textContent = 'Clearing stale PNGs…';
+  try {
+    const clearRes = await fetch('/api/clear-export', { method: 'POST' });
+    const clearData = await clearRes.json();
+    if (!clearData.ok) console.warn('Clear export failed:', clearData.error);
+  } catch (e) {
+    console.warn('Clear export failed:', e);
+  }
 
   /** Capture all visible slides and fire save requests */
   async function capturePage(pageSlides, startIdx, subdir) {
@@ -511,11 +490,12 @@ async function exportAllSlides() {
 
   // Build PPTX and PDF from the exported PNGs
   btn.textContent = 'Building PPTX + PDF…';
+  let deckBuildOk = false;
   try {
     const buildRes = await fetch('/api/build-deck', { method: 'POST' });
     const buildData = await buildRes.json();
     if (buildData.ok) {
-      btn.textContent = `Done — ${buildData.slides} slides`;
+      deckBuildOk = true;
     } else {
       btn.textContent = 'PNG done, deck failed';
       console.error('Build deck failed:', buildData.error);
@@ -525,10 +505,30 @@ async function exportAllSlides() {
     btn.textContent = 'PNG done, deck failed';
   }
 
+  // Build the standalone public viewer site → dist-site/
+  // Runs after the PPTX/PDF step so the PDF can be bundled as a fallback.
+  if (deckBuildOk) {
+    btn.textContent = 'Building site…';
+    try {
+      const siteRes = await fetch('/api/export-site', { method: 'POST' });
+      const siteData = await siteRes.json();
+      if (siteData.ok) {
+        const mb = (siteData.bytes / 1024 / 1024).toFixed(0);
+        btn.textContent = `Site ready — ${mb} MB`;
+      } else {
+        btn.textContent = 'Site build failed';
+        console.error('Site build failed:', siteData.error || siteData);
+      }
+    } catch (e) {
+      console.error('Site build request failed:', e);
+      btn.textContent = 'Site build failed';
+    }
+  }
+
   // Restore original page
   setPage(savedPage);
   renderDeck();
-  setTimeout(() => { btn.textContent = 'Export All'; btn.disabled = false; }, 3000);
+  setTimeout(() => { btn.textContent = 'Export All'; btn.disabled = false; }, 6000);
 }
 
 /** Save current content + config to server (timestamps backups automatically) */
@@ -1232,66 +1232,14 @@ function renderSingleSlide(slideIndex) {
   }
 }
 
-/** Relative luminance from an rgb() or rgba() string */
-function luminance(cssColor) {
-  const match = cssColor.match(/(\d+),\s*(\d+),\s*(\d+)/);
-  if (!match) return 0;
-  const [r, g, b] = [match[1], match[2], match[3]].map(c => {
-    const s = Number(c) / 255;
-    return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
-  });
-  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
-}
+/** Relative luminance — wraps shared helper */
+function luminance(cssColor) { return renderLuminance(cssColor); }
 
-/** Scale stat values so the longest text fills its block width, and all others match that size */
-function fitStatSizes() {
-  document.querySelectorAll('.data-big-numbers').forEach(slide => {
-    const values = slide.querySelectorAll('.stat-value');
-    if (values.length === 0) return;
+/** Scale stat values — wraps shared helper (document-scoped) */
+function fitStatSizes() { renderFitStatSizes(document); }
 
-    // Reset and prevent wrapping for measurement
-    values.forEach(v => { v.style.fontSize = ''; v.style.whiteSpace = 'nowrap'; });
-
-    // Find the size that makes the longest text exactly fill its block
-    let minFitted = Infinity;
-    values.forEach(v => {
-      const block = v.closest('.stat-block');
-      const padL = parseFloat(getComputedStyle(block).paddingLeft);
-      const padR = parseFloat(getComputedStyle(block).paddingRight);
-      const available = block.clientWidth - padL - padR;
-      const currentSize = parseFloat(getComputedStyle(v).fontSize);
-      const textWidth = v.scrollWidth;
-      if (textWidth > 0) {
-        minFitted = Math.min(minFitted, currentSize * (available / textWidth));
-      }
-    });
-
-    if (minFitted !== Infinity) {
-      // Cap at 55% of block height so label text still fits
-      const firstBlock = values[0].closest('.stat-block');
-      const blockH = firstBlock.clientHeight - parseFloat(getComputedStyle(firstBlock).paddingTop) - parseFloat(getComputedStyle(firstBlock).paddingBottom);
-      const finalSize = Math.min(minFitted, blockH * 0.55);
-      values.forEach(v => v.style.fontSize = `${finalSize}px`);
-    }
-  });
-}
-
-/** Set adaptive text colour on stat blocks and add border when block disappears into slide bg */
-function fixStatBlockContrast() {
-  document.querySelectorAll('.stat-block').forEach(block => {
-    const blockL = luminance(getComputedStyle(block).backgroundColor);
-    block.style.color = blockL > 0.18 ? '#1B2A3D' : '#FFFFFF';
-
-    // Add border when block blends into slide background
-    const slide = block.closest('.slide-inner');
-    if (slide) {
-      const slideL = luminance(getComputedStyle(slide).backgroundColor);
-      const contrast = Math.abs(blockL - slideL);
-      block.style.outline = contrast < 0.1 ? '1px solid rgba(255,255,255,0.15)' : '';
-      block.style.outlineOffset = contrast < 0.1 ? '-1px' : '';
-    }
-  });
-}
+/** Adaptive stat-block contrast — wraps shared helper (document-scoped) */
+function fixStatBlockContrast() { renderFixStatBlockContrast(document); }
 
 /** Render all slides into the #deck container */
 function renderDeck() {
@@ -1313,20 +1261,12 @@ function renderDeck() {
     const i = startIdx + j;
     const page = i + 1;
 
-    // Determine layout for this slide type
     const layoutName = config.layouts[slide.type] || Object.values(config.layouts)[0];
-    const layoutFn = layoutRegistry[layoutName];
 
-    if (!layoutFn) {
-      console.warn(`Layout "${layoutName}" not found for slide type "${slide.type}"`);
-      return;
-    }
-
-    // Create wrapper
+    // ── Editor chrome: wrapper + label row + edit panel ─────────────
     const wrapper = document.createElement('div');
     wrapper.className = 'slide-wrapper';
 
-    // Label + per-slide shape control + export button
     const labelRow = document.createElement('div');
     labelRow.className = 'slide-label';
 
@@ -1365,12 +1305,10 @@ function renderDeck() {
     dupeBtn.textContent = 'Duplicate';
     dupeBtn.addEventListener('click', () => {
       const clone = JSON.parse(JSON.stringify(slide));
-      // Fresh stable id and no audio — clones start as blank takes
       const existingIds = new Set(currentContent.slides.map(s => s.id).filter(Boolean));
       clone.id = generateSlideId(existingIds);
       delete clone.voiceover;
       currentContent.slides.splice(i + 1, 0, clone);
-      // Shift per-slide shape overrides after the insertion point
       const shapes = currentConfig.slideShapes;
       const total = currentContent.slides.length;
       for (let s = total - 1; s > i + 1; s--) {
@@ -1397,50 +1335,16 @@ function renderDeck() {
     labelRow.appendChild(exportBtn);
     wrapper.appendChild(labelRow);
 
-    // Collapsible edit panel
     const editPanel = buildEditPanel(slide, i);
     wrapper.appendChild(editPanel);
 
-    // Create the slide container
-    const slideEl = document.createElement('div');
-    slideEl.className = 'slide';
-    slideEl.id = `slide-${page}`;
-    slideEl.dataset.palette = config.palette;
-    slideEl.dataset.typography = config.typography;
-    slideEl.dataset.pinstripes = config.pinstripes;
-
-    // Render layout
-    slideEl.innerHTML = layoutFn(slide, page);
-
-    // Inject shape overlays (inside the slide-inner)
-    const slideShapeKey = config.slideShapes[i] ?? config.shapes;
-    const shapeFn = shapeRegistry[slideShapeKey] || shapeRegistry.none;
-    const shapeResult = shapeFn(i);
-
-    const inner = slideEl.querySelector('.slide-inner');
-
-    if (shapeResult && inner) {
-      // Shape can return a plain HTML string or { html, init }
-      const html = typeof shapeResult === 'string' ? shapeResult : shapeResult.html;
-      if (html) inner.insertAdjacentHTML('afterbegin', html);
-
-      // Queue init callback if present (needs DOM to be attached first)
-      if (typeof shapeResult === 'object' && shapeResult.init) {
-        postInits.push(() => shapeResult.init(slideEl));
-      }
-    }
-
-    // Inject texture overlays as real DOM elements so html2canvas
-    // captures them for WebGL refraction through water droplets
-    if (inner) {
-      if (config.pinstripes !== 'none') {
-        inner.insertAdjacentHTML('afterbegin', '<div class="shape-overlay texture-pinstripes"></div>');
-      }
-      inner.insertAdjacentHTML(
-        'afterbegin',
-        `<div class="shape-overlay texture-noise" style="background-image:url(${noiseDataURL});opacity:${config.noise / 100}"></div>`,
-      );
-    }
+    // ── Shared render: slide body + shape + textures ────────────────
+    const slideEl = renderSlide(slide, page, {
+      config,
+      noiseDataURL,
+      postInits,
+      slideIndex: i,
+    });
 
     wrapper.appendChild(slideEl);
     deck.appendChild(wrapper);
@@ -1453,28 +1357,11 @@ function renderDeck() {
   // Resolve pinstripes from CSS gradients to tiled images so html2canvas
   // captures them — both for WebGL droplet content textures and PNG export.
   // Must run BEFORE postInits (which capture slide content for droplet refraction).
-  document.querySelectorAll('.texture-pinstripes').forEach(el => {
-    const slide = el.closest('.slide');
-    if (!slide) return;
-    const dir = slide.dataset.pinstripes;
-    if (!dir || dir === 'none') return;
-    const color = getComputedStyle(el).color;
-    const url = generatePinstripeTexture(dir, color);
-    el.style.background = `url(${url}) repeat`;
-  });
+  renderResolvePinstripes(document);
 
-  // Run post-DOM init callbacks serially (avoids concurrent html2canvas
-  // captures and WebGL context pressure)
-  // Store promise so exportAllSlides can await it
-  deckPostInitsReady = new Promise(resolve => {
-    requestAnimationFrame(async () => {
-      for (const fn of postInits) {
-        await fn();
-      }
-      await initLensBadgeDroplets();
-      resolve();
-    });
-  });
+  // Run post-DOM init callbacks serially. Store promise so exportAllSlides
+  // can await it.
+  deckPostInitsReady = runPostInits(postInits);
 
   renderPagination();
 }

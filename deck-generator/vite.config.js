@@ -266,6 +266,84 @@ function savePlugin() {
         }
       });
 
+      // Clear stale slide-*.png files from export/16x9/ and export/4x3/.
+      // Without this, slides whose type changed (e.g. content → statement)
+      // leave old PNGs behind, and build-deck bundles BOTH into the PPTX/PDF.
+      server.middlewares.use('/api/clear-export', async (req, res) => {
+        if (req.method !== 'POST') { res.statusCode = 405; res.end('Method not allowed'); return; }
+        try {
+          const dirs = [path.resolve('export/16x9'), path.resolve('export/4x3')];
+          let removed = 0;
+          for (const dir of dirs) {
+            if (!fs.existsSync(dir)) continue;
+            for (const name of fs.readdirSync(dir)) {
+              if (/^slide-\d+-[a-z0-9-]+\.png$/i.test(name)) {
+                fs.unlinkSync(path.join(dir, name));
+                removed++;
+              }
+            }
+          }
+          res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify({ ok: true, removed }));
+        } catch (e) {
+          res.statusCode = 500;
+          res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify({ ok: false, error: e.message }));
+        }
+      });
+
+      // Build the standalone public viewer → dist-site/
+      // Runs scripts/build-viewer.js which transcodes voiceovers and then
+      // invokes `vite build --config vite.viewer.config.js`. Streams
+      // stdout/stderr into the response as text so the caller can show
+      // progress on the Export All button.
+      server.middlewares.use('/api/export-site', async (req, res) => {
+        if (req.method !== 'POST') { res.statusCode = 405; res.end('Method not allowed'); return; }
+
+        const { spawn } = await import('node:child_process');
+        const scriptPath = path.resolve('scripts/build-viewer.js');
+        if (!fs.existsSync(scriptPath)) {
+          res.statusCode = 500;
+          res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify({ ok: false, error: 'scripts/build-viewer.js not found' }));
+          return;
+        }
+
+        const child = spawn(process.execPath, [scriptPath], { cwd: process.cwd() });
+        let stdout = '';
+        let stderr = '';
+        child.stdout.on('data', d => { stdout += d.toString(); });
+        child.stderr.on('data', d => { stderr += d.toString(); });
+
+        child.on('close', code => {
+          res.setHeader('Content-Type', 'application/json');
+          if (code === 0) {
+            // Compute dist-site byte total for the button label
+            const dist = path.resolve('dist-site');
+            let bytes = 0;
+            const walk = (dir) => {
+              if (!fs.existsSync(dir)) return;
+              for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+                const p = path.join(dir, e.name);
+                if (e.isDirectory()) walk(p);
+                else { try { bytes += fs.statSync(p).size; } catch {} }
+              }
+            };
+            walk(dist);
+            res.end(JSON.stringify({ ok: true, path: dist, bytes, stdout }));
+          } else {
+            res.statusCode = 500;
+            res.end(JSON.stringify({ ok: false, code, error: stderr.slice(-2000) || 'build failed' }));
+          }
+        });
+
+        child.on('error', e => {
+          res.statusCode = 500;
+          res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify({ ok: false, error: e.message }));
+        });
+      });
+
       // Delete a per-slide voiceover audio file
       server.middlewares.use('/api/delete-voiceover', async (req, res) => {
         if (req.method !== 'POST') { res.statusCode = 405; res.end('Method not allowed'); return; }

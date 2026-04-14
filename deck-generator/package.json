@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "export": "node scripts/export.js"
+    "export": "node scripts/export.js",
+    "transcode": "node scripts/transcode-voiceovers.js",
+    "build:viewer": "vite build --config vite.viewer.config.js",
+    "publish:site": "node scripts/build-viewer.js"
   },
   "devDependencies": {
     "playwright": "^1.48.0",
