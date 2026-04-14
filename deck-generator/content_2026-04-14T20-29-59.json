@@ -5459,15 +5459,15 @@
       "stats": [
         {
           "value": "95%",
-          "label": "of UK FT UG students use AI"
+          "label": "of UK full-time undergraduates use AI in at least one way"
         },
         {
           "value": "94%",
-          "label": "use gen-AI to help with assessed work"
+          "label": "use generative AI to help with assessed work"
         },
         {
           "value": "65%",
-          "label": "say assessment has changed due to AI"
+          "label": "say assessment has changed significantly because of AI"
         }
       ],
       "notes": {
@@ -9668,15 +9668,15 @@
       "stats": [
         {
           "value": "68%",
-          "label": "top three providers' share of the public cloud market"
+          "label": "top three providers' share of the public cloud market in Q4 2025"
         },
         {
-          "value": "$180bn",
-          "label": "Alphabet's 2026 capital expenditure"
+          "value": "$175-185bn",
+          "label": "Alphabet's guided 2026 capital expenditure range, with most CapEx invested in technical infrastructure"
         },
         {
           "value": "~$1tn",
-          "label": "announced multi-year AI infrastructure deals"
+          "label": "announced multi-year AI infrastructure deals and project ceilings shaping the frontier stack"
         }
       ],
       "notes": {

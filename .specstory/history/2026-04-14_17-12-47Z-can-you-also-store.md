@@ -17423,3 +17423,504 @@ slide-44-further-reading.png  (fresh)
 ## Next steps
 
 Your next **Export All** will now produce exactly 44 slides in the PPTX, 44 in the PDF, and a matching `dist-site/`. No need to re-run anything unless you want to refresh the published artifacts right now — if you do, click Export All and it'll flow through: `Clearing stale PNGs…` → `16:9 page 1/9…` → `4:3 page 1/9…` → `Optimizing PNGs…` → `Building PPTX + PDF…` → `Building site…` → `Site ready — 68 MB`.
+
+---
+
+_**User (2026-04-14 20:24:04Z)**_
+
+for the content-split-cards slides, can you hide the body text and instead just show the heading on th left and bump up the font size?
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-14 20:24:10Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 20:24:11Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./deck-generator/src/layouts.js`
+
+```text
+96	export function contentSplitCards(slide, page) {
+97	  const colors = [
+98	    'var(--color-accent-1)',
+99	    'var(--color-accent-2)',
+100	    'var(--color-accent-3)',
+101	    'var(--color-accent-4)',
+102	  ];
+103	
+104	  const cards = (slide.points || []).map((point, i) => `
+105	    <div class="evidence-card">
+106	      <div class="card-icon" style="background: ${colors[i % colors.length]}"></div>
+107	      <div class="card-text">
+108	        <h3>${point.title}</h3>
+109	      </div>
+110	    </div>
+111	  `).join('');
+112	
+113	  return `
+114	    <div class="slide-inner content-split-cards">
+115	      <div class="content-nav">${slide.section || ''}</div>
+116	      <div class="content-body-area">
+117	        <div class="content-left">
+118	          <h2>${slide.heading}</h2>
+119	          ${slide.body ? `<p>${slide.body}</p>` : ''}
+120	        </div>
+121	        <div class="content-right">
+122	          ${cards}
+123	        </div>
+124	      </div>
+125	      <div class="content-footer">
+126	        <span class="page-number">${String(page).padStart(2, '0')}</span>
+127	        ${renderLensMarkers(slide)}
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 20:24:17Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/src/layouts.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 20:24:23Z)**_
+
+Now bump the heading size in the CSS. Current rule is `font-size: clamp(1.2rem, 2.2cqi, var(--heading-size-md))` — let me enlarge it.
+
+_**Agent (claude-opus-4-6 2026-04-14 20:24:27Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 20:24:32Z)**_
+
+Let me take a screenshot of a content-split-cards slide to verify.
+
+_**Agent (claude-opus-4-6 2026-04-14 20:24:35Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Find first content slide
+
+```bash
+cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && node -e '
+const j = JSON.parse(require("fs").readFileSync("content.json","utf8"));
+// find a content slide — default content layout is content-split-cards per config.json
+for (let i = 0; i < j.slides.length; i++) {
+  if (j.slides[i].type === "content") { console.log(i+1, "|", j.slides[i].heading); break; }
+}
+'
+```
+
+```text
+10 | AI is moving from visible tools to invisible systems
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 20:25:08Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Screenshot updated content-split-cards slide
+
+```bash
+cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && cat > shot-split.mjs <<'NODE'
+import { chromium } from 'playwright';
+const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' });
+const page = await browser.newPage({ viewport: { width: 1600, height: 1000 } });
+await page.goto('http://localhost:5173/viewer.html#slide=10', { waitUntil: 'networkidle' });
+await page.locator('#start-btn').click();
+await page.waitForTimeout(2500);
+await page.keyboard.press('c'); // hide captions for a clean shot
+await page.waitForTimeout(300);
+await page.locator('#slide-stage > .slide').screenshot({ path: '/tmp/split-slide10.png' });
+await browser.close();
+NODE
+node shot-split.mjs 2>&1; rm -f shot-split.mjs
+```
+
+```text
+(Bash completed with no output)
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 20:25:26Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `/tmp/split-slide10.png`
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 20:25:33Z)**_
+
+Body text is gone, heading is notably larger (now using `heading-size-lg` as the cap with a 3.6cqi ramp), and the three evidence cards are unchanged on the right. Section nav + page number + lens marker all intact.
+
+Edits: `src/layouts.js:119` (removed body `<p>`) and `src/style.css:866` (bumped `h2` size + removed bottom margin since there's no body below).
+
+---
+
+_**User (2026-04-14 20:28:49Z)**_
+
+Do the same for data-big-numbers
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-14 20:28:56Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 20:28:56Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./deck-generator/src/layouts.js`
+
+```text
+168	  const bgColors = [
+169	    'var(--color-accent-1)',
+170	    'var(--color-accent-2)',
+171	    'var(--color-accent-3)',
+172	    'var(--color-accent-4)',
+173	  ];
+174	
+175	  const blocks = (slide.stats || []).map((stat, i) => `
+176	    <div class="stat-block" data-accent="${i % bgColors.length}" style="background: ${bgColors[i % bgColors.length]}">
+177	      <div class="stat-value">${stat.value}</div>
+178	      <div class="stat-label">${stat.label}</div>
+179	    </div>
+180	  `).join('');
+181	
+182	  return `
+183	    <div class="slide-inner data-big-numbers">
+184	      <div class="data-nav">${slide.section || ''}</div>
+185	      <div class="data-body">
+186	        <div class="data-left">
+187	          <h2>${slide.heading}</h2>
+188	          ${slide.body ? `<p>${slide.body}</p>` : ''}
+189	        </div>
+190	        <div class="data-right">
+191	          ${blocks}
+192	        </div>
+193	      </div>
+194	      <div class="data-footer">
+195	        <span class="data-page">${String(page).padStart(2, '0')}</span>
+196	        ${renderLensMarkers(slide)}
+197	      </div>
+198	    </div>
+199	  `;
+200	}
+201	
+202	export function dataFullBleed(slide, page) {
+203	  const bgColors = [
+204	    'var(--color-shape-1)',
+205	    'var(--color-shape-2)',
+206	    'var(--color-shape-3)',
+207	    'var(--color-accent-4)',
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 20:29:06Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/src/layouts.js has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 20:29:19Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 20:29:29Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Find first data slide
+
+```bash
+cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && node -e '
+const j = JSON.parse(require("fs").readFileSync("content.json","utf8"));
+for (let i = 0; i < j.slides.length; i++) {
+  if (j.slides[i].type === "data") { console.log(i+1, "|", j.slides[i].heading); break; }
+}
+'
+```
+
+```text
+11 | Student adoption is already mainstream
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 20:30:12Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Screenshot updated data-big-numbers slide
+
+```bash
+cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && cat > shot-data.mjs <<'NODE'
+import { chromium } from 'playwright';
+const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' });
+const page = await browser.newPage({ viewport: { width: 1600, height: 1000 } });
+await page.goto('http://localhost:5173/viewer.html#slide=11', { waitUntil: 'networkidle' });
+await page.locator('#start-btn').click();
+await page.waitForTimeout(2500);
+await page.keyboard.press('c');
+await page.waitForTimeout(300);
+await page.locator('#slide-stage > .slide').screenshot({ path: '/tmp/data-slide11.png' });
+await browser.close();
+NODE
+node shot-data.mjs 2>&1; rm -f shot-data.mjs
+```
+
+```text
+(Bash completed with no output)
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 20:30:18Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `/tmp/data-slide11.png`
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 20:30:31Z)**_
+
+Done. Body gone, heading bumped with the same clamp ramp (`1.8rem → 3.6cqi → heading-size-lg`) and `line-height: 1.1`. The three stat blocks on the right are untouched. Same edits as the content layout: `src/layouts.js:188` and `src/style.css:1073`.
+
+---
+
+_**User (2026-04-14 20:31:46Z)**_
+
+Great, on these same slides can you make teh three pills juts a liitle wider?
+
+---
+
+_**Agent (claude-opus-4-6 2026-04-14 20:32:04Z)**_
+
+_**Agent (claude-opus-4-6 2026-04-14 20:32:05Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./deck-generator/src/style.css`
+
+```text
+851	.content-split-cards .content-body-area {
+852	  display: flex;
+853	  gap: calc(var(--element-gap) * 2);
+854	  flex: 1;
+855	  overflow: hidden;
+856	}
+857	
+858	.content-split-cards .content-left {
+859	  flex: 1;
+860	  display: flex;
+861	  flex-direction: column;
+862	  justify-content: center;
+863	  overflow: hidden;
+864	}
+865	
+866	.content-split-cards .content-left h2 {
+867	  font-family: var(--font-display);
+868	  font-weight: var(--font-display-weight);
+869	  font-size: clamp(1.8rem, 3.6cqi, var(--heading-size-lg));
+870	  line-height: 1.1;
+871	  letter-spacing: var(--heading-spacing);
+872	  text-transform: var(--heading-transform);
+873	  margin-bottom: 0;
+874	}
+875	
+876	.content-split-cards .content-left p {
+877	  font-size: var(--body-size);
+878	  line-height: var(--body-line-height);
+879	  color: var(--color-text-secondary);
+880	  max-width: 42ch;
+881	  overflow: hidden;
+882	}
+883	
+884	.content-split-cards .content-right {
+885	  flex: 1;
+886	  display: flex;
+887	  flex-direction: column;
+888	  gap: 1rem;
+889	  justify-content: center;
+890	}
+891	
+892	.content-split-cards .evidence-card {
+893	  background: var(--color-bg-secondary);
+894	  border-radius: var(--card-border-radius);
+895	  padding: 1.4rem 1.6rem;
+896	  display: flex;
+897	  align-items: center;
+898	  gap: 1rem;
+899	}
+900
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 20:32:11Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 20:32:17Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 20:32:20Z)**_
+
+Now the same for `data-big-numbers`:
+
+_**Agent (claude-opus-4-6 2026-04-14 20:32:21Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./deck-generator/src/style.css`
+
+```text
+1060	.data-big-numbers .data-body {
+1061	  display: flex;
+1062	  gap: calc(var(--element-gap) * 2);
+1063	  align-items: center;
+1064	  flex: 1;
+1065	  overflow: hidden;
+1066	}
+1067	
+1068	.data-big-numbers .data-left {
+1069	  flex: 1;
+1070	  overflow: hidden;
+1071	}
+1072	
+1073	.data-big-numbers .data-left h2 {
+1074	  font-family: var(--font-display);
+1075	  font-weight: var(--font-display-weight);
+1076	  font-size: clamp(1.8rem, 3.6cqi, var(--heading-size-lg));
+1077	  line-height: 1.1;
+1078	  letter-spacing: var(--heading-spacing);
+1079	  text-transform: var(--heading-transform);
+1080	  margin-bottom: 0;
+1081	}
+1082	
+1083	.data-big-numbers .data-left p {
+1084	  font-size: var(--body-size);
+1085	  opacity: 0.65;
+1086	  line-height: var(--body-line-height);
+1087	  max-width: 38ch;
+1088	}
+1089	
+1090	.data-big-numbers .data-right {
+1091	  flex: 1;
+1092	  display: flex;
+1093	  gap: 1rem;
+1094	  align-items: stretch;
+1095	}
+1096	
+1097	.data-big-numbers .stat-block {
+1098	  flex: 1;
+1099	  border-radius: var(--card-border-radius);
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 20:32:27Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 20:32:37Z)**_
+
+<tool-use data-tool-type="write" data-tool-name="Edit"><details>
+<summary>Tool use: **Edit**</summary>
+
+```text
+The file /Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator/src/style.css has been updated successfully.
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 20:34:01Z)**_
+
+<tool-use data-tool-type="shell" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+Screenshot both slide types with wider pills
+
+```bash
+cd "/Users/stugrey/Documents/Student Voice ICD/Conferences+Webinars/Teesside Keynote/deck-generator" && cat > shot-wider.mjs <<'NODE'
+import { chromium } from 'playwright';
+const browser = await chromium.launch({ executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' });
+const page = await browser.newPage({ viewport: { width: 1600, height: 1000 } });
+// content-split-cards
+await page.goto('http://localhost:5173/viewer.html#slide=10', { waitUntil: 'networkidle' });
+await page.locator('#start-btn').click();
+await page.waitForTimeout(2500);
+await page.keyboard.press('c');
+await page.waitForTimeout(300);
+await page.locator('#slide-stage > .slide').screenshot({ path: '/tmp/wider-split.png' });
+// data-big-numbers
+await page.evaluate(() => { location.hash = '#slide=11'; });
+await page.waitForTimeout(2500);
+await page.locator('#slide-stage > .slide').screenshot({ path: '/tmp/wider-data.png' });
+await browser.close();
+NODE
+node shot-wider.mjs 2>&1; rm -f shot-wider.mjs
+```
+
+```text
+(Bash completed with no output)
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 20:34:08Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `/tmp/wider-split.png`
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 20:34:19Z)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `/tmp/wider-data.png`
+</details></tool-use>
+
+_**Agent (claude-opus-4-6 2026-04-14 20:34:27Z)**_
+
+Both layouts now give the right column ~56% of the body area (flex ratio 1 : 1.25) instead of 50/50. The pills are visibly wider — on slide 10 the three evidence cards are noticeably longer, and on slide 11 the three stat blocks are each ~10% wider while keeping their heights unchanged.
+
+Edits: `src/style.css:858/884` (content-split-cards) and `src/style.css:1068/1090` (data-big-numbers).
+
+---
+
+_**User (2026-04-14 20:35:03Z)**_
+
+the book covers seem fine when palying but seem squashd on teh pptx output

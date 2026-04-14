@@ -116,7 +116,6 @@ export function contentSplitCards(slide, page) {
       <div class="content-body-area">
         <div class="content-left">
           <h2>${slide.heading}</h2>
-          ${slide.body ? `<p>${slide.body}</p>` : ''}
         </div>
         <div class="content-right">
           ${cards}
@@ -186,7 +185,6 @@ export function dataBigNumbers(slide, page) {
       <div class="data-body">
         <div class="data-left">
           <h2>${slide.heading}</h2>
-          ${slide.body ? `<p>${slide.body}</p>` : ''}
         </div>
         <div class="data-right">
           ${blocks}
